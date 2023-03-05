@@ -144,7 +144,10 @@ export async function getServerSideProps<Props>(context: any) {
           name: u.name,
           createdAt: u.createdAt.toString(),
         },
-        quests: availableQuests,
+        quests: availableQuests.map((quest) => ({
+          value: quest.value,
+          category: quest.category,
+        })),
       },
     };
   }
