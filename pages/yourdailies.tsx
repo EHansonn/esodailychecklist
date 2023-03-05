@@ -14,6 +14,7 @@ export type User = {
   id: string;
   name: string;
   createdAt: string;
+  checkedTasks?: string;
 };
 
 export type Quest = {
@@ -36,9 +37,10 @@ interface Props {
 }
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
-  console.log("test");
-  console.log(quests);
+  //console.log("test");
+  //console.log(quests);
 
+  //console.log(`test ${user}`);
   const dayPassed = () => {
     console.log("a day has passed... will work on this later");
   };
@@ -65,6 +67,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   return el.category === "Undaunted Pledges";
                 })}
                 name={"Undaunted Pledges"}
+                user={user}
               ></QuestCategory>
             </div>
 
@@ -72,42 +75,49 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               <QuestCategory
                 quests={undefined}
                 name={"Quild Daily Quests"}
+                user={user}
               ></QuestCategory>
               <QuestCategory
                 quests={quests?.filter(function (el) {
                   return el.category === "Fighters Guild Daily";
                 })}
                 name={"Fighters Guild Daily"}
+                user={user}
               ></QuestCategory>
               <QuestCategory
                 quests={quests?.filter(function (el) {
                   return el.category === "Mages Guild Daily";
                 })}
                 name={"Mages Guild Daily"}
+                user={user}
               ></QuestCategory>
               <QuestCategory
                 quests={quests?.filter(function (el) {
                   return el.category === "Undaunted Daily";
                 })}
                 name={"Undaunted Daily"}
+                user={user}
               ></QuestCategory>
             </div>
             <div className="bg-slate-300 flex flex-col">
               <QuestCategory
                 quests={undefined}
                 name={"Crafting Writs"}
+                user={user}
               ></QuestCategory>
               <QuestCategory
                 quests={quests?.filter(function (el) {
                   return el.category === "Consumables Crafting Writs";
                 })}
                 name={"Consumables Crafting Writs"}
+                user={user}
               ></QuestCategory>
               <QuestCategory
                 quests={quests?.filter(function (el) {
                   return el.category === "Equipment Crafting Writs";
                 })}
                 name={"Equipment Crafting Writs"}
+                user={user}
               ></QuestCategory>
             </div>
             <div className="bg-slate-300 flex flex-col">
@@ -116,6 +126,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   return el.category === "Trials";
                 })}
                 name={"Trials"}
+                user={user}
               ></QuestCategory>
             </div>
             <div className="bg-slate-300 flex flex-col">
@@ -124,6 +135,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   return el.category === "Arenas";
                 })}
                 name={"Arenas"}
+                user={user}
               ></QuestCategory>
             </div>
             <div className="bg-slate-300 flex flex-col">
@@ -132,6 +144,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   return el.category === "Craglorn Quests";
                 })}
                 name={"Craglorn Quests"}
+                user={user}
               ></QuestCategory>
             </div>
           </div>
@@ -205,6 +218,7 @@ export async function getServerSideProps<Props>(context: any) {
           id: u.id,
           name: u.name,
           createdAt: u.createdAt.toString(),
+          checkedTasks: u.checkedTasks,
         },
         quests: availableQuests,
       },

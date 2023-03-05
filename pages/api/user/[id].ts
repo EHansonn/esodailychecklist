@@ -4,17 +4,21 @@ import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 
-// DELETE /api/post/:id
 export default async function handle(req: any, res: any) {
-  console.log("hi worl12313132d");
   const session = await getServerSession(req, res, authOptions);
+  console.log("hi world");
   if (session) {
+    const { id, checkedTasks } = req.body;
+    console.log(`STUFF ${checkedTasks}`);
+    console.log(`${id}`);
     const listId = req.query.id;
-    if (req.method === "DELETE") {
-      const post = await prisma.list.delete({
-        where: { id: listId },
+    if (req.method === "PUT") {
+      //console.log("succsess");
+      const stuff = await prisma.user.update({
+        where: { id },
+        data: { checkedTasks },
       });
-      res.json(post);
+      res.json(stuff);
     } else {
       throw new Error(
         `The HTTP ${req.method} method is not supported at this route.`

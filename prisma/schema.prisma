@@ -80,7 +80,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Task          Task[]
-
+  checkedTasks String @default("")
   @@map(name: "users")
 }
 
