@@ -14,7 +14,7 @@ model List {
   id      String  @id @default(cuid())
   title   String
   content String?
-  owner   User?   @relation(fields: [userId], references: [id])
+  owner   User?   @relation(fields: [userId], references: [id],onDelete: Cascade)
   userId  String?
   tasks   Task[]
 }
@@ -22,7 +22,7 @@ model List {
 model Task {
   id     String  @id @default(cuid())
   owner  User?   @relation(fields: [userId], references: [id])
-  list   List    @relation(fields: [listId], references: [id])
+  list   List    @relation(fields: [listId], references: [id], onDelete: Cascade)
   userId String?
   listId String
 

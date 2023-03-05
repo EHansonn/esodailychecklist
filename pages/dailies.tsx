@@ -28,7 +28,7 @@ interface Props {
 
 const Dailies: NextPage<Props> = ({ user, lists, quests }) => {
   console.log(lists);
-  console.log(quests);
+  //console.log(quests);
 
   const { data: session, status } = useSession();
   if (!session) {

@@ -60,20 +60,20 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
     form.resetFields();
   };
 
-  console.log("test");
+  //console.log("test");
   const questss = JSON.stringify(quests);
-  console.log(questss);
+  //console.log(questss);
   const questOptions = quests?.map((quests) => ({
     value: quests.value,
     label: quests.value,
   }));
-  console.log(questOptions);
+  //console.log(questOptions);
 
   const onFinish = async (values: any) => {
     //console.log(values);
-    console.log("1541231312");
-    console.log(typeof values.quests);
-    console.log(values.quests);
+    //console.log("1541231312");
+    //console.log(typeof values.quests);
+    //console.log(values.quests);
     const response = await fetch("/api/list", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
