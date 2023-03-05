@@ -46,7 +46,7 @@ const Dailies: NextPage<Props> = ({ user, lists, quests }) => {
           <Listmodal quests={quests} user={user}></Listmodal>
           {lists?.map((list: any) => (
             <div
-              className="bg-white object-contain rounded-lg py-2 pl-2"
+              className="bg-slate-300 object-contain rounded-lg py-2 pl-2"
               key={list.id}
             >
               <Button
