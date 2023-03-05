@@ -125,13 +125,6 @@ export async function getServerSideProps<Props>(context: any) {
           quest: {
             select: {
               value: true,
-              category: true,
-              description: true,
-              repeatable: true,
-              location: true,
-              questGiver: true,
-              uespLink: true,
-              reward: true,
             },
           },
         },
