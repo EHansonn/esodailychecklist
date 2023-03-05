@@ -144,10 +144,7 @@ export async function getServerSideProps<Props>(context: any) {
           name: u.name,
           createdAt: u.createdAt.toString(),
         },
-        quests: availableQuests.map((quest) => ({
-          value: quest.value,
-          category: quest.category,
-        })),
+        quests: availableQuests,
       },
     };
   }
@@ -158,3 +155,7 @@ export async function getServerSideProps<Props>(context: any) {
 
 export default YourDailies;
 //JSON.parse(JSON.stringify(u))
+/*.map((quest) => ({
+          value: quest.value,
+          category: quest.category,
+        }))*/
