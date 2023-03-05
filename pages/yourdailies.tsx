@@ -16,14 +16,14 @@ export type User = {
 };
 
 export type Quest = {
-  value: string;
-  category: string;
-  description: string;
-  repeatable: string;
-  location: string;
-  questGiver: string;
-  uespLink: string;
-  reward: string;
+  value?: string;
+  category?: string;
+  description?: string;
+  repeatable?: string;
+  location?: string;
+  questGiver?: string;
+  uespLink?: string;
+  reward?: string;
 };
 
 interface Props {
