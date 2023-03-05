@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+![alt text](https://cdn.discordapp.com/attachments/1054239396024549486/1081992011818745906/vision.png)
+
 ## Getting Started
 
 First, run the development server:

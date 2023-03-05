@@ -108,10 +108,11 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
       <Form.Item
         label="quests"
         name="quests"
-        rules={[{ required: false, message: "Please input your hobbies!" }]}
+        rules={[{ required: false, message: "Please input your quests!" }]}
       >
         <Select mode="multiple" options={questOptions} />
       </Form.Item>
+
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           Submit
