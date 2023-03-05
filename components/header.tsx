@@ -77,6 +77,9 @@ export default function Header() {
           <li className={styles.navItem}>
             <Link href="/dailies">Dailies</Link>
           </li>
+          <li className={styles.navItem}>
+            <Link href="/yourdailies">Your Dailies</Link>
+          </li>
         </ul>
       </nav>
     </header>

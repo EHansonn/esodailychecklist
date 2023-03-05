@@ -32,7 +32,13 @@ model Task {
 
 model Quest {
   value String @id @unique
-
+  category String
+  description String
+  repeatable String
+  location String
+  questGiver String
+  uespLink String
+  reward String
   Task Task[]
 }
 

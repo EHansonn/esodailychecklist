@@ -42,7 +42,7 @@ const Dailies: NextPage<Props> = ({ user, lists, quests }) => {
     return (
       <Layout>
         <div className="flex flex-col space-y-3">
-          Your dailies
+          Your dailies - mostly for testing api and db stuff rn
           <Listmodal quests={quests} user={user}></Listmodal>
           {lists?.map((list: any) => (
             <div

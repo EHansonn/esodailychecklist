@@ -84,7 +84,7 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
         tasks: values.quests,
       }),
     });
-    Router.push("/dailies");
+    Router.push("/yourdailies");
   };
   return (
     <Form
