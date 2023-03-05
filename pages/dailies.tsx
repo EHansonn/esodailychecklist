@@ -65,6 +65,7 @@ const Dailies: NextPage<Props> = ({ user, lists, quests }) => {
             </div>
           ))}
         </div>
+        <script> </script>
       </Layout>
     );
   }
