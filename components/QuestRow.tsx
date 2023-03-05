@@ -11,7 +11,7 @@ const QuestRow: React.FC<{ quest: Quest }> = ({ quest }) => {
   return (
     <div className="">
       <>
-        <h3>Title: {quest.value}</h3>
+        <h3>Title: {quest?.value}</h3>
       </>
     </div>
   );

@@ -16,7 +16,7 @@ export type User = {
 };
 
 export type Quest = {
-  value?: string;
+  value: string;
   category?: string;
   description?: string;
   repeatable?: string;
