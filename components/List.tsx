@@ -16,8 +16,8 @@ export type ListProps = {
 
 const List: React.FC<{ list: ListProps }> = ({ list }) => {
   // <Link href={`/list/${list.id}`}
-  console.log(123123);
-  console.log(list?.tasks[0].quest.value);
+ // console.log(123123);
+  //console.log(list?.tasks[0].quest.value);
   const userName = list.owner ? list.owner.name : "Unknown owner";
   //console.log(list);
   const userEmail = list.owner ? list.owner.email : "unknown";
