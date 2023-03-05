@@ -36,7 +36,8 @@ interface Props {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   //console.log(lists);
-  //console.log(quests);
+  console.log("test");
+  console.log(quests);
   let undauntedPleges = quests?.filter(function (el) {
     return el.category === "Undaunted Pledges";
   });
