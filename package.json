@@ -21,7 +21,7 @@
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "^4.11.0",
     "@types/nprogress": "^0.2.0",
-    "antd": "^5.2.3",
+    "antd": "5.0.0",
     "dotenv": "^16.0.3",
     "next": "latest",
     "next-auth": "^4.20.1",
