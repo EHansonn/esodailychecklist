@@ -24,13 +24,15 @@ const List: React.FC<{ list: ListProps }> = ({ list }) => {
   return (
     <div className="flex flex-col object-contain text-black  ">
       <>
-        <h2>title: {list.title}</h2>
+        <h3>Title: {list.title}</h3>
         <small>owner: {userName}</small>
-        <small>owner: {userEmail}</small>
-        <h2>content: {list.content}</h2>
-        {list?.tasks.map((e: any) => {
-          return <small key={e.quest.value}>quests: {e.quest.value}</small>;
-        })}
+        <small>Email: {userEmail}</small>
+        <small>Description: {list.content}</small>
+        <div className="flex flex-col">
+          {list?.tasks.map((e: any) => {
+            return <h3 key={e.quest.value}>quests: {e.quest.value}</h3>;
+          })}
+        </div>
       </>
     </div>
   );

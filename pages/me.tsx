@@ -1,12 +1,13 @@
-import { useSession } from "next-auth/react"
-import Layout from "../components/layout"
+import { useSession } from "next-auth/react";
+import Layout from "../components/layout";
 
 export default function MePage() {
-  const { data } = useSession()
+  const { data } = useSession();
 
   return (
     <Layout>
+      <small>for testing</small>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </Layout>
-  )
+  );
 }
