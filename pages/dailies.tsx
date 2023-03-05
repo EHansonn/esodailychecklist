@@ -27,7 +27,7 @@ interface Props {
 }
 
 const Dailies: NextPage<Props> = ({ user, lists, quests }) => {
-  console.log(lists);
+  //console.log(lists);
   //console.log(quests);
 
   const { data: session, status } = useSession();
@@ -52,7 +52,7 @@ const Dailies: NextPage<Props> = ({ user, lists, quests }) => {
               <Button
                 danger
                 onClick={async () => {
-                  console.log("clicked");
+                  //console.log("clicked");
                   await fetch(`/api/list/${list.id}`, {
                     method: "DELETE",
                   });
