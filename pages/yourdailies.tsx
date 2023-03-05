@@ -132,7 +132,8 @@ export async function getServerSideProps<Props>(context: any) {
     },
   });
   const availableQuests = await prisma?.quest.findMany({});
-
+  console.log("tessssss");
+  console.log(availableQuests);
   if (u && lists) {
     return {
       props: {
