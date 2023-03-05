@@ -131,7 +131,18 @@ export async function getServerSideProps<Props>(context: any) {
       },
     },
   });
-  const availableQuests = await prisma?.quest.findMany({});
+  const availableQuests = await prisma?.quest.findMany({
+    select: {
+      value: true,
+      category: true,
+      description: true,
+      repeatable: true,
+      location: true,
+      questGiver: true,
+      uespLink: true,
+      reward: true,
+    },
+  });
 
   if (u && lists) {
     return {
