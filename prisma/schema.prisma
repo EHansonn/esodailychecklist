@@ -14,7 +14,7 @@ model List {
   id      String  @id @default(cuid())
   title   String
   content String?
-  owner   User?   @relation(fields: [userId], references: [id],onDelete: Cascade)
+  owner   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String?
   tasks   Task[]
 }
@@ -31,15 +31,15 @@ model Task {
 }
 
 model Quest {
-  value String @id @unique
-  category String
+  value       String @id @unique
+  category    String
   description String
-  repeatable String
-  location String
-  questGiver String
-  uespLink String
-  reward String
-  Task Task[]
+  repeatable  String
+  location    String
+  questGiver  String
+  uespLink    String
+  reward      String
+  Task        Task[]
 }
 
 model Account {

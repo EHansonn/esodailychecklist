@@ -8,7 +8,7 @@ import Listmodal from "../components/Listmodal";
 import { Button } from "antd";
 import Router from "next/router";
 import Layout from "../components/layout";
-import QuestRow from "../components/Quest";
+import QuestRow from "../components/QuestRow";
 export type User = {
   id: string;
   name: string;
