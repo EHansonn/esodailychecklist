@@ -8,7 +8,8 @@ import Listmodal from "../components/Listmodal";
 import { Button } from "antd";
 import Router from "next/router";
 import Layout from "../components/layout";
-import QuestRow from "../components/QuestRow";
+import QuestRow from "../components/quests/QuestRow";
+import QuestCategory from "../components/quests/QuestCategory";
 export type User = {
   id: string;
   name: string;
@@ -35,13 +36,12 @@ interface Props {
 }
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
-  //console.log(lists);
   console.log("test");
   console.log(quests);
-  let undauntedPleges = quests?.filter(function (el) {
-    return el.category === "Undaunted Pledges";
-  });
-  //console.log(undauntedPleges);
+
+  const dayPassed = () => {
+    console.log("a day has passed... will work on this later");
+  };
 
   const { data: session, status } = useSession();
   if (!session) {
@@ -54,24 +54,86 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
+        <Button type="primary" onClick={dayPassed}>
+          Simulate day passing
+        </Button>
         <div className="flex space-x-5 flex-row">
-          <div className="w-2/3 grid grid-cols-3 gap-3 bg-slate-200">
-            <div className="bg-slate-300 flex flex-col h-full">
-              <h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative">
-                Undaunted Pledges
-                <small className="absolute right-0 ">00:00</small>
-              </h4>
-              <small>
-                {undauntedPleges?.map((quest: any, index) => (
-                  <QuestRow key={index} quest={quest}></QuestRow>
-                ))}
-              </small>
+          <div className="w-2/3 grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)]">
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Undaunted Pledges";
+                })}
+                name={"Undaunted Pledges"}
+              ></QuestCategory>
             </div>
-            <div className="bg-slate-300">2</div>
-            <div className="bg-slate-300">3</div>
-            <div className="bg-slate-300">4</div>
-            <div className="bg-slate-300">5</div>
-            <div className="bg-slate-300">6</div>
+
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={undefined}
+                name={"Quild Daily Quests"}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Fighters Guild Daily";
+                })}
+                name={"Fighters Guild Daily"}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Mages Guild Daily";
+                })}
+                name={"Mages Guild Daily"}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Undaunted Daily";
+                })}
+                name={"Undaunted Daily"}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={undefined}
+                name={"Crafting Writs"}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Consumables Crafting Writs";
+                })}
+                name={"Consumables Crafting Writs"}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Equipment Crafting Writs";
+                })}
+                name={"Equipment Crafting Writs"}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Trials";
+                })}
+                name={"Trials"}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Arenas";
+                })}
+                name={"Arenas"}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Craglorn Quests";
+                })}
+                name={"Craglorn Quests"}
+              ></QuestCategory>
+            </div>
           </div>
           <div className="flex flex-col space-y-3">
             Your custom lists
