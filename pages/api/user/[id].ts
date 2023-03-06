@@ -9,13 +9,17 @@ export default async function handle(req: any, res: any) {
   console.log("hi world");
   if (session) {
     const { id, checkedTasks } = req.body;
+    const userId = req.query.id;
+    if (id !== userId) {
+      throw new Error("something went wrong with ids");
+    }
     console.log(`STUFF ${checkedTasks}`);
     console.log(`${id}`);
     const listId = req.query.id;
     if (req.method === "PUT") {
       //console.log("succsess");
       const stuff = await prisma.user.update({
-        where: { id },
+        where: { id: userId },
         data: { checkedTasks },
       });
       res.json(stuff);

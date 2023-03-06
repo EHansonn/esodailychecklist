@@ -6,7 +6,7 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import prisma from "../lib/prisma";
 import Listmodal from "../components/Listmodal";
 import { Button } from "antd";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import Layout from "../components/layout";
 import QuestRow from "../components/quests/QuestRow";
 import QuestCategory from "../components/quests/QuestCategory";
@@ -29,23 +29,16 @@ export type Quest = {
 };
 
 interface Props {
-  session: Session;
-  user?: User;
+  user: User;
   lists?: ListProps[];
   error?: string;
   quests?: Quest[];
 }
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
-  //console.log("test");
-  //console.log(quests);
-
-  //console.log(`test ${user}`);
-  const dayPassed = () => {
-    console.log("a day has passed... will work on this later");
-  };
-
   const { data: session, status } = useSession();
+  //console.log(user);
+  const reee = useRouter();
   if (!session) {
     return (
       <Layout>
@@ -56,7 +49,25 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <Button type="primary" onClick={dayPassed}>
+        <Button
+          type="primary"
+          onClick={async () => {
+            //console.log("clicked");
+            //console.log(e);
+            //console.log(user?.checkedTasks);
+
+            await fetch(`/api/user/${user?.id}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                id: user?.id,
+                checkedTasks: "",
+              }),
+            });
+            //Router.push("/yourdailies");
+            Router.reload();
+          }}
+        >
           Simulate day passing
         </Button>
         <div className="flex space-x-5 flex-row">
@@ -126,7 +137,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   return el.category === "Trials";
                 })}
                 name={"Trials"}
-                user={user}
+                user={session.user}
               ></QuestCategory>
             </div>
             <div className="bg-slate-300 flex flex-col">
@@ -159,7 +170,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 <Button
                   danger
                   onClick={async () => {
-                    //console.log("clicked");
                     await fetch(`/api/list/${list.id}`, {
                       method: "DELETE",
                     });
@@ -182,11 +192,10 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
 export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
-  const userId = session?.user.id;
+  const userId = session?.user.email;
   const u = await prisma?.user.findFirst({
-    where: { id: userId },
+    where: { email: session?.user.email },
   });
-
   const lists = await prisma.list.findMany({
     where: {
       userId: u?.id,
@@ -207,8 +216,6 @@ export async function getServerSideProps<Props>(context: any) {
     },
   });
   const availableQuests = await prisma?.quest.findMany({});
-  console.log("tessssss");
-  console.log(availableQuests);
   if (u && lists) {
     return {
       props: {

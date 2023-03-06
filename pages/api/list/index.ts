@@ -15,7 +15,7 @@ export default async function handle(req: any, res: any) {
     const session = await getSession({ req });
     console.log("128937192888888888888888888888888888");
     console.log(tasks);
-
+    console.log(user.id);
     const result = await prisma.list.create({
       data: {
         title: title,
@@ -34,6 +34,7 @@ export default async function handle(req: any, res: any) {
   } else {
     res.status(401);
   }
+  //console.log(res);
   res.end();
 
   // tasks: {
