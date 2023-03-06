@@ -8,8 +8,9 @@ export default async function handle(req: any, res: any) {
   const session = await getServerSession(req, res, authOptions);
   // console.log("hi world");
   if (session) {
-    const { id, checkedTasks } = req.body;
+    const { id, checkedTasks, quest, trueorfalse } = req.body;
     const userId = req.query.id;
+    // console.log(quest);
     if (id !== userId) {
       throw new Error("something went wrong with ids");
     }
@@ -22,15 +23,22 @@ export default async function handle(req: any, res: any) {
       throw new Error("something went wrong with the auth");
     }
 
-    console.log(`STUFF ${checkedTasks}`);
-    console.log(`${id}`);
     const listId = req.query.id;
     if (req.method === "PUT") {
-      const stuff = await prisma.user.update({
-        where: { id: userId },
-        data: { checkedTasks },
-      });
-      res.json(stuff);
+      if (trueorfalse) {
+        await prisma.questsOnUser.create({
+          data: {
+            userId: userId,
+            questName: quest.value,
+          },
+        });
+      } else {
+        await prisma.questsOnUser.deleteMany({
+          where: { questName: quest.value },
+        });
+      }
+
+      // res.json(stuff);
       res.status(201);
     } else {
       throw new Error(

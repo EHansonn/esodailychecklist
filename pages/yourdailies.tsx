@@ -15,6 +15,14 @@ export type User = {
   name: string;
   createdAt: string;
   checkedTasks?: string;
+  questsOnUser?: QuestsOnUser[];
+};
+
+export type QuestsOnUser = {
+  user: User;
+  quest: Quest;
+  userId: string;
+  questName: string;
 };
 
 export type Quest = {
@@ -37,7 +45,7 @@ interface Props {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
-  //console.log(quests);
+  //console.log(user.questsOnUser);
   const categories = [
     "Undaunted Pledges",
     "Arenas",
@@ -79,30 +87,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     return (
       <Layout>
         <div className="pb-2">
-          <div className="pb-2">
-            <Button
-              type="primary"
-              onClick={async () => {
-                //console.log("clicked");
-                //console.log(e);
-                //console.log(user?.checkedTasks);
-
-                const yo = await fetch(`/api/user/${user?.id}`, {
-                  method: "PUT",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    id: user?.id,
-                    checkedTasks: "",
-                  }),
-                });
-                if (yo.status === 200) {
-                  Router.reload();
-                }
-              }}
-            >
-              Simulate the reset
-            </Button>
-          </div>
+          <div className="pb-2"></div>
 
           <div className="flex space-x-5  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
             <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
@@ -156,7 +141,11 @@ export async function getServerSideProps<Props>(context: any) {
   const userId = session?.user.email;
   const u = await prisma?.user.findFirst({
     where: { email: session?.user.email },
+    include: {
+      QuestsOnUser: true,
+    },
   });
+
   const lists = await prisma.list.findMany({
     where: {
       userId: u?.id,
@@ -176,6 +165,7 @@ export async function getServerSideProps<Props>(context: any) {
       },
     },
   });
+
   const availableQuests = await prisma?.quest.findMany({});
   if (u && lists) {
     return {
@@ -187,6 +177,7 @@ export async function getServerSideProps<Props>(context: any) {
           name: u.name,
           createdAt: u.createdAt.toString(),
           checkedTasks: u.checkedTasks,
+          questsOnUser: JSON.parse(JSON.stringify(u.QuestsOnUser)),
         },
         quests: availableQuests,
       },

@@ -10,39 +10,33 @@ export type questProps = {
 
 const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
   const onChange = (e: CheckboxChangeEvent) => {
-    console.log(`checked ${quest?.value} = ${e.target.checked}`);
-    console.log(user?.id);
+    
   };
   const router = useRouter();
-  //console.log(quest);
-  const checkedByDefault = user?.checkedTasks?.includes(`{${quest?.value}}`);
+
+  let checkedByDefault = false;
+  user?.questsOnUser?.map((e) => {
+    if (e.questName === quest?.value) {
+      checkedByDefault = true;
+    }
+  });
+  
   return (
     <div className="flex flex-row my-2 pl-2 ">
       <>
         <Checkbox
           defaultChecked={checkedByDefault}
           onChange={async (e: CheckboxChangeEvent) => {
-            //console.log("clicked");
-            //console.log(e);
-            //console.log(user?.checkedTasks);
-            let returnstuff = user?.checkedTasks;
-            if (e.target.checked === false) {
-              if (user?.checkedTasks?.includes(`{${quest?.value}}`)) {
-                returnstuff = returnstuff?.replace(`{${quest?.value}}`, ``);
-              }
-            } else {
-              if (user?.checkedTasks?.includes(`{${quest?.value}}`)) {
-              } else {
-                returnstuff = returnstuff?.concat(`{${quest?.value}}`);
-              }
-            }
+          
 
             await fetch(`/api/user/${user?.id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 id: user?.id,
-                checkedTasks: returnstuff,
+                
+                quest: quest,
+                trueorfalse: e.target.checked,
               }),
             });
             router.push(

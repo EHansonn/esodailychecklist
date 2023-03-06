@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
 const ListPage: NextPage<ListProps> = (props) => {
   let title = props.title;
-  console.log(props);
+  //console.log(props);
   return (
     <>
       <div>id: {props.id}</div>
