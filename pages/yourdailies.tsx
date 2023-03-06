@@ -37,7 +37,7 @@ interface Props {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
-
+  //console.log(quests);
   const categories = [
     "Undaunted Pledges",
     "Arenas",
@@ -104,8 +104,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
             </Button>
           </div>
 
-          <div className="flex space-x-5  flex-row justify-between">
-            <div className="w-full grid grid-cols-3 gap-3 flex   grid-rows-[minmax(0,_2fr)]  auto-cols-1  w-2/3 ">
+          <div className="flex space-x-5  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
               {categories.map((category) => (
                 <div key={category} className=" flex flex-col">
                   <QuestCategory
@@ -118,7 +118,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col space-y-3 w-1/3 ">
+            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full">
               Your custom lists
               <Listmodal quests={quests} user={user}></Listmodal>
               {lists?.map((list: any) => (

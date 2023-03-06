@@ -89,6 +89,7 @@ export default function Header() {
                             className="h-8 w-8 rounded-full "
                             src={`${session?.user.image}`}
                             alt=""
+                            referrerPolicy="no-referrer"
                           />
                         </div>
                       )}

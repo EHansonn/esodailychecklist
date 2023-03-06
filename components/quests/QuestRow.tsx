@@ -14,6 +14,7 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
     console.log(user?.id);
   };
   const router = useRouter();
+  //console.log(quest);
   const checkedByDefault = user?.checkedTasks?.includes(`{${quest?.value}}`);
   return (
     <div className="flex flex-row my-2 pl-2 ">
