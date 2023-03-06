@@ -47,7 +47,7 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
             Router.push("/yourdailies");
           }}
         ></Checkbox>
-        <h3 className="m-0">{quest?.value}</h3>
+        <h3 className="pl-2 m-0">{quest?.value}</h3>
       </>
     </div>
   );
