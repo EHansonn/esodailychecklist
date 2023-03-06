@@ -37,7 +37,6 @@ interface Props {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
-  //console.log(user);
 
   const categories = [
     "Undaunted Pledges",
@@ -196,96 +195,3 @@ export async function getServerSideProps<Props>(context: any) {
 
 export default YourDailies;
 //JSON.parse(JSON.stringify(u))
-/*.map((quest) => ({
-          value: quest.value,
-          category: quest.category,
-        }))*/
-
-/*
-         <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Undaunted Pledges";
-                })}
-                name={"Undaunted Pledges"}
-                user={user}
-              ></QuestCategory>
-            </div>
-
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={undefined}
-                name={"Quild Daily Quests"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Fighters Guild Daily";
-                })}
-                name={"Fighters Guild Daily"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Mages Guild Daily";
-                })}
-                name={"Mages Guild Daily"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Undaunted Daily";
-                })}
-                name={"Undaunted Daily"}
-                user={user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={undefined}
-                name={"Crafting Writs"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Consumables Crafting Writs";
-                })}
-                name={"Consumables Crafting Writs"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Equipment Crafting Writs";
-                })}
-                name={"Equipment Crafting Writs"}
-                user={user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Trials";
-                })}
-                name={"Trials"}
-                user={session.user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Arenas";
-                })}
-                name={"Arenas"}
-                user={user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Craglorn Quests";
-                })}
-                name={"Craglorn Quests"}
-                user={user}
-              ></QuestCategory>
-            </div>
-        */
