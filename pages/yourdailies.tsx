@@ -70,37 +70,41 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (!session) {
     return (
       <Layout>
-        <div>access denied/loading</div>
+        {status === "loading" && <div>loading</div>}
+        {status === "unauthenticated" && <div>Please sign in</div>}
       </Layout>
     );
   }
   if (session) {
     return (
       <Layout>
-        <div className="">
-          <Button
-            type="primary"
-            onClick={async () => {
-              //console.log("clicked");
-              //console.log(e);
-              //console.log(user?.checkedTasks);
+        <div className="pb-2">
+          <div className="pb-2">
+            <Button
+              type="primary"
+              onClick={async () => {
+                //console.log("clicked");
+                //console.log(e);
+                //console.log(user?.checkedTasks);
 
-              const yo = await fetch(`/api/user/${user?.id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  id: user?.id,
-                  checkedTasks: "",
-                }),
-              });
-              if (yo.status === 200) {
-                Router.reload();
-              }
-            }}
-          >
-            Simulate day passing
-          </Button>
-          <div className="flex space-x-5  flex-row justify-between ">
+                const yo = await fetch(`/api/user/${user?.id}`, {
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    id: user?.id,
+                    checkedTasks: "",
+                  }),
+                });
+                if (yo.status === 200) {
+                  Router.reload();
+                }
+              }}
+            >
+              Simulate day passing
+            </Button>
+          </div>
+
+          <div className="flex space-x-5  flex-row justify-between">
             <div className="w-full grid grid-cols-3 gap-3 flex   grid-rows-[minmax(0,_2fr)]  auto-cols-1  w-2/3 ">
               {categories.map((category) => (
                 <div key={category} className="bg-slate-300 flex flex-col">
