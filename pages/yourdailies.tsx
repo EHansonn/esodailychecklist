@@ -101,7 +101,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
             Simulate day passing
           </Button>
           <div className="flex space-x-5  flex-row justify-between ">
-            <div className="w-full grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)]  auto-cols-1  w-2/3 ">
+            <div className="w-full grid grid-cols-3 gap-3 flex   grid-rows-[minmax(0,_2fr)]  auto-cols-1  w-2/3 ">
               {categories.map((category) => (
                 <div key={category} className="bg-slate-300 flex flex-col">
                   <QuestCategory
