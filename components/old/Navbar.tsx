@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { NextPageContext } from "next/types";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 //import { useSession } from 'next-auth/react';

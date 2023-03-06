@@ -1,10 +1,10 @@
 import { GetServerSideProps, NextPage } from "next";
-import List, { ListProps } from "../components/List";
+import List, { ListProps } from "../components/list/List";
 import { getServerSession, Session } from "next-auth";
 import { getSession, GetSessionParams, useSession } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import prisma from "../lib/prisma";
-import Listmodal from "../components/Listmodal";
+import Listmodal from "../components/list/Listmodal";
 import { Button } from "antd";
 import Router, { useRouter } from "next/router";
 import Layout from "../components/layout";

@@ -1,4 +1,4 @@
-import { User } from "../pages/dailies";
+import { User } from "../../pages/dailies";
 import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { ListProps } from "./List";
 import {
@@ -16,7 +16,7 @@ import {
 import Router from "next/router";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { SmileOutlined, UserOutlined } from "@ant-design/icons";
-import { Quest } from "../pages/dailies";
+import { Quest } from "../../pages/dailies";
 export interface ListModalRef {
   visible: boolean;
   showModal: (visible: boolean) => void;

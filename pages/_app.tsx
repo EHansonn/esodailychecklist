@@ -1,6 +1,6 @@
 import { SessionProvider } from "next-auth/react";
-import "./styles.css";
-import "./globals.css";
+import "../styles/./styles.css";
+import "../styles/./globals.css";
 import type { AppProps } from "next/app";
 import type { Session } from "next-auth";
 import { useEffect } from "react";
