@@ -26,7 +26,7 @@ model Task {
   userId String?
   listId String
 
-  quest     Quest  @relation(fields: [questName], references: [value])
+  quest     Quest  @relation(fields: [questName], references: [value], onDelete: Cascade)
   questName String
 }
 
@@ -39,7 +39,7 @@ model Quest {
   questGiver  String
   uespLink    String
   reward      String
-  Task        Task[]
+  Task        Task[] 
 }
 
 model Account {

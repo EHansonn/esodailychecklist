@@ -38,6 +38,38 @@ interface Props {
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
   //console.log(user);
+
+  const categories = [
+    "Undaunted Pledges",
+    "Guild Daily Quests",
+    "Crafting Writs",
+    "Trials",
+    "Arenas",
+    "Craglorn Quests",
+    "Cyrodilic Collections",
+    "Northern Elsweyr Defense Force",
+    "Imperial City Quests",
+    "Wrothgar Quests",
+    "Thieves Guild Quests",
+    "Gold Coast Quests",
+    "Vvardenfell Quests",
+    "Clockwork City Quests",
+    "Summerset Quests",
+    "Murkmire Quests",
+    "Elsweyr Quests",
+    "Dragonhold Quests",
+    "Western Skyrim Quests",
+    "The Reach Quests",
+    "Blackwood Quests",
+    "Deadlands Quests",
+    "High Isle Quests",
+    "Galen Quests",
+    "Cyrodiil Settlement Quests",
+    "Fighters Guild Bounty Quests",
+    "PvP Quests",
+
+    "Event Quests",
+  ];
   if (!session) {
     return (
       <Layout>
@@ -73,92 +105,17 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
         <div className="flex space-x-5 flex-row justify-between">
           <div className="w-full grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)] auto-cols-1 ">
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Undaunted Pledges";
-                })}
-                name={"Undaunted Pledges"}
-                user={user}
-              ></QuestCategory>
-            </div>
-
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={undefined}
-                name={"Quild Daily Quests"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Fighters Guild Daily";
-                })}
-                name={"Fighters Guild Daily"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Mages Guild Daily";
-                })}
-                name={"Mages Guild Daily"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Undaunted Daily";
-                })}
-                name={"Undaunted Daily"}
-                user={user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={undefined}
-                name={"Crafting Writs"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Consumables Crafting Writs";
-                })}
-                name={"Consumables Crafting Writs"}
-                user={user}
-              ></QuestCategory>
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Equipment Crafting Writs";
-                })}
-                name={"Equipment Crafting Writs"}
-                user={user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Trials";
-                })}
-                name={"Trials"}
-                user={session.user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Arenas";
-                })}
-                name={"Arenas"}
-                user={user}
-              ></QuestCategory>
-            </div>
-            <div className="bg-slate-300 flex flex-col">
-              <QuestCategory
-                quests={quests?.filter(function (el) {
-                  return el.category === "Craglorn Quests";
-                })}
-                name={"Craglorn Quests"}
-                user={user}
-              ></QuestCategory>
-            </div>
+            {categories.map((category) => (
+              <div key={category} className="bg-slate-300 flex flex-col">
+                <QuestCategory
+                  quests={quests?.filter(function (el) {
+                    return el.category === category;
+                  })}
+                  name={category}
+                  user={user}
+                ></QuestCategory>
+              </div>
+            ))}
           </div>
           <div className="flex flex-col space-y-3  ">
             Your custom lists
@@ -244,3 +201,92 @@ export default YourDailies;
           value: quest.value,
           category: quest.category,
         }))*/
+
+/*
+         <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Undaunted Pledges";
+                })}
+                name={"Undaunted Pledges"}
+                user={user}
+              ></QuestCategory>
+            </div>
+
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={undefined}
+                name={"Quild Daily Quests"}
+                user={user}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Fighters Guild Daily";
+                })}
+                name={"Fighters Guild Daily"}
+                user={user}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Mages Guild Daily";
+                })}
+                name={"Mages Guild Daily"}
+                user={user}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Undaunted Daily";
+                })}
+                name={"Undaunted Daily"}
+                user={user}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={undefined}
+                name={"Crafting Writs"}
+                user={user}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Consumables Crafting Writs";
+                })}
+                name={"Consumables Crafting Writs"}
+                user={user}
+              ></QuestCategory>
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Equipment Crafting Writs";
+                })}
+                name={"Equipment Crafting Writs"}
+                user={user}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Trials";
+                })}
+                name={"Trials"}
+                user={session.user}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Arenas";
+                })}
+                name={"Arenas"}
+                user={user}
+              ></QuestCategory>
+            </div>
+            <div className="bg-slate-300 flex flex-col">
+              <QuestCategory
+                quests={quests?.filter(function (el) {
+                  return el.category === "Craglorn Quests";
+                })}
+                name={"Craglorn Quests"}
+                user={user}
+              ></QuestCategory>
+            </div>
+        */
