@@ -86,7 +86,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className="pb-2">
+        <div className="pb-2 pt-2 pl-2 pr-2">
           <div className="pb-2"></div>
 
           <div className="flex space-x-5  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">

@@ -1,2 +1,0 @@
-/* tailwind base overwrites some Antd styles. Antd should be loaded after base but before components and utils */
-@tailwind base;

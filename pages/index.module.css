@@ -1,0 +1,8 @@
+.home {
+  background-image: url("/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* TODO should we support old browsers (blend-mode only 94%) */
+  background-blend-mode: darken;
+}
