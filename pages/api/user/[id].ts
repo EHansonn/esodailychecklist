@@ -23,6 +23,7 @@ export default async function handle(req: any, res: any) {
         data: { checkedTasks },
       });
       res.json(stuff);
+      res.status(201);
     } else {
       throw new Error(
         `The HTTP ${req.method} method is not supported at this route.`

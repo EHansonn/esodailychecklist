@@ -4,7 +4,7 @@ export default function IndexPage() {
   return (
     <Layout>
       <h1 className="text-black">ESO daily tracker homepage</h1>
-      <p>Go to dailies to create a list </p>
+      <p>Go to your dailies to create a list </p>
     </Layout>
   );
 }

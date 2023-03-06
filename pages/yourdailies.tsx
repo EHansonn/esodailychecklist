@@ -38,7 +38,6 @@ interface Props {
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
   //console.log(user);
-  const reee = useRouter();
   if (!session) {
     return (
       <Layout>
@@ -56,7 +55,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
             //console.log(e);
             //console.log(user?.checkedTasks);
 
-            await fetch(`/api/user/${user?.id}`, {
+            const yo = await fetch(`/api/user/${user?.id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -64,13 +63,15 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 checkedTasks: "",
               }),
             });
-            //Router.push("/yourdailies");
-            Router.reload();
+            if (yo.status === 200) {
+              Router.reload();
+            }
           }}
         >
           Simulate day passing
         </Button>
-        <div className="flex space-x-5 flex-row">
+
+        <div className="flex space-x-5 flex-row justify-between">
           <div className="w-2/3 grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)]">
             <div className="bg-slate-300 flex flex-col">
               <QuestCategory
@@ -159,7 +160,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               ></QuestCategory>
             </div>
           </div>
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-3  ">
             Your custom lists
             <Listmodal quests={quests} user={user}></Listmodal>
             {lists?.map((list: any) => (
@@ -184,6 +185,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
           </div>
           <script> </script>
         </div>
+        <small></small>
       </Layout>
     );
   }
