@@ -72,7 +72,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
         </Button>
 
         <div className="flex space-x-5 flex-row justify-between">
-          <div className="w-2/3 grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)]">
+          <div className="w-full grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)] auto-cols-1 ">
             <div className="bg-slate-300 flex flex-col">
               <QuestCategory
                 quests={quests?.filter(function (el) {

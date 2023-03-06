@@ -6,11 +6,11 @@ import QuestRow from "./QuestRow";
 const QuestCategory: React.FC<{
   quests: Quest[] | undefined;
   name: String;
-  user?: User
+  user?: User;
 }> = ({ quests, name, user }) => {
   return (
     <div className="bg-slate-300 flex flex-col h-full">
-      <h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative">
+      <h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative truncate ">
         {name}
         <small className="absolute right-0 "></small>
       </h4>
