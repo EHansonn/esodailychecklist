@@ -999,7 +999,7 @@ async function main() {
         reward: "",
       },
       {
-        value: "Deadlans Bounty",
+        value: "Deadlands Bounty",
         category: "Deadlands Quests",
         description: "",
         repeatable: "daily",
@@ -1009,7 +1009,7 @@ async function main() {
         reward: "",
       },
       {
-        value: "Deadlans Exploratory",
+        value: "Deadlands Exploratory",
         category: "Deadlands Quests",
         description: "",
         repeatable: "daily",

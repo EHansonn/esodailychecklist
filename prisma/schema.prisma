@@ -31,15 +31,16 @@ model Task {
 }
 
 model Quest {
-  value       String @id @unique
-  category    String
-  description String
-  repeatable  String
-  location    String
-  questGiver  String
-  uespLink    String
-  reward      String
-  Task        Task[] 
+  value        String         @id @unique
+  category     String
+  description  String
+  repeatable   String
+  location     String
+  questGiver   String
+  uespLink     String
+  reward       String
+  Task         Task[]
+  QuestsOnUser QuestsOnUser[]
 }
 
 model Account {
@@ -69,19 +70,30 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?        @unique
   image         String?
   emailVerified DateTime?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  createdAt     DateTime       @default(now()) @map(name: "created_at")
+  updatedAt     DateTime       @updatedAt @map(name: "updated_at")
   lists         List[]
   accounts      Account[]
   sessions      Session[]
   Task          Task[]
-  checkedTasks String @default("")
+  checkedTasks  String         @default("")
+  QuestsOnUser  QuestsOnUser[]
+
   @@map(name: "users")
+}
+
+model QuestsOnUser {
+  user      User   @relation(fields: [userId], references: [id])
+  quest     Quest  @relation(fields: [questName], references: [value])
+  userId    String
+  questName String
+
+  @@id([questName, userId])
 }
 
 model VerificationToken {
