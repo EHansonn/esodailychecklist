@@ -84,13 +84,22 @@ export default function Header() {
                     <Menu.Button className="flex rounded-full bg-gray-800 border-0 ">
                       <span className="sr-only">Open user menu</span>
                       {session?.user && (
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src={`${session?.user.image}`}
-                          alt=""
-                        />
+                        <div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                          <img
+                            className="h-8 w-8 rounded-full "
+                            src={`${session?.user.image}`}
+                            alt=""
+                          />
+                        </div>
                       )}
-                      {!session?.user && <MenuOutlined />}
+                      {!session?.user && (
+                        <div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                          <Bars3Icon
+                            className="block h-6 w-6"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      )}
                     </Menu.Button>
                   </div>
                   <Transition
@@ -112,7 +121,7 @@ export default function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Your Profile
+                            Your Profile #TODO
                           </a>
                         )}
                       </Menu.Item>
@@ -125,7 +134,7 @@ export default function Header() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            Settings
+                            Settings #TODO
                           </a>
                         )}
                       </Menu.Item>
