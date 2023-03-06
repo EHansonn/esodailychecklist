@@ -35,7 +35,26 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     */
-    FacebookProvider({
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+    }),
+  ],
+  theme: {
+    colorScheme: "light",
+  },
+  callbacks: {
+    async jwt({ token, user, account, profile, isNewUser }) {
+      return token;
+    },
+  },
+};
+
+export default NextAuth(authOptions);
+
+/*
+ FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
       clientSecret: process.env.FACEBOOK_SECRET,
     }),
@@ -56,15 +75,5 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.AUTH0_SECRET,
       issuer: process.env.AUTH0_ISSUER,
     }),
-  ],
-  theme: {
-    colorScheme: "light",
-  },
-  callbacks: {
-    async jwt({ token, user, account, profile, isNewUser }) {
-      return token;
-    },
-  },
-};
 
-export default NextAuth(authOptions);
+    */
