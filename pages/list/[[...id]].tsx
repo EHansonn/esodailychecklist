@@ -5,7 +5,7 @@ import {
   NextPage,
 } from "next";
 //import Layout from "../../components/Layout";
-import List, { ListProps } from "../../components/List";
+import List, { ListProps } from "../../components/list/List";
 import prisma from "../../lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
