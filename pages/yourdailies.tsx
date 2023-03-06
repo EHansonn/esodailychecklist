@@ -41,13 +41,13 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
   const categories = [
     "Undaunted Pledges",
-    "Guild Daily Quests",
+    "Arenas",
     "Crafting Writs",
     "Trials",
-    "Arenas",
     "Craglorn Quests",
-    "Cyrodilic Collections",
+    "PvP Quests",
     "Northern Elsweyr Defense Force",
+    "Guild Daily Quests",
     "Imperial City Quests",
     "Wrothgar Quests",
     "Thieves Guild Quests",
@@ -66,8 +66,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     "Galen Quests",
     "Cyrodiil Settlement Quests",
     "Fighters Guild Bounty Quests",
-    "PvP Quests",
-
+    "Cyrodilic Collections",
     "Event Quests",
   ];
   if (!session) {
@@ -103,8 +102,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
           Simulate day passing
         </Button>
 
-        <div className="flex space-x-5 flex-row justify-between">
-          <div className="w-full grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)] auto-cols-1 ">
+        <div className="flex space-x-5 flex-row justify-between ">
+          <div className="w-full grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)] auto-cols-1  ">
             {categories.map((category) => (
               <div key={category} className="bg-slate-300 flex flex-col">
                 <QuestCategory

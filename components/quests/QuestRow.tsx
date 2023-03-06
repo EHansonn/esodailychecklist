@@ -1,5 +1,5 @@
 import React from "react";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import { Checkbox } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
@@ -13,7 +13,7 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
     console.log(`checked ${quest?.value} = ${e.target.checked}`);
     console.log(user?.id);
   };
-
+  const router = useRouter();
   const checkedByDefault = user?.checkedTasks?.includes(`{${quest?.value}}`);
   return (
     <div className="flex flex-row my-2 pl-2 ">
@@ -44,7 +44,13 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
                 checkedTasks: returnstuff,
               }),
             });
-            Router.push("/yourdailies");
+            router.push(
+              {
+                pathname: router.pathname,
+              },
+              undefined,
+              { scroll: false }
+            );
           }}
         ></Checkbox>
         <h3 className="pl-2 m-0">{quest?.value}</h3>
