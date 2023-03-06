@@ -66,7 +66,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     "Cyrodiil Settlement Quests",
     "Fighters Guild Bounty Quests",
     "Cyrodilic Collections",
-    "Event Quests",
   ];
   if (!session) {
     return (
@@ -78,69 +77,70 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <Button
-          type="primary"
-          onClick={async () => {
-            //console.log("clicked");
-            //console.log(e);
-            //console.log(user?.checkedTasks);
+        <div className="">
+          <Button
+            type="primary"
+            onClick={async () => {
+              //console.log("clicked");
+              //console.log(e);
+              //console.log(user?.checkedTasks);
 
-            const yo = await fetch(`/api/user/${user?.id}`, {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                id: user?.id,
-                checkedTasks: "",
-              }),
-            });
-            if (yo.status === 200) {
-              Router.reload();
-            }
-          }}
-        >
-          Simulate day passing
-        </Button>
-
-        <div className="flex space-x-5 flex-row justify-between ">
-          <div className="w-full grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)] auto-cols-1  ">
-            {categories.map((category) => (
-              <div key={category} className="bg-slate-300 flex flex-col">
-                <QuestCategory
-                  quests={quests?.filter(function (el) {
-                    return el.category === category;
-                  })}
-                  name={category}
-                  user={user}
-                ></QuestCategory>
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-col space-y-3  ">
-            Your custom lists
-            <Listmodal quests={quests} user={user}></Listmodal>
-            {lists?.map((list: any) => (
-              <div
-                className="bg-slate-300  flex flex-col object-contain rounded-lg py-2 pl-2 pr-2"
-                key={list.id}
-              >
-                <Button
-                  danger
-                  onClick={async () => {
-                    await fetch(`/api/list/${list.id}`, {
-                      method: "DELETE",
-                    });
-                    Router.push("/yourdailies");
-                  }}
+              const yo = await fetch(`/api/user/${user?.id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  id: user?.id,
+                  checkedTasks: "",
+                }),
+              });
+              if (yo.status === 200) {
+                Router.reload();
+              }
+            }}
+          >
+            Simulate day passing
+          </Button>
+          <div className="flex space-x-5  flex-row justify-between ">
+            <div className="w-full grid grid-cols-3 gap-3 flex bg-slate-200  grid-rows-[minmax(0,_2fr)]  auto-cols-1  w-2/3 ">
+              {categories.map((category) => (
+                <div key={category} className="bg-slate-300 flex flex-col">
+                  <QuestCategory
+                    quests={quests?.filter(function (el) {
+                      return el.category === category;
+                    })}
+                    name={category}
+                    user={user}
+                  ></QuestCategory>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col space-y-3 w-1/3 ">
+              Your custom lists
+              <Listmodal quests={quests} user={user}></Listmodal>
+              {lists?.map((list: any) => (
+                <div
+                  className="bg-slate-300  flex flex-col object-contain rounded-lg py-2 pl-2 pr-2"
+                  key={list.id}
                 >
-                  delete
-                </Button>
-                <List list={list}></List>
-              </div>
-            ))}
+                  <Button
+                    danger
+                    onClick={async () => {
+                      await fetch(`/api/list/${list.id}`, {
+                        method: "DELETE",
+                      });
+                      Router.push("/yourdailies");
+                    }}
+                  >
+                    delete
+                  </Button>
+                  <List list={list}></List>
+                </div>
+              ))}
+            </div>
+            <script> </script>
           </div>
-          <script> </script>
+          <small></small>
         </div>
-        <small></small>
       </Layout>
     );
   }
