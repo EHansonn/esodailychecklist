@@ -100,7 +100,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 }
               }}
             >
-              Simulate day passing
+              Simulate the reset
             </Button>
           </div>
 
