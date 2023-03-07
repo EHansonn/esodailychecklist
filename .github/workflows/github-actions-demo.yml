@@ -22,6 +22,6 @@ jobs:
     steps:
       - name: Hourly cron job
         run: |
-          curl --request POST \
+          curl --request GET \
           --url 'https://ehansonn.com/api/example' \
           --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
