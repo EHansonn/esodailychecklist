@@ -23,5 +23,5 @@ jobs:
       - name: Hourly cron job
         run: |
           curl --request POST \
-          --url 'https://ehansonn.com/api/example' \
+          --url 'https://esodailytracker.vercel.app/api/example' \
           --header 'Authorization:${{secrets.ACTION_KEY}}'
