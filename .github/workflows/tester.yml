@@ -1,13 +1,16 @@
-name: testy
-on: 
+name: Trigger Site Rebuild on a CRON Schedule
+
+on:
   schedule:
-  - cron: '*/30 * * * *'
+    # Runs "at minute 55 past every hour" (see https://crontab.guru)
+    - cron: '55 * * * *'
+
+
 jobs:
-  cron:
+  test_schedule:
     runs-on: ubuntu-latest
     steps:
-      - name: Hourly cron job
-        run: |
+      run: |
           curl --request POST \
           --url 'https://esodailytracker.vercel.app/api/example' \
           --header 'Authorization:${{secrets.ACTION_KEY}}'
