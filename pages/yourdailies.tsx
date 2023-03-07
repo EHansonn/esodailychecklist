@@ -118,10 +118,10 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
         <div className={`pb-4 pt-2 pl-4 pr-4 ${styles.dailies}`}>
           <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
             <div className="text-slate-300 pb-2 text-center">
-              Daily quests reset at 11am each day
+              Daily quests reset at 11am (UTC) each day
             </div>
             <div className="text-slate-300 pb-2 pl-5 text-center">
-              Weekly quests reset at 11am on monday
+              Weekly quests reset at 11am (UTC) on monday
             </div>
           </div>
 
