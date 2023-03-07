@@ -24,4 +24,4 @@ jobs:
         run: |
           curl --request POST \
           --url 'https://ehansonn.com/api/example' \
-          --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
+          --header 'Authorization:${{ secrets.ACTION_KEY }}'

@@ -3,8 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 export default function handler(req:NextApiRequest, res:NextApiResponse) {
 
   const { APP_KEY } = process.env;
-  // @ts-ignore
-  const  ACTION_KEY  = req?.headers?.authorization.split(" ")[1] ;
+  
+  const  ACTION_KEY  = req?.headers?.authorization
 
   try {
     if (ACTION_KEY === APP_KEY) {
