@@ -13,6 +13,7 @@ import QuestCategory from "../components/quests/QuestCategory";
 import styles from "./index.module.css";
 import Head from "next/head";
 import { signIn, signOut } from "next-auth/react";
+import moment from "moment";
 
 export type User = {
   id: string;
@@ -49,6 +50,9 @@ interface Props {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
+
+  let utcTimeDaily = "2023-03-07 11:00:00";
+  var localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");
 
   //Categories for the possible quests. Hardcoded for now...
   const categories = [
@@ -118,10 +122,10 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
         <div className={`pb-4 pt-2 pl-4 pr-4 ${styles.dailies}`}>
           <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
             <div className="text-slate-300 pb-2 text-center">
-              Daily quests reset at 11am (UTC) each day
+              {`Daily quests reset at ${localDailyReset} each day`}
             </div>
             <div className="text-slate-300 pb-2 pl-5 text-center">
-              Weekly quests reset at 11am (UTC) on monday
+              {`Weekly quests reset at ${localDailyReset} on monday`}
             </div>
           </div>
 

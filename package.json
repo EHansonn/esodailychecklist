@@ -27,6 +27,7 @@
     "antd": "5.0.0",
     "dotenv": "^16.0.3",
     "flowbite": "^1.6.3",
+    "moment": "^2.29.4",
     "next": "latest",
     "next-auth": "^4.20.1",
     "nodemailer": "^6",
