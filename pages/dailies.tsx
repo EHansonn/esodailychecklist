@@ -8,6 +8,7 @@ import Listmodal from "../components/list/Listmodal";
 import { Button } from "antd";
 import Router from "next/router";
 import Layout from "../components/layout";
+
 export type User = {
   id: string;
   name: string;
@@ -41,7 +42,7 @@ const Dailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className="flex flex-col space-y-3">
+        <div className="flex flex-col space-y-3 ">
           dailies - mostly for testing api and db stuff rn
           <Listmodal quests={quests} user={user}></Listmodal>
           {lists?.map((list: any) => (

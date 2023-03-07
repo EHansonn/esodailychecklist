@@ -6,11 +6,9 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handle(req: any, res: any) {
   const session = await getServerSession(req, res, authOptions);
-  // console.log("hi world");
   if (session) {
     const { id, checkedTasks, quest, trueorfalse } = req.body;
     const userId = req.query.id;
-    // console.log(quest);
     if (id !== userId) {
       throw new Error("something went wrong with ids");
     }

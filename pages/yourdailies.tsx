@@ -10,6 +10,7 @@ import Router, { useRouter } from "next/router";
 import Layout from "../components/layout";
 import QuestRow from "../components/quests/QuestRow";
 import QuestCategory from "../components/quests/QuestCategory";
+import styles from "./index.module.css";
 export type User = {
   id: string;
   name: string;
@@ -86,7 +87,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className="pb-2 pt-2 pl-2 pr-2">
+        <div className={`pb-2 pt-2 pl-2 pr-2 ${styles.dailies}`}>
           <div className="pb-2"></div>
 
           <div className="flex space-x-5  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
@@ -103,8 +104,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full">
-              Your custom lists
+            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full ">
               <Listmodal quests={quests} user={user}></Listmodal>
               {lists?.map((list: any) => (
                 <div

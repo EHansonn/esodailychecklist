@@ -87,41 +87,45 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
     Router.push("/yourdailies");
   };
   return (
-    <Form
-      {...layout}
-      form={form}
-      name="control-hooks"
-      onFinish={onFinish}
-      style={{ maxWidth: 600 }}
-    >
-      <Form.Item name="title" label="List Name" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name="content"
-        label="Description"
-        rules={[{ required: false }]}
-      >
-        <Input />
-      </Form.Item>
+    <div className="bg-slate-300  rounded-lg py-2 px-2 ">
+      <div className="text-center"> Your Custom Lists (WIP) </div>
 
-      <Form.Item
-        label="quests"
-        name="quests"
-        rules={[{ required: false, message: "Please input your quests!" }]}
+      <Form
+        {...layout}
+        form={form}
+        name="control-hooks"
+        onFinish={onFinish}
+        style={{ maxWidth: 600 }}
       >
-        <Select mode="multiple" options={questOptions} />
-      </Form.Item>
+        <Form.Item name="title" label="List Name" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="content"
+          label="Description"
+          rules={[{ required: false }]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-        <Button htmlType="button" onClick={onReset}>
-          Reset
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item
+          label="quests"
+          name="quests"
+          rules={[{ required: false, message: "Please input your quests!" }]}
+        >
+          <Select mode="multiple" options={questOptions} />
+        </Form.Item>
+
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+          <Button htmlType="button" onClick={onReset}>
+            Reset
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 
