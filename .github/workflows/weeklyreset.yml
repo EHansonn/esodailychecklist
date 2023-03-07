@@ -2,8 +2,8 @@ name: Trigger prisma daily reset on a CRON Schedule
 
 on:
   schedule:
-    # Runs "every day at 11 am utc (6am est)" (see https://crontab.guru)
-    - cron: '0 11 * * *'
+    # Runs "11:00 am utc on mondays (6am est)" (see https://crontab.guru)
+    - cron: '0 11 * * 1'
 
 
 jobs:
@@ -13,5 +13,5 @@ jobs:
       - name: Hourly cron job
         run: |
           curl --request POST \
-          --url 'https://esodailytracker.vercel.app/api/dailyreset' \
+          --url 'https://esodailytracker.vercel.app/api/weeklyreset' \
           --header 'Authorization:${{secrets.ACTION_KEY}}'

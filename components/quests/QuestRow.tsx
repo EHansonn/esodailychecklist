@@ -35,13 +35,13 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
                 trueorfalse: e.target.checked,
               }),
             });
-            router.push(
-              {
-                pathname: router.pathname,
-              },
-              undefined,
-              { scroll: false }
-            );
+            // router.push(
+            //   {
+            //     pathname: router.pathname,
+            //   },
+            //   undefined,
+            //   { scroll: false }
+            // );
           }}
         ></Checkbox>{" "}
         <h3 className="pl-2 m-0">{quest?.value}</h3>
