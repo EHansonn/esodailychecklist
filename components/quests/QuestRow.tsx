@@ -9,32 +9,28 @@ export type questProps = {
 };
 
 const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
-  const onChange = (e: CheckboxChangeEvent) => {
-    
-  };
+  const onChange = (e: CheckboxChangeEvent) => {};
   const router = useRouter();
-
+  // console.log(quest);
   let checkedByDefault = false;
   user?.questsOnUser?.map((e) => {
     if (e.questName === quest?.value) {
       checkedByDefault = true;
     }
   });
-  
+
   return (
-    <div className="flex flex-row my-2 pl-2 ">
-      <>
+    <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-200">
+      <div className="flex justify-start">
         <Checkbox
           defaultChecked={checkedByDefault}
           onChange={async (e: CheckboxChangeEvent) => {
-          
-
             await fetch(`/api/user/${user?.id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 id: user?.id,
-                
+
                 quest: quest,
                 trueorfalse: e.target.checked,
               }),
@@ -47,9 +43,13 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
               { scroll: false }
             );
           }}
-        ></Checkbox>
+        ></Checkbox>{" "}
         <h3 className="pl-2 m-0">{quest?.value}</h3>
-      </>
+      </div>
+
+      <div className="flex flex-row ">
+        <div className="pl-2 m-0 pr-5 ">00:00</div>
+      </div>
     </div>
   );
 };

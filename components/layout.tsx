@@ -1,5 +1,5 @@
 import Header from "./header";
-import Footer from "./footer";
+import Footer from "./old/footer";
 import type { ReactNode } from "react";
 import styles from "../pages/index.module.css";
 export default function Layout({ children }: { children: ReactNode }) {
@@ -11,6 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       >
         {children}
       </main>
+      <Footer></Footer>
     </div>
   );
 }

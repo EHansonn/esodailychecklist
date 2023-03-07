@@ -1,3 +1,5 @@
+import { GithubOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import Head from "next/head";
 import Header from "../components/header";
 import Layout from "../components/layout";
@@ -12,10 +14,22 @@ export default function IndexPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={`${styles.home}   h-screen `}>
-        <div className="absolute left-1/2 -translate-x-1/2"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ">
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  pt-3 pb-4 px-3 rounded-lg backdrop-blur-xl  bg-white/50">
           <div className="text-6xl text-white">ESO Daily Tracker</div>
+          <div className="text-2xl text-center text-white pt-4">
+            Keep track of 100+ daily quests
+          </div>
+          <div className="justify-center flex pt-2 l">
+            <Button
+              size="large"
+              type="text"
+              href={"https://github.com/EHansonn/esodailytracker"}
+            >
+              <GithubOutlined className="teamSocialIcon text-2x" />
+            </Button>
+          </div>
         </div>
+        <div className="absolute bottom-0 left-0 inset-x-0 items-center justify-center text-center rounded-lg backdrop-blur-xl bg-white/50 "></div>
       </div>
     </Layout>
   );

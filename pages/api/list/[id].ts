@@ -6,7 +6,6 @@ import { authOptions } from "../auth/[...nextauth]";
 
 // DELETE /api/post/:id
 export default async function handle(req: any, res: any) {
-  console.log("hi worl12313132d");
   const session = await getServerSession(req, res, authOptions);
   if (session) {
     const listId = req.query.id;
