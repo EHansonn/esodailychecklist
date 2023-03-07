@@ -16,7 +16,7 @@ import {
 import Router from "next/router";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { SmileOutlined, UserOutlined } from "@ant-design/icons";
-import { Quest } from "../../pages/dailies";
+import { Quest } from "../../pages/yourdailies";
 export interface ListModalRef {
   visible: boolean;
   showModal: (visible: boolean) => void;
@@ -65,7 +65,7 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
   //console.log(questss);
   const questOptions = quests?.map((quests) => ({
     value: quests.value,
-    label: quests.value,
+    label: `${quests.category}: ${quests.value}`,
   }));
   //console.log(questOptions);
 

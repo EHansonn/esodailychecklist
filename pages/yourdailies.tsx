@@ -48,7 +48,7 @@ interface Props {
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
 
-  //Categories for the possible quests
+  //Categories for the possible quests. Hardcoded for now...
   const categories = [
     "Undaunted Pledges",
     "Arenas",

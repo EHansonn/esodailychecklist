@@ -29,7 +29,7 @@ const List: React.FC<{ list: ListProps }> = ({ list }) => {
       <small>Description: {list.content}</small>
       <div className="flex flex-col">
         {list?.tasks.map((e: any) => {
-          return <h3 key={e.quest.value}>quests: {e.quest.value}</h3>;
+          return <div key={e.quest.value}>quests: {e.quest.value}</div>;
         })}
       </div>
     </div>
