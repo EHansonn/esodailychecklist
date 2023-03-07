@@ -1,4 +1,4 @@
-name: Trigger prisma daily reset on a CRON Schedule
+name: Trigger prisma weekly reset on a CRON Schedule
 
 on:
   schedule:
