@@ -12,6 +12,8 @@ import QuestRow from "../components/quests/QuestRow";
 import QuestCategory from "../components/quests/QuestCategory";
 import styles from "./index.module.css";
 import Head from "next/head";
+import { signIn, signOut } from "next-auth/react";
+
 export type User = {
   id: string;
   name: string;
@@ -84,7 +86,19 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       <Layout>
         {status === "loading" && <div>loading</div>}
         {status === "unauthenticated" && (
-          <div className="text-white w-screen text-center">Please sign in</div>
+          <div className="content-center text-center">
+            <div className="text-white w-screen text-center pb-5">
+              Please sign in
+            </div>
+            <Button
+              type="primary"
+              onClick={(e) => {
+                signIn();
+              }}
+            >
+              Sign In With Google
+            </Button>
+          </div>
         )}
       </Layout>
     );
@@ -111,7 +125,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
             </div>
           </div>
 
-          <div className="flex space-x-5  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
+          <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
             <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
               {/* Displaying Quests */}
               {categories.map((category) => (
@@ -126,11 +140,12 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full ">
+            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4">
               <Listmodal quests={quests} user={user}></Listmodal>
               {lists?.map((list: any) => (
                 <div
-                  className="bg-slate-300  flex flex-col object-contain rounded-lg py-2 pl-2 pr-2"
+                  className="bg-slate-300  flex flex-col object-contain rounded-lg py-2 pl-2 pr-2
+                  "
                   key={list.id}
                 >
                   <Button
