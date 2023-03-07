@@ -9,7 +9,6 @@ on:
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
-    steps:
       run: |
           curl --request POST \
           --url 'https://esodailytracker.vercel.app/api/example' \
