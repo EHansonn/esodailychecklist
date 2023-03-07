@@ -83,7 +83,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     return (
       <Layout>
         {status === "loading" && <div>loading</div>}
-        {status === "unauthenticated" && <div>Please sign in</div>}
+        {status === "unauthenticated" && (
+          <div className="text-white w-screen text-center">Please sign in</div>
+        )}
       </Layout>
     );
   }
