@@ -52,28 +52,28 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
     wrapperCol: { span: 16 },
   };
 
-  // const onFinish = (values: any) => {
-  //   console.log(values);
-  // };
-
   const onReset = () => {
     form.resetFields();
   };
 
-  //console.log("test");
   const questss = JSON.stringify(quests);
-  //console.log(questss);
+
   const questOptions = quests?.map((quests) => ({
-    value: quests.value,
-    label: `${quests.category}: ${quests.value}`,
+    value: `${quests.location} ${quests.repeatable} ${quests.reward} ${quests.category} &$$&${quests.value}`,
+    label: `${quests.value}`,
   }));
-  //console.log(questOptions);
+
+  // const testss = questOptions?.map((e) => {
+  //   return e.value.substring(
+  //     e.value.length - (e.value.length - e.value.indexOf("}")) + 1,
+  //     e.value.length
+  //   );
+  // });
+
+  //console.log(testss);
 
   const onFinish = async (values: any) => {
-    //console.log(values);
-    //console.log("1541231312");
-    //console.log(typeof values.quests);
-    //console.log(values.quests);
+    console.log(values);
     const response = await fetch("/api/list", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -81,7 +81,12 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
         title: values.title,
         content: values.content,
         user: user,
-        tasks: values.quests,
+        tasks: values.quests.map((e: string) => {
+          return e.substring(
+            e.length - (e.length - e.indexOf("&$$&")) + 4,
+            e.length
+          );
+        }),
       }),
     });
     Router.push("/yourdailies");
