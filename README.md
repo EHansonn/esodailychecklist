@@ -1,3 +1,5 @@
+Heavily inspired by [The FFXIV daily/todo tracker](https://xivtodo.com/)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ![alt text](https://cdn.discordapp.com/attachments/1054239396024549486/1081992011818745906/vision.png)
@@ -20,6 +22,9 @@ pnpm dev
 yarn prisma db push
 
 yarn prisma studio
+
+prisma migrate dev
+prisma migrate deploy
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
