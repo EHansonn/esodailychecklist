@@ -121,7 +121,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               Daily quests reset at 11am each day
             </div>
             <div className="text-slate-300 pb-2 pl-5 text-center">
-              Weekly quests reset at 11am on each monday
+              Weekly quests reset at 11am on monday
             </div>
           </div>
 
