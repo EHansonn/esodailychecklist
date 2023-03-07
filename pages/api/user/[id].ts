@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 
+// #TODO add proper types to all apis
 export default async function handle(req: any, res: any) {
   const session = await getServerSession(req, res, authOptions);
   if (session) {

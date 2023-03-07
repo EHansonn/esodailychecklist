@@ -101,9 +101,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
           />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <div className={`pb-2 pt-2 pl-2 pr-2 ${styles.dailies}`}>
-          <div className="pb-2"></div>
-
+        <div className={`pb-4 pt-4 pl-4 pr-4 ${styles.dailies}`}>
           <div className="flex space-x-5  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
             <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
               {/* Displaying Quests */}
@@ -141,9 +139,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 </div>
               ))}
             </div>
-            <script> </script>
           </div>
-          <small></small>
         </div>
       </Layout>
     );

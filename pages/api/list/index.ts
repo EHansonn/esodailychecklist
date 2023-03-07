@@ -33,17 +33,5 @@ export default async function handle(req: any, res: any) {
   }
   res.end();
 
-  // tasks: {
-  //   create: [
-  //     {
-  //       id: Math.random().toString(),
-  //       quest: {
-  //         connect: {
-  //           value: "quit game",
-  //         },
-  //       },
-  //       owner: { connect: { email: session?.user?.email ?? undefined } },
-  //     },
-  //     ,
-  //   ],
+
 }
