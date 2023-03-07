@@ -48,7 +48,9 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
       </div>
 
       <div className="flex flex-row ">
-        <div className="pl-2 m-0 pr-5 ">00:00</div>
+        <div className="pl-2 m-0 pr-5 ">{(quest.repeatable === "daily") && <div>daily</div>}
+        {(quest.repeatable === "weekly") && <div>weekly</div>}
+        {(quest.repeatable === "immediately") && <div>immediately</div>}</div>
       </div>
     </div>
   );
