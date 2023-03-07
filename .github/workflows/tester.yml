@@ -7,9 +7,11 @@ on:
 
 
 jobs:
-  test_schedule:
+  cron:
     runs-on: ubuntu-latest
-      run: |
+    steps:
+      - name: Hourly cron job
+        run: |
           curl --request POST \
           --url 'https://esodailytracker.vercel.app/api/example' \
           --header 'Authorization:${{secrets.ACTION_KEY}}'
