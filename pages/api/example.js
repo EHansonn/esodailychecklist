@@ -17,7 +17,9 @@ export default async function handler(req, res) {
       console.log("Happeneeddd1231231023921312");
       res.status(200).json({ success: "true" });
     } else {
+      console.log("whoooooooooooooooops")
       res.status(401);
+      throw new Error("yikes")
     }
   } catch (err) {
     res.status(500);

@@ -4,7 +4,7 @@ name: Cron job
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '* * * * *'
+    - cron:  '*/1 * * * *'
 
 
 
@@ -22,6 +22,6 @@ jobs:
     steps:
       - name: Hourly cron job
         run: |
-          curl --request GET \
+          curl --request POST \
           --url 'https://ehansonn.com/api/example' \
           --header 'Authorization: Bearer ${{ secrets.ACTION_KEY }}'
