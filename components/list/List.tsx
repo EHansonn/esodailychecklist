@@ -2,6 +2,7 @@ import React from "react";
 import Router from "next/router";
 import Link from "next/link";
 import { Button, Space } from "antd";
+import dynamic from "next/dynamic";
 export type ListProps = {
   tasks: any;
   id: string;
@@ -36,4 +37,6 @@ const List: React.FC<{ list: ListProps }> = ({ list }) => {
   );
 };
 
-export default List;
+export default dynamic(() => Promise.resolve(List), {
+  ssr: false,
+});
