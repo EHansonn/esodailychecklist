@@ -68,7 +68,7 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
           </div>
         </div>
       </div>
-      {/* <Drawer
+      <Drawer
         title={quest.optionalTitle ? quest.optionalTitle : quest?.value}
         placement="right"
         onClose={onClose}
@@ -82,7 +82,7 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
         {quest?.questGiver && <div>Quest Giver: {quest?.questGiver}</div>}
         {quest?.reward && <div>Reward: {quest?.reward}</div>}
         {quest?.uespLink && <div>{quest?.uespLink}</div>}
-      </Drawer> */}
+      </Drawer>
     </>
   );
 };
