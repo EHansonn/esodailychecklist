@@ -24,7 +24,7 @@ const List: React.FC<{ list: ListProps }> = ({ list }) => {
   const userEmail = list.owner ? list.owner.email : "unknown";
   return (
     <div className="flex flex-col object-contain text-black  ">
-      <h3>Title: {list.title}</h3>
+      <small>Title: {list.title}</small>
       <small>owner: {userName}</small>
       <small>Email: {userEmail}</small>
       <small>Description: {list.content}</small>
@@ -37,6 +37,4 @@ const List: React.FC<{ list: ListProps }> = ({ list }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(List), {
-  ssr: false,
-});
+export default List;
