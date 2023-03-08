@@ -1,4 +1,4 @@
-import { User } from "../../pages/dailies";
+import { User } from "../../pages/yourdailies";
 import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { ListProps } from "./List";
 import {
