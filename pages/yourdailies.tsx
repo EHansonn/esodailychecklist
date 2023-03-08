@@ -54,9 +54,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
   //console.log(quests);
 
-  let utcTimeDaily = "2023-03-07 11:00:00";
-  var localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");
-
+  //let utcTimeDaily = "2023-03-07 11:00:00";
+  //var localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");
+  let localDailyReset = "00:00";
   //Categories for the possible quests. Hardcoded for now...
   const categories = [
     "Undaunted Pledges",
