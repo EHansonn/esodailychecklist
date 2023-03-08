@@ -93,7 +93,7 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
   };
   return (
     <div className="bg-slate-300  rounded-lg py-2 px-2 ">
-      <div className="text-center"> Your Custom Lists (WIP) </div>
+      <div className="text-center">Your Custom Lists</div>
 
       <Form
         {...layout}
@@ -116,7 +116,7 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
         <Form.Item
           label="quests"
           name="quests"
-          rules={[{ required: false, message: "Please input your quests!" }]}
+          rules={[{ required: true, message: "Please input your quests!" }]}
         >
           <Select mode="multiple" options={questOptions} />
         </Form.Item>

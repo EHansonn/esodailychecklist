@@ -5,7 +5,7 @@ import { getSession, GetSessionParams, useSession } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import prisma from "../lib/prisma";
 import Listmodal from "../components/list/Listmodal";
-import { Button } from "antd";
+import { Button, Select, Space } from "antd";
 import Router, { useRouter } from "next/router";
 import Layout from "../components/layout";
 import QuestRow from "../components/quests/QuestRow";
@@ -53,16 +53,21 @@ interface Props {
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
 
-  //console.log(quests);
-  const [time, setTime] = useState("00:00");
+  const [time, setTime] = useState("00:00:00");
   useEffect(() => {
     let utcTimeDaily = "2023-03-07 11:00:00";
     let localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");
     setTime(localDailyReset);
   }, []);
-
-  //Categories for the possible quests. Hardcoded for now...
-  const categories = [
+  const defaultList: ListProps = {
+    tasks: undefined,
+    id: "Default",
+    title: "Default List",
+    owner: null,
+    content: null,
+    userId: "",
+  };
+  let categories = [
     "Undaunted Pledges",
     "Crafting Writs",
     "Arenas",
@@ -91,6 +96,47 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     "Fighters Guild Bounty Quests",
     "Cyrodilic Collections",
   ];
+  const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
+  const [selectedList, setSelectedList] = useState("Default");
+  const [questsToDisplay, setQuestsToDisplay] = useState(quests);
+  const listOptions = lists?.map((list) => ({
+    value: list.title,
+    label: list.title,
+    key: list.id,
+  }));
+  listOptions?.unshift({
+    value: defaultList.title,
+    label: "Default List",
+    key: "default",
+  });
+
+  const handleChange = (value: string) => {
+    if (value === "Default List") {
+      setQuestsToDisplay(quests);
+      setCategoriesToDisplay(categories);
+    } else {
+      setSelectedList(value);
+      const listfinder = lists?.filter(function (el) {
+        return el.title === value;
+      });
+      const questz = listfinder![0].tasks!.map((e) => {
+        return e.value;
+      });
+      const tester = quests?.filter(function (el) {
+        if (questz.includes(el.value)) return el.value;
+      });
+      setQuestsToDisplay(tester);
+
+      let questCats = listfinder![0].tasks!.map((e) => {
+        return e.category;
+      });
+      let unique = questCats.filter(function (elem, index, self) {
+        return index === self.indexOf(elem);
+      });
+      setCategoriesToDisplay(unique);
+    }
+  };
+  //Categories for the possible quests. Hardcoded for now...
 
   if (!session) {
     return (
@@ -118,7 +164,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className={`pb-4 pt-2 pl-4 pr-4 ${styles.dailies}`}>
+        <div className={`pb-4 pt-2 pl-4 pr-4 ${styles.dailies}  `}>
           <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
             <div className="text-slate-300 pb-2 text-center">
               {`Daily quests reset at ${time} each day`}
@@ -131,10 +177,10 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
           <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
             <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
               {/* Displaying Quests */}
-              {categories.map((category) => (
+              {categoriesToDisplay.map((category) => (
                 <div key={category} className=" flex flex-col">
                   <QuestCategory
-                    quests={quests?.filter(function (el) {
+                    quests={questsToDisplay?.filter(function (el) {
                       return el.category === category;
                     })}
                     name={category}
@@ -144,6 +190,15 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               ))}
             </div>
             <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4">
+              <Space wrap>
+                <Select
+                  defaultValue="Default List"
+                  style={{ width: 120 }}
+                  onChange={handleChange}
+                  options={listOptions}
+                />
+              </Space>
+
               <Listmodal quests={quests} user={user}></Listmodal>
               {lists?.map((list: any) => (
                 <div
@@ -197,6 +252,14 @@ export async function getServerSideProps<Props>(context: any) {
           quest: {
             select: {
               value: true,
+              category: true,
+              optionalTitle: true,
+              description: true,
+              repeatable: true,
+              location: true,
+              questGiver: true,
+              uespLink: true,
+              reward: true,
             },
           },
         },
@@ -209,7 +272,24 @@ export async function getServerSideProps<Props>(context: any) {
     return {
       props: {
         session: session,
-        lists,
+        lists: lists.map((list) => ({
+          id: list.id,
+          title: list.content,
+          content: list.content,
+          owner: list.owner,
+          userId: list.userId,
+          tasks: list.tasks.map((e) => ({
+            value: e.quest.value,
+            category: e.quest.category,
+            optionalTitle: e.quest.optionalTitle,
+            description: e.quest.description,
+            repeatabel: e.quest.repeatable,
+            location: e.quest.location,
+            questGiver: e.quest.questGiver,
+            uespLink: e.quest.uespLink,
+            reward: e.quest.reward,
+          })),
+        })),
         user: {
           id: u.id,
           name: u.name,
