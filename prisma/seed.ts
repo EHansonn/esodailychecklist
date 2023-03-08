@@ -215,6 +215,16 @@ async function main() {
         reward: "",
       },
       {
+        value: "The Black Gauntlet",
+        category: "Arenas",
+        description: "",
+        repeatable: "weekly",
+        location: "",
+        questGiver: "",
+        uespLink: "",
+        reward: "",
+      },
+      {
         value: "Maelstrom Arena",
         category: "Arenas",
         description: "",
@@ -234,16 +244,7 @@ async function main() {
         uespLink: "",
         reward: "",
       },
-      {
-        value: "The Black Gauntlet",
-        category: "Arenas",
-        description: "",
-        repeatable: "weekly",
-        location: "",
-        questGiver: "",
-        uespLink: "",
-        reward: "",
-      },
+
       {
         value: "Vateshran's Rites",
         category: "Arenas",

@@ -1,10 +1,14 @@
+
+## Inspirtation
 Heavily inspired by [The FFXIV daily/todo tracker](https://xivtodo.com/)
+Great tool to help you keep track of all the things you need to do in an ff
+
+
+
+## Getting Started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-![alt text](https://cdn.discordapp.com/attachments/1054239396024549486/1081992011818745906/vision.png)
-
-## Getting Started
 
 First, run the development server:
 
@@ -25,6 +29,8 @@ yarn prisma studio
 
 prisma migrate dev
 prisma migrate deploy
+
+prisma db seed
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

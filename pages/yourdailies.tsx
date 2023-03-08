@@ -57,8 +57,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   //Categories for the possible quests. Hardcoded for now...
   const categories = [
     "Undaunted Pledges",
-    "Arenas",
     "Crafting Writs",
+    "Arenas",
     "Trials",
     "Craglorn Quests",
     "PvP Quests",
