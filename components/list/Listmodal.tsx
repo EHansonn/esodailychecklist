@@ -1,21 +1,7 @@
 import { User } from "../../pages/yourdailies";
-import React, { useEffect, useImperativeHandle, useRef, useState } from "react";
-import { ListProps } from "./List";
-import {
-  Button,
-  Modal,
-  Form,
-  Input,
-  Radio,
-  Select,
-  FormInstance,
-  InputNumber,
-  Avatar,
-  Typography,
-} from "antd";
+import React, { useState } from "react";
+import { Button, Form, Input, Select } from "antd";
 import Router from "next/router";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { SmileOutlined, UserOutlined } from "@ant-design/icons";
 import { Quest } from "../../pages/yourdailies";
 export interface ListModalRef {
   visible: boolean;
@@ -33,12 +19,6 @@ interface Props {
   quests?: Quest[];
   user?: User;
 }
-const { Option } = Select;
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
 
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
@@ -56,13 +36,48 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
     form.resetFields();
   };
 
-  const questss = JSON.stringify(quests);
+  let categories = [
+    "Undaunted Pledges",
+    "Crafting Writs",
+    "Arenas",
+    "Trials",
+    "Craglorn Quests",
+    "PvP Quests",
+    "Northern Elsweyr Defense Force",
+    "Guild Daily Quests",
+    "Imperial City Quests",
+    "Wrothgar Quests",
+    "Thieves Guild Quests",
+    "Gold Coast Quests",
+    "Vvardenfell Quests",
+    "Clockwork City Quests",
+    "Summerset Quests",
+    "Murkmire Quests",
+    "Elsweyr Quests",
+    "Dragonhold Quests",
+    "Western Skyrim Quests",
+    "The Reach Quests",
+    "Blackwood Quests",
+    "Deadlands Quests",
+    "High Isle Quests",
+    "Galen Quests",
+    "Cyrodiil Settlement Quests",
+    "Fighters Guild Bounty Quests",
+    "Cyrodilic Collections",
+  ];
 
-  const questOptions = quests?.map((quests) => ({
-    value: `${quests.location} ${quests.repeatable} ${quests.reward} ${quests.category} &$$&${quests.value}`,
-    label: `${quests.value}`,
+  const realQuestOptions = categories.map((category) => ({
+    label: category,
+    options: quests
+      ?.filter((quest) => {
+        return quest.category === category;
+      })
+      .map((quests) => ({
+        value: `${quests.location} ${quests.repeatable} ${quests.reward} ${quests.category} &$$&${quests.value}`,
+        label: `${quests.optionalTitle ? quests.optionalTitle : quests.value}`,
+      })),
   }));
-
+  //console.log(testQuestOptions);
   // const testss = questOptions?.map((e) => {
   //   return e.value.substring(
   //     e.value.length - (e.value.length - e.value.indexOf("}")) + 1,
@@ -90,9 +105,10 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
       }),
     });
     Router.push("/yourdailies");
+    onReset();
   };
   return (
-    <div className="bg-slate-300  rounded-lg py-2 px-2 ">
+    <div className="bg-slate-300   rounded-lg py-2 px-2  ">
       <div className="text-center">Your Custom Lists</div>
 
       <Form
@@ -102,23 +118,23 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
         onFinish={onFinish}
         style={{ maxWidth: 600 }}
       >
-        <Form.Item name="title" label="List Name" rules={[{ required: true }]}>
+        <Form.Item name="title" label="Name" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
         <Form.Item
           name="content"
           label="Description"
-          rules={[{ required: false }]}
+          rules={[{ required: true }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="quests"
+          label="Quests"
           name="quests"
           rules={[{ required: true, message: "Please input your quests!" }]}
         >
-          <Select mode="multiple" options={questOptions} />
+          <Select mode="multiple" options={realQuestOptions} />
         </Form.Item>
 
         <Form.Item {...tailLayout}>

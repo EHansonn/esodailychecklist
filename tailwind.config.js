@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ["Graphik", "sans-serif"],
+      serif: ["Merriweather", "serif"],
+      test: ["Seogue UI"],
+    },
     screens: {
       sm: "640px",
       // => @media (min-width: 640px) { ... }

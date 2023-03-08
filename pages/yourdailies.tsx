@@ -164,7 +164,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className={`pb-4 pt-2 pl-4 pr-4 ${styles.dailies}  `}>
+        <div className={`pb-4 pt-2 pl-4 pr-4   `}>
           <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
             <div className="text-slate-300 pb-2 text-center">
               {`Daily quests reset at ${time} each day`}
@@ -202,10 +202,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               <Listmodal quests={quests} user={user}></Listmodal>
               {lists?.map((list: any) => (
                 <div
-                  className="bg-slate-300  flex flex-col object-contain rounded-lg py-2 pl-2 pr-2
+                  className="bg-slate-300 justify-between  flex flex-row object-contain rounded-lg py-2 pl-2 pr-2
                   "
                   key={list.id}
                 >
+                  <List  user={user}list={list}></List>
                   <Button
                     danger
                     onClick={async () => {
@@ -215,9 +216,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                       Router.push("/yourdailies");
                     }}
                   >
-                    delete
+                    Delete
                   </Button>
-                  <List list={list}></List>
                 </div>
               ))}
             </div>
@@ -274,7 +274,7 @@ export async function getServerSideProps<Props>(context: any) {
         session: session,
         lists: lists.map((list) => ({
           id: list.id,
-          title: list.content,
+          title: list.title,
           content: list.content,
           owner: list.owner,
           userId: list.userId,
