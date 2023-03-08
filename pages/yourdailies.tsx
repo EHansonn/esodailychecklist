@@ -33,6 +33,7 @@ export type QuestsOnUser = {
 export type Quest = {
   value: string;
   category?: string;
+  optionalTitle: string | null;
   description?: string;
   repeatable?: string;
   location?: string;
@@ -50,6 +51,8 @@ interface Props {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
+
+  //console.log(quests);
 
   let utcTimeDaily = "2023-03-07 11:00:00";
   var localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");

@@ -33,6 +33,7 @@ model Task {
 model Quest {
   value        String         @id @unique
   category     String
+  optionalTitle String?
   description  String
   repeatable   String
   location     String

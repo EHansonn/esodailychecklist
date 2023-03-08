@@ -107,19 +107,21 @@ async function main() {
       {
         value: "Assaulting the Citadel",
         category: "Trials",
+        optionalTitle: "Hel Ra Citadel",
         description: "",
         repeatable: "weekly",
-        location: "",
-        questGiver: "",
-        uespLink: "",
+        location: "Hel Ra Citadel",
+        questGiver: "Kailstig the Axe",
+        uespLink: "https://en.uesp.net/wiki/Online:Assaulting_the_Citadel",
         reward: "",
       },
       {
         value: "The Fight for Kyne's Aegis",
         category: "Trials",
+        optionalTitle: "Kyne's Aegis",
         description: "",
         repeatable: "weekly",
-        location: "",
+        location: "Kyne's Aegis",
         questGiver: "",
         uespLink: "",
         reward: "",
@@ -127,6 +129,7 @@ async function main() {
       {
         value: "Forging the Future",
         category: "Trials",
+        optionalTitle: "Halls of Fabrication",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -137,6 +140,7 @@ async function main() {
       {
         value: "Into the Maw",
         category: "Trials",
+        optionalTitle: "Maw of Lorkhaj",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -147,6 +151,7 @@ async function main() {
       {
         value: "Of Stone and Steam",
         category: "Trials",
+        optionalTitle: "Rockgrove",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -157,6 +162,7 @@ async function main() {
       {
         value: "The Mage's Tower",
         category: "Trials",
+        optionalTitle: "Aetherian Archive",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -167,6 +173,7 @@ async function main() {
       {
         value: "The Oldest Ghost",
         category: "Trials",
+        optionalTitle: "Sanctum Ophidia",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -177,6 +184,7 @@ async function main() {
       {
         value: "The Return of Alkosh",
         category: "Trials",
+        optionalTitle: "Sunspire",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -187,6 +195,7 @@ async function main() {
       {
         value: "Reavers of the Reef",
         category: "Trials",
+        optionalTitle: "Dreadsail Reef",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -197,6 +206,7 @@ async function main() {
       {
         value: "Saints' Mercy",
         category: "Trials",
+        optionalTitle: "Asylum Sanctorium",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -207,6 +217,7 @@ async function main() {
       {
         value: "Woe of the Welkynars",
         category: "Trials",
+        optionalTitle: "Cloudrest",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -217,6 +228,7 @@ async function main() {
       {
         value: "The Black Gauntlet",
         category: "Arenas",
+        optionalTitle: "Blackrose Prison",
         description: "",
         repeatable: "weekly",
         location: "",
@@ -248,6 +260,7 @@ async function main() {
       {
         value: "Vateshran's Rites",
         category: "Arenas",
+        optionalTitle: "Vateshran Hollows",
         description: "",
         repeatable: "immediately",
         location: "",
@@ -258,6 +271,7 @@ async function main() {
       {
         value: "Veteran Vateshran's Rites",
         category: "Arenas",
+        optionalTitle: "Veteran Vateshran Hollows",
         description: "",
         repeatable: "immediately",
         location: "",
