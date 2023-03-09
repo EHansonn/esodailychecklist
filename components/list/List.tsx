@@ -17,6 +17,7 @@ export type ListProps = {
   userId: string;
 };
 
+//Old questprops
 export type QuestProps = {
   value: string;
   category: string;

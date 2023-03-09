@@ -17,6 +17,7 @@ export default async function handler(
           },
         },
       });
+      //Even though repeatable : "immediately" are repeatable immediately in the game, Ill just clear them during the normal daily reset time, itll be up to the user to decide when they've completed enough for the day.
       const post2 = await prisma.questsOnUser.deleteMany({
         where: {
           quest: {

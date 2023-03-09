@@ -53,6 +53,7 @@ interface Props {
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
 
+  //Display the UTC reset time in the users own time zone
   const [time, setTime] = useState("00:00:00");
   useEffect(() => {
     let utcTimeDaily = "2023-03-07 11:00:00";
@@ -60,6 +61,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     setTime(localDailyReset);
   }, []);
 
+  //Dummy listprops to display all quests
   const defaultList: ListProps = {
     tasks: undefined,
     id: "Default",
@@ -100,9 +102,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     "Cyrodilic Collections",
     "Northern Elsweyr Defense Force",
   ];
+
   const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
   const [questsToDisplay, setQuestsToDisplay] = useState(quests);
 
+  //Adding the users lists to the list selector dropdown
   const listOptions = lists?.map((list) => ({
     value: list.title,
     label: list.title,
@@ -114,6 +118,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     key: "default",
   });
 
+
+  //Filtering the quests to display in a custom list. Ignore my poor variable names :)
   const handleChange = (value: string) => {
     if (value === "Default List") {
       setQuestsToDisplay(quests);
@@ -234,7 +240,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
 export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
-  const userId = session?.user.email;
+
+  
   const u = await prisma?.user.findFirst({
     where: { email: session?.user.email },
     include: {

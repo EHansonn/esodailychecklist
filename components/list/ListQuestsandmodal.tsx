@@ -21,17 +21,16 @@ const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
     setOpen(false);
   };
 
-  const onChange = (e: CheckboxChangeEvent) => {};
-  const router = useRouter();
 
   let checkedByDefault;
-  //let checkedByDefault = false;
 
   user?.questsOnUser?.map((e) => {
     if (e.questName === quest?.value) {
       checkedByDefault = true;
     }
   });
+
+  
   return (
     <>
       <div

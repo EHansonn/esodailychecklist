@@ -19,8 +19,6 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
     setOpen(false);
   };
 
-  const onChange = (e: CheckboxChangeEvent) => {};
-  const router = useRouter();
 
   let checkedByDefault;
   //let checkedByDefault = false;

@@ -11,10 +11,6 @@ export interface ListModalRef {
   cancel: () => void;
 }
 
-interface FormFields {
-  title: string;
-  content: string;
-}
 
 interface Props {
   quests?: Quest[];
@@ -27,17 +23,13 @@ const tailLayout = {
 };
 
 const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
 
   const onReset = () => {
     form.resetFields();
   };
 
+  // To make for better searching, the value for each quests includes things like rewards, category, and quest name, which is later removed right before its sent to the post request
   const realQuestOptions = categories?.map((category) => ({
     label: category,
     options: quests
@@ -49,15 +41,7 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
         label: `${quests.optionalTitle ? quests.optionalTitle : quests.value}`,
       })),
   }));
-  //console.log(testQuestOptions);
-  // const testss = questOptions?.map((e) => {
-  //   return e.value.substring(
-  //     e.value.length - (e.value.length - e.value.indexOf("}")) + 1,
-  //     e.value.length
-  //   );
-  // });
 
-  //console.log(testss);
 
   const onFinish = async (values: any) => {
     const response = await fetch("/api/list", {
@@ -78,6 +62,8 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
     Router.push("/yourdailies");
     onReset();
   };
+
+  
   return (
     <div className="bg-slate-300   rounded-lg py-2 px-2  ">
       <div className="flex flex-row justify-center relative">
