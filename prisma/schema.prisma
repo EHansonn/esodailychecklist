@@ -31,17 +31,18 @@ model Task {
 }
 
 model Quest {
-  value        String         @id @unique
-  category     String
-  optionalTitle String?
-  description  String
-  repeatable   String
-  location     String
-  questGiver   String
-  uespLink     String
-  reward       String
-  Task         Task[]
-  QuestsOnUser QuestsOnUser[]
+  value             String              @id @unique
+  category          String
+  optionalTitle     String?
+  description       String
+  repeatable        String
+  location          String
+  questGiver        String
+  uespLink          String
+  reward            String
+  Task              Task[]
+  QuestsOnUser      QuestsOnUser[]
+  QuestsOnCharacter QuestsOnCharacter[]
 }
 
 model Account {
@@ -84,8 +85,27 @@ model User {
   Task          Task[]
   checkedTasks  String         @default("")
   QuestsOnUser  QuestsOnUser[]
+  Character     Character[]
 
   @@map(name: "users")
+}
+
+model Character {
+  value  String  @id @default(cuid())
+  name String
+  owner  User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  QuestsOnCharacter QuestsOnCharacter[]
+}
+
+model QuestsOnCharacter {
+  character   Character @relation(fields: [characterId], references: [value], onDelete: Cascade)
+  quest       Quest     @relation(fields: [questName], references: [value], onDelete: Cascade)
+  characterId String
+  questName   String
+
+  @@id([questName, characterId])
 }
 
 model QuestsOnUser {

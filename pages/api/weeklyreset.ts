@@ -10,7 +10,7 @@ export default async function handler(
   try {
     if (ACTION_KEY === APP_KEY) {
       // Process the POST request
-      const post = await prisma.questsOnUser.deleteMany({
+      const post = await prisma.questsOnCharacter.deleteMany({
         where: {
           quest: {
             repeatable: "weekly",

@@ -15,13 +15,16 @@ import Head from "next/head";
 import { signIn, signOut } from "next-auth/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export type User = {
-  id: string;
+  // id: string;
   name: string;
   createdAt: string;
   checkedTasks?: string;
   questsOnUser?: QuestsOnUser[];
+  characters?: Character[];
+  email: string;
 };
 
 export type QuestsOnUser = {
@@ -50,9 +53,29 @@ interface Props {
   quests?: Quest[];
 }
 
-const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
-  const { data: session, status } = useSession();
+export type Character = {
+  value: string;
+  name: string;
+  owner: User;
+  questsOnCharacter?: QuestsOnCharacter[];
+};
 
+export type QuestsOnCharacter = {
+  character: User;
+  quest: Quest;
+  characterId: string;
+  questName: string;
+};
+
+const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
+  // console.log(user.characters);
+
+  const { data: session, status } = useSession();
+  const [currentCharacter, selectCurrentCharacter] = useState(
+    user.characters![0]
+  );
+
+  const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
   //Display the UTC reset time in the users own time zone
   const [time, setTime] = useState("00:00:00");
   useEffect(() => {
@@ -105,7 +128,12 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
   const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
   const [questsToDisplay, setQuestsToDisplay] = useState(quests);
-
+  const size = user.characters?.length;
+  //console.log(size);
+  const characterOptions = user.characters?.map((character) => ({
+    value: character.value,
+    label: character.name,
+  }));
   //Adding the users lists to the list selector dropdown
   const listOptions = lists?.map((list) => ({
     value: list.title,
@@ -146,13 +174,26 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     }
   };
 
+  const handleChangeCharacter = (value: string) => {
+    // console.log(value);
+    const selectedChar = user.characters!.filter(function (el, index) {
+      if (el.value === value) {
+        setCurrentCharacterIndex(index);
+      }
+      return el.value === value;
+    });
+
+    selectCurrentCharacter(selectedChar[0]);
+    //console.log(selectedChar);
+  };
+
   if (!session) {
     return (
       <Layout>
         {status === "loading" && <div>loading</div>}
         {status === "unauthenticated" && (
           <div className="content-center text-center">
-            <div className="text-white w-screen text-center pb-5">
+            <div className="text-white w-screen text-center pb-5 pt-5">
               Please sign in
             </div>
             <Button
@@ -170,6 +211,21 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   }
 
   if (session) {
+    if (user.characters?.length === 0) {
+      return (
+        <Layout>
+          <div className="content-center text-center">
+            <div className="text-white w-screen text-center pb-5 pt-5">
+              Please create a character on your profile!
+            </div>
+            <Link href={"/profile"}>
+              <Button type="primary">Create a Character</Button>
+            </Link>
+          </div>
+        </Layout>
+      );
+    }
+
     return (
       <Layout>
         <div className={`pb-4 pt-2 pl-4 pr-4  relative `}>
@@ -183,7 +239,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
           </div>
 
           <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-            <div className="w-full grid grid-cols-1  lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
+            <div className="w-full grid grid-cols-1   lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3 max-h-1 ">
               {/* Displaying Quests */}
               {categoriesToDisplay.map((category) => (
                 <div key={category} className=" flex flex-col">
@@ -193,6 +249,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                     })}
                     name={category}
                     user={user}
+                    character={currentCharacter}
+                    currindex={currentCharacterIndex}
+                    numberofchars={size}
                   ></QuestCategory>
                 </div>
               ))}
@@ -213,7 +272,21 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   options={listOptions}
                 />
               </Space>
-
+              <Space
+                direction="vertical"
+                key="test233"
+                wrap
+                style={{ width: "100%" }}
+                className="absolute -top-14 md:relative md:top-0   "
+              >
+                <Select
+                  className=""
+                  defaultValue={user.characters![0].name}
+                  style={{ width: "100%" }}
+                  onSelect={handleChangeCharacter}
+                  options={characterOptions}
+                />
+              </Space>
               <Listmodal
                 quests={quests}
                 user={user}
@@ -244,6 +317,15 @@ export async function getServerSideProps<Props>(context: any) {
     where: { email: session?.user.email },
     include: {
       QuestsOnUser: true,
+    },
+  });
+
+  const c = await prisma?.character.findMany({
+    where: {
+      userId: u!.id,
+    },
+    include: {
+      QuestsOnCharacter: true,
     },
   });
 
@@ -285,7 +367,7 @@ export async function getServerSideProps<Props>(context: any) {
           title: list.title,
           content: list.content,
           owner: list.owner,
-          userId: list.userId,
+          //userId: list.userId,
           tasks: list.tasks.map((e) => ({
             value: e.quest.value,
             category: e.quest.category,
@@ -299,7 +381,12 @@ export async function getServerSideProps<Props>(context: any) {
           })),
         })),
         user: {
-          id: u.id,
+          // id: u.id,
+          characters: c.map((e) => ({
+            value: e.value,
+            name: e.name,
+            questsOnCharacter: JSON.parse(JSON.stringify(e.QuestsOnCharacter)),
+          })),
           name: u.name,
           createdAt: u.createdAt.toString(),
           checkedTasks: u.checkedTasks,
