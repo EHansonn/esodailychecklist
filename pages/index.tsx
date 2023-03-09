@@ -1,11 +1,14 @@
 import { GithubOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Header from "../components/header";
 import Layout from "../components/layout";
 import image from "../public/hero.jpg";
 import styles from "./index.module.css";
 export default function IndexPage() {
+  const { data: session, status } = useSession();
+
   return (
     <div className="bg-slate-800">
       <Head>
@@ -21,6 +24,29 @@ export default function IndexPage() {
           <div className="text-2xl text-center text-white pt-4">
             Keep track of 100+ daily quests
           </div>
+          {status === "unauthenticated" && (
+            <div className="content-center text-center">
+              <div className="text-white text-center pb-2 pt-2"></div>
+              <Button
+                type="primary"
+                onClick={(e) => {
+                  signIn();
+                }}
+              >
+                Sign In With Google
+              </Button>
+            </div>
+          )}
+          {status === "authenticated" && (
+            <div className="content-center text-center text-white pt-2">
+              Try it yourself
+              <div className="text-white text-center pb-2 pt-2">
+                <Button type="primary" href="/yourdailies">
+                  Your Daily Checklist
+                </Button>
+              </div>
+            </div>
+          )}
           <div className="justify-center flex pt-2 l">
             <Button
               size="large"
