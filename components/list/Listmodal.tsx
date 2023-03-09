@@ -88,7 +88,6 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
   //console.log(testss);
 
   const onFinish = async (values: any) => {
-    console.log(values);
     const response = await fetch("/api/list", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
