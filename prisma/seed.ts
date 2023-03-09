@@ -1,108 +1,134 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+//Only do this when you need to update a large number of the preset quests
+//It will remove all the quests attached to user's lists.
 async function main() {
+  await prisma.quest.deleteMany();
   await prisma.quest.createMany({
     data: [
       {
         value: "Maj al-Ragath's Pledges",
         category: "Undaunted Pledges",
-        description: "",
+        description:
+          "Undaunted Pledges are daily quests available at Undaunted Enclaves. You must be level 45 to receive a Normal pledge and level 50 to receive a Veteran pledge. Only one of each type of pledge is offered per day, although technically a pledge from a previous day can also be completed if it was obtained but not completed.",
         repeatable: "daily",
-        location: "",
+        location: "Undaunted Enclave",
         questGiver: "Maj al-Ragath",
-        uespLink: "",
-        reward: "",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Maj_al-Ragath.27s_Pledges",
+        reward: "Keys",
       },
       {
         value: "Glirion the Redbeard's Pledges",
         category: "Undaunted Pledges",
-        description: "",
+        description:
+          "Undaunted Pledges are daily quests available at Undaunted Enclaves. You must be level 45 to receive a Normal pledge and level 50 to receive a Veteran pledge. Only one of each type of pledge is offered per day, although technically a pledge from a previous day can also be completed if it was obtained but not completed.",
         repeatable: "daily",
-        location: "",
+        location: "Undaunted Enclave",
         questGiver: "Glirion the Redbeard",
-        uespLink: "",
-        reward: "",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Glirion_the_Redbeard.27s_Pledges",
+        reward: "Keys",
       },
       {
         value: "Urgarlag Chief-bane's Pledges",
         category: "Undaunted Pledges",
-        description: "",
+        description:
+          "Undaunted Pledges are daily quests available at Undaunted Enclaves. You must be level 45 to receive a Normal pledge and level 50 to receive a Veteran pledge. Only one of each type of pledge is offered per day, although technically a pledge from a previous day can also be completed if it was obtained but not completed.",
         repeatable: "daily",
-        location: "",
+        location: "Undaunted Enclave",
         questGiver: "Urgarlag Chief-bane",
-        uespLink: "",
-        reward: "",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Urgarlag_Chief-bane.27s_Pledges",
+        reward: "Keys",
       },
       {
         value: "Fighters Guild Daily Quests",
         category: "Guild Daily Quests",
-        description: "",
+        description:
+          "These are offered by Cardea Gallus, who can be found at the Fighters Guild Halls in Elden Root (Grahtwood), Wayrest (Stormhaven), and Mournhold (Deshaan). One can be completed per day, and they can be shared with others",
         repeatable: "daily",
-        location: "",
-        questGiver: "",
-        uespLink: "",
-        reward: "",
+        location:
+          "Fighters Guild Halls in Elden Root (Grahtwood), Wayrest (Stormhaven), and Mournhold (Deshaan)",
+        questGiver: "Cardea Gallus",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Fighters_Guild_Daily_Quests",
+        reward: "Fighters Guild Merrits",
       },
       {
         value: "Mages Guild Daily Quests",
         category: "Guild Daily Quests",
-        description: "",
+        description:
+          "These are offered by Alvur Baren, who can be found at the Mages Guild Halls in Elden Root (Grahtwood), Wayrest (Stormhaven), and Mournhold (Deshaan). One can be completed per day, and they can be shared with others.",
         repeatable: "daily",
-        location: "",
-        questGiver: "",
-        uespLink: "",
-        reward: "",
+        location:
+          "Mages Guild Halls in Elden Root (Grahtwood), Wayrest (Stormhaven), and Mournhold (Deshaan).",
+        questGiver: "Alvur Baren",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Mages_Guild_Daily_Quests",
+        reward: "Mages Guild Merits",
       },
       {
         value: "Undaunted Daily Quests",
         category: "Guild Daily Quests",
-        description: "",
+        description:
+          "These are offered by Bolgrul, who can be found at the Undaunted Enclave in Elden Root (Grahtwood), Wayrest (Stormhaven), and Mournhold (Deshaan). One can be completed per day, and they can be shared with others.",
         repeatable: "daily",
-        location: "",
-        questGiver: "",
-        uespLink: "",
-        reward: "",
+        location:
+          "Elden Root (Grahtwood), Wayrest (Stormhaven), and Mournhold (Deshaan).",
+        questGiver: "Bolgrul",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Undaunted_Daily_Quests",
+        reward: "Undaunted Merits",
       },
       {
         value: "Consumables Crafting Writs",
         category: "Crafting Writs",
-        description: "",
+        description:
+          "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). \nThese are available from Consumables Crafting Writs Boards. Each writ can be completed once per day, and they cannot be shared with others.",
         repeatable: "daily",
-        location: "",
-        questGiver: "",
-        uespLink: "",
-        reward: "",
+        location: "Major Cities",
+        questGiver: "Consumables Crafting Writs Board",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Consumables_Crafting_Writs",
+        reward: "Gold",
       },
       {
         value: "Equipment Crafting Writs",
         category: "Crafting Writs",
-        description: "",
+        description:
+          "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). \n These are available from Equipment Crafting Writs Boards. Each writ can be completed once per day, and they cannot be shared with others.",
         repeatable: "daily",
-        location: "",
-        questGiver: "",
-        uespLink: "",
-        reward: "",
+        location: "Major Cities",
+        questGiver: "Equipment Crafting Writs Board",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Equipment_Crafting_Writs",
+        reward: "Gold",
       },
       {
         value: "Master Writs",
         category: "Crafting Writs",
-        description: "",
+        description:
+          "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). \n Sealed Master Writs may be awarded at the higher levels for completing normal crafting writs, and opening one will start a Master Writ quest. These can be completed as many times as you have collected Sealed Master Writs, and are not restricted in the number you can complete per day. You can only have one Master Writ quest active at one time, but you may have items for other writs pre-crafted before starting them, allowing you to turn in as many writs as you want in one visit. They cannot be shared with others.",
         repeatable: "daily",
-        location: "",
+        location: "Auction House",
         questGiver: "",
-        uespLink: "",
-        reward: "",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Master_Writs",
+        reward: "Writ Vouchers",
       },
       {
         value: "Holiday Writs",
         category: "Crafting Writs",
-        description: "",
+        description:
+          "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). \n Deep Winter Charity Writs and Imperial Charity Writs are awarded for completing quests during the New Life Festival. These can be completed as many times as you have collected Deep Winter Charity Writs and Imperial Charity Writs, and are not restricted in the number you can complete per day. You can only have one Deep Winter Charity Writ and Imperial Charity Writ quest active at one time, but you may have items for other writs pre-crafted before starting them, allowing you to turn in as many writs as you want in one visit. They cannot be shared with others.",
         repeatable: "daily",
         location: "",
         questGiver: "",
-        uespLink: "",
-        reward: "",
+        uespLink:
+          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Holiday_Writs",
+        reward: "Writ Vouchers",
       },
       {
         value: "Assaulting the Citadel",

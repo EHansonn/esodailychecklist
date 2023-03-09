@@ -116,13 +116,13 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       setCategoriesToDisplay(categories);
     } else {
       setSelectedList(value);
-      const listfinder = lists?.filter(function (el) {
+      const listfinder = lists!.filter(function (el) {
         return el.title === value;
       });
       const questz = listfinder![0].tasks!.map((e) => {
         return e.value;
       });
-      const tester = quests?.filter(function (el) {
+      const tester = quests!.filter(function (el) {
         if (questz.includes(el.value)) return el.value;
       });
       setQuestsToDisplay(tester);
@@ -133,6 +133,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       let unique = questCats.filter(function (elem, index, self) {
         return index === self.indexOf(elem);
       });
+      //@ts-ignore
       setCategoriesToDisplay(unique);
     }
   };
@@ -202,22 +203,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               <Listmodal quests={quests} user={user}></Listmodal>
               {lists?.map((list: any) => (
                 <div
-                  className="bg-slate-300 justify-between  flex flex-row object-contain rounded-lg py-2 pl-2 pr-2
+                  className="bg-slate-300 justify-between  flex-row object-contain rounded-lg py-2 pl-2 pr-2
                   "
                   key={list.id}
                 >
-                  <List  user={user}list={list}></List>
-                  <Button
-                    danger
-                    onClick={async () => {
-                      await fetch(`/api/list/${list.id}`, {
-                        method: "DELETE",
-                      });
-                      Router.push("/yourdailies");
-                    }}
-                  >
-                    Delete
-                  </Button>
+                  <List user={user} list={list}></List>
                 </div>
               ))}
             </div>
@@ -283,7 +273,7 @@ export async function getServerSideProps<Props>(context: any) {
             category: e.quest.category,
             optionalTitle: e.quest.optionalTitle,
             description: e.quest.description,
-            repeatabel: e.quest.repeatable,
+            repeatable: e.quest.repeatable,
             location: e.quest.location,
             questGiver: e.quest.questGiver,
             uespLink: e.quest.uespLink,

@@ -4,11 +4,13 @@ import Link from "next/link";
 import { Checkbox, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Quest, User } from "../../pages/yourdailies";
-export type questProps = {
-  quest: Quest;
-};
 
-const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
+import QuestRow from "../quests/QuestRow";
+import styles from "../../pages/index.module.css";
+const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
+  quest,
+  user,
+}) => {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -30,42 +32,21 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
       checkedByDefault = true;
     }
   });
-
   return (
     <>
-      <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-200 ">
-        <div className="flex justify-start">
-          <Checkbox
-            defaultChecked={checkedByDefault}
-            onChange={async (e: CheckboxChangeEvent) => {
-              await fetch(`/api/user/${user?.id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  id: user?.id,
-
-                  quest: quest,
-                  trueorfalse: e.target.checked,
-                }),
-              });
-              // router.push(
-              //   {
-              //     pathname: router.pathname,
-              //   },
-              //   undefined,
-              //   { scroll: false }
-              // );
-            }}
-          ></Checkbox>
-        </div>
+      <div
+        key={`${quest.value} 123`}
+        className={`flex flex-row my-1 pl-0 justify-between hover:bg-slate-200 ${styles.font} `}
+      >
+        <div className="flex justify-start"></div>
 
         <div
           className="flex-1 flex-row flex justify-between"
           onClick={showDrawer}
         >
-          <h3 className="pl-2 m-0 ">
+          <h4 className="pl-2 m-0 ">
             {quest.optionalTitle ? quest.optionalTitle : quest?.value}
-          </h3>
+          </h4>
           <div className="pl-2 m-0 pr-5 ">
             <div>{quest.repeatable}</div>
           </div>
@@ -73,11 +54,13 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
       </div>
       <Drawer
         title={quest.optionalTitle ? quest.optionalTitle : quest?.value}
-        placement="right"
+        placement="left"
         onClose={onClose}
         open={open}
       >
-        {quest.optionalTitle && <div>Quest Name: {quest?.value}</div>}
+        {quest.optionalTitle && (
+          <div className="pb-2">Quest Name: {quest?.value}</div>
+        )}
         <div className="pb-2">Category: {quest?.category}</div>
         {quest?.description && (
           <div className="pb-2">Description: {quest?.description}</div>
@@ -98,4 +81,4 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
   );
 };
 
-export default QuestRow;
+export default ListQuestAndRow;
