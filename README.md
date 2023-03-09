@@ -6,9 +6,9 @@ A simple and easy way for you to manage and keep track of the 100+ repeatable qu
 
 NextJS, Supabase and Prisma, Vercel and Github Actions.
 
-[All dailies](https://cdn.discordapp.com/attachments/1054239396024549486/1083239740536524900/image.png)
+![All dailies](https://cdn.discordapp.com/attachments/1054239396024549486/1083239740536524900/image.png)
 
-[My custom list](https://cdn.discordapp.com/attachments/1054239396024549486/1083239911827718194/image.png)
+![My custom list](https://cdn.discordapp.com/attachments/1054239396024549486/1083239911827718194/image.png)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
