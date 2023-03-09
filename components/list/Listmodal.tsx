@@ -18,13 +18,14 @@ interface FormFields {
 interface Props {
   quests?: Quest[];
   user?: User;
+  categories?: string[];
 }
 
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const Listmodal: React.FC<Props> = ({ quests, user }) => {
+const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const layout = {
@@ -36,37 +37,7 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
     form.resetFields();
   };
 
-  let categories = [
-    "Undaunted Pledges",
-    "Crafting Writs",
-    "Arenas",
-    "Trials",
-    "Craglorn Quests",
-    "PvP Quests",
-    "Northern Elsweyr Defense Force",
-    "Guild Daily Quests",
-    "Imperial City Quests",
-    "Wrothgar Quests",
-    "Thieves Guild Quests",
-    "Gold Coast Quests",
-    "Vvardenfell Quests",
-    "Clockwork City Quests",
-    "Summerset Quests",
-    "Murkmire Quests",
-    "Elsweyr Quests",
-    "Dragonhold Quests",
-    "Western Skyrim Quests",
-    "The Reach Quests",
-    "Blackwood Quests",
-    "Deadlands Quests",
-    "High Isle Quests",
-    "Galen Quests",
-    "Cyrodiil Settlement Quests",
-    "Fighters Guild Bounty Quests",
-    "Cyrodilic Collections",
-  ];
-
-  const realQuestOptions = categories.map((category) => ({
+  const realQuestOptions = categories?.map((category) => ({
     label: category,
     options: quests
       ?.filter((quest) => {
@@ -123,7 +94,7 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
         <Form.Item
           name="content"
           label="Description"
-          rules={[{ required: true }]}
+          rules={[{ required: false }]}
         >
           <Input />
         </Form.Item>

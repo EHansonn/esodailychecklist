@@ -17,6 +17,13 @@ export default async function handler(
           },
         },
       });
+      const post2 = await prisma.questsOnUser.deleteMany({
+        where: {
+          quest: {
+            repeatable: "immediately",
+          },
+        },
+      });
       res.status(200).json({ success: "true" });
     } else {
       res.status(401);

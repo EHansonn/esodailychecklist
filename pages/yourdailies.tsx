@@ -60,7 +60,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     setTime(localDailyReset);
   }, []);
 
-  
   const defaultList: ListProps = {
     tasks: undefined,
     id: "Default",
@@ -70,16 +69,15 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     userId: "",
   };
 
-
   //Categories for the possible quests. Hardcoded for now...
   let categories = [
+    "Daily Tasks",
     "Undaunted Pledges",
     "Crafting Writs",
-    "Arenas",
-    "Trials",
     "Craglorn Quests",
+    "Trials",
+    "Arenas",
     "PvP Quests",
-    "Northern Elsweyr Defense Force",
     "Guild Daily Quests",
     "Imperial City Quests",
     "Wrothgar Quests",
@@ -100,11 +98,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     "Cyrodiil Settlement Quests",
     "Fighters Guild Bounty Quests",
     "Cyrodilic Collections",
+    "Northern Elsweyr Defense Force",
   ];
   const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
   const [questsToDisplay, setQuestsToDisplay] = useState(quests);
 
-  
   const listOptions = lists?.map((list) => ({
     value: list.title,
     label: list.title,
@@ -204,7 +202,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 />
               </Space>
 
-              <Listmodal quests={quests} user={user}></Listmodal>
+              <Listmodal
+                quests={quests}
+                user={user}
+                categories={categories}
+              ></Listmodal>
               {lists?.map((list: any) => (
                 <div
                   className="bg-slate-300 justify-between  flex-row object-contain rounded-lg py-2 pl-2 pr-2
