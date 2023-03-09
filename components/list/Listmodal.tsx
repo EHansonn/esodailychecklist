@@ -1,8 +1,9 @@
 import { User } from "../../pages/yourdailies";
 import React, { useState } from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, Select, Tooltip } from "antd";
 import Router from "next/router";
 import { Quest } from "../../pages/yourdailies";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 export interface ListModalRef {
   visible: boolean;
   showModal: (visible: boolean) => void;
@@ -79,8 +80,12 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
   };
   return (
     <div className="bg-slate-300   rounded-lg py-2 px-2  ">
-      <div className="text-center">Your Custom Lists</div>
-
+      <div className="flex flex-row justify-center relative">
+        <div className="text-center">Your Custom Lists</div>
+        <Tooltip title="If you dont want to see every single possible daily, you can create your own customized list to help you keep track of the things you want.">
+          <QuestionCircleOutlined className="absolute top-0 right-0"></QuestionCircleOutlined>
+        </Tooltip>
+      </div>
       <Form
         {...layout}
         form={form}
