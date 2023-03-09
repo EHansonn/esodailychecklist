@@ -87,11 +87,11 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
         </Tooltip>
       </div>
       <Form
-        {...layout}
         form={form}
+        layout="vertical"
+        style={{ width: "100%" }}
         name="control-hooks"
         onFinish={onFinish}
-        style={{ maxWidth: 600 }}
       >
         <Form.Item name="title" label="Name" rules={[{ required: true }]}>
           <Input />
