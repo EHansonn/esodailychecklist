@@ -24,7 +24,7 @@ export default function IndexPage() {
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md  bg-white/50">
             <div className="text-6xl text-white">ESO Daily Tracker</div>
             <div className="text-2xl text-center text-white pt-4">
-              Keep track of 100+ daily quests
+              Keep track of over 100 daily quests
             </div>
             {status === "unauthenticated" && (
               <div className="content-center text-center">
