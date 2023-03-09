@@ -7,6 +7,10 @@
   background-blend-mode: darken;
 }
 
+.blur {
+  backdrop-filter: blur(1px);
+}
+
 .dailies {
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;

@@ -18,46 +18,48 @@ export default function IndexPage() {
       </Head>
 
       <div className={`${styles.home}   h-screen `}>
-        <Header></Header>
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  pt-3 pb-4 px-3 rounded-lg backdrop-blur-xl  bg-white/50">
-          <div className="text-6xl text-white">ESO Daily Tracker</div>
-          <div className="text-2xl text-center text-white pt-4">
-            Keep track of 100+ daily quests
-          </div>
-          {status === "unauthenticated" && (
-            <div className="content-center text-center">
-              <div className="text-white text-center pb-2 pt-2"></div>
-              <Button
-                type="primary"
-                onClick={(e) => {
-                  signIn();
-                }}
-              >
-                Sign In With Google
-              </Button>
+        <div className={`w-screen h-screen ${styles.blur}`}>
+          <Header></Header>
+          <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md  bg-white/50">
+            <div className="text-6xl text-white">ESO Daily Tracker</div>
+            <div className="text-2xl text-center text-white pt-4">
+              Keep track of 100+ daily quests
             </div>
-          )}
-          {status === "authenticated" && (
-            <div className="content-center text-center text-white pt-2">
-              Try it yourself
-              <div className="text-white text-center pb-2 pt-2">
-                <Button type="primary" href="/yourdailies">
-                  Your Daily Checklist
+            {status === "unauthenticated" && (
+              <div className="content-center text-center">
+                <div className="text-white text-center pb-2 pt-2"></div>
+                <Button
+                  type="primary"
+                  onClick={(e) => {
+                    signIn();
+                  }}
+                >
+                  Sign In With Google
                 </Button>
               </div>
+            )}
+            {status === "authenticated" && (
+              <div className="content-center text-center text-white pt-2">
+                Try it yourself
+                <div className="text-white text-center pb-2 pt-2">
+                  <Button type="primary" href="/yourdailies">
+                    Your Daily Checklist
+                  </Button>
+                </div>
+              </div>
+            )}
+            <div className="justify-center flex pt-2 l">
+              <Button
+                size="large"
+                type="text"
+                href={"https://github.com/EHansonn/esodailytracker"}
+              >
+                <GithubOutlined className="teamSocialIcon text-2x" />
+              </Button>
             </div>
-          )}
-          <div className="justify-center flex pt-2 l">
-            <Button
-              size="large"
-              type="text"
-              href={"https://github.com/EHansonn/esodailytracker"}
-            >
-              <GithubOutlined className="teamSocialIcon text-2x" />
-            </Button>
           </div>
+          <div className="absolute bottom-0 left-0 inset-x-0 items-center justify-center text-center rounded-lg backdrop-blur-xl bg-white/50 "></div>
         </div>
-        <div className="absolute bottom-0 left-0 inset-x-0 items-center justify-center text-center rounded-lg backdrop-blur-xl bg-white/50 "></div>
       </div>
     </div>
   );
