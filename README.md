@@ -14,6 +14,10 @@ All possible dailies
 Create a custom list to see which ones you want
 ![My custom list](https://cdn.discordapp.com/attachments/1054239396024549486/1083239911827718194/image.png)
 
+## Whats next
+
+Support for multiple characters, your own custom quests, and more detail information about quests, including images from UESP.
+
 ## Getting Started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
