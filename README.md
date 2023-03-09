@@ -6,7 +6,7 @@ A simple and easy way for you to manage and keep track of the 100+ repeatable qu
 
 ## Made using
 
-NextJS, Tailwind CSS, Supabase and Prisma, Vercel and Github Actions.
+NextJS, Tailwind CSS, Supabase, Prisma, Vercel and Github Actions.
 
 All possible dailies
 ![All dailies](https://cdn.discordapp.com/attachments/1054239396024549486/1083239740536524900/image.png)
