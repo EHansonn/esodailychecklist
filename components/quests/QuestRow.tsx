@@ -33,7 +33,7 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
 
   return (
     <>
-      <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-200 ">
+      <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-200 cursor-pointer">
         <div className="flex justify-start">
           <Checkbox
             defaultChecked={checkedByDefault}

@@ -36,7 +36,7 @@ const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
     <>
       <div
         key={`${quest.value} 123`}
-        className={`flex flex-row my-1 pl-0 justify-between hover:bg-slate-200 ${styles.font} `}
+        className={`flex flex-row my-1 pl-0 justify-between cursor-pointer  hover:bg-slate-200 ${styles.font} `}
       >
         <div className="flex justify-start"></div>
 
@@ -62,9 +62,7 @@ const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
           <div className="pb-2">Quest Name: {quest?.value}</div>
         )}
         <div className="pb-2">Category: {quest?.category}</div>
-        {quest?.description && (
-          <div className="pb-2">{quest?.description}</div>
-        )}
+        {quest?.description && <div className="pb-2">{quest?.description}</div>}
         <div className="pb-2">Repeatable: {quest?.repeatable}</div>
         {quest?.location && (
           <div className="pb-2">Location: {quest?.location}</div>
