@@ -134,7 +134,7 @@ async function main() {
         value: "Daily Login Reward",
         category: "Daily Tasks",
         description:
-          "Log in each day and eventually reach a reward at the end of the month",
+          "Log in each day, hit the button that says collect your reward, and eventually reach a somewhat larger reward at the end of the month",
         repeatable: "daily",
         location: "",
         questGiver: "",
@@ -154,7 +154,7 @@ async function main() {
       {
         value: "Crafting Trait Research",
         category: "Daily Tasks",
-        description: "Very important",
+        description: "Very important. Research a trait by destroying an item. Helps you become a master crafter, so you can craft items with that trait",
         repeatable: "daily",
         location: "",
         questGiver: "",
@@ -164,7 +164,7 @@ async function main() {
       {
         value: "Daily Random Dungeons",
         category: "Daily Tasks",
-        description: "Huge chunk of xp",
+        description: "Complete a random dungeon from the dungeon finder. Huge chunk of xp",
         repeatable: "daily",
         location: "",
         questGiver: "",
@@ -174,7 +174,7 @@ async function main() {
       {
         value: "Daily Battleground",
         category: "Daily Tasks",
-        description: "Huge chunk of xp",
+        description: "Complete a random battleground once a day. Gives a huge chunk of xp, great for level alts.",
         repeatable: "daily",
         location: "",
         questGiver: "",
@@ -195,7 +195,7 @@ async function main() {
       {
         value: "Weekly Endeavors",
         category: "Daily Tasks",
-        description: "Important",
+        description: "Slowly earn seals to earn items out of the endeavor store",
         repeatable: "weekly",
         location: "",
         questGiver: "",

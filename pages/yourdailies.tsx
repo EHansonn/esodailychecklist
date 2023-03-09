@@ -167,18 +167,18 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className={`pb-4 pt-2 pl-4 pr-4   `}>
+        <div className={`pb-4 pt-2 pl-4 pr-4  relative `}>
           <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
-            <div className="text-slate-300 pb-2 text-center">
+            <div className="text-slate-300 pb-2 text-center ">
               {`Daily quests reset at ${time} each day`}
             </div>
-            <div className="text-slate-300 pb-2 pl-5 text-center">
+            <div className="text-slate-300 pb-2 pl-0  lg:pl-5 md:pl-5 text-center pb-20 md:pb-0 ">
               {`Weekly quests reset at ${time} on monday`}
             </div>
           </div>
 
-          <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3  flex-col sm:flex-col md:flex-row lg:flex-row justify-between">
-            <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
+          <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
+            <div className="w-full grid grid-cols-1  lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
               {/* Displaying Quests */}
               {categoriesToDisplay.map((category) => (
                 <div key={category} className=" flex flex-col">
@@ -192,12 +192,19 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4">
-              <Space wrap>
+            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  whitespace-nowrap overflow-hidden ">
+              <Space
+                direction="vertical"
+                key="test2"
+                wrap
+                style={{ width: "100%" }}
+                className="absolute -top-14 md:relative md:top-0   "
+              >
                 <Select
+                  className=""
                   defaultValue="Default List"
-                  style={{ width: 120 }}
-                  onChange={handleChange}
+                  style={{ width: "100%" }}
+                  onSelect={handleChange}
                   options={listOptions}
                 />
               </Space>
