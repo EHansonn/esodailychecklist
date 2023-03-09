@@ -59,6 +59,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     let localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");
     setTime(localDailyReset);
   }, []);
+
+  
   const defaultList: ListProps = {
     tasks: undefined,
     id: "Default",
@@ -67,6 +69,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     content: null,
     userId: "",
   };
+
+
+  //Categories for the possible quests. Hardcoded for now...
   let categories = [
     "Undaunted Pledges",
     "Crafting Writs",
@@ -97,8 +102,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     "Cyrodilic Collections",
   ];
   const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
-  const [selectedList, setSelectedList] = useState("Default");
   const [questsToDisplay, setQuestsToDisplay] = useState(quests);
+
+  
   const listOptions = lists?.map((list) => ({
     value: list.title,
     label: list.title,
@@ -115,7 +121,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       setQuestsToDisplay(quests);
       setCategoriesToDisplay(categories);
     } else {
-      setSelectedList(value);
       const listfinder = lists!.filter(function (el) {
         return el.title === value;
       });
@@ -137,7 +142,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       setCategoriesToDisplay(unique);
     }
   };
-  //Categories for the possible quests. Hardcoded for now...
 
   if (!session) {
     return (
