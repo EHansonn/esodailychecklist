@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { Quest, User } from "./yourdailies";
 import CharacterRow from "../components/character/CharacterRow";
 import CharacterModel from "../components/character/CharacterModel";
+import Link from "next/link";
 interface Props {
   user: User;
   lists?: ListProps[];
@@ -53,7 +54,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className={`pb-4 pt-2 pl-4 pr-4  relative `}>
+        <div className={`pb-4 pt-2 pl-4 pr-4  relative flex-col `}>
           <div className="flex   relative  rounded-md justify-center">
             <div className="bg-slate-300 justify-center w-3/6 text-center text-black flex flex-row justify-around">
               <div className="flex flex-col">
@@ -73,6 +74,12 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               </div>
             </div>
           </div>
+          <Link
+            className="text-center justify-center flex pt-5"
+            href={"/yourdailies"}
+          >
+            <Button type="primary">View your daily checklist</Button>
+          </Link>
         </div>
       </Layout>
     );
@@ -107,7 +114,6 @@ export async function getServerSideProps<Props>(context: any) {
       owner: {
         select: { name: true, email: true },
       },
-
     },
   });
 

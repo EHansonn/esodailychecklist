@@ -7,15 +7,13 @@ import { authOptions } from "../auth/[...nextauth]";
 // #TODO add proper types to all apis
 export default async function handle(req: any, res: any) {
   const session = await getServerSession(req, res, authOptions);
-  //console.log("helloo");
   if (session) {
-
-    const { character} = req.body;
+    const { character } = req.body;
     const u = await prisma?.user.findFirst({
       where: { email: session?.user.email },
     });
 
-    const { quest, trueorfalse,  } = req.body;
+    const { quest, trueorfalse } = req.body;
 
     const listId = req.query.id;
     if (req.method === "PUT") {

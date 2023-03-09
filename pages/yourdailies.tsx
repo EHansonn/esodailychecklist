@@ -15,6 +15,7 @@ import Head from "next/head";
 import { signIn, signOut } from "next-auth/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export type User = {
   // id: string;
@@ -67,10 +68,14 @@ export type QuestsOnCharacter = {
 };
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
-  console.log(user.characters);
+  // console.log(user.characters);
 
   const { data: session, status } = useSession();
+  const [currentCharacter, selectCurrentCharacter] = useState(
+    user.characters![0]
+  );
 
+  const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
   //Display the UTC reset time in the users own time zone
   const [time, setTime] = useState("00:00:00");
   useEffect(() => {
@@ -123,7 +128,12 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
   const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
   const [questsToDisplay, setQuestsToDisplay] = useState(quests);
-
+  const size = user.characters?.length;
+  //console.log(size);
+  const characterOptions = user.characters?.map((character) => ({
+    value: character.value,
+    label: character.name,
+  }));
   //Adding the users lists to the list selector dropdown
   const listOptions = lists?.map((list) => ({
     value: list.title,
@@ -164,13 +174,26 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     }
   };
 
+  const handleChangeCharacter = (value: string) => {
+    // console.log(value);
+    const selectedChar = user.characters!.filter(function (el, index) {
+      if (el.value === value) {
+        setCurrentCharacterIndex(index);
+      }
+      return el.value === value;
+    });
+
+    selectCurrentCharacter(selectedChar[0]);
+    //console.log(selectedChar);
+  };
+
   if (!session) {
     return (
       <Layout>
         {status === "loading" && <div>loading</div>}
         {status === "unauthenticated" && (
           <div className="content-center text-center">
-            <div className="text-white w-screen text-center pb-5">
+            <div className="text-white w-screen text-center pb-5 pt-5">
               Please sign in
             </div>
             <Button
@@ -188,6 +211,21 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   }
 
   if (session) {
+    if (user.characters?.length === 0) {
+      return (
+        <Layout>
+          <div className="content-center text-center">
+            <div className="text-white w-screen text-center pb-5 pt-5">
+              Please create a character on your profile!
+            </div>
+            <Link href={"/profile"}>
+              <Button type="primary">Create a Character</Button>
+            </Link>
+          </div>
+        </Layout>
+      );
+    }
+
     return (
       <Layout>
         <div className={`pb-4 pt-2 pl-4 pr-4  relative `}>
@@ -211,6 +249,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                     })}
                     name={category}
                     user={user}
+                    character={currentCharacter}
+                    currindex={currentCharacterIndex}
+                    numberofchars={size}
                   ></QuestCategory>
                 </div>
               ))}
@@ -240,13 +281,10 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               >
                 <Select
                   className=""
-                  defaultValue="Default Character"
+                  defaultValue={user.characters![0].name}
                   style={{ width: "100%" }}
-                  onSelect={handleChange}
-                  options={[
-                    { label: "Default Character", value: "default" },
-                    { label: "Hardcoded Character", value: "default2" },
-                  ]}
+                  onSelect={handleChangeCharacter}
+                  options={characterOptions}
                 />
               </Space>
               <Listmodal
