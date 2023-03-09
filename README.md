@@ -16,7 +16,7 @@ Create a custom list to see which ones you want
 
 ## Whats next
 
-Support for multiple characters, your own custom quests, and more detail information about quests, including images from UESP.
+Support for multiple characters, your own custom quests, and more detailed information about quests, including images from UESP.
 
 ## Getting Started
 
