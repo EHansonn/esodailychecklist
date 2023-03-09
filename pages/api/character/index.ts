@@ -11,27 +11,17 @@ import { authOptions } from "../auth/[...nextauth]";
 export default async function handle(req: any, res: any) {
   const session = await getServerSession(req, res, authOptions);
   if (session) {
-    const { title, content, tasks, user } = req.body;
-   // const session = await getSession({ req });
-    const result = await prisma.list.create({
+    const { value, name, user } = req.body;
+    const result = await prisma.character.create({
       data: {
-        title: title,
-        content: content,
+        name: name,
         owner: { connect: { email: session?.user?.email ?? undefined } },
       },
     });
-    const taskstosend = tasks.map((e: any) => ({
-      listId: result.id,
-      userId: user.id,
-      questName: e,
-    }));
-    const createTasks = await prisma.task.createMany({ data: taskstosend });
 
     res.json(result);
   } else {
     res.status(401);
   }
   res.end();
-
-
 }

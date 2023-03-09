@@ -17,11 +17,13 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 
 export type User = {
-  id: string;
+  // id: string;
   name: string;
   createdAt: string;
   checkedTasks?: string;
   questsOnUser?: QuestsOnUser[];
+  characters?: Character[];
+  email: string;
 };
 
 export type QuestsOnUser = {
@@ -50,7 +52,23 @@ interface Props {
   quests?: Quest[];
 }
 
+export type Character = {
+  value: string;
+  name: string;
+  owner: User;
+  questsOnCharacter?: QuestsOnCharacter[];
+};
+
+export type QuestsOnCharacter = {
+  character: User;
+  quest: Quest;
+  characterId: string;
+  questName: string;
+};
+
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
+  console.log(user.characters);
+
   const { data: session, status } = useSession();
 
   //Display the UTC reset time in the users own time zone
@@ -183,7 +201,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
           </div>
 
           <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-            <div className="w-full grid grid-cols-1  lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3  ">
+            <div className="w-full grid grid-cols-1   lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3 max-h-1 ">
               {/* Displaying Quests */}
               {categoriesToDisplay.map((category) => (
                 <div key={category} className=" flex flex-col">
@@ -213,7 +231,24 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   options={listOptions}
                 />
               </Space>
-
+              <Space
+                direction="vertical"
+                key="test233"
+                wrap
+                style={{ width: "100%" }}
+                className="absolute -top-14 md:relative md:top-0   "
+              >
+                <Select
+                  className=""
+                  defaultValue="Default Character"
+                  style={{ width: "100%" }}
+                  onSelect={handleChange}
+                  options={[
+                    { label: "Default Character", value: "default" },
+                    { label: "Hardcoded Character", value: "default2" },
+                  ]}
+                />
+              </Space>
               <Listmodal
                 quests={quests}
                 user={user}
@@ -244,6 +279,15 @@ export async function getServerSideProps<Props>(context: any) {
     where: { email: session?.user.email },
     include: {
       QuestsOnUser: true,
+    },
+  });
+
+  const c = await prisma?.character.findMany({
+    where: {
+      userId: u!.id,
+    },
+    include: {
+      QuestsOnCharacter: true,
     },
   });
 
@@ -285,7 +329,7 @@ export async function getServerSideProps<Props>(context: any) {
           title: list.title,
           content: list.content,
           owner: list.owner,
-          userId: list.userId,
+          //userId: list.userId,
           tasks: list.tasks.map((e) => ({
             value: e.quest.value,
             category: e.quest.category,
@@ -299,7 +343,12 @@ export async function getServerSideProps<Props>(context: any) {
           })),
         })),
         user: {
-          id: u.id,
+          // id: u.id,
+          characters: c.map((e) => ({
+            value: e.value,
+            name: e.name,
+            questsOnCharacter: JSON.parse(JSON.stringify(e.QuestsOnCharacter)),
+          })),
           name: u.name,
           createdAt: u.createdAt.toString(),
           checkedTasks: u.checkedTasks,

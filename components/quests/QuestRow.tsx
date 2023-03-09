@@ -36,12 +36,10 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
           <Checkbox
             defaultChecked={checkedByDefault}
             onChange={async (e: CheckboxChangeEvent) => {
-              await fetch(`/api/user/${user?.id}`, {
+              await fetch(`/api/user/${user}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  id: user?.id,
-
                   quest: quest,
                   trueorfalse: e.target.checked,
                 }),

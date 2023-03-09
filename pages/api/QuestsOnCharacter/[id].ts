@@ -9,24 +9,26 @@ export default async function handle(req: any, res: any) {
   const session = await getServerSession(req, res, authOptions);
   //console.log("helloo");
   if (session) {
+
+    const { character} = req.body;
     const u = await prisma?.user.findFirst({
       where: { email: session?.user.email },
     });
 
-    const { quest, trueorfalse, char } = req.body;
+    const { quest, trueorfalse,  } = req.body;
 
     const listId = req.query.id;
     if (req.method === "PUT") {
       if (trueorfalse) {
-        await prisma.questsOnUser.create({
+        await prisma.questsOnCharacter.create({
           data: {
-            userId: u!.id,
+            characterId: character!.value,
             questName: quest.value,
           },
         });
       } else {
-        await prisma.questsOnUser.deleteMany({
-          where: { questName: quest.value, userId: u!.id },
+        await prisma.questsOnCharacter.deleteMany({
+          where: { questName: quest.value, characterId: character!.value },
         });
       }
 
