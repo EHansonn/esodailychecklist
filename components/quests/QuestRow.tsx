@@ -79,9 +79,7 @@ const QuestRow: React.FC<{ quest: Quest; user?: User }> = ({ quest, user }) => {
       >
         {quest.optionalTitle && <div>Quest Name: {quest?.value}</div>}
         <div className="pb-2">Category: {quest?.category}</div>
-        {quest?.description && (
-          <div className="pb-2">Description: {quest?.description}</div>
-        )}
+        {quest?.description && <div className="pb-2">{quest?.description}</div>}
         <div className="pb-2">Repeatable: {quest?.repeatable}</div>
         {quest?.location && (
           <div className="pb-2">Location: {quest?.location}</div>

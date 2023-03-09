@@ -73,7 +73,7 @@ const Listmodal: React.FC<Props> = ({ quests, user }) => {
         return quest.category === category;
       })
       .map((quests) => ({
-        value: `${quests.location} ${quests.repeatable} ${quests.reward} ${quests.category} &$$&${quests.value}`,
+        value: `${quests.optionalTitle}  ${quests.location} ${quests.repeatable} ${quests.reward} ${quests.category} &$$&${quests.value}`,
         label: `${quests.optionalTitle ? quests.optionalTitle : quests.value}`,
       })),
   }));
