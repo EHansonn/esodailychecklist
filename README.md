@@ -1,14 +1,16 @@
+# ESO Daily Tracker
 
-## Inspirtation
-Heavily inspired by [The FFXIV daily/todo tracker](https://xivtodo.com/)
-Great tool to help you keep track of all the things you need to do in an ff
+A simple and easy way for you to manage and keep track of the 100+ repeatable quests in the game. Simply login to with your google account, and navigate to the /yourdailies directory. Here you can see every single possible repeatable task and quest in the game. You can check off the ones you've done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started right away on today's tasks!
 
+## Made using
 
+NextJS, Supabase and Prisma, Vercel and Github Actions.
 
-## Getting Started
+[All dailies](https://cdn.discordapp.com/attachments/1054239396024549486/1083239740536524900/image.png)
+
+[My custom list](https://cdn.discordapp.com/attachments/1054239396024549486/1083239911827718194/image.png)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 
 First, run the development server:
 
@@ -28,9 +30,12 @@ yarn prisma db push
 yarn prisma studio
 
 prisma migrate dev
+
 prisma migrate deploy
 
 prisma db seed
+
+prisma studio
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
