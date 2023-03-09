@@ -6,9 +6,13 @@ A simple and easy way for you to manage and keep track of the 100+ repeatable qu
 
 NextJS, Supabase and Prisma, Vercel and Github Actions.
 
+All possible dailies
 ![All dailies](https://cdn.discordapp.com/attachments/1054239396024549486/1083239740536524900/image.png)
 
+Create a custom list to see which ones you want
 ![My custom list](https://cdn.discordapp.com/attachments/1054239396024549486/1083239911827718194/image.png)
+
+## Getting Started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -22,7 +26,7 @@ yarn dev
 pnpm dev
 ```
 
-## Prisma stuff
+## Prisma Stuff
 
 ```
 yarn prisma db push
