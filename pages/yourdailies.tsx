@@ -118,7 +118,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     key: "default",
   });
 
-
   //Filtering the quests to display in a custom list. Ignore my poor variable names :)
   const handleChange = (value: string) => {
     if (value === "Default List") {
@@ -241,7 +240,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
 
-  
   const u = await prisma?.user.findFirst({
     where: { email: session?.user.email },
     include: {

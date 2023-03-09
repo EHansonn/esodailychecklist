@@ -8,6 +8,7 @@ import { Router } from "next/router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Head from "next/head";
+import { loadComponents } from "next/dist/server/load-components";
 
 // Use of the <SessionProvider> is mandatory to allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
@@ -15,6 +16,7 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps<{ session: Session }>) {
+
   useEffect(() => {
     Router.events.on("routeChangeStart", NProgress.start);
     Router.events.on("routeChangeComplete", NProgress.done);
