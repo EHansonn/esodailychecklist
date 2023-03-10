@@ -36,8 +36,8 @@ const CharacterModel: React.FC<Props> = ({ user }) => {
   return (
     <div className="bg-slate-800   rounded-lg py-2 px-2 w-36 md:w-56 lg:w-96 ">
       <div className="flex flex-row justify-center relative">
-        <div className="text-center">Your Custom Characters</div>
-        <Tooltip title="Each charater can have their own daily checklist! Please create at least one character.">
+        <div className="text-center">Add Custom Character</div>
+        <Tooltip title="Each character can have their own daily checklist! Please create at least one character.">
           <QuestionCircleOutlined className="absolute top-0 right-0"></QuestionCircleOutlined>
         </Tooltip>
       </div>

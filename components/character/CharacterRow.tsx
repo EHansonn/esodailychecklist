@@ -4,6 +4,7 @@ import QuestRow from "../quests/QuestRow";
 import Router from "next/router";
 import styles from "../../pages/index.module.css";
 import { Button, Drawer } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const CharacterRow: React.FC<{
   character: Character;
@@ -13,14 +14,14 @@ const CharacterRow: React.FC<{
   //console.log(character);
   //console.log(character);
   return (
-    <div className={`flex flex-col object-contain   text-offwhite-50 `}>
+    <div className={`flex flex-col object-contain  text-offwhite-50 `}>
       <div className="flex flex-row">
         <div className="flex flex-row justify-between pr-5">
           {character.name}
         </div>
         {editMode && (
-          <Button
-            danger
+          <DeleteOutlined
+            className="pt-1 hover:bg-gray-700"
             onClick={async () => {
               await fetch(`/api/character/${character.value}`, {
                 method: "DELETE",
@@ -29,7 +30,7 @@ const CharacterRow: React.FC<{
             }}
           >
             Delete
-          </Button>
+          </DeleteOutlined>
         )}
       </div>
     </div>

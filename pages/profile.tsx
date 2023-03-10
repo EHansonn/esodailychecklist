@@ -59,17 +59,23 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     return (
       <Layout>
         <div className={`pb-4 pt-2 pl-4 pr-4 `}>
-          <div className="flex  justify-center">
-            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screen text-center border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col  sm:flex-row justify-around">
+          <div className="flex  justify-center   ">
+            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screen text-center border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col w-max sm:flex-row justify-around">
               <div className="flex flex-col ">
-                <div className="border-solid border-b-2 border-t-0 border-l-0 border-r-0   w-36 md:w-56 lg:w-96">
+                <div className="border-solid border-b-2 border-t-0 border-l-0 border-r-0  pr-5 mr-0 sm:mr-5 w-36 md:w-56 lg:w-96">
                   {" "}
                   Your Characters
                   <EditOutlined
+                    // className={classNames(
+                    //   item.current
+                    //     ? "bg-gray-900 text-white"
+                    //     : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    //   "rounded-md px-3 py-2 text-sm font-medium"
+                    // )}
                     onClick={() => {
                       setEditMode(!editMode);
                     }}
-                    className=" pl-2 rounded-sm"
+                    className=" ml-2 rounded-sm hover:bg-gray-700"
                   />
                 </div>
                 {user.characters?.map((character) => (
