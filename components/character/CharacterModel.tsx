@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Quest, User } from "../../pages/yourdailies";
-import QuestRow from "../quests/QuestRow";
+import React from "react";
+import { User } from "../../pages/yourdailies";
 import Router from "next/router";
-import styles from "../../pages/index.module.css";
-import { Button, Drawer, Form, Input, Select, Tooltip } from "antd";
+import { Button, Form, Input, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const tailLayout = {
@@ -51,7 +49,14 @@ const CharacterModel: React.FC<Props> = ({ user }) => {
         <Form.Item
           name="name"
           label={<label style={{ color: "White" }}>Name</label>}
-          rules={[{ required: true }]}
+          rules={[
+            { required: true },
+            { min: 2, message: "Character name must be at least 2 characters" },
+            {
+              max: 25,
+              message: "Character names have a maximum of 25 characters",
+            },
+          ]}
         >
           <Input placeholder="Your Character's Name" />
         </Form.Item>

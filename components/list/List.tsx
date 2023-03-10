@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Quest, User } from "../../pages/yourdailies";
-import QuestRow from "../quests/QuestRow";
 import Router from "next/router";
-import styles from "../../pages/index.module.css";
-import { Button, Drawer } from "antd";
+import { Button} from "antd";
 import ListQuestAndRow from "./ListQuestsandmodal";
 export type ListProps = {
   tasks: Quest[] | undefined;

@@ -1,17 +1,13 @@
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import List, { ListProps } from "../components/list/List";
-import { getServerSession, Session } from "next-auth";
-import { getSession, GetSessionParams, useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import prisma from "../lib/prisma";
 import Listmodal from "../components/list/Listmodal";
 import { Button, Select, Space } from "antd";
-import Router, { useRouter } from "next/router";
 import Layout from "../components/layout";
-import QuestRow from "../components/quests/QuestRow";
 import QuestCategory from "../components/quests/QuestCategory";
-import styles from "./index.module.css";
-import Head from "next/head";
 import { signIn, signOut } from "next-auth/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -69,9 +65,34 @@ export type QuestsOnCharacter = {
 };
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
-  // console.log(user.characters);
 
   const { data: session, status } = useSession();
+
+  if (!session) {
+    return (
+      <Layout>
+        <YourDailiesHeader></YourDailiesHeader>
+        {status === "loading" && <div>loading</div>}
+        {status === "unauthenticated" && (
+          <div className="content-center text-center">
+            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+              Please sign in to view your daily checklist
+            </div>
+            <Button
+              type="primary"
+              onClick={(e) => {
+                signIn();
+              }}
+            >
+              Sign In With Google
+            </Button>
+          </div>
+        )}
+      </Layout>
+    );
+  }
+
+  
   const [currentCharacter, selectCurrentCharacter] = useState(
     user.characters![0]
   );
@@ -175,7 +196,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   };
 
   const handleChangeCharacter = (value: string) => {
-    // console.log(value);
     const selectedChar = user.characters!.filter(function (el, index) {
       if (el.value === value) {
         setCurrentCharacterIndex(index);
@@ -184,32 +204,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     });
 
     selectCurrentCharacter(selectedChar[0]);
-    //console.log(selectedChar);
   };
-
-  if (!session) {
-    return (
-      <Layout>
-        <YourDailiesHeader></YourDailiesHeader>
-        {status === "loading" && <div>loading</div>}
-        {status === "unauthenticated" && (
-          <div className="content-center text-center">
-            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
-              Please sign in to view your daily checklist
-            </div>
-            <Button
-              type="primary"
-              onClick={(e) => {
-                signIn();
-              }}
-            >
-              Sign In With Google
-            </Button>
-          </div>
-        )}
-      </Layout>
-    );
-  }
 
   if (session) {
     if (user.characters?.length === 0) {
@@ -314,7 +309,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
 export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
-
+  if (!session) {
+    return {
+      props: { error: true },
+    };
+  }
   const u = await prisma?.user.findFirst({
     where: { email: session?.user.email },
     include: {

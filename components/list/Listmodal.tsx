@@ -1,24 +1,10 @@
 import { User } from "../../pages/yourdailies";
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form, Input, Select, Tooltip } from "antd";
 import Router from "next/router";
 import { Quest } from "../../pages/yourdailies";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import styles from "../../pages/index.module.css";
-import {
-  red,
-  volcano,
-  gold,
-  yellow,
-  lime,
-  green,
-  cyan,
-  blue,
-  geekblue,
-  purple,
-  magenta,
-  grey,
-} from "@ant-design/colors";
+
 export interface ListModalRef {
   visible: boolean;
   showModal: (visible: boolean) => void;
@@ -31,10 +17,6 @@ interface Props {
   user?: User;
   categories?: string[];
 }
-
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
 
 const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
   const [form] = Form.useForm();
@@ -94,7 +76,13 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
         <Form.Item
           label={<label style={{ color: "White" }}>Name</label>}
           name="title"
-          rules={[{ required: true }]}
+          rules={[
+            { required: true },
+            {
+              max: 100,
+              message: "List names have a maximum of 100 characters",
+            },
+          ]}
         >
           <Input placeholder="Your List's Name" />
         </Form.Item>
@@ -102,7 +90,14 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
           style={{ color: "white" }}
           name="content"
           label={<label style={{ color: "White" }}>Description</label>}
-          rules={[{ required: false }]}
+          rules={[
+            { required: false },
+            {
+              max: 120,
+              message:
+                "List descriptions names have a maximum of 120 characters",
+            },
+          ]}
         >
           <Input placeholder="Optional Description" />
         </Form.Item>

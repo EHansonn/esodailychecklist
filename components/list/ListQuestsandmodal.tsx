@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import Router, { useRouter } from "next/router";
 import Link from "next/link";
-import { Checkbox, Drawer } from "antd";
-import type { CheckboxChangeEvent } from "antd/es/checkbox";
+import {  Drawer } from "antd";
 import { Quest, User } from "../../pages/yourdailies";
 
-import QuestRow from "../quests/QuestRow";
 import styles from "../../pages/index.module.css";
 const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
   quest,

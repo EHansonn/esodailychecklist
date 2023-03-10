@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import { Checkbox, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
@@ -24,9 +23,8 @@ const QuestRow: React.FC<{
   character?: Character;
   currindex?: number;
   characters?: Character[];
-}> = ({ quest, user, character, characters, currindex, }) => {
+}> = ({ quest, user, character, characters, currindex }) => {
   const [open, setOpen] = useState(false);
-  //  console.log(character);
   const showDrawer = () => {
     setOpen(true);
   };
@@ -39,7 +37,6 @@ const QuestRow: React.FC<{
     const quests = charactere.questsOnCharacter?.filter(function (e) {
       return e.questName === (quest.value || quest.optionalTitle);
     });
-    //console.log(quests);
     if (quests!.length >= 1) {
       return true;
     } else {
@@ -93,25 +90,11 @@ const QuestRow: React.FC<{
                 if (res2.ok) {
                   const temp = charz;
                   temp![currindex!] = e.target.checked;
-                  // console.log("tester");
-                  // console.log(temp);
                   setCharz(temp);
-                  // console.log("another test lol");
-                  // console.log(charz);
                   setChecked(e.target.checked);
                 }
                 console.log(res2);
               }
-
-              //Router.push("/yourdailies");
-
-              // router.push(
-              //   {
-              //     pathname: router.pathname,
-              //   },
-              //   undefined,
-              //   { scroll: false }
-              // );
             }}
           ></Checkbox>
         </div>

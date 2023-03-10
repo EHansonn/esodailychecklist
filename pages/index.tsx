@@ -4,8 +4,6 @@ import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/header";
-import Layout from "../components/layout";
-import image from "../public/hero.jpg";
 import styles from "./index.module.css";
 export default function IndexPage() {
   const { data: session, status } = useSession();

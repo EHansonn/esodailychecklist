@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
-import styles from "./header.module.css";
+//import styles from "./header.module.css";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
-import { MenuOutlined } from "@ant-design/icons";
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.

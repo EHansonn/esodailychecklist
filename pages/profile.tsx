@@ -1,20 +1,14 @@
-import { GetServerSideProps, NextPage } from "next";
-import List, { ListProps } from "../components/list/List";
-import { getServerSession, Session } from "next-auth";
-import { getSession, GetSessionParams, useSession } from "next-auth/react";
+import { NextPage } from "next";
+import { ListProps } from "../components/list/List";
+import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import prisma from "../lib/prisma";
-import Listmodal from "../components/list/Listmodal";
-import { Button, Select, Space } from "antd";
-import Router, { useRouter } from "next/router";
+import { Button } from "antd";
 import Layout from "../components/layout";
-import QuestRow from "../components/quests/QuestRow";
-import QuestCategory from "../components/quests/QuestCategory";
-import styles from "./index.module.css";
 import Head from "next/head";
-import { signIn, signOut } from "next-auth/react";
-import moment from "moment";
-import { useEffect, useState } from "react";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 import { Quest, User } from "./yourdailies";
 import CharacterRow from "../components/character/CharacterRow";
 import CharacterModel from "../components/character/CharacterModel";
@@ -27,7 +21,7 @@ interface Props {
   quests?: Quest[];
 }
 
-const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
+const YourDailies: NextPage<Props> = ({ user }) => {
   const { data: session, status } = useSession();
 
   const [editMode, setEditMode] = useState(false);
@@ -121,6 +115,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
 
+  if (!session) {
+    return {
+      props: { error: true },
+    };
+  }
   const u = await prisma?.user.findFirst({
     where: { email: session?.user.email },
     include: {
@@ -137,29 +136,12 @@ export async function getServerSideProps<Props>(context: any) {
     },
   });
 
-  const lists = await prisma.list.findMany({
-    where: {
-      userId: u?.id,
-    },
-    include: {
-      owner: {
-        select: { name: true, email: true },
-      },
-    },
-  });
-
   const availableQuests = await prisma?.quest.findMany({});
-  if (u && lists) {
+  if (u) {
     return {
       props: {
         session: session,
-        lists: lists.map((list) => ({
-          id: list.id,
-          title: list.title,
-          content: list.content,
-          owner: list.owner,
-          //userId: list.userId,
-        })),
+
         user: {
           characters: c.map((e) => ({
             value: e.value,

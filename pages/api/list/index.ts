@@ -1,7 +1,6 @@
 // pages/api/post/index.ts
 
 import { getServerSession } from "next-auth/next";
-import { getSession } from "next-auth/react";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 
