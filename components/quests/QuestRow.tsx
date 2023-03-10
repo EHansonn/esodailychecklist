@@ -106,7 +106,7 @@ const QuestRow: React.FC<{
           <h3 className="pl-2 m-0  ">
             {quest.optionalTitle ? quest.optionalTitle : quest?.value}
           </h3>
-          <div className={`pl-2 m-0 pr-5   `}>
+          <div className={`pl-2 m-0 pr-5 text-base   `}>
             <div className={`${styles.font}`}>{quest.repeatable}</div>
           </div>
         </div>
@@ -126,7 +126,7 @@ const QuestRow: React.FC<{
         {quest.optionalTitle && <div>Quest Name: {quest?.value}</div>}
         <div className="pb-2">Category: {quest?.category}</div>
         {quest?.description && <div className="pb-2">{quest?.description}</div>}
-        <div className="pb-2">Repeatable: {quest?.repeatable}</div>
+        <div className="pb-2 ">Repeatable: {quest?.repeatable}</div>
         {quest?.location && (
           <div className="pb-2">Location: {quest?.location}</div>
         )}
