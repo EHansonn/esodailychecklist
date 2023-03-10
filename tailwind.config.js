@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         offwhite: {
-          50: "#ddd",
+          50: "#ddd", //Custom color to not blind your eyes
         },
       },
     },
