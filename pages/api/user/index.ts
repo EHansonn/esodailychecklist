@@ -89,17 +89,8 @@ export async function getData(session: any) {
     };
   }
 }
-
+//Data is only accessible through get server side props
 export default async function handle(req: any, res: any) {
-  const session = await getServerSession(req, res, authOptions);
-  if (session === null) {
-    res.status(401);
-    res.end();
-  }
-  if (session) {
-    const jsonData = await getData(session);
-    res.status(200).json(jsonData);
-  } else {
-    res.status(400);
-  }
+  res.status(401);
+  res.end();
 }
