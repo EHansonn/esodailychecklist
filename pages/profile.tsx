@@ -77,7 +77,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   className="border-solid border-b-2 border-t-0 border-l-0 border-r-0 w-full pr-3
                  mr-0 sm:mr-5 w-36 md:w-56 lg:w-96 "
                 >
-                  {" "}
                   Your Characters
                   <EditOutlined
                     // className={classNames(
