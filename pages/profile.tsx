@@ -32,7 +32,7 @@ const YourDailies: NextPage<Props> = ({ user }) => {
       <Layout>
         <Head>
           <title>Please Sign In</title>
-          <meta name="ESO Daily Tracker - ESO ToDO List" content="" />
+          <meta name="ESO Daily Checklist - ESO ToDO List" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         {status === "loading" && <div>loading</div>}
@@ -60,7 +60,7 @@ const YourDailies: NextPage<Props> = ({ user }) => {
       <Layout>
         <Head>
           <title>Your Profile</title>
-          <meta name="ESO Daily Tracker - ESO ToDO List" content="" />
+          <meta name="ESO Daily Checklist - ESO ToDO List" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
 
