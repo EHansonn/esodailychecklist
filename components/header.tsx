@@ -116,7 +116,7 @@ export default function Header() {
                       {session && (
                         <Menu.Item>
                           {({ active }) => (
-                            <a
+                            <Link
                               href="/profile"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
@@ -124,14 +124,14 @@ export default function Header() {
                               )}
                             >
                               Your Profile
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                       )}
                       {session && (
                         <Menu.Item>
                           {({ active }) => (
-                            <a
+                            <Link
                               href="#"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
@@ -139,7 +139,7 @@ export default function Header() {
                               )}
                             >
                               Settings #TODO
-                            </a>
+                            </Link>
                           )}
                         </Menu.Item>
                       )}

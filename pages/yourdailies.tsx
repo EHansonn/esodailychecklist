@@ -16,6 +16,7 @@ import { signIn, signOut } from "next-auth/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import YourDailiesHeader from "../components/YourDailiesHeader";
 
 export type User = {
   // id: string;
@@ -190,11 +191,12 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (!session) {
     return (
       <Layout>
+        <YourDailiesHeader></YourDailiesHeader>
         {status === "loading" && <div>loading</div>}
         {status === "unauthenticated" && (
           <div className="content-center text-center">
             <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
-              Please sign in
+              Please sign in to view your daily checklist
             </div>
             <Button
               type="primary"
@@ -214,6 +216,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     if (user.characters?.length === 0) {
       return (
         <Layout>
+          <YourDailiesHeader></YourDailiesHeader>
           <div className="content-center text-center">
             <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
               Please create a character on your profile!
@@ -228,6 +231,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
     return (
       <Layout>
+        <YourDailiesHeader></YourDailiesHeader>
         <div className={`pb-4 pt-2 pl-4 pr-4  relative `}>
           <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
             <div className="text-slate-300 pb-2 text-center ">
@@ -239,7 +243,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
           </div>
 
           <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-            <div className="w-full grid grid-cols-1   lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3 sm:max-h-1 ">
+            <div className="w-full grid grid-cols-1   lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3 md:max-h-1 ">
               {/* Displaying Quests */}
               {categoriesToDisplay.map((category) => (
                 <div key={category} className=" flex flex-col">

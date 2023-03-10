@@ -35,11 +35,16 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (!session) {
     return (
       <Layout>
+        <Head>
+          <title>Please Sign In</title>
+          <meta name="ESO Daily Tracker - ESO ToDO List" content="" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         {status === "loading" && <div>loading</div>}
         {status === "unauthenticated" && (
           <div className="content-center text-center">
-            <div className="text-white w-screen text-center pb-5">
-              Please sign in
+            <div className="text-white w-screen text-center pb-5 pt-5">
+              Please sign in to view your profile
             </div>
             <Button
               type="primary"
@@ -58,6 +63,12 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
+        <Head>
+          <title>Your Profile</title>
+          <meta name="ESO Daily Tracker - ESO ToDO List" content="" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+
         <div className={`pb-4 pt-2 pl-4 pr-4 `}>
           <div className="flex  justify-center   ">
             <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screen text-center border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col w-max sm:flex-row justify-around">
