@@ -69,7 +69,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 ))}
               </div>
               <div>
-                Add char
                 <CharacterModel user={user}></CharacterModel>
               </div>
             </div>

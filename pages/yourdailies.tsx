@@ -233,13 +233,13 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
             <div className="text-slate-300 pb-2 text-center ">
               {`Daily quests reset at ${time} each day`}
             </div>
-            <div className="text-slate-300 pb-2 pl-0  lg:pl-5 md:pl-5 text-center pb-20 md:pb-0 ">
+            <div className="text-slate-300 pb-2 pl-0  lg:pl-5 md:pl-5 text-center pb-24 md:pb-0 ">
               {`Weekly quests reset at ${time} on monday`}
             </div>
           </div>
 
           <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-            <div className="w-full grid grid-cols-1   lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3 max-h-1 ">
+            <div className="w-full grid grid-cols-1   lg:grid-cols-3 md:grid-cols-2 gap-3 flex   auto-cols-1  w-2/3 sm:max-h-1 ">
               {/* Displaying Quests */}
               {categoriesToDisplay.map((category) => (
                 <div key={category} className=" flex flex-col">
@@ -262,7 +262,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 key="test2"
                 wrap
                 style={{ width: "100%" }}
-                className="absolute -top-14 md:relative md:top-0   "
+                className="absolute -top-20 md:relative md:top-0   "
               >
                 <Select
                   className=""
