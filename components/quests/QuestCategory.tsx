@@ -9,8 +9,7 @@ const QuestCategory: React.FC<{
   user?: User;
   character?: Character;
   currindex?: number;
-  numberofchars?: number;
-}> = ({ quests, name, user, character, currindex, numberofchars }) => {
+}> = ({ quests, name, user, character, currindex }) => {
   return (
     <div className="bg-slate-800 flex flex-col h-full rounded-lg text-offwhite-50">
       <h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative truncate pl-2">
@@ -25,7 +24,6 @@ const QuestCategory: React.FC<{
             user={user}
             character={character}
             currindex={currindex}
-            numberofchars={numberofchars}
             characters={user?.characters}
           ></QuestRow>
         ))}

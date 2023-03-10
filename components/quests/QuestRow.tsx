@@ -23,9 +23,8 @@ const QuestRow: React.FC<{
   user?: User;
   character?: Character;
   currindex?: number;
-  numberofchars?: number;
   characters?: Character[];
-}> = ({ quest, user, character, characters, currindex, numberofchars }) => {
+}> = ({ quest, user, character, characters, currindex, }) => {
   const [open, setOpen] = useState(false);
   //  console.log(character);
   const showDrawer = () => {
@@ -121,11 +120,11 @@ const QuestRow: React.FC<{
           className="flex-1 flex-row flex justify-between"
           onClick={showDrawer}
         >
-          <h3 className="pl-2 m-0 ">
+          <h3 className="pl-2 m-0  ">
             {quest.optionalTitle ? quest.optionalTitle : quest?.value}
           </h3>
-          <div className="pl-2 m-0 pr-5 ">
-            <div>{quest.repeatable}</div>
+          <div className={`pl-2 m-0 pr-5   `}>
+            <div className={`${styles.font}`}>{quest.repeatable}</div>
           </div>
         </div>
       </div>
