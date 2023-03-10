@@ -1,6 +1,6 @@
 # ESO Daily Tracker
 
-A simple and easy way for you to manage and keep track of the 100+ repeatable quests in the game. Simply login to with your google account, and navigate to the /yourdailies directory. Here you can see every single possible repeatable task and quest in the game. You can check off the ones you've done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started right away on today's tasks!
+A simple and easy way for you to manage and keep track of the 100+ repeatable quests in the game. Simply login to with your google account, create one or many characters, and navigate to the /yourdailies directory. Here you can see every single possible repeatable task and quest in the game. You can check off the ones you've done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started right away on your tasks!
 
 [Try it yourself](https://www.ehansonn.com/)
 
@@ -8,17 +8,25 @@ A simple and easy way for you to manage and keep track of the 100+ repeatable qu
 
 NextJS, Tailwind CSS, Supabase, Prisma, Vercel and Github Actions.
 
-All possible dailies
-![All dailies](https://cdn.discordapp.com/attachments/1054239396024549486/1083239740536524900/image.png)
+## What you can do with it
+- Keep track of numerous characters with their own individual todo lists.
+- Create a custom list from the preset tasks to better focus on what you care about.
+- Find information and links to the UESP for every single quest
 
-Create a custom list to see which ones you want
-![My custom list](https://cdn.discordapp.com/attachments/1054239396024549486/1083239911827718194/image.png)
+## Screenshots
+
+<img src="https://user-images.githubusercontent.com/107162117/224244887-f6e1f89b-4a47-42b2-aa64-f845c9f2cd56.png" width=400 /> <img src="https://user-images.githubusercontent.com/107162117/224244888-bccd76ab-ee71-4007-b9a5-0df64a7d28f3.png" width=400 /> <img src="https://user-images.githubusercontent.com/107162117/224244893-22db7dd7-b39e-4389-a86e-ab3209e7a631.png" width=400 /> <img src="https://user-images.githubusercontent.com/107162117/224244895-fd945931-21aa-4373-bdb7-19c34c78e498.png" width=400 />
+
+
+### Inspired by
+[FFXIV todo ](https://xivtodo.com/)
 
 ## Whats next
-
-Support for multiple characters, your own custom quests, and more detailed information about quests, including images from UESP.
+Your own custom quests, and even more detailed information about quests.
 
 ## Getting Started
+
+Make sure to set up your .env with links to your db.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -35,9 +43,7 @@ pnpm dev
 ## Prisma Stuff
 
 ```
-yarn prisma db push
-
-yarn prisma studio
+prisma db push
 
 prisma migrate dev
 
