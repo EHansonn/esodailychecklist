@@ -46,9 +46,8 @@ export default function IndexPage() {
             )}
             {status === "authenticated" && (
               <div className="content-center text-center text-white pt-2 flex flex-col">
-                Try it yourself
                 <Link
-                  className="text-white text-center pb-2 pt-2"
+                  className="text-white text-center  pt-2"
                   href="/yourdailies"
                 >
                   <Button type="primary">Your Daily Checklist</Button>
