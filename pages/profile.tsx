@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import prisma from "../lib/prisma";
-import { Button } from "antd";
+import { Alert, Button } from "antd";
 import Layout from "../components/layout";
 import Head from "next/head";
 import { signIn } from "next-auth/react";
@@ -26,12 +26,19 @@ const YourDailies: NextPage<Props> = ({ user }) => {
   const { data: session, status } = useSession();
 
   const [editMode, setEditMode] = useState(false);
-  
+  const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
+  //console.log(numOfChars);
+  const helperFunction = (val: number) => {
+    setNumOfChars((currVal) => {
+      return currVal + val;
+    });
+    console.log(numOfChars);
+  };
   if (!session) {
     return (
       <Layout>
         <Head>
-          <title>Please Sign In</title>
+          <title>Please Sign In </title>
           <meta name="ESO Daily Checklist - ESO ToDO List" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
@@ -88,6 +95,7 @@ const YourDailies: NextPage<Props> = ({ user }) => {
                 </div>
                 {user.characters?.map((character) => (
                   <CharacterRow
+                    helperFunction={helperFunction}
                     editMode={editMode}
                     key={character.value}
                     user={user}
@@ -96,16 +104,30 @@ const YourDailies: NextPage<Props> = ({ user }) => {
                 ))}
               </div>
               <div>
-                <CharacterModel user={user}></CharacterModel>
+                <CharacterModel
+                  helperFunction={helperFunction}
+                  user={user}
+                ></CharacterModel>
               </div>
             </div>
           </div>
-          <Link
-            className="text-center justify-center flex pt-5"
-            href={"/yourdailies"}
-          >
-            <Button type="primary">View your daily checklist</Button>
-          </Link>
+          {numOfChars > 0 && (
+            <Link
+              className="text-center justify-center flex pt-5"
+              href={"/yourdailies"}
+            >
+              <Button type="primary">View your daily checklist</Button>
+            </Link>
+          )}
+
+          {numOfChars === 0 && (
+            <div className="flex justify-center pt-5 ">
+              <Alert
+                message="Please add at least one character"
+                type="warning"
+              />
+            </div>
+          )}
         </div>
       </Layout>
     );

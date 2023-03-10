@@ -10,7 +10,8 @@ const CharacterRow: React.FC<{
   character: Character;
   user: User;
   editMode: boolean;
-}> = ({ character, user, editMode }) => {
+  helperFunction: Function
+}> = ({ character, user, editMode, helperFunction }) => {
   //console.log(character);
   //console.log(character);
   return (
@@ -24,6 +25,7 @@ const CharacterRow: React.FC<{
               await fetch(`/api/character/${character.value}`, {
                 method: "DELETE",
               });
+              helperFunction(-1)
               Router.push("/profile");
             }}
           >

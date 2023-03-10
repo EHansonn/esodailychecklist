@@ -10,9 +10,10 @@ const tailLayout = {
 
 interface Props {
   user?: User;
+  helperFunction: Function;
 }
 
-const CharacterModel: React.FC<Props> = ({ user }) => {
+const CharacterModel: React.FC<Props> = ({ user, helperFunction }) => {
   const [form] = Form.useForm();
 
   const onReset = () => {
@@ -27,6 +28,7 @@ const CharacterModel: React.FC<Props> = ({ user }) => {
         name: values.name,
       }),
     });
+    helperFunction(1);
     Router.push("/profile");
     onReset();
   };
