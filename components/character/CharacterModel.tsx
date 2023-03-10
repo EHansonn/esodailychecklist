@@ -37,7 +37,7 @@ const CharacterModel: React.FC<Props> = ({ user }) => {
     <div className="bg-slate-300   rounded-lg py-2 px-2  ">
       <div className="flex flex-row justify-center relative">
         <div className="text-center">Your Custom Lists</div>
-        <Tooltip title="If you don't want to see every single possible daily, you can create your own customized list to help you keep track of the things you want.">
+        <Tooltip title="Each charater can have their own daily checklist! Please create at least one character.">
           <QuestionCircleOutlined className="absolute top-0 right-0"></QuestionCircleOutlined>
         </Tooltip>
       </div>
