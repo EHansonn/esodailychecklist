@@ -130,7 +130,7 @@ export default function Header() {
                           )}
                         </Menu.Item>
                       )}
-                      {session && (
+                      {/* {session && (
                         <Menu.Item>
                           {({ active }) => (
                             <Link
@@ -144,7 +144,7 @@ export default function Header() {
                             </Link>
                           )}
                         </Menu.Item>
-                      )}
+                      )} */}
 
                       <Menu.Item>
                         {({ active }) => (
