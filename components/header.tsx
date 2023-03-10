@@ -51,11 +51,13 @@ export default function Header() {
                     src="https://cdn.discordapp.com/attachments/1054239396024549486/1082215057418629140/2-26948_the-elder-scrolls-clipart-eso-elder-scrolls-online.png"
                     alt=""
                   />
-                  <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://cdn.discordapp.com/attachments/1054239396024549486/1082215057418629140/2-26948_the-elder-scrolls-clipart-eso-elder-scrolls-online.png"
-                    alt="Your Company"
-                  />
+                  <Link href="/">
+                    <img
+                      className="hidden h-8 w-auto lg:block"
+                      src="https://cdn.discordapp.com/attachments/1054239396024549486/1082215057418629140/2-26948_the-elder-scrolls-clipart-eso-elder-scrolls-online.png"
+                      alt="Your Company"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
