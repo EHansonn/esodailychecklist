@@ -14,11 +14,9 @@ const CharacterRow: React.FC<{
   //console.log(character);
   //console.log(character);
   return (
-    <div className={`flex flex-col object-contain  text-offwhite-50 `}>
-      <div className="flex flex-row">
-        <div className="flex flex-row justify-between pr-5">
-          {character.name}
-        </div>
+    <div className={`flex flex-col object-contain  text-offwhite-50  `}>
+      <div className="flex-row flex w-max ">
+        <div className=" ">{character.name}</div>
         {editMode && (
           <DeleteOutlined
             className="pt-1 hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"

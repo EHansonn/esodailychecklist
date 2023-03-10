@@ -71,9 +71,12 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
         <div className={`pb-4 pt-2 pl-4 pr-4 `}>
           <div className="flex  justify-center   ">
-            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screen text-center border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col w-max sm:flex-row justify-around">
+            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screen text-center pr-3 border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col w-max sm:flex-row justify-center">
               <div className="flex flex-col ">
-                <div className="border-solid border-b-2 border-t-0 border-l-0 border-r-0  pr-5 mr-0 sm:mr-5 w-36 md:w-56 lg:w-96">
+                <div
+                  className="border-solid border-b-2 border-t-0 border-l-0 border-r-0 w-full pr-3
+                 mr-0 sm:mr-5 w-36 md:w-56 lg:w-96 "
+                >
                   {" "}
                   Your Characters
                   <EditOutlined
