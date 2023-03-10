@@ -5,6 +5,10 @@ import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 
 export async function getData(session: any) {
+  if (!session) {
+    return {};
+  }
+
   const u = await prisma?.user.findFirst({
     where: { email: session?.user.email },
     include: {
