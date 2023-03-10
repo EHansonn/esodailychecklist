@@ -6,7 +6,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        offwhite: {
+          50: "#ddd",
+        },
+      },
+    },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],

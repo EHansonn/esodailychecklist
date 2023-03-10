@@ -193,7 +193,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
         {status === "loading" && <div>loading</div>}
         {status === "unauthenticated" && (
           <div className="content-center text-center">
-            <div className="text-white w-screen text-center pb-5 pt-5">
+            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
               Please sign in
             </div>
             <Button
@@ -215,7 +215,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       return (
         <Layout>
           <div className="content-center text-center">
-            <div className="text-white w-screen text-center pb-5 pt-5">
+            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
               Please create a character on your profile!
             </div>
             <Link href={"/profile"}>
@@ -294,7 +294,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               ></Listmodal>
               {lists?.map((list: any) => (
                 <div
-                  className="bg-slate-300 justify-between  flex-row object-contain rounded-lg py-2 pl-2 pr-2
+                  className="bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
                   "
                   key={list.id}
                 >

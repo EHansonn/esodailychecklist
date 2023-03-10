@@ -47,18 +47,16 @@ const QuestRow: React.FC<{
     }
   });
 
-
   const [charz, setCharz] = useState(values);
 
   const [checked, setChecked] = useState(charz![currindex!]);
 
   useEffect(() => {
-   
     setChecked(charz![currindex!]);
   }, [charz, character]);
   return (
     <>
-      <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-200 cursor-pointer">
+      <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-600 cursor-pointer">
         <div className="flex justify-start">
           <Checkbox
             checked={checked}
@@ -75,9 +73,9 @@ const QuestRow: React.FC<{
               if (res.ok) {
                 const temp = charz;
                 temp![currindex!] = e.target.checked;
-            
+
                 setCharz(temp);
-               
+
                 setChecked(e.target.checked);
               } else {
                 const res2 = await fetch(

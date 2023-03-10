@@ -21,7 +21,6 @@ const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
     setOpen(false);
   };
 
-
   let checkedByDefault;
 
   user?.questsOnUser?.map((e) => {
@@ -30,12 +29,11 @@ const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
     }
   });
 
-  
   return (
     <>
       <div
         key={`${quest.value} 123`}
-        className={`flex flex-row my-1 pl-0 justify-between cursor-pointer  hover:bg-slate-200 ${styles.font} `}
+        className={`flex flex-row my-1 pl-0 justify-between cursor-pointer  hover:bg-slate-600 ${styles.font} `}
       >
         <div className="flex justify-start"></div>
 

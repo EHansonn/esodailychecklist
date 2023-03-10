@@ -34,9 +34,9 @@ const CharacterModel: React.FC<Props> = ({ user }) => {
   };
 
   return (
-    <div className="bg-slate-300   rounded-lg py-2 px-2  ">
+    <div className="bg-slate-800   rounded-lg py-2 px-2 w-36 md:w-56 lg:w-96 ">
       <div className="flex flex-row justify-center relative">
-        <div className="text-center">Your Custom Lists</div>
+        <div className="text-center">Your Custom Characters</div>
         <Tooltip title="Each charater can have their own daily checklist! Please create at least one character.">
           <QuestionCircleOutlined className="absolute top-0 right-0"></QuestionCircleOutlined>
         </Tooltip>
@@ -48,11 +48,15 @@ const CharacterModel: React.FC<Props> = ({ user }) => {
         name="control-hooks"
         onFinish={onFinish}
       >
-        <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+        <Form.Item
+          name="name"
+          label={<label style={{ color: "White" }}>Name</label>}
+          rules={[{ required: true }]}
+        >
           <Input />
         </Form.Item>
 
-        <Form.Item {...tailLayout}>
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>

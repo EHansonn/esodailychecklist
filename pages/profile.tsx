@@ -19,6 +19,7 @@ import { Quest, User } from "./yourdailies";
 import CharacterRow from "../components/character/CharacterRow";
 import CharacterModel from "../components/character/CharacterModel";
 import Link from "next/link";
+import { EditOutlined } from "@ant-design/icons";
 interface Props {
   user: User;
   lists?: ListProps[];
@@ -28,6 +29,9 @@ interface Props {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
+
+  const [editMode, setEditMode] = useState(false);
+
   if (!session) {
     return (
       <Layout>
@@ -54,14 +58,23 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   if (session) {
     return (
       <Layout>
-        <div className={`pb-4 pt-2 pl-4 pr-4  relative flex-col `}>
-          <div className="flex   relative  rounded-md justify-center">
-            <div className="bg-slate-300 justify-center w-3/6 text-center text-black flex flex-row justify-around">
-              <div className="flex flex-col">
-                {" "}
-                Your Characters
+        <div className={`pb-4 pt-2 pl-4 pr-4 `}>
+          <div className="flex  justify-center">
+            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screen text-center border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col  sm:flex-row justify-around">
+              <div className="flex flex-col ">
+                <div className="border-solid border-b-2 border-t-0 border-l-0 border-r-0   w-36 md:w-56 lg:w-96">
+                  {" "}
+                  Your Characters
+                  <EditOutlined
+                    onClick={() => {
+                      setEditMode(!editMode);
+                    }}
+                    className=" pl-2 rounded-sm"
+                  />
+                </div>
                 {user.characters?.map((character) => (
                   <CharacterRow
+                    editMode={editMode}
                     key={character.value}
                     user={user}
                     character={character}

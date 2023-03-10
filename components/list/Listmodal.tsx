@@ -4,13 +4,27 @@ import { Button, Form, Input, Select, Tooltip } from "antd";
 import Router from "next/router";
 import { Quest } from "../../pages/yourdailies";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import styles from "../../pages/index.module.css";
+import {
+  red,
+  volcano,
+  gold,
+  yellow,
+  lime,
+  green,
+  cyan,
+  blue,
+  geekblue,
+  purple,
+  magenta,
+  grey,
+} from "@ant-design/colors";
 export interface ListModalRef {
   visible: boolean;
   showModal: (visible: boolean) => void;
   okay: () => void;
   cancel: () => void;
 }
-
 
 interface Props {
   quests?: Quest[];
@@ -42,7 +56,6 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
       })),
   }));
 
-
   const onFinish = async (values: any) => {
     const response = await fetch("/api/list", {
       method: "POST",
@@ -63,9 +76,8 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
     onReset();
   };
 
-  
   return (
-    <div className="bg-slate-300   rounded-lg py-2 px-2  ">
+    <div className="bg-slate-800   rounded-lg py-2 px-2 text-offwhite-50 ">
       <div className="flex flex-row justify-center relative">
         <div className="text-center">Your Custom Lists</div>
         <Tooltip title="If you don't want to see every single possible daily, you can create your own customized list to help you keep track of the things you want.">
@@ -79,26 +91,31 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
         name="control-hooks"
         onFinish={onFinish}
       >
-        <Form.Item name="title" label="Name" rules={[{ required: true }]}>
+        <Form.Item
+          label={<label style={{ color: "White" }}>Name</label>}
+          name="title"
+          rules={[{ required: true }]}
+        >
           <Input />
         </Form.Item>
         <Form.Item
+          style={{ color: "white" }}
           name="content"
-          label="Description"
+          label={<label style={{ color: "White" }}>Description</label>}
           rules={[{ required: false }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="Quests"
+          label={<label style={{ color: "White" }}>Quests</label>}
           name="quests"
           rules={[{ required: true, message: "Please input your quests!" }]}
         >
           <Select mode="multiple" options={realQuestOptions} />
         </Form.Item>
 
-        <Form.Item {...tailLayout}>
+        <Form.Item className="justify-center flex">
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
