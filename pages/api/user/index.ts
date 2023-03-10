@@ -50,7 +50,7 @@ export async function getData(session: any) {
   });
 
   const availableQuests = await prisma?.quest.findMany({});
-  if (u && lists) {
+  if (u && lists && session) {
     return {
       props: {
         session: session,

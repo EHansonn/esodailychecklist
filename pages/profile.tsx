@@ -26,7 +26,7 @@ const YourDailies: NextPage<Props> = ({ user }) => {
   const { data: session, status } = useSession();
 
   const [editMode, setEditMode] = useState(false);
-
+  
   if (!session) {
     return (
       <Layout>
@@ -117,7 +117,10 @@ export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
   if (!session) {
     return {
-      props: { error: true },
+      redirect: {
+        destination: "/api/auth/signin",
+        permanent: false,
+      },
     };
   }
   const userData = await getData(session);

@@ -67,30 +67,6 @@ export type QuestsOnCharacter = {
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
 
-  if (!session) {
-    return (
-      <Layout>
-        <YourDailiesHeader></YourDailiesHeader>
-        {status === "loading" && <div>loading</div>}
-        {status === "unauthenticated" && (
-          <div className="content-center text-center">
-            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
-              Please sign in to view your daily checklist
-            </div>
-            <Button
-              type="primary"
-              onClick={(e) => {
-                signIn();
-              }}
-            >
-              Sign In With Google
-            </Button>
-          </div>
-        )}
-      </Layout>
-    );
-  }
-
   const [currentCharacter, selectCurrentCharacter] = useState(
     user.characters![0]
   );
@@ -203,7 +179,29 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
     selectCurrentCharacter(selectedChar[0]);
   };
-
+  if (!session) {
+    return (
+      <Layout>
+        <YourDailiesHeader></YourDailiesHeader>
+        {status === "loading" && <div>loading</div>}
+        {status === "unauthenticated" && (
+          <div className="content-center text-center">
+            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+              Please sign in to view your daily checklist
+            </div>
+            <Button
+              type="primary"
+              onClick={(e) => {
+                signIn();
+              }}
+            >
+              Sign In With Google
+            </Button>
+          </div>
+        )}
+      </Layout>
+    );
+  }
   if (session) {
     if (user.characters?.length === 0) {
       return (
@@ -309,7 +307,10 @@ export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
   if (!session) {
     return {
-      props: { error: true },
+      redirect: {
+        destination: "/api/auth/signin",
+        permanent: false,
+      },
     };
   }
   const userData = await getData(session);

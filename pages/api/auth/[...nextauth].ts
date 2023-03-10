@@ -48,6 +48,9 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user, account, profile, isNewUser }) {
       return token;
     },
+    async redirect({ url, baseUrl }) {
+      return baseUrl;
+    },
   },
 };
 
