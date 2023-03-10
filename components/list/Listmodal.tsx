@@ -81,7 +81,7 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
       <div className="flex flex-row justify-center relative">
         <div className="text-center">Your Custom Lists</div>
         <Tooltip title="If you don't want to see every single possible daily, you can create your own customized list to help you keep track of the things you want.">
-          <QuestionCircleOutlined className="absolute top-0 right-0"></QuestionCircleOutlined>
+          <QuestionCircleOutlined className="absolute top-0 right-0 transition ease-in-out delay-75 hover:scale-110 duration-100"></QuestionCircleOutlined>
         </Tooltip>
       </div>
       <Form
@@ -96,7 +96,7 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
           name="title"
           rules={[{ required: true }]}
         >
-          <Input />
+          <Input placeholder="Your List's Name" />
         </Form.Item>
         <Form.Item
           style={{ color: "white" }}
@@ -104,7 +104,7 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
           label={<label style={{ color: "White" }}>Description</label>}
           rules={[{ required: false }]}
         >
-          <Input />
+          <Input placeholder="Optional Description" />
         </Form.Item>
 
         <Form.Item
@@ -112,11 +112,15 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
           name="quests"
           rules={[{ required: true, message: "Please input your quests!" }]}
         >
-          <Select mode="multiple" options={realQuestOptions} />
+          <Select
+            placeholder="Which quests you want to keep track of"
+            mode="multiple"
+            options={realQuestOptions}
+          />
         </Form.Item>
 
         <Form.Item className="justify-center flex">
-          <Button type="primary" htmlType="submit">
+          <Button className="mr-2" type="primary" htmlType="submit">
             Submit
           </Button>
           <Button htmlType="button" onClick={onReset}>

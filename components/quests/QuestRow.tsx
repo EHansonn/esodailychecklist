@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Checkbox, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Character, Quest, User } from "../../pages/yourdailies";
+import styles from "../../pages/index.module.css";
 export type questProps = {
   quest: Quest;
 };
@@ -129,7 +130,13 @@ const QuestRow: React.FC<{
         </div>
       </div>
       <Drawer
-        title={quest.optionalTitle ? quest.optionalTitle : quest?.value}
+        style={{ backgroundColor: "#1e293b" }}
+        className="text-offwhite-50"
+        title={
+          <label style={{ color: "White" }}>
+            {quest.optionalTitle ? quest.optionalTitle : quest?.value}
+          </label>
+        }
         placement="right"
         onClose={onClose}
         open={open}
@@ -146,7 +153,9 @@ const QuestRow: React.FC<{
         )}
         {quest?.reward && <div className="pb-2">Reward: {quest?.reward}</div>}
         {quest?.uespLink && (
-          <Link href={`${quest?.uespLink}`}>{quest?.uespLink}</Link>
+          <Link className="" href={`${quest?.uespLink}`}>
+            {quest?.uespLink}
+          </Link>
         )}
       </Drawer>
     </>

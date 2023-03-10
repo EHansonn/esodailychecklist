@@ -50,7 +50,13 @@ const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
         </div>
       </div>
       <Drawer
-        title={quest.optionalTitle ? quest.optionalTitle : quest?.value}
+        style={{ backgroundColor: "#1e293b" }}
+        className="text-offwhite-50"
+        title={
+          <label style={{ color: "White" }}>
+            {quest.optionalTitle ? quest.optionalTitle : quest?.value}
+          </label>
+        }
         placement="left"
         onClose={onClose}
         open={open}

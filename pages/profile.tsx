@@ -86,7 +86,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                     onClick={() => {
                       setEditMode(!editMode);
                     }}
-                    className=" ml-2 rounded-sm hover:bg-gray-700"
+                    className=" ml-2 rounded-sm hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
                   />
                 </div>
                 {user.characters?.map((character) => (

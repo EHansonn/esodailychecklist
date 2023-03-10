@@ -21,7 +21,7 @@ const CharacterRow: React.FC<{
         </div>
         {editMode && (
           <DeleteOutlined
-            className="pt-1 hover:bg-gray-700"
+            className="pt-1 hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
             onClick={async () => {
               await fetch(`/api/character/${character.value}`, {
                 method: "DELETE",
