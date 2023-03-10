@@ -13,6 +13,7 @@ import { Quest, User } from "./yourdailies";
 import CharacterRow from "../components/character/CharacterRow";
 import CharacterModel from "../components/character/CharacterModel";
 import Link from "next/link";
+import { getData } from "./api/user";
 import { EditOutlined } from "@ant-design/icons";
 interface Props {
   user: User;
@@ -114,54 +115,13 @@ const YourDailies: NextPage<Props> = ({ user }) => {
 
 export async function getServerSideProps<Props>(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
-
   if (!session) {
     return {
       props: { error: true },
     };
   }
-  const u = await prisma?.user.findFirst({
-    where: { email: session?.user.email },
-    include: {
-      QuestsOnUser: true,
-    },
-  });
-
-  const c = await prisma?.character.findMany({
-    where: {
-      userId: u!.id,
-    },
-    include: {
-      QuestsOnCharacter: true,
-    },
-  });
-
-  const availableQuests = await prisma?.quest.findMany({});
-  if (u) {
-    return {
-      props: {
-        session: session,
-
-        user: {
-          characters: c.map((e) => ({
-            value: e.value,
-            name: e.name,
-            questsOnCharacter: JSON.parse(JSON.stringify(e.QuestsOnCharacter)),
-          })),
-          //id: u.id,
-          name: u.name,
-          createdAt: u.createdAt.toString(),
-          checkedTasks: u.checkedTasks,
-          questsOnUser: JSON.parse(JSON.stringify(u.QuestsOnUser)),
-          email: u.email,
-        },
-        quests: availableQuests,
-      },
-    };
-  }
-  return {
-    props: { error: true },
-  };
+  const userData = await getData(session);
+  return userData;
 }
 
 export default YourDailies;
