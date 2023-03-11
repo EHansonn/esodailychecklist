@@ -26,7 +26,7 @@ const YourDailies: NextPage<Props> = ({ user }) => {
   const { data: session, status } = useSession();
   const [editMode, setEditMode] = useState(false);
   const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
-  //console.log(numOfChars);
+
   const helperFunction = (val: number) => {
     setNumOfChars((currVal) => {
       let temp = currVal + val;
@@ -35,8 +35,8 @@ const YourDailies: NextPage<Props> = ({ user }) => {
       }
       return temp;
     });
-    console.log(numOfChars);
   };
+
   if (!session) {
     return (
       <Layout>
@@ -134,7 +134,9 @@ const YourDailies: NextPage<Props> = ({ user }) => {
                 className="text-center flex pt-5 w-max"
                 href={"/yourdailies"}
               >
-                <Button type="primary">View your daily checklist</Button>
+                <Button key="test" type="primary">
+                  View your daily checklist
+                </Button>
               </Link>
             </div>
           )}
