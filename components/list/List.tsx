@@ -1,7 +1,7 @@
 import React from "react";
 import { Quest, User } from "../../pages/yourdailies";
 import Router from "next/router";
-import { Button} from "antd";
+import { Button } from "antd";
 import ListQuestAndRow from "./ListQuestsandmodal";
 export type ListProps = {
   tasks: Quest[] | undefined;
@@ -51,11 +51,7 @@ const List: React.FC<{ list: ListProps; user: User }> = ({ list, user }) => {
       <div className="flex flex-col ">
         {list?.tasks!.map((quest: Quest) => {
           return (
-            <ListQuestAndRow
-              key={quest.value}
-              quest={quest}
-              user={user}
-            ></ListQuestAndRow>
+            <ListQuestAndRow key={quest.value} quest={quest}></ListQuestAndRow>
           );
         })}
       </div>

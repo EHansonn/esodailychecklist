@@ -19,16 +19,8 @@ export type User = {
   name: string;
   createdAt: string;
   checkedTasks?: string;
-  questsOnUser?: QuestsOnUser[];
   characters?: Character[];
   email: string;
-};
-
-export type QuestsOnUser = {
-  user: User;
-  quest: Quest;
-  userId: string;
-  questName: string;
 };
 
 export type Quest = {
@@ -66,6 +58,7 @@ export type QuestsOnCharacter = {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
+
   const [currentCharacter, selectCurrentCharacter] = useState(
     user.characters![0]
   );

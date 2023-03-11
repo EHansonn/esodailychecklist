@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import {  Drawer } from "antd";
+import { Drawer } from "antd";
 import { Quest, User } from "../../pages/yourdailies";
 
 import styles from "../../pages/index.module.css";
-const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
-  quest,
-  user,
-}) => {
+const ListQuestAndRow: React.FC<{ quest: Quest }> = ({ quest }) => {
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -17,14 +14,6 @@ const ListQuestAndRow: React.FC<{ quest: Quest; user?: User }> = ({
   const onClose = () => {
     setOpen(false);
   };
-
-  let checkedByDefault;
-
-  user?.questsOnUser?.map((e) => {
-    if (e.questName === quest?.value) {
-      checkedByDefault = true;
-    }
-  });
 
   return (
     <>
