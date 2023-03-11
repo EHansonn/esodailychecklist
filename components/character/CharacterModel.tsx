@@ -37,7 +37,7 @@ const CharacterModel: React.FC<Props> = ({ user, helperFunction }) => {
     <div className="   rounded-lg py-2 px-2 mt-5 sm:mt-0 w-full md:w-56 lg:w-96  pt-0  ">
       Create New Character{" "}
       <Tooltip title="Each character can have their own daily checklist! Please create at least one character.">
-        <QuestionCircleOutlined className="ml-0 pl-2 transition ease-in-out delay-75 hover:scale-110 duration-100"></QuestionCircleOutlined>
+        <QuestionCircleOutlined className=" ml-2 transition ease-in-out delay-75 hover:scale-110 duration-100"></QuestionCircleOutlined>
       </Tooltip>
       <div className="flex flex-row justify-center relative border-t-0 border-l-0  border-b-2 border-r-0  border-solid">
         <div className="text-center "></div>
