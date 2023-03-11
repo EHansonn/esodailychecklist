@@ -125,12 +125,14 @@ const YourDailies: NextPage<Props> = ({ user }) => {
             </div>
           </div>
           {numOfChars > 0 && (
-            <Link
-              className="text-center justify-center flex pt-5"
-              href={"/yourdailies"}
-            >
-              <Button type="primary">View your daily checklist</Button>
-            </Link>
+            <div className="justify-center flex">
+              <Link
+                className="text-center flex pt-5 w-max"
+                href={"/yourdailies"}
+              >
+                <Button type="primary">View your daily checklist</Button>
+              </Link>
+            </div>
           )}
           {numOfChars === 0 && (
             <div className="flex justify-center pt-5 ">
