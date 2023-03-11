@@ -29,7 +29,11 @@ const YourDailies: NextPage<Props> = ({ user }) => {
   //console.log(numOfChars);
   const helperFunction = (val: number) => {
     setNumOfChars((currVal) => {
-      return currVal + val;
+      let temp = currVal + val;
+      if (temp < 0) {
+        temp = 0;
+      }
+      return temp;
     });
     console.log(numOfChars);
   };
