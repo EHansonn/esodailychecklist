@@ -38,7 +38,7 @@ export default function IndexPage() {
                     signIn();
                   }}
                 >
-                  Sign In With Google
+                  Sign In
                 </Button>
               </div>
             )}
