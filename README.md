@@ -1,4 +1,4 @@
-# ESO Daily Tracker
+# ESO Daily Checklist
 
 A simple and easy way for you to manage and keep track of the 100+ repeatable quests in the game. Simply login with your google account, create one or more characters, and navigate to the /yourdailies directory. Here you can see every single possible repeatable task and quest in the game. You can check off the ones you've done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started right away on your tasks!
 
