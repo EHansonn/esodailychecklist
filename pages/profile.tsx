@@ -78,7 +78,7 @@ const YourDailies: NextPage<Props> = ({ user }) => {
           className={`pb-4 pt-2 pl-4 pr-4 flex flex-col justify-center content-center  `}
         >
           <div className="flex  justify-center   ">
-            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screeen text-center pr-3 border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col w-max sm:flex-col justify-center">
+            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screeen text-center pr-3 border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col w-max sm:flex-col justify-center sm:pr-0">
               <div className="flex  justify-center     ">
                 <div className=" mt-10    text-offwhite-50 flex flex-col w-max  justify-center  mb-10  ">
                   <div className="border-t-0 border-l-0  border-b-2 border-r-0  border-solid -mr-3 sm:mr-0">
