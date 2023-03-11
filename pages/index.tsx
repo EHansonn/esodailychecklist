@@ -11,7 +11,7 @@ export default function IndexPage() {
   return (
     <div className="bg-slate-800">
       <Head>
-        <title>ESO Daily Tracker</title>
+        <title>ESO Daily Checklist</title>
         <meta
           name="ESO Daily Checklist (ESO ToDo)"
           content="Keep track of over a hundred daily tasks from The Elder Scrolls Online. The ESO Daily tracker is a fast and easy tool to manage all of the possible daily tasks in the game. Start by creating a character from your profile. Next, visit your dailies. You can create a custom list to display exactly which dailies you want to focus on. "
@@ -24,7 +24,7 @@ export default function IndexPage() {
           <Header></Header>
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md  bg-white/50">
             <div className="text-6xl text-white text-center">
-              ESO Daily Tracker
+              ESO Daily Checklist
             </div>
             <div className="text-2xl text-center text-white pt-4">
               Keep track of over 100 daily quests
@@ -56,7 +56,7 @@ export default function IndexPage() {
               <Button
                 size="large"
                 type="text"
-                href={"https://github.com/EHansonn/esodailytracker"}
+                href={"https://github.com/EHansonn/esodailychecklist"}
               >
                 <GithubOutlined className="teamSocialIcon text-2x" />
               </Button>
