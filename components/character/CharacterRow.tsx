@@ -10,14 +10,13 @@ const CharacterRow: React.FC<{
   character: Character;
   user: User;
   editMode: boolean;
-  helperFunction: Function
+  helperFunction: Function;
 }> = ({ character, user, editMode, helperFunction }) => {
   //console.log(character);
   //console.log(character);
   return (
     <div className={`flex flex-col object-contain  text-offwhite-50  `}>
       <div className="flex-row flex w-max ">
-        <div className=" ">{character.name}</div>
         {editMode && (
           <DeleteOutlined
             className="pt-1 hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
@@ -25,13 +24,14 @@ const CharacterRow: React.FC<{
               await fetch(`/api/character/${character.value}`, {
                 method: "DELETE",
               });
-              helperFunction(-1)
+              helperFunction(-1);
               Router.push("/profile");
             }}
           >
             Delete
           </DeleteOutlined>
         )}
+        <div className=" ">{character.name}</div>
       </div>
     </div>
   );

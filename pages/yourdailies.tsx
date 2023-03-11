@@ -66,7 +66,6 @@ export type QuestsOnCharacter = {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
-
   const [currentCharacter, selectCurrentCharacter] = useState(
     user.characters![0]
   );

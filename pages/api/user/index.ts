@@ -9,12 +9,15 @@ export async function getData(session: any) {
     return {};
   }
 
-  const u = await prisma?.user.findFirst({
+  const u = await prisma?.user.findUnique({
     where: { email: session?.user.email },
     include: {
       QuestsOnUser: true,
     },
   });
+  if (u === null) {
+    return {};
+  }
 
   const c = await prisma?.character.findMany({
     where: {
@@ -87,6 +90,7 @@ export async function getData(session: any) {
           createdAt: u.createdAt.toString(),
           checkedTasks: u.checkedTasks,
           questsOnUser: JSON.parse(JSON.stringify(u.QuestsOnUser)),
+          email: u.email,
         },
         quests: availableQuests,
       },
