@@ -187,7 +187,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 signIn();
               }}
             >
-              Sign In With Google
+              Sign In
             </Button>
           </div>
         )}
