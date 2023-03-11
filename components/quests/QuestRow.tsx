@@ -58,7 +58,7 @@ const QuestRow: React.FC<{
           <Checkbox
             checked={checked}
             onChange={async (e: CheckboxChangeEvent) => {
-              const res = await fetch(`/api/QuestsOnCharacter/${character}`, {
+              const res = await fetch(`/api/QuestsOnCharacter/`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -75,25 +75,7 @@ const QuestRow: React.FC<{
 
                 setChecked(e.target.checked);
               } else {
-                const res2 = await fetch(
-                  `/api/QuestsOnCharacter/${character}`,
-                  {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      quest: quest,
-                      trueorfalse: e.target.checked,
-                      character: character,
-                    }),
-                  }
-                );
-                if (res2.ok) {
-                  const temp = charz;
-                  temp![currindex!] = e.target.checked;
-                  setCharz(temp);
-                  setChecked(e.target.checked);
-                }
-                console.log(res2);
+                console.log(res.status);
               }
             }}
           ></Checkbox>
