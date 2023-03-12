@@ -3,8 +3,14 @@ import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+interface UserApiRequest extends NextApiRequest {
+  query: {
+    id: string;
+  };
+}
+
 export default async function handle(
-  req: NextApiRequest,
+  req: UserApiRequest,
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions);
@@ -14,11 +20,8 @@ export default async function handle(
         where: { email: session?.user.email },
       });
 
-      const characterValuetemp = req.query.id;
+      const characterValue = req.query.id;
 
-      const characterValue = Array.isArray(characterValuetemp)
-        ? characterValuetemp[0]
-        : characterValuetemp;
       if (req.method === "DELETE") {
         await prisma.character.deleteMany({
           where: {
@@ -34,7 +37,7 @@ export default async function handle(
         );
       }
     } catch (e) {
-      res.status(500)
+      res.status(500);
     }
   } else {
     res.status(401);

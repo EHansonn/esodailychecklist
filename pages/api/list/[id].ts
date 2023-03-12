@@ -17,11 +17,15 @@ export default async function handle(
   const session = await getServerSession(req, res, authOptions);
   if (session) {
     try {
+      const u = await prisma?.user.findFirst({
+        where: { email: session?.user.email },
+      });
+
       const listId = req.query.id;
 
       if (req.method === "DELETE") {
-        const post = await prisma.list.delete({
-          where: { id: listId },
+        const post = await prisma.list.deleteMany({
+          where: { id: listId, userId: u!.id },
         });
 
         res.json(post);
