@@ -104,7 +104,9 @@ const YourDailies: NextPage<Props> = ({ user }) => {
                       //   "rounded-md px-3 py-2 text-sm font-medium"
                       // )}
                       onClick={() => {
-                        setEditMode(!editMode);
+                        setEditMode((editMode) => {
+                          return !editMode;
+                        });
                       }}
                       className=" ml-2 rounded-sm hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
                     />
