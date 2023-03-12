@@ -166,6 +166,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   };
 
   const handleChangeCharacter = (value: string) => {
+    refreshData();
     const selectedChar = user.characters!.filter(function (el, index) {
       if (el.value === value) {
         setCurrentCharacterIndex(index);
