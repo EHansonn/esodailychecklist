@@ -48,6 +48,10 @@ export default async function handle(
         }
       });
 
+      if ((name.length < 2 ) || (name.length > 25)) {
+        throw new Error("Name must be between 2-25 characters")
+      }
+
       const result = await prisma.character.create({
         data: {
           name: name,

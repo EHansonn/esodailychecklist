@@ -35,9 +35,9 @@ export default async function handle(
       });
 
       if (u?.lists.length) {
-        if (u.lists.length > 15) {
+        if (u.lists.length > 19) {
           throw new Error(
-            "Too many lists. Max of 16, delete some and try again"
+            "Too many lists. Max of 20, delete some and try again"
           );
         }
       }
@@ -52,6 +52,19 @@ export default async function handle(
           throw new Error("List titles must be unique");
         }
       });
+
+      if (title.length < 1 || title.length > 100) {
+        throw new Error("Title must be between 1-100 characters");
+      }
+      if (content) {
+        if (content.length > 120) {
+          throw new Error("Description must be below 120 characters");
+        }
+      }
+
+      if (!tasks) {
+        throw new Error("Must select at least 1 task");
+      }
 
       const result = await prisma.list.create({
         data: {
