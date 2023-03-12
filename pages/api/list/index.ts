@@ -29,10 +29,30 @@ export default async function handle(
     try {
       const u = await prisma?.user.findUnique({
         where: { email: session?.user.email },
+        include: {
+          lists: true,
+        },
       });
 
+      if (u?.lists.length) {
+        if (u.lists.length > 15) {
+          throw new Error(
+            "Too many lists. Max of 16, delete some and try again"
+          );
+        }
+      }
+
       const { title, content, tasks } = req.body;
-      // const session = await getSession({ req });
+      const otherListTitles = u?.lists.map((list) => {
+        return list.title;
+      });
+
+      otherListTitles?.forEach((current) => {
+        if (title === current) {
+          throw new Error("List titles must be unique");
+        }
+      });
+
       const result = await prisma.list.create({
         data: {
           title: title,
@@ -40,15 +60,21 @@ export default async function handle(
           owner: { connect: { email: session?.user?.email ?? undefined } },
         },
       });
+
       const taskstosend = tasks.map((e: any) => ({
         listId: result.id,
         userId: u?.id,
         questName: e,
       }));
+
       const createTasks = await prisma.task.createMany({ data: taskstosend });
-      res.json(result);
-    } catch (e) {
-      res.status(500).json(e);
+
+      res.status(200);
+    } catch (error) {
+      res.status(500);
+      if (error instanceof Error) {
+        res.send(error.message);
+      }
     }
   } else {
     res.status(401);

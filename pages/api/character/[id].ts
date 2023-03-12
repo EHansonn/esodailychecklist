@@ -1,10 +1,8 @@
-// pages/api/post/[id].ts
-
 import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 import type { NextApiRequest, NextApiResponse } from "next";
-// DELETE /api/post/:id
+
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
@@ -15,7 +13,9 @@ export default async function handle(
       const u = await prisma?.user.findFirst({
         where: { email: session?.user.email },
       });
+
       const characterValuetemp = req.query.id;
+
       const characterValue = Array.isArray(characterValuetemp)
         ? characterValuetemp[0]
         : characterValuetemp;
@@ -26,6 +26,7 @@ export default async function handle(
             value: characterValue,
           },
         });
+
         res.status(200);
       } else {
         throw new Error(
@@ -33,7 +34,7 @@ export default async function handle(
         );
       }
     } catch (e) {
-      res.status(500).json(e);
+      res.status(500)
     }
   } else {
     res.status(401);

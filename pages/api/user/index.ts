@@ -1,5 +1,3 @@
-// pages/api/post/[id].ts
-
 import { Session } from "next-auth";
 import prisma from "../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -15,9 +13,6 @@ export async function getData(session: Session) {
         QuestsOnUser: true,
       },
     });
-    if (u === null) {
-      return {};
-    }
 
     const c = await prisma?.character.findMany({
       where: {
@@ -66,7 +61,6 @@ export async function getData(session: Session) {
             title: list.title,
             content: list.content,
             owner: list.owner,
-            //userId: list.userId,
             tasks: list.tasks.map((e) => ({
               value: e.quest.value,
               category: e.quest.category,
@@ -80,7 +74,6 @@ export async function getData(session: Session) {
             })),
           })),
           user: {
-            // id: u.id,
             characters: c.map((e) => ({
               value: e.value,
               name: e.name,
