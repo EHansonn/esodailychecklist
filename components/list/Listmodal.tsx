@@ -37,7 +37,6 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
         label: `${quests.optionalTitle ? quests.optionalTitle : quests.value}`,
       })),
   }));
-
   const onFinish = async (values: any) => {
     const response = await fetch("/api/list", {
       method: "POST",
@@ -45,7 +44,6 @@ const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
       body: JSON.stringify({
         title: values.title,
         content: values.content,
-        user: user,
         tasks: values.quests.map((e: string) => {
           return e.substring(
             e.length - (e.length - e.indexOf("&$$&")) + 4,

@@ -3,18 +3,30 @@
 import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { Character, Quest } from "../../yourdailies";
 
-// #TODO add proper types to all apis
-export default async function handle(req: any, res: any) {
+export interface QuestsOnCharacterBody {
+  character: Character;
+  quest: Quest;
+  trueorfalse: boolean;
+}
+
+interface UserApiRequest extends NextApiRequest {
+  body: QuestsOnCharacterBody;
+  query: {
+    id: string;
+  };
+}
+
+export default async function handle(
+  req: UserApiRequest,
+  res: NextApiResponse
+) {
   const session = await getServerSession(req, res, authOptions);
   if (session) {
     try {
-      const { character } = req.body;
-      const u = await prisma?.user.findUnique({
-        where: { email: session?.user.email },
-      });
-
-      const { quest, trueorfalse } = req.body;
+      const { character, quest, trueorfalse } = req.body;
 
       const listId = req.query.id;
       if (req.method === "PUT") {
@@ -38,8 +50,8 @@ export default async function handle(req: any, res: any) {
           `The HTTP ${req.method} method is not supported at this route.`
         );
       }
-    } catch {
-      res.status(400);
+    } catch (e) {
+      res.status(500).json(e);
     }
   } else {
     res.status(401);
