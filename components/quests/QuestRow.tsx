@@ -50,7 +50,7 @@ const QuestRow: React.FC<{
 
   useEffect(() => {
     setChecked(charz![currindex!]);
-  }, [charz, character]);
+  }, [charz, character, user, characters, character?.questsOnCharacter]);
   return (
     <>
       <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-600 cursor-pointer">

@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import YourDailiesHeader from "../components/YourDailiesHeader";
 import { getData } from "./api/user";
+import Router, { useRouter } from "next/router";
 export type User = {
   // id: string;
   name: string;
@@ -58,7 +59,6 @@ export type QuestsOnCharacter = {
 
 const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
-
   const [currentCharacter, selectCurrentCharacter] = useState(
     user.characters![0]
   );
@@ -81,7 +81,10 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     content: null,
     userId: "",
   };
-
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
   //Categories for the possible quests. Hardcoded for now...
   let categories = [
     "Daily Tasks",
@@ -135,6 +138,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
   //Filtering the quests to display in a custom list. Ignore my poor variable names :)
   const handleChange = (value: string) => {
+    refreshData();
     if (value === "Default List") {
       setQuestsToDisplay(quests);
       setCategoriesToDisplay(categories);
