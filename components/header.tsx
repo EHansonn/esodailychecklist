@@ -5,6 +5,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
@@ -47,13 +48,13 @@ export default function Header() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="https://cdn.discordapp.com/attachments/1054239396024549486/1082215057418629140/2-26948_the-elder-scrolls-clipart-eso-elder-scrolls-online.png"
+                    src="/logo.png"
                     alt=""
                   />
                   <Link href="/">
                     <img
                       className="hidden h-8 w-auto lg:block"
-                      src="https://cdn.discordapp.com/attachments/1054239396024549486/1082215057418629140/2-26948_the-elder-scrolls-clipart-eso-elder-scrolls-online.png"
+                      src="/logo.png"
                       alt="Your Company"
                     />
                   </Link>

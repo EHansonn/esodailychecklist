@@ -66,7 +66,7 @@ const CharacterModel: React.FC<Props> = ({ user, helperFunction }) => {
 
         <Form.Item>
           <Button className="mr-2" type="primary" htmlType="submit">
-            Submit
+            Create
           </Button>
           <Button htmlType="button" onClick={onReset}>
             Reset
