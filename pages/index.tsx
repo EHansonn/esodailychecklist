@@ -4,12 +4,13 @@ import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import Header from "../components/header";
+import Layout from "../components/layout";
 import styles from "./index.module.css";
 export default function IndexPage() {
   const { data: session, status } = useSession();
 
   return (
-    <div className="bg-slate-800">
+    <Layout>
       <Head>
         <title>ESO Daily Checklist</title>
         <meta
@@ -20,8 +21,7 @@ export default function IndexPage() {
       </Head>
 
       <div className={`${styles.home}   h-screen `}>
-        <div className={`w-screen h-screen ${styles.blur}`}>
-          <Header></Header>
+        <div className={`h-screen ${styles.blur}`}>
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md  bg-white/50">
             <div className="text-6xl text-white text-center">
               ESO Daily Checklist
@@ -52,19 +52,11 @@ export default function IndexPage() {
                 </Link>
               </div>
             )}
-            <div className="justify-center flex pt-2 l">
-              <Button
-                size="large"
-                type="text"
-                href={"https://github.com/EHansonn/esodailychecklist"}
-              >
-                <GithubOutlined className="teamSocialIcon text-2x" />
-              </Button>
-            </div>
+            <div className="justify-center flex pt-2 l"></div>
           </div>
           <div className="absolute bottom-0 left-0 inset-x-0 items-center justify-center text-center rounded-lg backdrop-blur-xl bg-white/50 "></div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

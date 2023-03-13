@@ -15,6 +15,7 @@ import Link from "next/link";
 import YourDailiesHeader from "../components/YourDailiesHeader";
 import { getData } from "./api/user";
 import Router, { useRouter } from "next/router";
+import Footer from "../components/footer";
 export type User = {
   // id: string;
   name: string;
@@ -151,6 +152,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     }
   }, []);
 
+  //Setting last selected character on page reload
   const [characterSelectedValue, setCharacterSelectedValue] =
     useState("Character Name");
   useEffect(() => {
@@ -264,86 +266,88 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     }
 
     return (
-      <Layout>
-        <YourDailiesHeader></YourDailiesHeader>
-        <div className={`pb-4 pt-2 pl-4 pr-4  relative `}>
-          <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
-            <div className="text-slate-300 pb-2 text-center ">
-              {`Daily quests reset at ${time} each day`}
+      <>
+        <Layout>
+          <YourDailiesHeader></YourDailiesHeader>
+          <div className={`pb-4 pt-2 pl-4 pr-4  relative  `}>
+            <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
+              <div className="text-slate-300 pb-2 text-center ">
+                {`Daily quests reset at ${time} each day`}
+              </div>
+              <div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-24 md:pb-0 ">
+                {`Weekly quests reset at ${time} on monday`}
+              </div>
             </div>
-            <div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-24 md:pb-0 ">
-              {`Weekly quests reset at ${time} on monday`}
-            </div>
-          </div>
 
-          <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-            <div className="w-full grid grid-cols-1   lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1   md:max-h-1 ">
-              {/* Displaying Quests */}
-              {categoriesToDisplay.map((category) => (
-                <div key={category} className=" flex flex-col">
-                  <QuestCategory
-                    quests={questsToDisplay?.filter(function (el) {
-                      return el.category === category;
-                    })}
-                    name={category}
-                    user={user}
-                    character={currentCharacter}
-                    currindex={currentCharacterIndex}
-                  ></QuestCategory>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  whitespace-nowrap overflow-hidden ">
-              <Space
-                direction="vertical"
-                key="test2"
-                wrap
-                style={{ width: "100%" }}
-                className="absolute -top-20 md:relative md:top-0   "
-              >
-                <Select
-                  className=""
-                  defaultValue={"Default List"}
-                  value={listSelectedValue}
+            <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
+              <div className="w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1    ">
+                {/* Displaying Quests */}
+                {categoriesToDisplay.map((category) => (
+                  <div key={category} className=" flex flex-col">
+                    <QuestCategory
+                      quests={questsToDisplay?.filter(function (el) {
+                        return el.category === category;
+                      })}
+                      name={category}
+                      user={user}
+                      character={currentCharacter}
+                      currindex={currentCharacterIndex}
+                    ></QuestCategory>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  whitespace-nowrap overflow-hidden ">
+                <Space
+                  direction="vertical"
+                  key="test2"
+                  wrap
                   style={{ width: "100%" }}
-                  onSelect={handleChange}
-                  options={listOptions}
-                />
-              </Space>
-              <Space
-                direction="vertical"
-                key="test233"
-                wrap
-                style={{ width: "100%" }}
-                className="absolute -top-14 md:relative md:top-0   "
-              >
-                <Select
-                  className=""
-                  defaultValue={user.characters![0].name}
-                  value={characterSelectedValue}
-                  style={{ width: "100%" }}
-                  onSelect={handleChangeCharacter}
-                  options={characterOptions}
-                />
-              </Space>
-              <Listmodal
-                quests={quests}
-                user={user}
-                categories={categories}
-              ></Listmodal>
-              {lists?.map((list: any) => (
-                <div
-                  className="bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
-                  "
-                  key={list.id}
+                  className="absolute -top-20 md:relative md:top-0   "
                 >
-                  <List user={user} list={list}></List>
-                </div>
-              ))}
+                  <Select
+                    className=""
+                    defaultValue={"Default List"}
+                    value={listSelectedValue}
+                    style={{ width: "100%" }}
+                    onSelect={handleChange}
+                    options={listOptions}
+                  />
+                </Space>
+                <Space
+                  direction="vertical"
+                  key="test233"
+                  wrap
+                  style={{ width: "100%" }}
+                  className="absolute -top-14 md:relative md:top-0   "
+                >
+                  <Select
+                    className=""
+                    defaultValue={user.characters![0].name}
+                    value={characterSelectedValue}
+                    style={{ width: "100%" }}
+                    onSelect={handleChangeCharacter}
+                    options={characterOptions}
+                  />
+                </Space>
+                <Listmodal
+                  quests={quests}
+                  user={user}
+                  categories={categories}
+                ></Listmodal>
+                {lists?.map((list: any) => (
+                  <div
+                    className="bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
+                  "
+                    key={list.id}
+                  >
+                    <List user={user} list={list}></List>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </Layout>
+        </Layout>
+      </>
     );
   }
   return <div>access denied</div>;
