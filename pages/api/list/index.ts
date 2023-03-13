@@ -10,7 +10,6 @@ export interface ListBody {
   title: string;
   content: string;
   tasks: string[];
-  user: User;
 }
 
 interface UserApiRequest extends NextApiRequest {
