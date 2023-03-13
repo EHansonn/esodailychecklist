@@ -144,6 +144,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     if (user.characters) {
       if (user.characters.length > 0) {
         setCharacterSelectedValue(user.characters![0].name);
+        handleChangeCharacter(user.characters![0].name);
       }
     }
   }, []);
@@ -173,6 +174,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       lists?.forEach((list) => {
         if (list.title === localStorageList) {
           handleChange(localStorageList!);
+          handleChangeCharacter(characterSelectedValue)
           setListSelectedValue(localStorageList!);
         }
       });
