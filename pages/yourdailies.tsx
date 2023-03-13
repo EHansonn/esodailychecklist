@@ -155,15 +155,18 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     user.characters![0].name
   );
   useEffect(() => {
-    if (localStorage.getItem("character") === null) {
+    if (user.characters?.length === 0) {
     } else {
-      const localStorageChar = localStorage.getItem("character");
-      user.characters?.forEach((character) => {
-        if (character.value === localStorageChar) {
-          handleChangeCharacter(localStorageChar!);
-          setCharacterSelectedValue(localStorageChar!);
-        }
-      });
+      if (localStorage.getItem("character") === null) {
+      } else {
+        const localStorageChar = localStorage.getItem("character");
+        user.characters?.forEach((character) => {
+          if (character.value === localStorageChar) {
+            handleChangeCharacter(localStorageChar!);
+            setCharacterSelectedValue(localStorageChar!);
+          }
+        });
+      }
     }
   }, []);
 
