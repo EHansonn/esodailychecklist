@@ -50,7 +50,6 @@ const QuestCategory: React.FC<{
           <QuestRow
             key={index}
             quest={quest}
-            user={user}
             character={character}
             currindex={currindex}
             characters={user?.characters}

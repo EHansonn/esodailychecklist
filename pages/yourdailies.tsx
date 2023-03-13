@@ -334,11 +334,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                     options={characterOptions}
                   />
                 </Space>
-                <Listmodal
-                  quests={quests}
-                  user={user}
-                  categories={categories}
-                ></Listmodal>
+                <Listmodal quests={quests} categories={categories}></Listmodal>
                 {lists?.map((list: any) => (
                   <div
                     className="bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2

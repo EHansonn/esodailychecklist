@@ -19,12 +19,11 @@ export type allstuff = {
 
 const QuestRow: React.FC<{
   quest: Quest;
-  user?: User;
   character?: Character;
   currindex?: number;
   characters?: Character[];
   questsToDisplay?: Quest[];
-}> = ({ quest, user, character, characters, currindex, questsToDisplay }) => {
+}> = ({ quest,  character, characters, currindex, questsToDisplay }) => {
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -67,7 +66,7 @@ const QuestRow: React.FC<{
 
   useEffect(() => {
     setChecked(charz![currindex!]);
-  }, [charz, character, user, characters, character?.questsOnCharacter]);
+  }, [charz, character]);
   return (
     <>
       <div

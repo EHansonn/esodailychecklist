@@ -5,20 +5,12 @@ import Router from "next/router";
 import { Quest } from "../../pages/yourdailies";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
-export interface ListModalRef {
-  visible: boolean;
-  showModal: (visible: boolean) => void;
-  okay: () => void;
-  cancel: () => void;
-}
-
 interface Props {
   quests?: Quest[];
-  user?: User;
   categories?: string[];
 }
 
-const Listmodal: React.FC<Props> = ({ quests, user, categories }) => {
+const Listmodal: React.FC<Props> = ({ quests, categories }) => {
   const [form] = Form.useForm();
 
   const onReset = () => {
