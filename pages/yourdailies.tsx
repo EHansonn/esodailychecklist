@@ -137,23 +137,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     key: "default",
   });
 
-  //Setting the current list to the last selected one if it exists on page reload
-  const [listSelectedValue, setListSelectedValue] = useState("Default List");
-  useEffect(() => {
-    if (localStorage.getItem("list") === null) {
-    } else {
-      const localStorageList = localStorage.getItem("list");
-      lists?.forEach((list) => {
-        if (list.title === localStorageList) {
-          handleChange(localStorageList!);
-          setListSelectedValue(localStorageList!);
-        }
-      });
-    }
-  }, []);
-
-  //Setting last selected character on page reload
-  const [characterSelectedValue, setCharacterSelectedValue] =
+    //Setting last selected character on page reload
+    const [characterSelectedValue, setCharacterSelectedValue] =
     useState("Character Name");
   useEffect(() => {
     if (user.characters) {
@@ -178,6 +163,23 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       }
     }
   }, []);
+
+  //Setting the current list to the last selected one if it exists on page reload
+  const [listSelectedValue, setListSelectedValue] = useState("Default List");
+  useEffect(() => {
+    if (localStorage.getItem("list") === null) {
+    } else {
+      const localStorageList = localStorage.getItem("list");
+      lists?.forEach((list) => {
+        if (list.title === localStorageList) {
+          handleChange(localStorageList!);
+          setListSelectedValue(localStorageList!);
+        }
+      });
+    }
+  }, []);
+
+
 
   //Filtering the quests to display in a custom list. Ignore my poor variable names :)
   const handleChange = (value: string) => {
