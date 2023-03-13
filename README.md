@@ -22,7 +22,7 @@ NextJS, Tailwind CSS, Supabase, Prisma, Vercel and Github Actions.
 [FFXIV todo ](https://xivtodo.com/)
 
 ## Whats next
-Your own custom quests, and even more detailed information about quests. Maybe icons for the different quest types.
+Your own custom quests, and even more detailed information about quests. Maybe icons for the different quest types. Better landing and profiles pages. More options to sort your Checklist.
 
 ## Getting Started
 
