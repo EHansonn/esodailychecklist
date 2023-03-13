@@ -137,14 +137,13 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     key: "default",
   });
 
-    //Setting last selected character on page reload
-    const [characterSelectedValue, setCharacterSelectedValue] =
+  //Setting last selected character on page reload
+  const [characterSelectedValue, setCharacterSelectedValue] =
     useState("Character Name");
   useEffect(() => {
     if (user.characters) {
       if (user.characters.length > 0) {
         setCharacterSelectedValue(user.characters![0].name);
-        handleChangeCharacter(user.characters![0].name);
       }
     }
   }, []);
@@ -174,14 +173,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       lists?.forEach((list) => {
         if (list.title === localStorageList) {
           handleChange(localStorageList!);
-          handleChangeCharacter(characterSelectedValue)
           setListSelectedValue(localStorageList!);
         }
       });
     }
   }, []);
-
-
 
   //Filtering the quests to display in a custom list. Ignore my poor variable names :)
   const handleChange = (value: string) => {
@@ -214,11 +210,15 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       setCategoriesToDisplay(unique);
     }
   };
+  useEffect(() => {
+    //console.log(categoriesToDisplay);
+  }, [categoriesToDisplay]);
 
   const handleChangeCharacter = (value: string) => {
     setCharacterSelectedValue(value);
     localStorage.removeItem("character");
     localStorage.setItem("character", value);
+
     refreshData();
     const selectedChar = user.characters!.filter(function (el, index) {
       if (el.value === value) {
@@ -286,18 +286,19 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
             <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
               <div className="w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1    ">
                 {/* Displaying Quests */}
-                {categoriesToDisplay.map((category) => (
-                  <div key={category} className=" flex flex-col">
-                    <QuestCategory
-                      quests={questsToDisplay?.filter(function (el) {
-                        return el.category === category;
-                      })}
-                      name={category}
-                      user={user}
-                      character={currentCharacter}
-                      currindex={currentCharacterIndex}
-                    ></QuestCategory>
-                  </div>
+                {categories.map((category) => (
+                  <QuestCategory
+                    key={category}
+                    quests={quests?.filter(function (el) {
+                      return el.category === category;
+                    })}
+                    name={category}
+                    user={user}
+                    character={currentCharacter}
+                    currindex={currentCharacterIndex}
+                    categoriesToDisplay={categoriesToDisplay}
+                    questsToDisplay={questsToDisplay!}
+                  ></QuestCategory>
                 ))}
               </div>
               <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  whitespace-nowrap overflow-hidden ">
@@ -311,8 +312,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   <Select
                     className=""
                     defaultValue={"Default List"}
-                    value={listSelectedValue}
                     style={{ width: "100%" }}
+                    value={listSelectedValue}
                     onSelect={handleChange}
                     options={listOptions}
                   />

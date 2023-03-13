@@ -23,7 +23,8 @@ const QuestRow: React.FC<{
   character?: Character;
   currindex?: number;
   characters?: Character[];
-}> = ({ quest, user, character, characters, currindex }) => {
+  questsToDisplay?: Quest[];
+}> = ({ quest, user, character, characters, currindex, questsToDisplay }) => {
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -32,6 +33,22 @@ const QuestRow: React.FC<{
   const onClose = () => {
     setOpen(false);
   };
+
+  const [active, setActive] = useState(false);
+  const [questz, setQuestz] = useState(questsToDisplay);
+
+  useEffect(() => {
+    setActive(false);
+    setQuestz(questsToDisplay);
+  }, [, questsToDisplay, questz]);
+
+  useEffect(() => {
+    questz!.forEach((el) => {
+      if (el.value === quest.value) {
+        setActive(true);
+      }
+    });
+  }, [, quest, questsToDisplay, questz]);
 
   const values = characters?.map((charactere) => {
     const quests = charactere.questsOnCharacter?.filter(function (e) {
@@ -53,7 +70,11 @@ const QuestRow: React.FC<{
   }, [charz, character, user, characters, character?.questsOnCharacter]);
   return (
     <>
-      <div className="flex flex-row my-2 pl-2 justify-between hover:bg-slate-600 cursor-pointer">
+      <div
+        className={`flex flex-row my-2 pl-2 justify-between hover:bg-slate-600 cursor-pointer ${
+          active ? "visible" : "hidden"
+        }`}
+      >
         <div className="flex justify-start">
           <Checkbox
             checked={checked}
