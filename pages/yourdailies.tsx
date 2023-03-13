@@ -136,8 +136,42 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     key: "default",
   });
 
+  //Setting the current list to the last selected one if it exists on page reload
+  const [listSelectedValue, setListSelectedValue] = useState("Default List");
+  useEffect(() => {
+    if (localStorage.getItem("list") === null) {
+    } else {
+      const localStorageList = localStorage.getItem("list");
+      lists?.forEach((list) => {
+        if (list.title === localStorageList) {
+          handleChange(localStorageList!);
+          setListSelectedValue(localStorageList!);
+        }
+      });
+    }
+  }, []);
+
+  const [characterSelectedValue, setCharacterSelectedValue] = useState(
+    user.characters![0].name
+  );
+  useEffect(() => {
+    if (localStorage.getItem("character") === null) {
+    } else {
+      const localStorageChar = localStorage.getItem("character");
+      user.characters?.forEach((character) => {
+        if (character.value === localStorageChar) {
+          handleChangeCharacter(localStorageChar!);
+          setCharacterSelectedValue(localStorageChar!);
+        }
+      });
+    }
+  }, []);
+
   //Filtering the quests to display in a custom list. Ignore my poor variable names :)
   const handleChange = (value: string) => {
+    setListSelectedValue(value);
+    localStorage.removeItem("list");
+    localStorage.setItem("list", value);
     refreshData();
     if (value === "Default List") {
       setQuestsToDisplay(quests);
@@ -166,6 +200,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   };
 
   const handleChangeCharacter = (value: string) => {
+    setCharacterSelectedValue(value);
+    localStorage.removeItem("character");
+    localStorage.setItem("character", value);
     refreshData();
     const selectedChar = user.characters!.filter(function (el, index) {
       if (el.value === value) {
@@ -256,7 +293,8 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               >
                 <Select
                   className=""
-                  defaultValue="Default List"
+                  defaultValue={"Default List"}
+                  value={listSelectedValue}
                   style={{ width: "100%" }}
                   onSelect={handleChange}
                   options={listOptions}
@@ -272,6 +310,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 <Select
                   className=""
                   defaultValue={user.characters![0].name}
+                  value={characterSelectedValue}
                   style={{ width: "100%" }}
                   onSelect={handleChangeCharacter}
                   options={characterOptions}
