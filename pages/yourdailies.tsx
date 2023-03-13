@@ -151,9 +151,16 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     }
   }, []);
 
-  const [characterSelectedValue, setCharacterSelectedValue] = useState(
-    user.characters![0].name
-  );
+  const [characterSelectedValue, setCharacterSelectedValue] =
+    useState("Character Name");
+  useEffect(() => {
+    if (user.characters) {
+      if (user.characters.length > 0) {
+        setCharacterSelectedValue(user.characters![0].name);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     if (user.characters?.length === 0) {
     } else {
