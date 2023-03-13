@@ -74,7 +74,7 @@ export default function IndexPage() {
                   </Link>
                   <Link
                     className="text-white text-center   pt-2"
-                    href="/yourdailies"
+                    href="/profile"
                   >
                     <Button className="w-40" type="default">
                       Visit Your Profile
