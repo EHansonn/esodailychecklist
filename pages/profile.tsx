@@ -163,7 +163,7 @@ export async function getServerSideProps<Props>(context: any) {
   if (!session) {
     return {
       redirect: {
-        destination: "/api/auth/signin",
+        destination: "/api/auth/signin?callbackUrl=/profile",
         permanent: false,
       },
     };
