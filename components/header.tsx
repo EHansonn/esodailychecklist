@@ -49,13 +49,13 @@ export default function Header() {
                   <img
                     className="block h-8 w-auto lg:hidden"
                     src="/logo.png"
-                    alt=""
+                    alt="ESO Daily Checklist"
                   />
                   <Link href="/">
                     <img
                       className="hidden h-8 w-auto lg:block"
                       src="/logo.png"
-                      alt="Your Company"
+                      alt="ESO Daily Checklist"
                     />
                   </Link>
                 </div>

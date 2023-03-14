@@ -5,8 +5,8 @@ const YourDailiesHeader = () => {
     <Head>
       <title>Your Tasks - ESO Daily Checklist</title>
       <meta
-        name="ESO Daily Tracker"
-        content="Keep track of over a hundred daily tasks from The Elder Scrolls Online. The ESO Daily tracker is a fast and easy tool to manage all of the possible daily tasks in the game. Start by creating a character from your profile. Next, visit your dailies. You can create a custom list to display exactly which dailies you want to focus on."
+        name="description"
+        content="Keep track of the 100+ repeatable quests in the Elder Scrolls Online. Simply login with your google account, create one or more characters, and visit your daily checklist. There you can see every single possible repeatable task and quest in the game. You can check off the ones you've done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started right away on your tasks!"
       />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>
