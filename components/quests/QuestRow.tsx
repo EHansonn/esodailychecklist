@@ -50,7 +50,7 @@ const QuestRow: React.FC<{
     });
 
     if (quest.repeatable === filter || filter === "All Quests") {
-      setActive(true);
+      //setActive(true);
     } else {
       setActive(false);
     }

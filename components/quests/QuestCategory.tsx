@@ -33,13 +33,17 @@ const QuestCategory: React.FC<{
   let containsDaily = false;
   let containsWeekly = false;
 
-  quests?.forEach((quest) => {
-    if (quest.repeatable === "daily") {
+  
+
+  questsToDisplay?.forEach((quest) => {
+    if (quest.repeatable === "daily" && quest.category===name) {
       containsDaily = true;
     }
-    if (quest.repeatable === "weekly") {
+    if (quest.repeatable === "weekly" && quest.category===name) {
       containsWeekly = true;
     }
+
+
   });
 
   useEffect(() => {
@@ -54,6 +58,12 @@ const QuestCategory: React.FC<{
     }
     if (filter === "weekly" && !containsWeekly) {
       setActive(false);
+    }
+
+    if (name==="Daily Tasks" && filter==="weekly") {
+      console.log(containsWeekly)
+      console.log(questsToDisplay)
+      console.log(quests)
     }
     // if (filter != "All Quests") {
     //   let count = 0;
