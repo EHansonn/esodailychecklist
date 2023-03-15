@@ -3,7 +3,7 @@ name: Trigger prisma weekly reset on a CRON Schedule
 on:
   schedule:
     # Runs "11:00 am utc on mondays (6am est)" (see https://crontab.guru)
-    - cron: '0 11 * * 1'
+    - cron: '0 10 * * 1'
 
 
 jobs:
