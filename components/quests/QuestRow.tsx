@@ -4,6 +4,7 @@ import { Checkbox, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Character, Quest, User } from "../../pages/yourdailies";
 import styles from "../../pages/index.module.css";
+import { CloseOutlined } from "@ant-design/icons";
 export type questProps = {
   quest: Quest;
 };
@@ -116,13 +117,14 @@ const QuestRow: React.FC<{
             {quest.optionalTitle ? quest.optionalTitle : quest?.value}
           </h3>
           <div className={`pl-2 m-0 pr-5 text-base   `}>
-            <div className={`${styles.font}`}>{quest.repeatable}</div>
+            {/* <div className={`${styles.font}`}>{quest.repeatable}</div> */}
           </div>
         </div>
       </div>
       <Drawer
         style={{ backgroundColor: "#1e293b" }}
-        className="text-offwhite-50"
+            closeIcon={<CloseOutlined style={{color: "white"}}></CloseOutlined>}
+        className="text-offwhite-50 fill-white"
         title={
           <label style={{ color: "White" }}>
             {quest.optionalTitle ? quest.optionalTitle : quest?.value}
