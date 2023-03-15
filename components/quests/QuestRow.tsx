@@ -23,7 +23,8 @@ const QuestRow: React.FC<{
   currindex?: number;
   characters?: Character[];
   questsToDisplay?: Quest[];
-}> = ({ quest,  character, characters, currindex, questsToDisplay }) => {
+  filter: string;
+}> = ({ quest, character, characters, currindex, questsToDisplay, filter }) => {
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -47,7 +48,13 @@ const QuestRow: React.FC<{
         setActive(true);
       }
     });
-  }, [, quest, questsToDisplay, questz]);
+
+    if (quest.repeatable === filter || filter === "All Quests") {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [, quest, questsToDisplay, questz, filter]);
 
   const values = characters?.map((charactere) => {
     const quests = charactere.questsOnCharacter?.filter(function (e) {

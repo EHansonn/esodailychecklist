@@ -89,11 +89,11 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   //Categories for the possible quests. Hardcoded for now...
   let categories = [
     "Daily Tasks",
+    "Weekly Tasks",
     "Undaunted Pledges",
     "Crafting Writs",
     "Craglorn Quests",
     "Trials",
-    "Arenas",
     "PvP Quests",
     "Guild Daily Quests",
     "Imperial City Quests",
@@ -113,9 +113,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     "High Isle Quests",
     "Galen Quests",
     "Cyrodiil Settlement Quests",
-    "Fighters Guild Bounty Quests",
-    "Cyrodilic Collections",
-    "Northern Elsweyr Defense Force",
+    "Miscellaneous",
   ];
 
   const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
@@ -229,6 +227,13 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
     selectCurrentCharacter(selectedChar[0]);
   };
+
+  //Filter for daily or weekly quests
+  const [filter, setFilter] = useState("All Quests");
+  const handleFilterChange = (value: string) => {
+    setFilter(value);
+  };
+
   if (!session) {
     return (
       <Layout>
@@ -273,19 +278,22 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       <>
         <Layout>
           <YourDailiesHeader></YourDailiesHeader>
-          <div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
-            <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
+          <div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen text-xl`}>
+            {/* <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
               <div className="text-slate-300 pb-2 text-center ">
                 {`Daily quests reset at ${time} each day`}
               </div>
               <div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-24 md:pb-0 ">
                 {`Weekly quests reset at ${time} on monday`}
               </div>
-            </div>
+            </div> */}
 
             <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-              <div className="w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1    ">
+              <div className="w-full grid grid-cols-1  h-full lg:grid-cols-1 md:grid-cols-2 gap-3   auto-cols-1    ">
                 {/* Displaying Quests */}
+                <div className="text-slate-300 pb-2 text-center ">
+                  {`Daily quests reset at ${time} each day`}
+                </div>
                 {categories.map((category) => (
                   <QuestCategory
                     key={category}
@@ -298,10 +306,51 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                     currindex={currentCharacterIndex}
                     categoriesToDisplay={categoriesToDisplay}
                     questsToDisplay={questsToDisplay!}
+                    filter={"daily"}
+                  ></QuestCategory>
+                ))}
+              </div>
+              <div className="w-full grid grid-cols-1  h-full lg:grid-cols-1 md:grid-cols-2 gap-3   auto-cols-1    ">
+                {/* Displaying Quests */}
+                <div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-24 md:pb-2 ">
+                  {`Weekly quests reset at ${time} on monday`}
+                </div>
+                {categories.map((category) => (
+                  <QuestCategory
+                    key={category}
+                    quests={quests?.filter(function (el) {
+                      return el.category === category;
+                    })}
+                    name={category}
+                    user={user}
+                    character={currentCharacter}
+                    currindex={currentCharacterIndex}
+                    categoriesToDisplay={categoriesToDisplay}
+                    questsToDisplay={questsToDisplay!}
+                    filter={"weekly"}
                   ></QuestCategory>
                 ))}
               </div>
               <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  whitespace-nowrap overflow-hidden ">
+                <Space
+                  direction="vertical"
+                  key="filter"
+                  wrap
+                  style={{ width: "100%" }}
+                  className="absolute -top-20 md:relative md:top-0   "
+                >
+                  <Select
+                    className=""
+                    defaultValue={"Daily and Weekly Quests"}
+                    style={{ width: "100%" }}
+                    onSelect={handleFilterChange}
+                    options={[
+                      { value: "All Quests", label: "Daily and Weekly Quests" },
+                      { value: "daily", label: "Daily Quests" },
+                      { value: "weekly", label: "Weekly Quests" },
+                    ]}
+                  />
+                </Space>
                 <Space
                   direction="vertical"
                   key="test2"

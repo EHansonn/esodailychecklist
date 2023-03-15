@@ -200,7 +200,7 @@ async function main() {
       },
       {
         value: "Weekly Endeavors",
-        category: "Daily Tasks",
+        category: "Weekly Tasks",
         description:
           "Endeavors is a system introduced with Update 30 and was activated on June 17 2021. They are account-wide, limited time activities that reward a new currency, Seals of Endeavor. These can be used to purchase any item from a currently active Crown Crate. Endeavors reward you for completing simple tasks, such as killing a number of creatures, crafting a number of items from a specific tradeskill, etc, and can be found in the Group & Activity Finder. You can complete three of the five Daily Endeavors per day, and one of the three Weekly Endeavors per week, after which the other Endeavors are locked out.",
         repeatable: "weekly",
@@ -346,7 +346,7 @@ async function main() {
       },
       {
         value: "The Black Gauntlet",
-        category: "Arenas",
+        category: "Trials",
         optionalTitle: "Blackrose Prison",
         description:
           "Enter a deadly gauntlet held by the Blackguards of Blackrose Prison.",
@@ -356,51 +356,7 @@ async function main() {
         uespLink: "https://en.uesp.net/wiki/Online:The_Black_Gauntlet",
         reward: "Blackrose Weapon",
       },
-      {
-        value: "Maelstrom Arena",
-        category: "Arenas",
-        description: "Survive the Maelstrom Arena",
-        repeatable: "immediately",
-        location: "Maelstrom Arena",
-        questGiver: "Fa-Nuit-Hen",
-        uespLink: "https://en.uesp.net/wiki/Online:Maelstrom_Arena_(quest)",
-        reward: "Maelstrom Weapon",
-      },
-      {
-        value: "Veteran Maelstrom Arena",
-        category: "Arenas",
-        description: "Survive the Maelstrom Arena.",
-        repeatable: "immediately",
-        location: "Maelstrom Arena",
-        questGiver: "Fa-Nuit-Hen",
-        uespLink: "https://en.uesp.net/wiki/Online:Veteran_Maelstrom_Arena",
-        reward: "Perfected Maelstrom Weapon",
-      },
 
-      {
-        value: "Vateshran's Rites",
-        category: "Arenas",
-        optionalTitle: "Vateshran Hollows",
-        description:
-          "Enter Vateshran Hollows and survive the challenges within",
-        repeatable: "immediately",
-        location: "Vateshran Hollows",
-        questGiver: "Rites Matron",
-        uespLink: "https://en.uesp.net/wiki/Online:Vateshran%27s_Rites",
-        reward: "Vateshran Weapon",
-      },
-      {
-        value: "Veteran Vateshran's Rites",
-        category: "Arenas",
-        optionalTitle: "Veteran Vateshran Hollows",
-        description:
-          "Enter Vateshran Hollows and survive the challenges within.",
-        repeatable: "immediately",
-        location: "Vateshran Hollows",
-        questGiver: "Rites Matron",
-        uespLink: "https://en.uesp.net/wiki/Online:Veteran_Vateshran%27s_Rites",
-        reward: "Perfected Vateshran Weapon",
-      },
       {
         value: "Critical Mass",
         category: "Craglorn Quests",
@@ -551,7 +507,7 @@ async function main() {
 
       {
         value: "Daily Cyrodilic Collection Quest",
-        category: "Cyrodilic Collections",
+        category: "Miscellaneous",
         description:
           "After completing the prologue for Murkmire, you will be able to assist Jee-Lar, a representative of the Cyrodilic Collections in preparing for expeditions into Black Marsh. You can do one quest per day.",
         repeatable: "daily",
@@ -564,7 +520,7 @@ async function main() {
 
       {
         value: "Daily Northern Elsweyr Defense Force Quest",
-        category: "Northern Elsweyr Defense Force",
+        category: "Miscellaneous",
         description:
           "After completing the prologue for Elsweyr, you will be able to assist Zahari, a representative of the Northern Elsweyr Defense Force in preparing their defense. You can do one quest per day.",
         repeatable: "daily",
@@ -660,18 +616,7 @@ async function main() {
           "https://en.uesp.net/wiki/Online:Repeatable_Quests#Exploratory",
         reward: "Wrothgar Daily Contract Recompense",
       },
-      {
-        value: "Guild Jobs",
-        category: "Thieves Guild Quests",
-        description:
-          "These are given by the Tip Board in the Thieves Den and involve going to all base-game, non-starter, and non-PvP zones and involve thievery. They are repeatable immediately and cannot be shared with others.",
-        repeatable: "immediately",
-        location: "",
-        questGiver: "Tip Board",
-        uespLink:
-          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Guild_Jobs",
-        reward: "Large Laundered Shipment",
-      },
+
       {
         value: "Heists",
         category: "Thieves Guild Quests",
@@ -696,19 +641,7 @@ async function main() {
           "https://en.uesp.net/wiki/Online:Repeatable_Quests#Exploratory_2",
         reward: "",
       },
-      {
-        value: "Dark Brotherhood Contracts",
-        category: "Gold Coast Quests",
-        description:
-          "These are given by the Marked for Death ledger in the Dark Brotherhood Sanctuary and involve assassinating a target and involve going to all base-game, non-starter, and non-PvP zones to perform assassinations. The introductory quest Contract: Kvatch is excluded from this list since it can only be done once. They are repeatable immediately and cannot be shared with others.",
-        repeatable: "immediately",
-        location: "Dark Brotherhood Sanctuary",
-        questGiver: "Marked for Death",
-        uespLink:
-          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Dark_Brotherhood_Contracts",
-        reward:
-          "Dark Brotherhood Reward Pouch (for a single murder) orDark Brotherhood Reward Satchel (for a murder spree)",
-      },
+
       {
         value: "Dark Brotherhood Sacraments",
         category: "Gold Coast Quests",
@@ -1266,7 +1199,7 @@ async function main() {
       },
       {
         value: "Fighters Guild Bounty from skill line",
-        category: "Fighters Guild Bounty Quests",
+        category: "Miscellaneous",
         description:
           "These quests are available at your Alliance's Border Keeps once you've unlocked the Bounty Hunter passive skill in the Fighters Guild skill line. One can be completed per day, and they cannot be shared with others.",
         repeatable: "daily",

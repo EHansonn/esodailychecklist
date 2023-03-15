@@ -11,6 +11,7 @@ const QuestCategory: React.FC<{
   currindex?: number;
   categoriesToDisplay: string[];
   questsToDisplay: Quest[];
+  filter: string;
 }> = ({
   quests,
   name,
@@ -19,6 +20,7 @@ const QuestCategory: React.FC<{
   currindex,
   categoriesToDisplay,
   questsToDisplay,
+  filter,
 }) => {
   const [active, setActive] = useState(false);
   const [categoriesz, setCategoriesz] = useState(categoriesToDisplay);
@@ -28,13 +30,43 @@ const QuestCategory: React.FC<{
     setCategoriesz(categoriesToDisplay);
   }, [categoriesToDisplay, categoriesz]);
 
+  let containsDaily = false;
+  let containsWeekly = false;
+
+  quests?.forEach((quest) => {
+    if (quest.repeatable === "daily") {
+      containsDaily = true;
+    }
+    if (quest.repeatable === "weekly") {
+      containsWeekly = true;
+    }
+  });
+
   useEffect(() => {
     categoriesz.forEach((el) => {
       if (el === name) {
         setActive(true);
       }
     });
-  }, [, name, categoriesToDisplay, categoriesz]);
+
+    if (filter === "daily" && !containsDaily) {
+      setActive(false);
+    }
+    if (filter === "weekly" && !containsWeekly) {
+      setActive(false);
+    }
+    // if (filter != "All Quests") {
+    //   let count = 0;
+    //   quests?.forEach((quest) => {
+    //     if (quest.repeatable === filter) {
+    //       count++;
+    //     }
+    //   });
+    //   if (count === 0) {
+    //     setActive(false);
+    //   }
+    // }
+  }, [, name, categoriesToDisplay, categoriesz, filter]);
   return (
     <div
       className={`bg-slate-800 flex flex-col h-full rounded-lg text-offwhite-50 ${
@@ -54,6 +86,7 @@ const QuestCategory: React.FC<{
             currindex={currindex}
             characters={user?.characters}
             questsToDisplay={questsToDisplay}
+            filter={filter}
           ></QuestRow>
         ))}
       </small>
