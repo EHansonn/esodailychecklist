@@ -316,7 +316,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                   onChange={handleFilterChange}
                   value={filter}
                   optionType="button"
-                  buttonStyle="solid"
+                  buttonStyle="solid "
                  /></div>
                    
                 
