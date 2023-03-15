@@ -275,7 +275,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
       <>
         <Layout>
           <YourDailiesHeader></YourDailiesHeader>
-          <div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen text-xl`}>
+          <div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
             <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
               <div className="text-slate-300 pb-2 text-center ">
                 {`Daily quests reset at ${time} each day`}

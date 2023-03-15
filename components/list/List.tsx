@@ -30,7 +30,7 @@ export type QuestProps = {
 
 const List: React.FC<{ list: ListProps; user: User }> = ({ list, user }) => {
   return (
-    <div className={`flex flex-col object-contain text-offwhite-50 `}>
+    <div className={`flex flex-col object-contain text-offwhite-50  `}>
       <div className="flex flex-row justify-between flex-1">
         <h3 className="mt-0 mb-0">{list.title} </h3>
         <Button
