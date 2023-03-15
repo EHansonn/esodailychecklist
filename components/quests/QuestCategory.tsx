@@ -24,7 +24,6 @@ const QuestCategory: React.FC<{
 }) => {
   const [active, setActive] = useState(false);
   const [categoriesz, setCategoriesz] = useState(categoriesToDisplay);
-  //console.log(categoriesz)
   useEffect(() => {
     setActive(false);
     setCategoriesz(categoriesToDisplay);
@@ -59,23 +58,7 @@ const QuestCategory: React.FC<{
     if (filter === "weekly" && !containsWeekly) {
       setActive(false);
     }
-
-    if (name==="Daily Tasks" && filter==="weekly") {
-      console.log(containsWeekly)
-      console.log(questsToDisplay)
-      console.log(quests)
-    }
-    // if (filter != "All Quests") {
-    //   let count = 0;
-    //   quests?.forEach((quest) => {
-    //     if (quest.repeatable === filter) {
-    //       count++;
-    //     }
-    //   });
-    //   if (count === 0) {
-    //     setActive(false);
-    //   }
-    // }
+  
   }, [, name, categoriesToDisplay, categoriesz, filter]);
   return (
     <div
