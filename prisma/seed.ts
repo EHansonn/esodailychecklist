@@ -9,7 +9,7 @@ async function main() {
     data: [
       {
         value: "Maj al-Ragath's Pledges",
-        category: "Undaunted Pledges",
+        category: "Daily Tasks",
         description:
           "Undaunted Pledges are daily quests available at Undaunted Enclaves. You must be level 45 to receive a Normal pledge and level 50 to receive a Veteran pledge. Only one of each type of pledge is offered per day, although technically a pledge from a previous day can also be completed if it was obtained but not completed.",
         repeatable: "daily",
@@ -21,7 +21,7 @@ async function main() {
       },
       {
         value: "Glirion the Redbeard's Pledges",
-        category: "Undaunted Pledges",
+        category: "Daily Tasks",
         description:
           "Undaunted Pledges are daily quests available at Undaunted Enclaves. You must be level 45 to receive a Normal pledge and level 50 to receive a Veteran pledge. Only one of each type of pledge is offered per day, although technically a pledge from a previous day can also be completed if it was obtained but not completed.",
         repeatable: "daily",
@@ -33,7 +33,7 @@ async function main() {
       },
       {
         value: "Urgarlag Chief-bane's Pledges",
-        category: "Undaunted Pledges",
+        category: "Daily Tasks",
         description:
           "Undaunted Pledges are daily quests available at Undaunted Enclaves. You must be level 45 to receive a Normal pledge and level 50 to receive a Veteran pledge. Only one of each type of pledge is offered per day, although technically a pledge from a previous day can also be completed if it was obtained but not completed.",
         repeatable: "daily",
@@ -84,7 +84,7 @@ async function main() {
       },
       {
         value: "Consumables Crafting Writs",
-        category: "Crafting Writs",
+        category: "Daily Tasks",
         description:
           "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). \nThese are available from Consumables Crafting Writs Boards. Each writ can be completed once per day, and they cannot be shared with others.",
         repeatable: "daily",
@@ -96,7 +96,7 @@ async function main() {
       },
       {
         value: "Equipment Crafting Writs",
-        category: "Crafting Writs",
+        category: "Daily Tasks",
         description:
           "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). These are available from Equipment Crafting Writs Boards. Each writ can be completed once per day, and they cannot be shared with others.",
         repeatable: "daily",
@@ -106,30 +106,7 @@ async function main() {
           "https://en.uesp.net/wiki/Online:Repeatable_Quests#Equipment_Crafting_Writs",
         reward: "Gold",
       },
-      {
-        value: "Master Writs",
-        category: "Crafting Writs",
-        description:
-          "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). Sealed Master Writs may be awarded at the higher levels for completing normal crafting writs, and opening one will start a Master Writ quest. These can be completed as many times as you have collected Sealed Master Writs, and are not restricted in the number you can complete per day. You can only have one Master Writ quest active at one time, but you may have items for other writs pre-crafted before starting them, allowing you to turn in as many writs as you want in one visit. They cannot be shared with others.",
-        repeatable: "daily",
-        location: "Auction House",
-        questGiver: "",
-        uespLink:
-          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Master_Writs",
-        reward: "Writ Vouchers",
-      },
-      {
-        value: "Holiday Writs",
-        category: "Crafting Writs",
-        description:
-          "Crafting Writs are repeatable quests available to certified crafters. After the initial certification quest, a daily writ can be accepted from the relevant noticeboard in most major cities. Days for crafting writs reset at 6:00 AM GMT, (2:00AM EST/11:00PM PST). Deep Winter Charity Writs and Imperial Charity Writs are awarded for completing quests during the New Life Festival. These can be completed as many times as you have collected Deep Winter Charity Writs and Imperial Charity Writs, and are not restricted in the number you can complete per day. You can only have one Deep Winter Charity Writ and Imperial Charity Writ quest active at one time, but you may have items for other writs pre-crafted before starting them, allowing you to turn in as many writs as you want in one visit. They cannot be shared with others.",
-        repeatable: "daily",
-        location: "",
-        questGiver: "",
-        uespLink:
-          "https://en.uesp.net/wiki/Online:Repeatable_Quests#Holiday_Writs",
-        reward: "Writ Vouchers",
-      },
+      
       {
         value: "Daily Login Reward",
         category: "Daily Tasks",
@@ -200,7 +177,7 @@ async function main() {
       },
       {
         value: "Weekly Endeavors",
-        category: "Weekly Tasks",
+        category: "Weekly Tasks and Trials",
         description:
           "Endeavors is a system introduced with Update 30 and was activated on June 17 2021. They are account-wide, limited time activities that reward a new currency, Seals of Endeavor. These can be used to purchase any item from a currently active Crown Crate. Endeavors reward you for completing simple tasks, such as killing a number of creatures, crafting a number of items from a specific tradeskill, etc, and can be found in the Group & Activity Finder. You can complete three of the five Daily Endeavors per day, and one of the three Weekly Endeavors per week, after which the other Endeavors are locked out.",
         repeatable: "weekly",
@@ -211,7 +188,7 @@ async function main() {
       },
       {
         value: "Assaulting the Citadel",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Hel Ra Citadel",
         description: "Launch an attack on the Celestial Warrior's stronghold.",
         repeatable: "weekly",
@@ -223,7 +200,7 @@ async function main() {
       },
       {
         value: "The Fight for Kyne's Aegis",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Kyne's Aegis",
         description: "Retake Kyne's Aegis from a Vampire Lord's army.",
         repeatable: "weekly",
@@ -236,7 +213,7 @@ async function main() {
       },
       {
         value: "Forging the Future",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Halls of Fabrication",
         description:
           "Stem the tide of fabricants before they overwhelm Tel Fyr.",
@@ -249,7 +226,7 @@ async function main() {
       },
       {
         value: "Into the Maw",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Maw of Lorkhaj",
         description: "Stop the dro-m'Athra from flooding into Tamriel.",
         repeatable: "weekly",
@@ -261,7 +238,7 @@ async function main() {
       },
       {
         value: "Of Stone and Steam",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Rockgrove",
         description:
           "Save the souls of Rockgrove's fallen and drive back the Dagonite invaders.",
@@ -274,7 +251,7 @@ async function main() {
       },
       {
         value: "The Mage's Tower",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Aetherian Archive",
         description: "Defeat the Celestial Mage to save her from the Serpent.",
         repeatable: "weekly",
@@ -286,7 +263,7 @@ async function main() {
       },
       {
         value: "The Oldest Ghost",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Sanctum Ophidia",
         description: "Launch a direct assault on the Celestial Serpent.",
         repeatable: "weekly",
@@ -298,7 +275,7 @@ async function main() {
       },
       {
         value: "The Return of Alkosh",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Sunspire",
         description:
           "Defeat the Alkosh pretender and liberate the faithful of Sunspire.",
@@ -311,7 +288,7 @@ async function main() {
       },
       {
         value: "Reavers of the Reef",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Dreadsail Reef",
         description: "Drive the Dreadsail pirates from the Systres.",
         repeatable: "weekly",
@@ -323,7 +300,7 @@ async function main() {
       },
       {
         value: "Saints' Mercy",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Asylum Sanctorium",
         description: "End the Clockwork Saints torment in Asylum Sanctorium.",
         repeatable: "weekly",
@@ -334,7 +311,7 @@ async function main() {
       },
       {
         value: "Woe of the Welkynars",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Cloudrest",
         description: "Help Olorime take back Cloudrest.",
         repeatable: "weekly",
@@ -346,7 +323,7 @@ async function main() {
       },
       {
         value: "The Black Gauntlet",
-        category: "Trials",
+        category: "Weekly Tasks and Trials",
         optionalTitle: "Blackrose Prison",
         description:
           "Enter a deadly gauntlet held by the Blackguards of Blackrose Prison.",

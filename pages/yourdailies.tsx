@@ -88,12 +88,9 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   };
   //Categories for the possible quests. Hardcoded for now...
   let categories = [
+    "Weekly Tasks and Trials",
     "Daily Tasks",
-    "Weekly Tasks",
-    "Undaunted Pledges",
-    "Crafting Writs",
     "Craglorn Quests",
-    "Trials",
     "PvP Quests",
     "Guild Daily Quests",
     "Imperial City Quests",
@@ -319,7 +316,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
                 >
                   <Select
                     className=""
-                    defaultValue={"Daily and Weekly Quests"}
+                    defaultValue={"All Quests"}
                     style={{ width: "100%" }}
                     onSelect={handleFilterChange}
                     options={[
