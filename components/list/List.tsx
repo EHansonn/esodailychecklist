@@ -46,7 +46,7 @@ const List: React.FC<{ list: ListProps; user: User }> = ({ list, user }) => {
         </Button>
       </div>
 
-      {/* <h4 className="mt-0 mb-2">{list.content}</h4>
+      <h4 className="mt-0 mb-2">{list.content}</h4>
       <h4 className="mt-0 mb-0">Selected Quests:</h4>
       <div className="flex flex-col ">
         {list?.tasks!.map((quest: Quest) => {
@@ -54,7 +54,7 @@ const List: React.FC<{ list: ListProps; user: User }> = ({ list, user }) => {
             <ListQuestAndRow key={quest.value} quest={quest}></ListQuestAndRow>
           );
         })}
-      </div> */}
+      </div>
     </div>
   );
 };
