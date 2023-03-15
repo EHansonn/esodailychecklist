@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import prisma from "../lib/prisma";
 import Listmodal from "../components/list/Listmodal";
-import { Button, Select, Space } from "antd";
+import { Button, Radio, RadioChangeEvent, Select, Space } from "antd";
 import Layout from "../components/layout";
 import QuestCategory from "../components/quests/QuestCategory";
 import { signIn, signOut } from "next-auth/react";
@@ -227,7 +227,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
 
   //Filter for daily or weekly quests
   const [filter, setFilter] = useState("All Quests");
-  const handleFilterChange = (value: string) => {
+  const handleFilterChange = ({ target: { value } }: RadioChangeEvent) => {
     setFilter(value);
   };
 
@@ -307,25 +307,19 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
               </div>
              
               <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  whitespace-nowrap overflow-hidden ">
-                <Space
-                  direction="vertical"
-                  key="filter"
-                  wrap
-                  style={{ width: "100%" }}
-                  className="absolute -top-20 md:relative md:top-0   "
-                >
-                  <Select
-                    className=""
-                    defaultValue={"All Quests"}
-                    style={{ width: "100%" }}
-                    onSelect={handleFilterChange}
-                    options={[
-                      { value: "All Quests", label: "Daily and Weekly Quests" },
-                      { value: "daily", label: "Daily Quests" },
-                      { value: "weekly", label: "Weekly Quests" },
-                    ]}
-                  />
-                </Space>
+               <div className="w-full flex justify-center"><Radio.Group
+               options={[
+                { value: "All Quests", label: "All Quests" },
+                { value: "daily", label: "Daily Quests" },
+                { value: "weekly", label: "Weekly Quests" },
+                ]}
+                  onChange={handleFilterChange}
+                  value={filter}
+                  optionType="button"
+                  buttonStyle="solid"
+                 /></div>
+                   
+                
                 <Space
                   direction="vertical"
                   key="test2"
