@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import YourDailiesHeader from "../components/YourDailiesHeader";
 import { getData } from "./api/user";
-import Router, { useRouter } from "next/router";
 import Footer from "../components/footer";
 export type User = {
   // id: string;
@@ -81,10 +80,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     owner: null,
     content: null,
     userId: "",
-  };
-  const router = useRouter();
-  const refreshData = () => {
-    router.replace(router.asPath);
   };
   //Categories for the possible quests. Hardcoded for now...
   let categories = [
@@ -179,7 +174,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     setListSelectedValue(value);
     localStorage.removeItem("list");
     localStorage.setItem("list", value);
-    refreshData();
     if (value === "Default List") {
       setQuestsToDisplay(quests);
       setCategoriesToDisplay(categories);
@@ -214,7 +208,6 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
     localStorage.removeItem("character");
     localStorage.setItem("character", value);
 
-    refreshData();
     const selectedChar = user.characters!.filter(function (el, index) {
       if (el.value === value) {
         setCurrentCharacterIndex(index);
