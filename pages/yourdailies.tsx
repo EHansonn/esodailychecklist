@@ -68,7 +68,7 @@ const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
   //Display the UTC reset time in the users own time zone
   const [time, setTime] = useState("00:00:00");
   useEffect(() => {
-    let utcTimeDaily = "2023-03-07 11:00:00";
+    let utcTimeDaily = "2023-03-07 06:00:00";
     let localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");
     setTime(localDailyReset);
   }, []);
