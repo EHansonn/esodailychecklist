@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Checkbox, Drawer } from "antd";
+import { Checkbox, ConfigProvider, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Character, Quest, User } from "../../pages/yourdailies";
 import styles from "../../pages/index.module.css";
@@ -69,7 +69,7 @@ const QuestRow: React.FC<{
   });
 
   const [charz, setCharz] = useState(values);
-
+  const [bgColor, setBgColor] = useState("#ffffff");
   const [checked, setChecked] = useState(charz![currindex!]);
 
   useEffect(() => {
@@ -83,30 +83,42 @@ const QuestRow: React.FC<{
         }`}
       >
         <div className="flex justify-start">
-          <Checkbox
-            checked={checked}
-            onChange={async (e: CheckboxChangeEvent) => {
-              const res = await fetch(`/api/QuestsOnCharacter/`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  quest: quest,
-                  trueorfalse: e.target.checked,
-                  character: character,
-                }),
-              });
-              if (res.ok) {
-                const temp = charz;
-                temp![currindex!] = e.target.checked;
-
-                setCharz(temp);
-
-                setChecked(e.target.checked);
-              } else {
-                console.log(res.status);
-              }
+          <ConfigProvider
+            theme={{
+              components: {
+                Checkbox: {
+                  colorBgContainer: bgColor,
+                },
+              },
             }}
-          ></Checkbox>
+          >
+            <Checkbox
+              checked={checked}
+              onChange={async (e: CheckboxChangeEvent) => {
+                const res = await fetch(`/api/QuestsOnCharacter/`, {
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    quest: quest,
+                    trueorfalse: e.target.checked,
+                    character: character,
+                  }),
+                });
+                if (res.ok) {
+                  setBgColor("#ffffff");
+                  const temp = charz;
+                  temp![currindex!] = e.target.checked;
+
+                  setCharz(temp);
+
+                  setChecked(e.target.checked);
+                } else {
+                  console.log(res.status);
+                  setBgColor("#f5222d");
+                }
+              }}
+            ></Checkbox>
+          </ConfigProvider>
         </div>
 
         <div
@@ -123,7 +135,7 @@ const QuestRow: React.FC<{
       </div>
       <Drawer
         style={{ backgroundColor: "#1e293b" }}
-            closeIcon={<CloseOutlined style={{color: "white"}}></CloseOutlined>}
+        closeIcon={<CloseOutlined style={{ color: "white" }}></CloseOutlined>}
         className="text-offwhite-50 fill-white"
         title={
           <label style={{ color: "White" }}>
