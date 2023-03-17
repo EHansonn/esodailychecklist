@@ -1,10 +1,11 @@
 import {
   BulbOutlined,
   GithubOutlined,
+  LoadingOutlined,
   TeamOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
-import { Button, } from "antd";
+import { Button, Spin } from "antd";
 import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
@@ -13,10 +14,9 @@ import Header from "../components/header";
 import Layout from "../components/layout";
 import styles from "./index.module.css";
 
-
 export default function IndexPage() {
   const { data: session, status } = useSession();
-
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
   return (
     <Layout>
       <Head>
@@ -66,6 +66,13 @@ export default function IndexPage() {
                   </Button>
                 </div>
               )}
+              {status === "loading" && (
+                <Spin
+                  className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
+                  indicator={antIcon}
+                />
+              )}
+
               {status === "authenticated" && (
                 <div className="content-center text-center text-white pt-2 flex flex-row justify-center space-x-4 ">
                   <Link

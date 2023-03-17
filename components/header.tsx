@@ -6,13 +6,14 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const { data: session, status } = useSession();
-  const loading = status === "loading";
-
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
   const [currentSelected, setCurrentSelect] = useState("");
   const router = useRouter();
   const navigation = [
@@ -85,7 +86,15 @@ export default function Header() {
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 border-0 ">
                       <span className="sr-only">Open user menu</span>
-                      {session?.user && (
+                      {status === "loading" && (
+                        <div className="inline-flex items-center justify-center rounded-md p-2">
+                          <Spin
+                            className="h-8 w-8 rounded-full"
+                            indicator={antIcon}
+                          />
+                        </div>
+                      )}
+                      {status === "authenticated" && (
                         <div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                           <img
                             className="h-8 w-8 rounded-full "
@@ -95,7 +104,7 @@ export default function Header() {
                           />
                         </div>
                       )}
-                      {!session?.user && (
+                      {status === "unauthenticated" && (
                         <div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                           <Bars3Icon
                             className="block h-6 w-6 "
