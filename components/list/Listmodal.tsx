@@ -107,7 +107,7 @@ const Listmodal: React.FC<Props> = ({ quests, categories, refreshData }) => {
 
         <Form.Item className="justify-center flex">
           <Button className="mr-2" type="primary" htmlType="submit">
-            Submit
+            Create
           </Button>
           <Button htmlType="button" onClick={onReset}>
             Reset
