@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../dailieschecklist";
+import { User } from "../DailyChecklist/dailieschecklist";
 import Router from "next/router";
 import { Button, Form, Input, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
@@ -11,9 +11,14 @@ const tailLayout = {
 interface Props {
   user?: User;
   helperFunction: Function;
+  refreshData: Function;
 }
 
-const CharacterModel: React.FC<Props> = ({ user, helperFunction }) => {
+const CharacterModel: React.FC<Props> = ({
+  user,
+  helperFunction,
+  refreshData,
+}) => {
   const [form] = Form.useForm();
 
   const onReset = () => {
@@ -29,7 +34,7 @@ const CharacterModel: React.FC<Props> = ({ user, helperFunction }) => {
       }),
     });
     helperFunction(1);
-    Router.push("/profile");
+    refreshData();
     onReset();
   };
 

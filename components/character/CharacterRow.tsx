@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Character, Quest, User } from "../dailieschecklist";
+import { Character, Quest, User } from "../DailyChecklist/dailieschecklist";
 import QuestRow from "../quests/QuestRow";
 import Router from "next/router";
 import styles from "../../pages/index.module.css";
@@ -11,7 +11,8 @@ const CharacterRow: React.FC<{
   user: User;
   editMode: boolean;
   helperFunction: Function;
-}> = ({ character, user, editMode, helperFunction }) => {
+  refreshData: Function;
+}> = ({ character, user, editMode, helperFunction, refreshData }) => {
   //console.log(character);
   //console.log(character);
   return (
@@ -25,7 +26,7 @@ const CharacterRow: React.FC<{
                 method: "DELETE",
               });
               helperFunction(-1);
-              Router.push("/profile");
+              refreshData();
             }}
           >
             Delete

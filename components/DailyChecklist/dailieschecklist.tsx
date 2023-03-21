@@ -1,20 +1,20 @@
 import { NextPage } from "next";
-import List, { ListProps } from "./list/List";
+import List, { ListProps } from "../list/List";
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
-import prisma from "../lib/prisma";
-import Listmodal from "./list/Listmodal";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
+import prisma from "../../lib/prisma";
+import Listmodal from "../list/Listmodal";
 import { Button, Radio, RadioChangeEvent, Select, Space } from "antd";
-import Layout from "./layout";
-import QuestCategory from "./quests/QuestCategory";
+import Layout from "../layout";
+import QuestCategory from "../quests/QuestCategory";
 import { signIn, signOut } from "next-auth/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import YourDailiesHeader from "./YourDailiesHeader";
-import { getData } from "../pages/api/user";
-import Footer from "./footer";
+import { getData } from "../../pages/api/user";
+import Footer from "../footer";
 export type User = {
   // id: string;
   name: string;
@@ -41,6 +41,7 @@ export interface Props {
   lists?: ListProps[];
   error?: string;
   quests?: Quest[];
+  refreshData: Function;
 }
 
 export type Character = {
@@ -57,7 +58,12 @@ export type QuestsOnCharacter = {
   questName: string;
 };
 
-const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
+const YourDailiesChecklist: NextPage<Props> = ({
+  user,
+  lists,
+  quests,
+  refreshData,
+}) => {
   const { data: session, status } = useSession();
   const [currentCharacter, selectCurrentCharacter] = useState(
     user.characters![0]
@@ -325,14 +331,22 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
                     options={characterOptions}
                   />
                 </Space>
-                <Listmodal quests={quests} categories={categories}></Listmodal>
+                <Listmodal
+                  quests={quests}
+                  categories={categories}
+                  refreshData={refreshData}
+                ></Listmodal>
                 {lists?.map((list: any) => (
                   <div
                     className="bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
                   "
                     key={list.id}
                   >
-                    <List user={user} list={list}></List>
+                    <List
+                      user={user}
+                      list={list}
+                      refreshData={refreshData}
+                    ></List>
                   </div>
                 ))}
               </div>

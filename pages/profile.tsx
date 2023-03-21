@@ -1,40 +1,54 @@
-import { NextPage } from "next";
-import { ListProps } from "../components/list/List";
-import { getServerSession } from "next-auth";
+import List, { ListProps } from "../components/list/List";
 import { useSession } from "next-auth/react";
-import { authOptions } from "./api/auth/[...nextauth]";
-import prisma from "../lib/prisma";
-import { Alert, Button } from "antd";
+import { Button, Spin } from "antd";
 import Layout from "../components/layout";
+import { signIn, signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
+import YourDailiesHeader from "../components/DailyChecklist/YourDailiesHeader";
+import YourDailiesChecklist, {
+  Props,
+} from "../components/DailyChecklist/dailieschecklist";
+import { LoadingOutlined } from "@ant-design/icons";
 import Head from "next/head";
-import { signIn } from "next-auth/react";
-import { useState } from "react";
-import { Quest, User } from "../components/dailieschecklist";
-import CharacterRow from "../components/character/CharacterRow";
-import CharacterModel from "../components/character/CharacterModel";
-import Link from "next/link";
-import { getData } from "./api/user";
-import { EditOutlined } from "@ant-design/icons";
-interface Props {
-  user: User;
-  lists?: ListProps[];
-  error?: string;
-  quests?: Quest[];
-}
+import ProfileInfo from "../components/profile/ProfileInfo";
 
-const ProfilePage: NextPage<Props> = ({ user }) => {
+export default function Dailies() {
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+  const [data, setData] = useState<Props>();
+  const [isLoading, setLoading] = useState(false);
   const { data: session, status } = useSession();
-  const [editMode, setEditMode] = useState(false);
-  const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
 
-  const helperFunction = (val: number) => {
-    setNumOfChars((currVal) => {
-      let temp = currVal + val;
-      if (temp < 0) {
-        temp = 0;
+  useEffect(() => {
+    setData(undefined);
+    if (session) {
+      setLoading(true);
+      try {
+        fetch("/api/user")
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data.props);
+            setLoading(false);
+          });
+      } catch {
+        setData(undefined);
+        setLoading(false);
       }
-      return temp;
-    });
+    }
+  }, [, session]);
+
+  const refreshData = () => {
+    if (session) {
+      try {
+        fetch("/api/user")
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data.props);
+            setLoading(false);
+          });
+      } catch {
+        setData(undefined);
+      }
+    }
   };
 
   if (!session) {
@@ -65,112 +79,35 @@ const ProfilePage: NextPage<Props> = ({ user }) => {
     );
   }
 
-  if (session) {
+  if (isLoading)
     return (
       <Layout>
-        <Head>
-          <title>Your Profile</title>
-          <meta
-            name="description"
-            content="Keep track of the 100+ repeatable quests in the Elder Scrolls Online. Simply login with your google account, create one or more characters, and visit your daily checklist. There you can see every single possible repeatable task and quest in the game. You can check off the ones you've done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started right away on your tasks!"
-          />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
-
-        <div className={`pl-4 pr-4 flex flex-col   min-h-screen`}>
-          <div className="flex  justify-center   ">
-            <div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screeen text-center pr-3 border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 flex flex-col w-max sm:flex-col justify-center sm:pr-0">
-              <div className="flex  justify-center     ">
-                <div className=" mt-10    text-offwhite-50 flex flex-col w-max  justify-center  mb-10  ">
-                  <div className="border-t-0 border-l-0  border-b-2 border-r-0  border-solid -mr-3 sm:mr-0">
-                    Your Profile
-                  </div>
-
-                  <div>Name: {user.name}</div>
-                  <div>Email: {user.email}</div>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row">
-                <div className="flex flex-col ">
-                  <div
-                    className="border-solid border-b-2 border-t-0 border-l-0 border-r-0 w-full pr-3
-                 mr-0 sm:mr-5  md:w-56 lg:w-96 "
-                  >
-                    Your Characters
-                    <EditOutlined
-                      // className={classNames(
-                      //   item.current
-                      //     ? "bg-gray-900 text-white"
-                      //     : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      //   "rounded-md px-3 py-2 text-sm font-medium"
-                      // )}
-                      onClick={() => {
-                        setEditMode((editMode) => {
-                          return !editMode;
-                        });
-                      }}
-                      className=" ml-2 rounded-sm hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
-                    />
-                  </div>
-                  {user.characters?.map((character) => (
-                    <CharacterRow
-                      helperFunction={helperFunction}
-                      editMode={editMode}
-                      key={character.value}
-                      user={user}
-                      character={character}
-                    ></CharacterRow>
-                  ))}
-                </div>
-                <div>
-                  <CharacterModel
-                    helperFunction={helperFunction}
-                    user={user}
-                  ></CharacterModel>
-                </div>
-              </div>
-            </div>
+        <div className="content-center text-center">
+          <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+            Loading Profile...
           </div>
-          {numOfChars > 0 && (
-            <div className="justify-center flex">
-              <Link
-                className="text-center flex pt-5 w-max"
-                href={"/yourdailies"}
-              >
-                <Button key="test" type="primary">
-                  View your daily checklist
-                </Button>
-              </Link>
-            </div>
-          )}
-          {numOfChars === 0 && (
-            <div className="flex justify-center pt-5 ">
-              <Alert
-                message="Please add at least one character"
-                type="warning"
-              />
-            </div>
-          )}
+          <Spin
+            className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
+            indicator={antIcon}
+          />
         </div>
       </Layout>
     );
-  }
-  return <div>access denied</div>;
-};
+  if (!data)
+    return (
+      <Layout>
+        <p>No profile data. Something went wrong...</p>
+      </Layout>
+    );
 
-export async function getServerSideProps<Props>(context: any) {
-  const session = await getServerSession(context.req, context.res, authOptions);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/api/auth/signin?callbackUrl=/profile",
-        permanent: false,
-      },
-    };
-  }
-  const userData = await getData(session);
-  return userData;
+  return (
+    <div>
+      <ProfileInfo
+        user={data.user}
+        lists={data.lists}
+        quests={data.quests}
+        refreshData={refreshData}
+      ></ProfileInfo>
+    </div>
+  );
 }
-
-export default ProfilePage;
-//JSON.parse(JSON.stringify(u))

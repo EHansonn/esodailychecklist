@@ -4,8 +4,10 @@ import { Button, Spin } from "antd";
 import Layout from "../components/layout";
 import { signIn, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
-import YourDailiesHeader from "../components/YourDailiesHeader";
-import YourDailiesChecklist, { Props } from "../components/dailieschecklist";
+import YourDailiesHeader from "../components/DailyChecklist/YourDailiesHeader";
+import YourDailiesChecklist, {
+  Props,
+} from "../components/DailyChecklist/dailieschecklist";
 import { LoadingOutlined } from "@ant-design/icons";
 
 export default function Dailies() {
@@ -31,6 +33,21 @@ export default function Dailies() {
       }
     }
   }, [, session]);
+
+  const refreshData = () => {
+    if (session) {
+      try {
+        fetch("/api/user")
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data.props);
+            setLoading(false);
+          });
+      } catch {
+        setData(undefined);
+      }
+    }
+  };
 
   if (!session) {
     return (
@@ -77,7 +94,7 @@ export default function Dailies() {
         <YourDailiesHeader></YourDailiesHeader>
         <div className="content-center text-center">
           <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
-            Loading checklist...
+            Loading Checklist...
           </div>
           <Spin
             className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
@@ -89,7 +106,7 @@ export default function Dailies() {
   if (!data)
     return (
       <Layout>
-        <p>No profile data. Something went wrong...</p>
+        <p>No user data. Something went wrong...</p>
       </Layout>
     );
 
@@ -99,6 +116,7 @@ export default function Dailies() {
         user={data.user}
         lists={data.lists}
         quests={data.quests}
+        refreshData={refreshData}
       ></YourDailiesChecklist>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Drawer } from "antd";
-import { Quest, User } from "../dailieschecklist";
+import { Quest, User } from "../DailyChecklist/dailieschecklist";
 
 import styles from "../../pages/index.module.css";
 import { CloseOutlined } from "@ant-design/icons";
