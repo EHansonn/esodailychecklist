@@ -1,6 +1,7 @@
-import { Session } from "next-auth";
+import { getServerSession, Session } from "next-auth";
 import prisma from "../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { authOptions } from "../auth/[...nextauth]";
 
 export async function getData(session: Session) {
   if (!session) {
@@ -101,6 +102,20 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  res.status(401);
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    res.status(401);
+    res.end();
+    return;
+  }
+  try {
+    const data = await getData(session);
+    res.send(data);
+    res.status(201);
+  } catch (e) {
+    res.send({});
+    res.status(501);
+  }
+
   res.end();
 }

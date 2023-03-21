@@ -1,390 +1,105 @@
-import { NextPage } from "next";
 import List, { ListProps } from "../components/list/List";
-import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
-import { authOptions } from "./api/auth/[...nextauth]";
-import prisma from "../lib/prisma";
-import Listmodal from "../components/list/Listmodal";
-import { Button, Radio, RadioChangeEvent, Select, Space } from "antd";
+import { Button, Spin } from "antd";
 import Layout from "../components/layout";
-import QuestCategory from "../components/quests/QuestCategory";
 import { signIn, signOut } from "next-auth/react";
-import moment from "moment";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import YourDailiesHeader from "../components/YourDailiesHeader";
-import { getData } from "./api/user";
-import Footer from "../components/footer";
-export type User = {
-  // id: string;
-  name: string;
-  createdAt: string;
-  checkedTasks?: string;
-  characters?: Character[];
-  email: string;
-};
+import YourDailiesChecklist, { Props } from "../components/dailieschecklist";
+import { LoadingOutlined } from "@ant-design/icons";
 
-export type Quest = {
-  value: string;
-  category?: string;
-  optionalTitle: string | null;
-  description?: string;
-  repeatable?: string;
-  location?: string;
-  questGiver?: string;
-  uespLink?: string;
-  reward?: string;
-};
-
-interface Props {
-  user: User;
-  lists?: ListProps[];
-  error?: string;
-  quests?: Quest[];
-}
-
-export type Character = {
-  value: string;
-  name: string;
-  owner: User;
-  questsOnCharacter?: QuestsOnCharacter[];
-};
-
-export type QuestsOnCharacter = {
-  character: User;
-  quest: Quest;
-  characterId: string;
-  questName: string;
-};
-
-const YourDailies: NextPage<Props> = ({ user, lists, quests }) => {
+export default function Dailies() {
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+  const [data, setData] = useState<Props>();
+  const [isLoading, setLoading] = useState(false);
   const { data: session, status } = useSession();
-  const [currentCharacter, selectCurrentCharacter] = useState(
-    user.characters![0]
-  );
 
-  const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
-  //Display the UTC reset time in the users own time zone
-  const [time, setTime] = useState("00:00:00");
   useEffect(() => {
-    let utcTimeDaily = "2023-03-07 07:00:00";
-    let localDailyReset = moment.utc(utcTimeDaily).local().format("HH:mm:ss");
-    setTime(localDailyReset);
-  }, []);
-
-  //Dummy listprops to display all quests
-  const defaultList: ListProps = {
-    tasks: undefined,
-    id: "Default",
-    title: "Default List",
-    owner: null,
-    content: null,
-    userId: "",
-  };
-  //Categories for the possible quests. Hardcoded for now...
-  let categories = [
-    "Weekly Tasks and Trials",
-    "Daily Tasks",
-    "Craglorn Quests",
-    "PvP Quests",
-    "Imperial City Quests",
-    "Guild Daily Quests",
-    "Wrothgar Quests",
-    "Thieves Guild Quests",
-    "Gold Coast Quests",
-    "Vvardenfell Quests",
-    "Clockwork City Quests",
-    "Summerset Quests",
-    "Murkmire Quests",
-    "Elsweyr Quests",
-    "Dragonhold Quests",
-    "Western Skyrim Quests",
-    "The Reach Quests",
-    "Blackwood Quests",
-    "Deadlands Quests",
-    "High Isle Quests",
-    "Galen Quests",
-    "Cyrodiil Settlement Quests",
-    "Miscellaneous",
-  ];
-
-  const [categoriesToDisplay, setCategoriesToDisplay] = useState(categories);
-  const [questsToDisplay, setQuestsToDisplay] = useState(quests);
-
-  const characterOptions = user.characters?.map((character) => ({
-    value: character.value,
-    label: character.name,
-  }));
-  //Adding the users lists to the list selector dropdown
-  const listOptions = lists?.map((list) => ({
-    value: list.title,
-    label: list.title,
-    key: list.id,
-  }));
-  listOptions?.unshift({
-    value: defaultList.title,
-    label: "Default List",
-    key: "default",
-  });
-
-  //Setting last selected character on page reload
-  const [characterSelectedValue, setCharacterSelectedValue] =
-    useState("Character Name");
-  useEffect(() => {
-    if (user.characters) {
-      if (user.characters.length > 0) {
-        setCharacterSelectedValue(user.characters![0].name);
+    setData(undefined);
+    if (session) {
+      setLoading(true);
+      try {
+        fetch("/api/user")
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data.props);
+            setLoading(false);
+          });
+      } catch {
+        setData(undefined);
+        setLoading(false);
       }
     }
-  }, []);
-
-  useEffect(() => {
-    if (user.characters?.length === 0) {
-    } else {
-      if (localStorage.getItem("character") === null) {
-      } else {
-        const localStorageChar = localStorage.getItem("character");
-        user.characters?.forEach((character) => {
-          if (character.value === localStorageChar) {
-            handleChangeCharacter(localStorageChar!);
-            setCharacterSelectedValue(localStorageChar!);
-          }
-        });
-      }
-    }
-  }, []);
-
-  //Setting the current list to the last selected one if it exists on page reload
-  const [listSelectedValue, setListSelectedValue] = useState("Default List");
-  useEffect(() => {
-    if (localStorage.getItem("list") === null) {
-    } else {
-      const localStorageList = localStorage.getItem("list");
-      lists?.forEach((list) => {
-        if (list.title === localStorageList) {
-          handleChange(localStorageList!);
-          setListSelectedValue(localStorageList!);
-        }
-      });
-    }
-  }, []);
-
-  //Filtering the quests to display in a custom list. Ignore my poor variable names :)
-  const handleChange = (value: string) => {
-    setListSelectedValue(value);
-    localStorage.removeItem("list");
-    localStorage.setItem("list", value);
-    if (value === "Default List") {
-      setQuestsToDisplay(quests);
-      setCategoriesToDisplay(categories);
-    } else {
-      const listfinder = lists!.filter(function (el) {
-        return el.title === value;
-      });
-      const questz = listfinder![0].tasks!.map((e) => {
-        return e.value;
-      });
-      const tester = quests!.filter(function (el) {
-        if (questz.includes(el.value)) return el.value;
-      });
-      setQuestsToDisplay(tester);
-
-      let questCats = listfinder![0].tasks!.map((e) => {
-        return e.category;
-      });
-      let unique = questCats.filter(function (elem, index, self) {
-        return index === self.indexOf(elem);
-      });
-      //@ts-ignore
-      setCategoriesToDisplay(unique);
-    }
-  };
-  useEffect(() => {
-    //console.log(categoriesToDisplay);
-  }, [categoriesToDisplay]);
-
-  const handleChangeCharacter = (value: string) => {
-    setCharacterSelectedValue(value);
-    localStorage.removeItem("character");
-    localStorage.setItem("character", value);
-
-    const selectedChar = user.characters!.filter(function (el, index) {
-      if (el.value === value) {
-        setCurrentCharacterIndex(index);
-      }
-      return el.value === value;
-    });
-
-    selectCurrentCharacter(selectedChar[0]);
-  };
-
-  //Filter for daily or weekly quests
-  const [filter, setFilter] = useState("All Quests");
-  const handleFilterChange = ({ target: { value } }: RadioChangeEvent) => {
-    setFilter(value);
-  };
+  }, [, session]);
 
   if (!session) {
     return (
-      <Layout>
-        <YourDailiesHeader></YourDailiesHeader>
-        {status === "loading" && <div>loading</div>}
-        {status === "unauthenticated" && (
-          <div className="content-center text-center">
-            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
-              Please sign in to view your daily checklist
-            </div>
-            <Button
-              type="primary"
-              onClick={(e) => {
-                signIn();
-              }}
-            >
-              Sign In
-            </Button>
-          </div>
-        )}
-      </Layout>
-    );
-  }
-  if (session) {
-    if (user.characters?.length === 0) {
-      return (
-        <Layout>
-          <YourDailiesHeader></YourDailiesHeader>
-          <div className="content-center text-center">
-            <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
-              Please create a character on your profile!
-            </div>
-            <Link href={"/profile"}>
-              <Button type="primary">Create a Character</Button>
-            </Link>
-          </div>
-        </Layout>
-      );
-    }
-
-    return (
       <>
-        <Layout>
-          <YourDailiesHeader></YourDailiesHeader>
-          <div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
-            <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
-              <div className="text-slate-300 pb-2 text-center ">
-                {`Daily quests reset at ${time} each day`}
+        <YourDailiesHeader></YourDailiesHeader>
+        {status === "loading" && (
+          <Layout>
+            <YourDailiesHeader></YourDailiesHeader>
+            <div className="content-center text-center">
+              <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+                Loading user...
               </div>
-              <div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-36 md:pb-0 ">
-                {`Weekly quests reset at ${time} on monday`}
-              </div>
+              <Spin
+                className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
+                indicator={antIcon}
+              />
             </div>
-
-            <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-              <div
-                className={`w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1   `}
+          </Layout>
+        )}
+        {status === "unauthenticated" && (
+          <Layout>
+            <div className="content-center text-center">
+              <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+                Please sign in to view your daily checklist
+              </div>
+              <Button
+                type="primary"
+                onClick={(e) => {
+                  signIn();
+                }}
               >
-                {/* Displaying Quests */}
-
-                {categories.map((category) => (
-                  <QuestCategory
-                    key={category}
-                    quests={quests?.filter(function (el) {
-                      return el.category === category;
-                    })}
-                    name={category}
-                    user={user}
-                    character={currentCharacter}
-                    currindex={currentCharacterIndex}
-                    categoriesToDisplay={categoriesToDisplay}
-                    questsToDisplay={questsToDisplay!}
-                    filter={filter}
-                  ></QuestCategory>
-                ))}
-              </div>
-
-              <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  ">
-                <div className="w-full flex justify-center absolute -top-32  md:relative md:top-0 ">
-                  <Radio.Group
-                    options={[
-                      { value: "All Quests", label: "All Quests" },
-                      { value: "daily", label: "Daily Quests" },
-                      { value: "weekly", label: "Weekly Quests" },
-                    ]}
-                    onChange={handleFilterChange}
-                    value={filter}
-                    optionType="button"
-                    buttonStyle="solid"
-                  />
-                </div>
-
-                <Space
-                  direction="vertical"
-                  key="test2"
-                  wrap
-                  style={{ width: "100%" }}
-                  className="absolute -top-24 md:relative md:top-0   "
-                >
-                  <Select
-                    className=""
-                    defaultValue={"Default List"}
-                    style={{ width: "100%" }}
-                    value={listSelectedValue}
-                    onSelect={handleChange}
-                    options={listOptions}
-                  />
-                </Space>
-                <Space
-                  direction="vertical"
-                  key="test233"
-                  wrap
-                  style={{ width: "100%" }}
-                  className="absolute -top-14 md:relative md:top-0   "
-                >
-                  <Select
-                    className=""
-                    defaultValue={user.characters![0].name}
-                    value={characterSelectedValue}
-                    style={{ width: "100%" }}
-                    onSelect={handleChangeCharacter}
-                    options={characterOptions}
-                  />
-                </Space>
-                <Listmodal quests={quests} categories={categories}></Listmodal>
-                {lists?.map((list: any) => (
-                  <div
-                    className="bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
-                  "
-                    key={list.id}
-                  >
-                    <List user={user} list={list}></List>
-                  </div>
-                ))}
-              </div>
+                Sign In
+              </Button>
             </div>
-          </div>
-        </Layout>
+          </Layout>
+        )}
       </>
     );
   }
-  return <div>access denied</div>;
-};
 
-export async function getServerSideProps<Props>(context: any) {
-  context.res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=1800, stale-while-revalidate=86400"
+  if (isLoading)
+    return (
+      <Layout>
+        <YourDailiesHeader></YourDailiesHeader>
+        <div className="content-center text-center">
+          <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+            Loading checklist...
+          </div>
+          <Spin
+            className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
+            indicator={antIcon}
+          />
+        </div>
+      </Layout>
+    );
+  if (!data)
+    return (
+      <Layout>
+        <p>No profile data. Something went wrong...</p>
+      </Layout>
+    );
+
+  return (
+    <div>
+      <YourDailiesChecklist
+        user={data.user}
+        lists={data.lists}
+        quests={data.quests}
+      ></YourDailiesChecklist>
+    </div>
   );
-  const session = await getServerSession(context.req, context.res, authOptions);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/api/auth/signin?callbackUrl=/yourdailies",
-        permanent: false,
-      },
-    };
-  }
-  const userData = await getData(session);
-  return userData;
 }
-
-export default YourDailies;
-//JSON.parse(JSON.stringify(u))

@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User } from "../../yourdailies";
+import { User } from "../../../components/dailieschecklist";
 
 export interface ListBody {
   title: string;

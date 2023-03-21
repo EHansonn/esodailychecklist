@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../../pages/yourdailies";
+import { User } from "../dailieschecklist";
 import Router from "next/router";
 import { Button, Form, Input, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";

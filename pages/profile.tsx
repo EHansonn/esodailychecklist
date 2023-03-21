@@ -9,7 +9,7 @@ import Layout from "../components/layout";
 import Head from "next/head";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { Quest, User } from "./yourdailies";
+import { Quest, User } from "../components/dailieschecklist";
 import CharacterRow from "../components/character/CharacterRow";
 import CharacterModel from "../components/character/CharacterModel";
 import Link from "next/link";
@@ -22,7 +22,7 @@ interface Props {
   quests?: Quest[];
 }
 
-const YourDailies: NextPage<Props> = ({ user }) => {
+const ProfilePage: NextPage<Props> = ({ user }) => {
   const { data: session, status } = useSession();
   const [editMode, setEditMode] = useState(false);
   const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
@@ -172,5 +172,5 @@ export async function getServerSideProps<Props>(context: any) {
   return userData;
 }
 
-export default YourDailies;
+export default ProfilePage;
 //JSON.parse(JSON.stringify(u))

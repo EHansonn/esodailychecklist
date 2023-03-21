@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Quest, User } from "../../pages/yourdailies";
+import { Quest, User } from "../dailieschecklist";
 import Router from "next/router";
 import { Button } from "antd";
 import ListQuestAndRow from "./ListQuestsandmodal";

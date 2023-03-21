@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Character, Quest, User } from "../../pages/yourdailies";
+import { Character, Quest, User } from "../dailieschecklist";
 import QuestRow from "./QuestRow";
 
 const QuestCategory: React.FC<{
@@ -32,17 +32,13 @@ const QuestCategory: React.FC<{
   let containsDaily = false;
   let containsWeekly = false;
 
-  
-
   questsToDisplay?.forEach((quest) => {
-    if (quest.repeatable === "daily" && quest.category===name) {
+    if (quest.repeatable === "daily" && quest.category === name) {
       containsDaily = true;
     }
-    if (quest.repeatable === "weekly" && quest.category===name) {
+    if (quest.repeatable === "weekly" && quest.category === name) {
       containsWeekly = true;
     }
-
-
   });
 
   useEffect(() => {
@@ -58,7 +54,6 @@ const QuestCategory: React.FC<{
     if (filter === "weekly" && !containsWeekly) {
       setActive(false);
     }
-  
   }, [, name, categoriesToDisplay, categoriesz, filter]);
   return (
     <div

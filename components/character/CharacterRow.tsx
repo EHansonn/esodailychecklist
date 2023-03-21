@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Character, Quest, User } from "../../pages/yourdailies";
+import { Character, Quest, User } from "../dailieschecklist";
 import QuestRow from "../quests/QuestRow";
 import Router from "next/router";
 import styles from "../../pages/index.module.css";
