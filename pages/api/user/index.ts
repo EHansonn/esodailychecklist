@@ -5,8 +5,9 @@ import { authOptions } from "../auth/[...nextauth]";
 
 export async function getData(session: Session) {
   if (!session) {
-    return {};
+    return null;
   }
+
   try {
     const u = await prisma?.user.findUnique({
       where: { email: session?.user.email },
@@ -55,7 +56,7 @@ export async function getData(session: Session) {
     const availableQuests = await prisma?.quest.findMany({});
     if (u && lists && session) {
       return {
-        props: {
+        data: {
           session: session,
           lists: lists.map((list) => ({
             id: list.id,
@@ -93,7 +94,7 @@ export async function getData(session: Session) {
       };
     }
   } catch {
-    return {};
+    return null;
   }
 }
 
@@ -110,11 +111,16 @@ export default async function handle(
   }
   try {
     const data = await getData(session);
+    if (!data) {
+      throw new Error("something went wrong");
+    }
     res.send(data);
     res.status(201);
-  } catch (e) {
-    res.send({});
-    res.status(501);
+  } catch (error) {
+    res.status(500);
+    if (error instanceof Error) {
+      res.send(error.message);
+    }
   }
 
   res.end();

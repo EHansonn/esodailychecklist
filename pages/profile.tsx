@@ -11,44 +11,28 @@ import YourDailiesChecklist, {
 import { LoadingOutlined } from "@ant-design/icons";
 import Head from "next/head";
 import ProfileInfo from "../components/profile/ProfileInfo";
-
+import useSWR, { mutate } from "swr";
 export default function Dailies() {
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-  const [data, setData] = useState<Props>();
-  const [isLoading, setLoading] = useState(false);
   const { data: session, status } = useSession();
 
-  useEffect(() => {
-    setData(undefined);
-    if (session) {
-      setLoading(true);
-      try {
-        fetch("/api/user")
-          .then((res) => res.json())
-          .then((data) => {
-            setData(data.props);
-            setLoading(false);
-          });
-      } catch {
-        setData(undefined);
-        setLoading(false);
-      }
+  const fetcher = async () => {
+    const response = await fetch("/api/user");
+
+    if (!response.ok) {
+      const error = new Error("An error occurred while fetching the data.");
+      throw error;
     }
-  }, [, session]);
+
+    const data = await response.json();
+    return data.data;
+  };
+  const { data, error } = useSWR("api/user", fetcher, {
+    refreshInterval: 1000,
+  });
 
   const refreshData = () => {
-    if (session) {
-      try {
-        fetch("/api/user")
-          .then((res) => res.json())
-          .then((data) => {
-            setData(data.props);
-            setLoading(false);
-          });
-      } catch {
-        setData(undefined);
-      }
-    }
+    mutate("api/user");
   };
 
   if (!session) {
@@ -94,7 +78,29 @@ export default function Dailies() {
     );
   }
 
-  if (isLoading)
+  if (error)
+    return (
+      <Layout>
+        <div className="content-center text-center ">
+          <div className="text-offwhite-50 w-screen text-center  pt-5">
+            An error occured
+          </div>
+          <div className="text-offwhite-50 w-screen text-center pb-5 ">
+            Please sign in to view your profile
+          </div>
+          <Button
+            type="primary"
+            onClick={(e) => {
+              signIn();
+            }}
+          >
+            Sign In
+          </Button>
+        </div>
+      </Layout>
+    );
+
+  if (!data)
     return (
       <Layout>
         <div className="content-center text-center">
@@ -106,12 +112,6 @@ export default function Dailies() {
             indicator={antIcon}
           />
         </div>
-      </Layout>
-    );
-  if (!data)
-    return (
-      <Layout>
-        <p></p>
       </Layout>
     );
 
