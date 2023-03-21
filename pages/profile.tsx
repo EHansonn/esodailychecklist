@@ -28,12 +28,10 @@ export default function Dailies() {
     return data.data;
   };
   const { data, error } = useSWR("api/user", fetcher, {
-    refreshInterval: 1000,
+    refreshInterval: 10000,
   });
-
-  const refreshData = () => {
-    mutate("api/user");
-  };
+  //refreshed using refresh function from yourdailies.
+ 
 
   if (!session) {
     return (
@@ -121,7 +119,6 @@ export default function Dailies() {
         user={data.user}
         lists={data.lists}
         quests={data.quests}
-        refreshData={refreshData}
       ></ProfileInfo>
     </div>
   );

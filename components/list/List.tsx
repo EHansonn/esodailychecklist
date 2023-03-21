@@ -4,6 +4,7 @@ import Router from "next/router";
 import { Button } from "antd";
 import ListQuestAndRow from "./ListQuestsandmodal";
 import { CloseOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
+import { refreshData } from "../../pages/yourdailies";
 export type ListProps = {
   tasks: Quest[] | undefined;
   id: string;
@@ -32,8 +33,7 @@ export type QuestProps = {
 const List: React.FC<{
   list: ListProps;
   user: User;
-  refreshData: Function;
-}> = ({ list, user, refreshData }) => {
+}> = ({ list, user, }) => {
   const [active, setActive] = useState(false);
 
   const showDetails = () => {

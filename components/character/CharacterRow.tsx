@@ -5,14 +5,14 @@ import Router from "next/router";
 import styles from "../../pages/index.module.css";
 import { Button, Drawer } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
+import { refreshData } from "../../pages/yourdailies";
 
 const CharacterRow: React.FC<{
   character: Character;
   user: User;
   editMode: boolean;
   helperFunction: Function;
-  refreshData: Function;
-}> = ({ character, user, editMode, helperFunction, refreshData }) => {
+}> = ({ character, user, editMode, helperFunction }) => {
   //console.log(character);
   //console.log(character);
   return (

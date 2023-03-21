@@ -20,10 +20,9 @@ interface Props {
   lists?: ListProps[];
   error?: string;
   quests?: Quest[];
-  refreshData: Function;
 }
 
-const ProfileInfo: NextPage<Props> = ({ user, refreshData }) => {
+const ProfileInfo: NextPage<Props> = ({ user, }) => {
   const { data: session, status } = useSession();
   const [editMode, setEditMode] = useState(false);
   const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
@@ -92,7 +91,6 @@ const ProfileInfo: NextPage<Props> = ({ user, refreshData }) => {
                       key={character.value}
                       user={user}
                       character={character}
-                      refreshData={refreshData}
                     ></CharacterRow>
                   ))}
                 </div>
@@ -100,7 +98,6 @@ const ProfileInfo: NextPage<Props> = ({ user, refreshData }) => {
                   <CharacterModel
                     helperFunction={helperFunction}
                     user={user}
-                    refreshData={refreshData}
                   ></CharacterModel>
                 </div>
               </div>

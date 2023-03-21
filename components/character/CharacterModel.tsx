@@ -3,6 +3,7 @@ import { User } from "../DailyChecklist/dailieschecklist";
 import Router from "next/router";
 import { Button, Form, Input, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import { refreshData } from "../../pages/yourdailies";
 
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
@@ -11,13 +12,11 @@ const tailLayout = {
 interface Props {
   user?: User;
   helperFunction: Function;
-  refreshData: Function;
 }
 
 const CharacterModel: React.FC<Props> = ({
   user,
   helperFunction,
-  refreshData,
 }) => {
   const [form] = Form.useForm();
 

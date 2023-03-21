@@ -4,14 +4,14 @@ import { Button, Form, Input, Select, Tooltip } from "antd";
 import Router from "next/router";
 import { Quest } from "../DailyChecklist/dailieschecklist";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import { refreshData } from "../../pages/yourdailies";
 
 interface Props {
   quests?: Quest[];
   categories?: string[];
-  refreshData: Function;
 }
 
-const Listmodal: React.FC<Props> = ({ quests, categories, refreshData }) => {
+const Listmodal: React.FC<Props> = ({ quests, categories,}) => {
   const [form] = Form.useForm();
 
   const onReset = () => {
@@ -45,7 +45,8 @@ const Listmodal: React.FC<Props> = ({ quests, categories, refreshData }) => {
         }),
       }),
     });
-    refreshData();
+    refreshData()
+   // refreshData();
     onReset();
   };
 

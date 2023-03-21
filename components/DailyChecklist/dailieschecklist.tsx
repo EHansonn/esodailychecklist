@@ -41,7 +41,6 @@ export interface Props {
   lists?: ListProps[];
   error?: string;
   quests?: Quest[];
-  refreshData: Function;
 }
 
 export type Character = {
@@ -62,7 +61,6 @@ const YourDailiesChecklist: NextPage<Props> = ({
   user,
   lists,
   quests,
-  refreshData,
 }) => {
   const { data: session, status } = useSession();
   const [currentCharacter, selectCurrentCharacter] = useState(
@@ -339,7 +337,6 @@ const YourDailiesChecklist: NextPage<Props> = ({
                 <Listmodal
                   quests={quests}
                   categories={categories}
-                  refreshData={refreshData}
                 ></Listmodal>
                 {lists?.map((list: any) => (
                   <div
@@ -350,7 +347,6 @@ const YourDailiesChecklist: NextPage<Props> = ({
                     <List
                       user={user}
                       list={list}
-                      refreshData={refreshData}
                     ></List>
                   </div>
                 ))}

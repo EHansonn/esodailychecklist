@@ -10,6 +10,12 @@ import YourDailiesChecklist, {
 } from "../components/DailyChecklist/dailieschecklist";
 import { LoadingOutlined } from "@ant-design/icons";
 import useSWR, { mutate } from "swr";
+
+export const refreshData = () => {
+  //Triggers swr to refetch data
+  mutate("api/user");
+}
+
 export default function Dailies() {
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
   const { data: session, status } = useSession();
@@ -26,12 +32,9 @@ export default function Dailies() {
     return data.data;
   };
   const { data, error } = useSWR("api/user", fetcher, {
-    refreshInterval: 3000,
+    refreshInterval: 10000,
   });
 
-  const refreshData = () => {
-    mutate("api/user");
-  };
 
   if (!session) {
     return (
@@ -116,7 +119,6 @@ export default function Dailies() {
         user={data.user}
         lists={data.lists}
         quests={data.quests}
-        refreshData={refreshData}
       ></YourDailiesChecklist>
     </div>
   );
