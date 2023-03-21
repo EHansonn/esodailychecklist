@@ -257,7 +257,7 @@ const YourDailiesChecklist: NextPage<Props> = ({
         <Layout>
           <YourDailiesHeader></YourDailiesHeader>
           <div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
-            <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
+            <div className="flex flex-col md:flex-row  justify-center space-y-6 sm:space-y-0 ">
               <div className="text-slate-300 pb-2 text-center ">
                 {`Daily quests reset at ${time} each day`}
               </div>
@@ -268,7 +268,7 @@ const YourDailiesChecklist: NextPage<Props> = ({
 
             <div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
               <div
-                className={`w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1   `}
+                className={`w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-x-3 gap-y-16 sm:gap-y-3  auto-cols-1   `}
               >
                 {/* Displaying Quests */}
 
