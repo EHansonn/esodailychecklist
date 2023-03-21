@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Quest, User } from "../dailieschecklist";
+import { Quest, User } from "../DailyChecklist/dailieschecklist";
 import Router from "next/router";
 import { Button } from "antd";
 import ListQuestAndRow from "./ListQuestsandmodal";
@@ -29,7 +29,11 @@ export type QuestProps = {
   reward: string | null;
 };
 
-const List: React.FC<{ list: ListProps; user: User }> = ({ list, user }) => {
+const List: React.FC<{
+  list: ListProps;
+  user: User;
+  refreshData: Function;
+}> = ({ list, user, refreshData }) => {
   const [active, setActive] = useState(false);
 
   const showDetails = () => {
@@ -75,7 +79,7 @@ const List: React.FC<{ list: ListProps; user: User }> = ({ list, user }) => {
               await fetch(`/api/list/${list.id}`, {
                 method: "DELETE",
               });
-              Router.push("/yourdailies");
+              refreshData();
             }}
             style={{ color: "white" }}
           ></CloseOutlined>

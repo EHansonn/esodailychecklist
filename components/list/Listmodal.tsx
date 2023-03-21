@@ -1,16 +1,17 @@
-import { User } from "../dailieschecklist";
+import { User } from "../DailyChecklist/dailieschecklist";
 import React from "react";
 import { Button, Form, Input, Select, Tooltip } from "antd";
 import Router from "next/router";
-import { Quest } from "../dailieschecklist";
+import { Quest } from "../DailyChecklist/dailieschecklist";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 interface Props {
   quests?: Quest[];
   categories?: string[];
+  refreshData: Function;
 }
 
-const Listmodal: React.FC<Props> = ({ quests, categories }) => {
+const Listmodal: React.FC<Props> = ({ quests, categories, refreshData }) => {
   const [form] = Form.useForm();
 
   const onReset = () => {
@@ -44,7 +45,7 @@ const Listmodal: React.FC<Props> = ({ quests, categories }) => {
         }),
       }),
     });
-    Router.push("/yourdailies");
+    refreshData();
     onReset();
   };
 
