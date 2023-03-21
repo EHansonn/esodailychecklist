@@ -142,7 +142,7 @@ const YourDailiesChecklist: NextPage<Props> = ({
         setCharacterSelectedValue(user.characters![0].name);
       }
     }
-  }, []);
+  }, [, user, lists]);
 
   useEffect(() => {
     if (user.characters?.length === 0) {
@@ -158,7 +158,7 @@ const YourDailiesChecklist: NextPage<Props> = ({
         });
       }
     }
-  }, []);
+  }, [, user, lists]);
 
   //Setting the current list to the last selected one if it exists on page reload
   const [listSelectedValue, setListSelectedValue] = useState("Default List");
@@ -166,14 +166,19 @@ const YourDailiesChecklist: NextPage<Props> = ({
     if (localStorage.getItem("list") === null) {
     } else {
       const localStorageList = localStorage.getItem("list");
+      let exists = false;
       lists?.forEach((list) => {
         if (list.title === localStorageList) {
           handleChange(localStorageList!);
           setListSelectedValue(localStorageList!);
+          exists = true;
         }
       });
+      if (!exists) {
+        handleChange("Default List");
+      }
     }
-  }, []);
+  }, [, user, lists]);
 
   //Filtering the quests to display in a custom list. Ignore my poor variable names :)
   const handleChange = (value: string) => {

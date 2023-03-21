@@ -106,7 +106,7 @@ export default function Dailies() {
   if (!data)
     return (
       <Layout>
-        <p>No user data. Something went wrong...</p>
+        <p></p>
       </Layout>
     );
 

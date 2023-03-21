@@ -53,29 +53,44 @@ export default function Dailies() {
 
   if (!session) {
     return (
-      <Layout>
+      <>
         <Head>
           <title>Please Sign In </title>
           <meta name="ESO Daily Checklist - ESO ToDO List" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        {status === "loading" && <div>loading</div>}
-        {status === "unauthenticated" && (
-          <div className="content-center text-center">
-            <div className="text-white w-screen text-center pb-5 pt-5">
-              Please sign in to view your profile
+        {status === "loading" && (
+          <Layout>
+            <YourDailiesHeader></YourDailiesHeader>
+            <div className="content-center text-center">
+              <div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+                Loading user...
+              </div>
+              <Spin
+                className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
+                indicator={antIcon}
+              />
             </div>
-            <Button
-              type="primary"
-              onClick={(e) => {
-                signIn();
-              }}
-            >
-              Sign In
-            </Button>
-          </div>
+          </Layout>
         )}
-      </Layout>
+        {status === "unauthenticated" && (
+          <Layout>
+            <div className="content-center text-center">
+              <div className="text-white w-screen text-center pb-5 pt-5">
+                Please sign in to view your profile
+              </div>
+              <Button
+                type="primary"
+                onClick={(e) => {
+                  signIn();
+                }}
+              >
+                Sign In
+              </Button>
+            </div>
+          </Layout>
+        )}
+      </>
     );
   }
 
@@ -96,7 +111,7 @@ export default function Dailies() {
   if (!data)
     return (
       <Layout>
-        <p>No profile data. Something went wrong...</p>
+        <p></p>
       </Layout>
     );
 

@@ -38,33 +38,7 @@ const ProfileInfo: NextPage<Props> = ({ user, refreshData }) => {
     });
   };
 
-  if (!session) {
-    return (
-      <Layout>
-        <Head>
-          <title>Please Sign In </title>
-          <meta name="ESO Daily Checklist - ESO ToDO List" content="" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </Head>
-        {status === "loading" && <div>loading</div>}
-        {status === "unauthenticated" && (
-          <div className="content-center text-center">
-            <div className="text-white w-screen text-center pb-5 pt-5">
-              Please sign in to view your profile
-            </div>
-            <Button
-              type="primary"
-              onClick={(e) => {
-                signIn();
-              }}
-            >
-              Sign In
-            </Button>
-          </div>
-        )}
-      </Layout>
-    );
-  }
+  
 
   if (session) {
     return (
