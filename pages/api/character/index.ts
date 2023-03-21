@@ -32,7 +32,7 @@ export default async function handle(
       if (u?.Character.length) {
         if (u.Character.length > 17) {
           throw new Error(
-            "Too many characters. Max of 18. Delete some any try again."
+            "Too many characters. Max of 18. Delete some and try again."
           );
         }
       }

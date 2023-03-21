@@ -1,7 +1,7 @@
 import React from "react";
 import { User } from "../DailyChecklist/dailieschecklist";
 import Router from "next/router";
-import { Button, Form, Input, Tooltip } from "antd";
+import { Button, Form, Input, message, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { refreshData } from "../../pages/yourdailies";
 
@@ -32,9 +32,24 @@ const CharacterModel: React.FC<Props> = ({
         name: values.name,
       }),
     });
+    
+    if (response.ok === false) {
+      const msg = await response.text()
+      console.log(msg)
+      error(msg)
+    }
     helperFunction(1);
     refreshData();
     onReset();
+  };
+
+
+  const [messageApi, contextHolder] = message.useMessage();
+  const error = (message: string) => {
+    messageApi.open({
+      type: 'error',
+      content: message,
+    });
   };
 
   return (
@@ -46,6 +61,7 @@ const CharacterModel: React.FC<Props> = ({
       <div className="flex flex-row justify-center relative border-t-0 border-l-0  border-b-2 border-r-0  border-solid">
         <div className="text-center "></div>
       </div>
+      {contextHolder}
       <Form
         form={form}
         layout="vertical"

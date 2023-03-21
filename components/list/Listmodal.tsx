@@ -1,6 +1,6 @@
 import { User } from "../DailyChecklist/dailieschecklist";
 import React from "react";
-import { Button, Form, Input, Select, Tooltip } from "antd";
+import { Button, Form, Input, message, Select, Tooltip } from "antd";
 import Router from "next/router";
 import { Quest } from "../DailyChecklist/dailieschecklist";
 import { QuestionCircleOutlined } from "@ant-design/icons";
@@ -45,11 +45,24 @@ const Listmodal: React.FC<Props> = ({ quests, categories,}) => {
         }),
       }),
     });
+if (response.ok === false) {
+      const msg = await response.text()
+      console.log(msg)
+      error(msg)
+    }
+
+
     refreshData()
    // refreshData();
     onReset();
   };
-
+const [messageApi, contextHolder] = message.useMessage();
+  const error = (message: string) => {
+    messageApi.open({
+      type: 'error',
+      content: message,
+    });
+  };
   return (
     <div className="bg-slate-800   rounded-lg py-2 px-2 text-offwhite-50 ">
       <div className="flex flex-row justify-center relative">
@@ -58,6 +71,7 @@ const Listmodal: React.FC<Props> = ({ quests, categories,}) => {
           <QuestionCircleOutlined className="absolute top-0 right-0 transition ease-in-out delay-75 hover:scale-110 duration-100"></QuestionCircleOutlined>
         </Tooltip>
       </div>
+       {contextHolder}
       <Form
         form={form}
         layout="vertical"
