@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Character, Quest } from "../../yourdailies";
+import { Character, Quest } from "../../../components/dailieschecklist";
 
 export interface QuestsOnCharacterBody {
   character: Character;
@@ -47,7 +47,7 @@ export default async function handle(
 
       res.status(201);
     } catch (e) {
-      res.status(500)
+      res.status(500);
     }
   } else {
     res.status(401);

@@ -1,8 +1,8 @@
-import { User } from "../../pages/yourdailies";
+import { User } from "../dailieschecklist";
 import React from "react";
 import { Button, Form, Input, Select, Tooltip } from "antd";
 import Router from "next/router";
-import { Quest } from "../../pages/yourdailies";
+import { Quest } from "../dailieschecklist";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 
 interface Props {

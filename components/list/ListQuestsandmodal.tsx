@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Drawer } from "antd";
-import { Quest, User } from "../../pages/yourdailies";
+import { Quest, User } from "../dailieschecklist";
 
 import styles from "../../pages/index.module.css";
 import { CloseOutlined } from "@ant-design/icons";
@@ -37,7 +37,7 @@ const ListQuestAndRow: React.FC<{ quest: Quest }> = ({ quest }) => {
         </div>
       </div>
       <Drawer
-       closeIcon={<CloseOutlined style={{color: "white"}}></CloseOutlined>}
+        closeIcon={<CloseOutlined style={{ color: "white" }}></CloseOutlined>}
         style={{ backgroundColor: "#1e293b" }}
         className="text-offwhite-50"
         title={
