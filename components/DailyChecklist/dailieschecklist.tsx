@@ -289,7 +289,7 @@ const YourDailiesChecklist: NextPage<Props> = ({
                 ))}
               </div>
 
-              <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-4  ">
+              <div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-14  ">
                 <div className="w-full flex justify-center absolute -top-32  md:relative md:top-0 ">
                   <Radio.Group
                     options={[
