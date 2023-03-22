@@ -16,7 +16,7 @@ export default function Footer() {
             style={{ textDecoration: "none" }}
             href={"https://github.com/EHansonn/esodailychecklist"}
           >
-            <GithubOutlined className="teamSocialIcon text-3xl " />
+            <GithubOutlined className="teamSocialIcon text-3xl text-white" />
           </Link>
         </div>
       </div>
