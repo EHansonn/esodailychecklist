@@ -57,11 +57,7 @@ export type QuestsOnCharacter = {
   questName: string;
 };
 
-const YourDailiesChecklist: NextPage<Props> = ({
-  user,
-  lists,
-  quests,
-}) => {
+const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
   const { data: session, status } = useSession();
   const [currentCharacter, selectCurrentCharacter] = useState(
     user.characters![0]
@@ -334,18 +330,9 @@ const YourDailiesChecklist: NextPage<Props> = ({
                     options={characterOptions}
                   />
                 </Space>
-                <Listmodal
-                  quests={quests}
-                  categories={categories}
-                ></Listmodal>
+                <Listmodal quests={quests} categories={categories}></Listmodal>
                 {lists?.map((list: any) => (
-                 
-                    <List
-                    key={list.id}
-                      user={user}
-                      list={list}
-                    ></List>
-                  
+                  <List key={list.id} list={list}></List>
                 ))}
               </div>
             </div>
