@@ -45,16 +45,14 @@ const Listmodal: React.FC<Props> = ({ quests, categories,}) => {
         }),
       }),
     });
-if (response.ok === false) {
-      const msg = await response.text()
-      console.log(msg)
-      error(msg)
-    }
-
-
+      if (!response.ok) {
+        const msg = await response.text()
+        console.log(msg)
+        error(msg)
+      } else {
+        onReset()
+      }
     refreshData()
-   // refreshData();
-    onReset();
   };
 const [messageApi, contextHolder] = message.useMessage();
   const error = (message: string) => {
