@@ -61,7 +61,7 @@ const QuestCategory: React.FC<{
         active ? "" : "hidden"
       }`}
     >
-      <h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative truncate pl-2">
+      <h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative truncate pl-2 select-none">
         {name}
         <small className="absolute right-0 "></small>
       </h4>
