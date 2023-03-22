@@ -114,12 +114,13 @@ export default function Dailies() {
     );
 
   return (
-    <div>
+    <>
+     <YourDailiesHeader></YourDailiesHeader>
       <YourDailiesChecklist
         user={data.user}
         lists={data.lists}
         quests={data.quests}
       ></YourDailiesChecklist>
-    </div>
+    </>
   );
 }

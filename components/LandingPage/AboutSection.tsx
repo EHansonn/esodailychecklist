@@ -17,11 +17,11 @@ import { MutableRefObject, useRef } from "react";
  
 const AboutSection : React.FC<{innerRef:MutableRefObject<null | HTMLDivElement> }>= ({innerRef}) => {
 
-    return <div  ref={innerRef} className=" pt-20"><div className="relative pb-2 mb-[800px]  m-auto  rounded-lg backdrop-blur-md  bg-slate-800 brightness-90 text-offwhite-50 w-full text-center">
-    <h1 className="mt-0 mb-2 ">About</h1>
+    return <div  ref={innerRef} className=" pt-20 pb-20"><div className="relative pb-2   m-auto  rounded-lg backdrop-blur-md  bg-slate-800 brightness-90 text-offwhite-50 w-1/2 text-center">
+    <h1 className="mt-0 mb-2 pb-0 pt-2">About Us</h1>
     <div className="flex flex-col sm:flex-row ">
-    <p className="text-2xl text-center text-white pt-4 max-w-6xl m-auto">
-      About text here
+    <p className="text-xl text-center text-white  max-w-6xl m-auto">
+      ESO Daily Checklist is a small ToDo app created by a former ESO player who understands how hard keeping track of your dailies can be. While in-game addons can provide similar functionality, the online, cross-platoform nature of a web app allows you to more easily manage your dailies across multiple devices.
     </p>
     </div>
   </div></div>

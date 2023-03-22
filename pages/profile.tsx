@@ -114,12 +114,20 @@ export default function Dailies() {
     );
 
   return (
-    <div>
+    <>
+         <Head>
+          <title>Your Profile - ESO Daily Checklist</title>
+          <meta
+            name="description"
+            content="Keep track of the 100+ repeatable quests in the Elder Scrolls Online. Simply login with your google account, create one or more characters, and visit your daily checklist. There you can see every single possible repeatable task and quest in the game. You can check off the ones you've done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started right away on your tasks!"
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
       <ProfileInfo
         user={data.user}
         lists={data.lists}
         quests={data.quests}
       ></ProfileInfo>
-    </div>
+    </>
   );
 }

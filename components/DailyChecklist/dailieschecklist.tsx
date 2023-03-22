@@ -15,6 +15,7 @@ import Link from "next/link";
 import YourDailiesHeader from "./YourDailiesHeader";
 import { getData } from "../../pages/api/user";
 import Footer from "../footer";
+import Head from "next/head";
 export type User = {
   // id: string;
   name: string;
@@ -249,7 +250,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
     return (
       <>
         <Layout>
-          <YourDailiesHeader></YourDailiesHeader>
+      
           <div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
             <div className="flex flex-col lg:flex-row md:flex-row  justify-center">
               <div className="text-slate-300 pb-2 text-center ">
