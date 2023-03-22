@@ -14,7 +14,6 @@ import { LoadingOutlined } from "@ant-design/icons";
 export default function Header() {
   const { data: session, status } = useSession();
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-  const [currentSelected, setCurrentSelect] = useState("");
   const router = useRouter();
   const navigation = [
     {
@@ -28,7 +27,6 @@ export default function Header() {
       href: "/yourdailies",
       current: router.pathname == "/yourdailies" ? true : false,
     },
-   
   ];
 
   function classNames(...classes: any[]) {
@@ -52,55 +50,57 @@ export default function Header() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
-                <div className="flex"><div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="/logo.png"
-                    alt="ESO Daily Checklist"
-                  />
-                  <Link href="/">
+                <div className="flex">
+                  <div className="flex flex-shrink-0 items-center">
                     <img
-                      className="hidden h-8 w-auto lg:block"
+                      className="block h-8 w-auto lg:hidden"
                       src="/logo.png"
                       alt="ESO Daily Checklist"
                     />
-                  </Link>
-                </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {navigation.slice(1).map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
+                    <Link href="/">
+                      <img
+                        className="hidden h-8 w-auto lg:block"
+                        src="/logo.png"
+                        alt="ESO Daily Checklist"
+                      />
+                    </Link>
                   </div>
-                </div></div>
-                
+                  <div className="hidden sm:ml-6 sm:block">
+                    <div className="flex space-x-4">
+                      {navigation.slice(1).map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.current
+                              ? "bg-gray-900 text-white"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "rounded-md px-3 py-2 text-sm font-medium"
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                      <Link
-                        key={navigation[0].name}
-                        href={navigation[0].href}
-                        className={classNames(
-                          navigation[0].current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={navigation[0].current ? "page" : undefined}
-                      >
-                        {navigation[0].name}
-                      </Link>
+                    <Link
+                      key={navigation[0].name}
+                      href={navigation[0].href}
+                      className={classNames(
+                        navigation[0].current
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "rounded-md px-3 py-2 text-sm font-medium"
+                      )}
+                      aria-current={navigation[0].current ? "page" : undefined}
+                    >
+                      {navigation[0].name}
+                    </Link>
                   </div>
                 </div>
               </div>
