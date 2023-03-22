@@ -2,7 +2,7 @@ name: Trigger prisma daily reset on a CRON Schedule
 
 on:
   schedule:
-    # Runs "every day at 11 am utc (2am est)" (see https://crontab.guru)
+    # Runs "every day at 6 am utc (2am est)" (see https://crontab.guru)
     - cron: '0 6 * * *'
 
 
