@@ -17,12 +17,18 @@ export default function Header() {
   const [currentSelected, setCurrentSelect] = useState("");
   const router = useRouter();
   const navigation = [
+    {
+      name: "Profile",
+      href: "/profile",
+      current: router.pathname == "/profile" ? true : false,
+    },
     { name: "Home", href: "/", current: router.pathname == "/" ? true : false },
     {
       name: "Daily Checklist",
       href: "/yourdailies",
       current: router.pathname == "/yourdailies" ? true : false,
     },
+   
   ];
 
   function classNames(...classes: any[]) {
@@ -45,8 +51,8 @@ export default function Header() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
+                <div className="flex"><div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
                     src="/logo.png"
@@ -62,7 +68,7 @@ export default function Header() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation.slice(1).map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
@@ -77,6 +83,24 @@ export default function Header() {
                         {item.name}
                       </Link>
                     ))}
+                  </div>
+                </div></div>
+                
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                      <Link
+                        key={navigation[0].name}
+                        href={navigation[0].href}
+                        className={classNames(
+                          navigation[0].current
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        aria-current={navigation[0].current ? "page" : undefined}
+                      >
+                        {navigation[0].name}
+                      </Link>
                   </div>
                 </div>
               </div>
@@ -190,7 +214,7 @@ export default function Header() {
 
           <Disclosure.Panel className="sm:hidden ">
             <div className="space-y-1 px-2 pt-2  pb-3">
-              {navigation.map((item) => (
+              {navigation.slice(1).map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
