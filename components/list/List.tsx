@@ -35,15 +35,23 @@ const List: React.FC<{
   user: User;
 }> = ({ list, user, }) => {
   const [active, setActive] = useState(false);
-
+  const [deleteTransition, setDeleteTransition] = useState(false)
   const showDetails = () => {
     setActive((currVal) => {
       return !currVal;
     });
   };
 
+
+
+
   return (
-    <div className={`flex flex-col object-contain text-offwhite-50  `}>
+    <div
+    className={`bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
+    transition-opacity duration-100 ease-out  ${deleteTransition ? "opacity-0" : "opacity-100"}`}
+    
+  >
+    <div className={`flex flex-col object-contain text-offwhite-50 `}>
       <div
         className="flex justify-between cursor-pointer hover:bg-slate-600 "
         onClick={showDetails}
@@ -79,6 +87,7 @@ const List: React.FC<{
               await fetch(`/api/list/${list.id}`, {
                 method: "DELETE",
               });
+              setDeleteTransition(true)
               refreshData();
             }}
             style={{ color: "white" }}
@@ -99,6 +108,7 @@ const List: React.FC<{
           })}
         </div>
       </div>
+    </div>
     </div>
   );
 };

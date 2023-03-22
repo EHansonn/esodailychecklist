@@ -339,16 +339,13 @@ const YourDailiesChecklist: NextPage<Props> = ({
                   categories={categories}
                 ></Listmodal>
                 {lists?.map((list: any) => (
-                  <div
-                    className="bg-slate-800 justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
-                  "
-                    key={list.id}
-                  >
+                 
                     <List
+                    key={list.id}
                       user={user}
                       list={list}
                     ></List>
-                  </div>
+                  
                 ))}
               </div>
             </div>
