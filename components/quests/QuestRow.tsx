@@ -125,7 +125,7 @@ const QuestRow: React.FC<{
           className="flex-1 flex-row flex justify-between"
           onClick={showDrawer}
         >
-          <h3 className="pl-2 m-0  ">
+          <h3 className="pl-2 m-0 select-none ">
             {quest.optionalTitle ? quest.optionalTitle : quest?.value}
           </h3>
           <div className={`pl-2 m-0 pr-5 text-base   `}>
