@@ -22,7 +22,7 @@ interface Props {
   quests?: Quest[];
 }
 
-const ProfileInfo: NextPage<Props> = ({ user, }) => {
+const ProfileInfo: NextPage<Props> = ({ user }) => {
   const { data: session, status } = useSession();
   const [editMode, setEditMode] = useState(false);
   const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
@@ -101,7 +101,7 @@ const ProfileInfo: NextPage<Props> = ({ user, }) => {
                 href={"/yourdailies"}
               >
                 <Button key="test" type="primary">
-                  View your daily checklist
+                  View Your Daily Checklist
                 </Button>
               </Link>
             </div>
