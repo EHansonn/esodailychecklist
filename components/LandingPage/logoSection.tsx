@@ -22,15 +22,11 @@ const LogoSection: React.FC<{ scrollToFunction: Function }> = ({ scrollToFunctio
 			{status === "unauthenticated" && (
 				<div className="content-center text-center text-white pt-2 flex flex-row justify-center space-x-4 ">
 					<div className="text-white text-center pt-2">
-						<Button
-							className="w-40"
-							type="primary"
-							onClick={(e) => {
-								signIn();
-							}}
-						>
-							Sign In
-						</Button>
+						<Link className="text-white text-center pt-2" href="/yourdailies">
+							<Button className="w-40" type="primary">
+								Your Daily Checklist
+							</Button>
+						</Link>
 					</div>
 					<div className="text-white text-center   pt-2">
 						<Button
