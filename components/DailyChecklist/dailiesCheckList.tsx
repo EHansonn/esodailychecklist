@@ -9,6 +9,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import YourDailiesHeader from "./yourDailiesHeader";
+import { refreshData } from "../../pages/yourdailies";
 
 export type User = {
 	// id: string;
@@ -156,6 +157,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
 		setListSelectedValue(value);
 		localStorage.removeItem("list");
 		localStorage.setItem("list", value);
+
 		if (value === "Default List") {
 			setQuestsToDisplay(quests);
 			setCategoriesToDisplay(categories);
@@ -183,6 +185,15 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
 		}
 	};
 
+	useEffect(() => {
+		let exists = lists?.some((list) => list.title === listSelectedValue);
+		if (listSelectedValue === "Default List") {
+			exists = true;
+		}
+		if (!exists) {
+			handleListChange("Default List");
+		}
+	}, [lists]);
 	//Changes the selected character based of the characters name.
 	const handleChangeCharacter = (value: string) => {
 		setCharacterSelectedValue(value);
