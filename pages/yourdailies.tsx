@@ -80,21 +80,22 @@ export default function Dailies() {
 				{status === "unauthenticated" && (
 					<>
 						<Layout>
+							<div className="content-center text-center">
+								<div className="text-white text-center pb-5 pt-5">{`Please sign in to view your own personalized checklist`}</div>
+								<Button
+									className="w-40"
+									type="primary"
+									onClick={(e) => {
+										signIn();
+									}}
+								>
+									Sign In
+								</Button>
+							</div>
 							<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
 								<div className="flex flex-col lg:flex-row md:flex-row  justify-center"></div>
 								<div className="content-center text-center ">
-									<h2 className="text-white text-center pb-5 pt-5">{`Please sign in to view your own personalized checklist`}</h2>
-									<Button
-										className="w-40"
-										type="primary"
-										onClick={(e) => {
-											signIn();
-										}}
-									>
-										Sign In
-									</Button>
-
-									<h3 className="text-white text-center pb-5 pt-5">Possible Dailies Quests</h3>
+									<h2 className="text-white text-center pb-5 pt-5">Possible Dailies Quests</h2>
 								</div>
 								{questsUnauth && (
 									<div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
