@@ -53,6 +53,7 @@ export default function Dailies() {
 				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</Head>
+
 			<ProfileInfo user={data.user} lists={data.lists} quests={data.quests}></ProfileInfo>
 		</>
 	);
