@@ -39,7 +39,6 @@ export default function Dailies() {
 			const response = await fetch("/api/quest");
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
 				setQuestsUnauth(data);
 			}
 		};
