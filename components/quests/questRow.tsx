@@ -134,21 +134,24 @@ const QuestRow: React.FC<{
 						<Checkbox
 							checked={checked}
 							onChange={async (e: CheckboxChangeEvent) => {
-								setChecked(e.target.checked);
-								const res = await fetch(`/api/QuestsOnCharacter/`, {
-									method: "PUT",
-									headers: { "Content-Type": "application/json" },
-									body: JSON.stringify({
-										quest: quest,
-										trueorfalse: e.target.checked,
-										character: selectedCharacter,
-									}),
-								});
-								if (res.ok) {
-									updateHandler(e.target.checked);
-									setBgColor("#ffffff");
-								} else {
-									console.log(res.status);
+								try {
+									setChecked(e.target.checked);
+									const res = await fetch(`/api/QuestsOnCharacter/`, {
+										method: "PUT",
+										headers: { "Content-Type": "application/json" },
+										body: JSON.stringify({
+											quest: quest,
+											trueorfalse: e.target.checked,
+											character: selectedCharacter,
+										}),
+									});
+									if (res.ok) {
+										updateHandler(e.target.checked);
+										setBgColor("#ffffff");
+									} else {
+										throw new Error("Something went wrong");
+									}
+								} catch (error) {
 									setBgColor("#f5222d");
 									setChecked(false);
 								}
