@@ -85,6 +85,7 @@ export default function Dailies() {
 								<div className="content-center text-center ">
 									<h2 className="text-white text-center pb-5 pt-5">{`Please sign in to view your own personalized checklist`}</h2>
 									<Button
+										className="w-40"
 										type="primary"
 										onClick={(e) => {
 											signIn();
