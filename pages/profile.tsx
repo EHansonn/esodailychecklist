@@ -31,6 +31,7 @@ export default function Dailies() {
 					<title>Please Sign In</title>
 					<meta name="ESO Daily Checklist - ESO ToDO List" content="" />
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
+					<link rel="icon" href="/favicon.ico"></link>
 				</Head>
 				{status === "loading" && <LoadingSpinnerComponent text={"user"} />}
 				{status === "unauthenticated" && <SignInComponent text={"profile"} />}
