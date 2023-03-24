@@ -95,7 +95,7 @@ export default function Dailies() {
 							<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
 								<div className="flex flex-col lg:flex-row md:flex-row  justify-center"></div>
 								<div className="content-center text-center ">
-									<h2 className="text-white text-center pb-5 pt-5">Possible Dailies Quests</h2>
+									<h2 className="text-white text-center pb-5 pt-5">Possible Dailies</h2>
 								</div>
 								{questsUnauth && (
 									<div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
