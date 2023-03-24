@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Checkbox, ConfigProvider, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
-import { Character, Quest, User } from "../DailyChecklist/dailieschecklist";
+import { Character, Quest, User } from "../DailyChecklist/dailiesCheckList";
 import { CloseOutlined } from "@ant-design/icons";
 export type questProps = {
 	quest: Quest;

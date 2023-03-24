@@ -1,14 +1,14 @@
-import List, { ListProps } from "../components/list/List";
+import List, { ListProps } from "../components/list/list";
 import { useSession } from "next-auth/react";
 import { Button, Spin } from "antd";
 import Layout from "../components/layout";
 import { signIn, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
-import YourDailiesHeader from "../components/DailyChecklist/YourDailiesHeader";
-import YourDailiesChecklist, { Props } from "../components/DailyChecklist/dailieschecklist";
+import YourDailiesHeader from "../components/DailyChecklist/yourDailiesHeader";
+import YourDailiesChecklist, { Props } from "../components/DailyChecklist/dailiesCheckList";
 import { LoadingOutlined } from "@ant-design/icons";
 import Head from "next/head";
-import ProfileInfo from "../components/profile/ProfileInfo";
+import ProfileInfo from "../components/profile/profileInfo";
 import useSWR, { mutate } from "swr";
 export default function Dailies() {
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;

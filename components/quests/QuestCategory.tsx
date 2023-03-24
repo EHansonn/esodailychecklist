@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Character, Quest, User } from "../DailyChecklist/dailieschecklist";
-import QuestRow from "./QuestRow";
+import { Character, Quest, User } from "../DailyChecklist/dailiesCheckList";
+import QuestRow from "./questRow";
 
 const QuestCategory: React.FC<{
 	quests: Quest[] | undefined;

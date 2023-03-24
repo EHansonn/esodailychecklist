@@ -1,14 +1,14 @@
 import { NextPage } from "next";
-import List, { ListProps } from "../list/List";
+import List, { ListProps } from "../list/list";
 import { useSession } from "next-auth/react";
-import Listmodal from "../list/Listmodal";
+import Listmodal from "../list/listModal";
 import { Button, Radio, RadioChangeEvent, Select, Space } from "antd";
 import Layout from "../layout";
-import QuestCategory from "../quests/QuestCategory";
+import QuestCategory from "../quests/questCategory";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import YourDailiesHeader from "./YourDailiesHeader";
+import YourDailiesHeader from "./yourDailiesHeader";
 
 export type User = {
 	// id: string;

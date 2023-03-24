@@ -1,12 +1,12 @@
 import { NextPage } from "next";
-import { ListProps } from "../list/List";
+import { ListProps } from "../list/list";
 import { useSession } from "next-auth/react";
 import { Alert, Button } from "antd";
 import Layout from "../layout";
 import { useState } from "react";
-import { Quest, User } from "../DailyChecklist/dailieschecklist";
-import CharacterRow from "../character/CharacterRow";
-import CharacterModel from "../character/CharacterModel";
+import { Quest, User } from "../DailyChecklist/dailiesCheckList";
+import CharacterRow from "../character/characterRow";
+import CharacterModel from "../character/characterModel";
 import Link from "next/link";
 import { EditOutlined } from "@ant-design/icons";
 interface Props {

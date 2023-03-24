@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form, Input, message, Select, Tooltip } from "antd";
-import { Quest } from "../DailyChecklist/dailieschecklist";
+import { Quest } from "../DailyChecklist/dailiesCheckList";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { refreshData } from "../../pages/yourdailies";
 

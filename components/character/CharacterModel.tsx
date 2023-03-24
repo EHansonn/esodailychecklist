@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../DailyChecklist/dailieschecklist";
+import { User } from "../DailyChecklist/dailiesCheckList";
 import { Button, Form, Input, message, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { refreshData } from "../../pages/yourdailies";

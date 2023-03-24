@@ -1,11 +1,9 @@
-import List, { ListProps } from "../components/list/List";
 import { useSession } from "next-auth/react";
 import { Button, Spin } from "antd";
 import Layout from "../components/layout";
 import { signIn, signOut } from "next-auth/react";
-import { useEffect, useState } from "react";
-import YourDailiesHeader from "../components/DailyChecklist/YourDailiesHeader";
-import YourDailiesChecklist, { Props } from "../components/DailyChecklist/dailieschecklist";
+import YourDailiesHeader from "../components/DailyChecklist/yourDailiesHeader";
+import YourDailiesChecklist from "../components/DailyChecklist/dailiesCheckList";
 import { LoadingOutlined } from "@ant-design/icons";
 import useSWR, { mutate } from "swr";
 

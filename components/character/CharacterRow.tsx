@@ -1,5 +1,5 @@
 import React from "react";
-import { Character, User } from "../DailyChecklist/dailieschecklist";
+import { Character, User } from "../DailyChecklist/dailiesCheckList";
 import { DeleteOutlined } from "@ant-design/icons";
 import { refreshData } from "../../pages/yourdailies";
 

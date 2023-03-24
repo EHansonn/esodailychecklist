@@ -6,9 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import Header from "../components/header";
-import AboutSection from "../components/LandingPage/AboutSection";
-import FeaturesSection from "../components/LandingPage/FeaturesSection";
-import LogoSection from "../components/LandingPage/LogoSection";
+import AboutSection from "../components/LandingPage/aboutSection";
+import FeaturesSection from "../components/LandingPage/featuresSection";
+import LogoSection from "../components/LandingPage/logoSection";
 import Layout from "../components/layout";
 import styles from "./index.module.css";
 
