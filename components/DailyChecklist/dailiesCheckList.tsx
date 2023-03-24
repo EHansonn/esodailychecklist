@@ -111,7 +111,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
 		key: "default",
 	});
 
-	const [characterSelectedValue, setCharacterSelectedValue] = useState("Character Name");
+	const [characterSelectedValue, setCharacterSelectedValue] = useState(user.characters![0].name);
 
 	//Setting the character to the first one on your account, or their last selected one if it exists
 	useEffect(() => {
@@ -214,22 +214,6 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
 	};
 
 	if (session) {
-		if (user.characters?.length === 0) {
-			return (
-				<Layout>
-					<YourDailiesHeader></YourDailiesHeader>
-					<div className="content-center text-center">
-						<div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
-							Please create a character on your profile!
-						</div>
-						<Link href={"/profile"}>
-							<Button type="primary">Create a Character</Button>
-						</Link>
-					</div>
-				</Layout>
-			);
-		}
-
 		return (
 			<>
 				<Layout>

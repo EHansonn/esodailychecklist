@@ -9,6 +9,7 @@ import Layout from "../components/layout";
 import UnauthQuestCategory from "../components/quests/unauthQuestCategory";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 export const refreshData = () => {
 	//Triggers swr to refetch data
 	mutate("api/user");
@@ -125,6 +126,22 @@ export default function Dailies() {
 	if (error) return <LoadingError text={"daily checklist"} />;
 
 	if (!data) return <LoadingSpinnerComponent text={"checklist"} />;
+
+	if (!data.user.characters[0]) {
+		return (
+			<Layout>
+				<YourDailiesHeader></YourDailiesHeader>
+				<div className="content-center text-center">
+					<div className="text-offwhite-50 w-screen text-center pb-5 pt-5">
+						Please create a character on your profile!
+					</div>
+					<Link href={"/profile"}>
+						<Button type="primary">Create a Character</Button>
+					</Link>
+				</div>
+			</Layout>
+		);
+	}
 
 	return (
 		<>
