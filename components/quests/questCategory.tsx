@@ -35,6 +35,15 @@ const QuestCategory: React.FC<{
 			}
 		});
 
+		// //console.log(categoriesToDisplay);
+		// if (category === "Custom Quests") {
+		// 	console.log("hii");
+		// 	console.log(quests);
+		// }
+		if (quests?.length === 0) {
+			setActive(false);
+		}
+
 		if (filter === "daily" && !containsDaily) {
 			setActive(false);
 		}

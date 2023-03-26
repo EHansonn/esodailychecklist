@@ -11,9 +11,6 @@ export async function getData(session: Session) {
 	try {
 		const u = await prisma?.user.findUnique({
 			where: { email: session?.user.email },
-			include: {
-				QuestsOnUser: true,
-			},
 		});
 
 		const c = await prisma?.character.findMany({
@@ -52,8 +49,12 @@ export async function getData(session: Session) {
 				},
 			},
 		});
+		const customQuests = await prisma?.quest.findMany({
+			where: {
+				userEmail: session.user.email,
+			},
+		});
 
-		const availableQuests = await prisma?.quest.findMany({});
 		if (u && lists && session) {
 			return {
 				data: {
@@ -84,10 +85,9 @@ export async function getData(session: Session) {
 						name: u.name,
 						createdAt: u.createdAt.toString(),
 						checkedTasks: u.checkedTasks,
-						questsOnUser: JSON.parse(JSON.stringify(u.QuestsOnUser)),
 						email: u.email,
+						customQuests: customQuests || {},
 					},
-					quests: availableQuests,
 				},
 			};
 		}

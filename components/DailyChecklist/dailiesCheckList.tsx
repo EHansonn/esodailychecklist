@@ -18,6 +18,7 @@ export type User = {
 	checkedTasks?: string;
 	characters?: Character[];
 	email: string;
+	customQuests: Quest[];
 };
 
 export type Quest = {
@@ -37,7 +38,7 @@ export interface Props {
 	lists?: ListProps[];
 	error?: string;
 	quests?: Quest[];
-	categories: string[]
+	categories: string[];
 }
 
 export type Character = {
@@ -54,7 +55,7 @@ export type QuestsOnCharacter = {
 	questName: string;
 };
 
-const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests,categories }) => {
+const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories }) => {
 	const { data: session, status } = useSession();
 	const [currentCharacter, selectCurrentCharacter] = useState(user.characters![0]);
 
@@ -67,7 +68,6 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests,categories 
 	}, []);
 
 	//Categories for the possible quests. Hardcoded for now...
-	
 
 	const [categoriesToDisplay, setCategoriesToDisplay] = useState<string[]>([]);
 	const [questsToDisplay, setQuestsToDisplay] = useState(quests);
@@ -157,6 +157,12 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests,categories 
 				return index === self.indexOf(elem);
 			}); // Returns the unique categorys of quests
 
+			// if (!quests?.some((el) => el.category === "Custom Quests")) {
+			// 	unique = unique.filter(function (e) {
+			// 		return e !== "Custom Quests";
+			// 	});
+			// }
+			//console.log(unique);
 			//@ts-ignore
 			setCategoriesToDisplay(unique);
 		}
