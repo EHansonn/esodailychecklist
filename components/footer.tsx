@@ -1,6 +1,4 @@
 import Link from "next/link";
-import styles from "./footer.module.css";
-import packageJSON from "../package.json";
 import { GithubOutlined } from "@ant-design/icons";
 
 export default function Footer() {
@@ -19,14 +17,13 @@ export default function Footer() {
 					</div>
 				</div>
 			</div>
-			<small className="text-xs">
-				ESO Daily Checklist is neither directly nor indirectly related to Bethesda Softworks, ZeniMax Online
-				Studios, nor parent company ZeniMax Media, in any way, shape, or form.
+			<small className="text-xs ">
+				The Elder Scrolls Online, and all ESO related logos and images are registered trademarks of ZeniMax
+				Media.
 			</small>
 			<small className="text-xs pb-2">
-				The Elder Scrolls® Online developed by ZeniMax Online Studios LLC, a ZeniMax Media company. ZeniMax, The
-				Elder Scrolls, ESO, Bethesda, Bethesda Softworks and related logos are registered trademarks or
-				trademarks of ZeniMax Media Inc. in the US and/or other countries. All Rights Reserved.
+				ESO Daily Checklist is in no way related to Bethesda Softworks, ZeniMax Online Studios, or its parent
+				company ZeniMax Media.
 			</small>
 		</div>
 	);

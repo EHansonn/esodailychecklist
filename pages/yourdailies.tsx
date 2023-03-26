@@ -1,24 +1,24 @@
 import { signIn, useSession } from "next-auth/react";
 import YourDailiesHeader from "../components/DailyChecklist/yourDailiesHeader";
 import YourDailiesChecklist, { Quest } from "../components/DailyChecklist/dailiesCheckList";
-import { LoadingOutlined } from "@ant-design/icons";
 import useSWR, { mutate } from "swr";
-import LoadingSpinnerComponent from "../components/loading/loadingSpinner";
+import LoadingSpinner from "../components/loading/loadingSpinner";
 import LoadingError from "../components/loading/loadingError";
 import Layout from "../components/layout";
 import UnauthQuestCategory from "../components/quests/unauthQuestCategory";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+
 export const refreshData = () => {
 	//Triggers swr to refetch data
 	mutate("api/user");
 };
 
 export default function Dailies() {
-	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 	const { data: session, status } = useSession();
 
+	//Fetching user data
 	const fetcher = async () => {
 		const response = await fetch("/api/user");
 
@@ -34,21 +34,27 @@ export default function Dailies() {
 		refreshInterval: 30000,
 	});
 
-	const [questsUnauth, setQuestsUnauth] = useState<Quest[] | null>(null);
+	const [quests, setQuests] = useState<Quest[] | null>(null);
+
 	useEffect(() => {
-		const fetcher = async () => {
+		//if (status === "unauthenticated") {
+		const questFetcher = async () => {
 			const response = await fetch("/api/quest");
 			if (response.ok) {
 				const data = await response.json();
-				setQuestsUnauth(data);
+				setQuests(data);
+				console.log(data);
 			}
 		};
-		fetcher();
+		questFetcher();
+		//}
 	}, []);
 
+	//Hardcoded, for now...
 	let categories = [
 		"Weekly Tasks and Trials",
 		"Daily Tasks",
+		"Custom Quests",
 		"Craglorn Quests",
 		"PvP Quests",
 		"Imperial City Quests",
@@ -71,12 +77,14 @@ export default function Dailies() {
 		"Cyrodiil Settlement Quests",
 		"Miscellaneous",
 	];
+	let unAuthCategories = categories;
+	unAuthCategories.splice(2, 1);
 
 	if (!session) {
 		return (
 			<>
 				<YourDailiesHeader></YourDailiesHeader>
-				{status === "loading" && <LoadingSpinnerComponent text={"user"} />}
+				{status === "loading" && <LoadingSpinner text={"your dailies"} />}
 				{status === "unauthenticated" && (
 					<>
 						<Layout>
@@ -97,16 +105,16 @@ export default function Dailies() {
 								<div className="content-center text-center ">
 									<h2 className="text-white text-center pb-5 pt-5">Possible Dailies</h2>
 								</div>
-								{questsUnauth && (
+								{quests && (
 									<div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
 										<div
 											className={`w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1 md:ml-20 md:mr-20   `}
 										>
 											{/* Displaying Quests */}
-											{categories.map((category) => (
+											{unAuthCategories.map((category) => (
 												<UnauthQuestCategory
 													key={category}
-													quests={questsUnauth?.filter(function (el: any) {
+													quests={quests?.filter(function (el: any) {
 														return el.category === category;
 													})}
 													category={category}
@@ -125,8 +133,8 @@ export default function Dailies() {
 
 	if (error) return <LoadingError text={"daily checklist"} />;
 
-	if (!data) return <LoadingSpinnerComponent text={"checklist"} />;
-
+	if (!data) return <LoadingSpinner text={"checklist"} />;
+	if (!quests) return <LoadingSpinner text={"checklist"} />;
 	if (!data.user.characters[0]) {
 		return (
 			<Layout>
@@ -146,7 +154,12 @@ export default function Dailies() {
 	return (
 		<>
 			<YourDailiesHeader></YourDailiesHeader>
-			<YourDailiesChecklist user={data.user} lists={data.lists} quests={data.quests}></YourDailiesChecklist>
+			<YourDailiesChecklist
+				categories={categories}
+				user={data.user}
+				lists={data.lists}
+				quests={quests}
+			></YourDailiesChecklist>
 		</>
 	);
 }

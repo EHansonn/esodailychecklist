@@ -1,6 +1,5 @@
-import { LoadingOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-import { signIn, useSession } from "next-auth/react";
+import {  useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -31,7 +31,7 @@ model Task {
 }
 
 model Quest {
-  value             String              @id @unique
+  value             String              @id @unique @default(cuid())
   category          String
   optionalTitle     String?
   description       String
@@ -41,8 +41,9 @@ model Quest {
   uespLink          String
   reward            String
   Task              Task[]
-  QuestsOnUser      QuestsOnUser[]
   QuestsOnCharacter QuestsOnCharacter[]
+  owner             User?               @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail         String?
 }
 
 model Account {
@@ -72,27 +73,27 @@ model Session {
 }
 
 model User {
-  id            String         @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  email         String?        @unique
+  email         String?     @unique
   image         String?
   emailVerified DateTime?
-  createdAt     DateTime       @default(now()) @map(name: "created_at")
-  updatedAt     DateTime       @updatedAt @map(name: "updated_at")
+  createdAt     DateTime    @default(now()) @map(name: "created_at")
+  updatedAt     DateTime    @updatedAt @map(name: "updated_at")
   lists         List[]
   accounts      Account[]
   sessions      Session[]
   Task          Task[]
-  checkedTasks  String         @default("")
-  QuestsOnUser  QuestsOnUser[]
+  checkedTasks  String      @default("")
   Character     Character[]
+  Quest         Quest[]
 
   @@map(name: "users")
 }
 
 model Character {
   value  String  @id @default(cuid())
-  name String
+  name   String
   owner  User?   @relation(fields: [userId], references: [id])
   userId String?
 
@@ -106,15 +107,6 @@ model QuestsOnCharacter {
   questName   String
 
   @@id([questName, characterId])
-}
-
-model QuestsOnUser {
-  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  quest     Quest  @relation(fields: [questName], references: [value], onDelete: Cascade)
-  userId    String
-  questName String
-
-  @@id([questName, userId])
 }
 
 model VerificationToken {

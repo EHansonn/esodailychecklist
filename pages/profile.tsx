@@ -3,7 +3,7 @@ import Head from "next/head";
 import ProfileInfo from "../components/profile/profileInfo";
 import useSWR, { mutate } from "swr";
 import SignInComponent from "../components/authButtons/signInComponent";
-import LoadingSpinnerComponent from "../components/loading/loadingSpinner";
+import LoadingSpinner from "../components/loading/loadingSpinner";
 import LoadingError from "../components/loading/loadingError";
 export default function Dailies() {
 	const { data: session, status } = useSession();
@@ -33,7 +33,7 @@ export default function Dailies() {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					<link rel="icon" href="/favicon.ico"></link>
 				</Head>
-				{status === "loading" && <LoadingSpinnerComponent text={"user"} />}
+				{status === "loading" && <LoadingSpinner text={"user"} />}
 				{status === "unauthenticated" && <SignInComponent text={"profile"} />}
 			</>
 		);
@@ -41,7 +41,7 @@ export default function Dailies() {
 
 	if (error) return <LoadingError text={"profile"} />;
 
-	if (!data) return <LoadingSpinnerComponent text={"profile"} />;
+	if (!data) return <LoadingSpinner text={"profile"} />;
 
 	return (
 		<>

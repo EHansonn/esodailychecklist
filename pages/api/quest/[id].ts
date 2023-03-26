@@ -2,8 +2,10 @@ import { getServerSession } from "next-auth/next";
 import prisma from "../../../lib/prisma";
 import { authOptions } from "../auth/[...nextauth]";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { QuestBody } from ".";
 
 interface UserApiRequest extends NextApiRequest {
+	body: QuestBody;
 	query: {
 		id: string;
 	};
@@ -13,17 +15,23 @@ export default async function handle(req: UserApiRequest, res: NextApiResponse) 
 	const session = await getServerSession(req, res, authOptions);
 	if (session) {
 		try {
-			const u = await prisma?.user.findFirst({
-				where: { email: session?.user.email },
-			});
+			const questValue = req.query.id;
+			const { optionalTitle } = req.body;
 
-			const characterValue = req.query.id;
+			if (!optionalTitle) {
+				throw new Error("Needs title");
+			}
+
+			if (!session.user.email) {
+				throw new Error("email wrong");
+			}
 
 			if (req.method === "DELETE") {
-				await prisma.character.deleteMany({
+				await prisma.quest.deleteMany({
 					where: {
-						userId: u!.id,
-						value: characterValue,
+						userEmail: session.user.email,
+						value: questValue,
+						optionalTitle: optionalTitle,
 					},
 				});
 

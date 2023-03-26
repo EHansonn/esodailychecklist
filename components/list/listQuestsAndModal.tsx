@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Drawer } from "antd";
 import { Quest, User } from "../DailyChecklist/dailiesCheckList";
 
-import styles from "../../pages/index.module.css";
 import { CloseOutlined } from "@ant-design/icons";
 const ListQuestAndRow: React.FC<{ quest: Quest }> = ({ quest }) => {
 	const [open, setOpen] = useState(false);
@@ -20,7 +19,7 @@ const ListQuestAndRow: React.FC<{ quest: Quest }> = ({ quest }) => {
 		<>
 			<div
 				key={`${quest.value} 123`}
-				className={`flex flex-row my-1 pl-0 justify-between cursor-pointer  hover:bg-slate-600 ${styles.font} `}
+				className={`flex flex-row my-1 pl-0 justify-between cursor-pointer  hover:bg-slate-600  text-offwhite-50`}
 			>
 				<div className="flex justify-start"></div>
 

@@ -2,7 +2,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import Layout from "../layout";
 
-const LoadingSpinnerComponent: React.FC<{ text?: string }> = ({ text }) => {
+const LoadingSpinner: React.FC<{ text?: string }> = ({ text }) => {
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 	return (
@@ -18,4 +18,4 @@ const LoadingSpinnerComponent: React.FC<{ text?: string }> = ({ text }) => {
 	);
 };
 
-export default LoadingSpinnerComponent;
+export default LoadingSpinner;

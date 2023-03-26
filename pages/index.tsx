@@ -1,16 +1,8 @@
-import { BulbOutlined, GithubOutlined, LoadingOutlined, TeamOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { Button, Spin } from "antd";
-import { signIn, useSession } from "next-auth/react";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import { useRef } from "react";
-import Header from "../components/header";
 import AboutSection from "../components/LandingPage/aboutSection";
 import FeaturesSection from "../components/LandingPage/featuresSection";
 import LogoSection from "../components/LandingPage/logoSection";
 import Layout from "../components/layout";
-import styles from "./index.module.css";
 
 export default function IndexPage() {
 	//const { data: session, status } = useSession();
@@ -19,7 +11,6 @@ export default function IndexPage() {
 		aboutRef.current?.scrollIntoView({ behavior: "smooth" });
 	};
 
-	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 	return (
 		<>
 			<Layout>
