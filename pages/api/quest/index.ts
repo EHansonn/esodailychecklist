@@ -64,6 +64,18 @@ export default async function handle(req: UserApiRequest, res: NextApiResponse) 
 				throw new Error("Must select a repeatable type");
 			}
 
+			const customQuests = await prisma?.quest.findMany({
+				where: {
+					userEmail: session.user.email,
+				},
+			});
+
+			customQuests.forEach((quest) => {
+				if (quest.optionalTitle === optionalTitle) {
+					throw new Error("Name must be unique");
+				}
+			});
+
 			const result = await prisma.quest.create({
 				data: {
 					optionalTitle: optionalTitle,
