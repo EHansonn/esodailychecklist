@@ -27,7 +27,6 @@ const UnauthQuestRow: React.FC<{
 		setOpen(false);
 	};
 
-
 	return (
 		<>
 			<div className={`flex flex-row my-2 pl-2 justify-between hover:bg-slate-600 cursor-pointer`}>
@@ -53,7 +52,6 @@ const UnauthQuestRow: React.FC<{
 				onClose={onClose}
 				open={open}
 			>
-				{quest.optionalTitle && <div>Quest Name: {quest?.value}</div>}
 				<div className="pb-2">Category: {quest?.category}</div>
 				{quest?.description && <div className="pb-2">{quest?.description}</div>}
 				<div className="pb-2 ">Repeatable: {quest?.repeatable}</div>

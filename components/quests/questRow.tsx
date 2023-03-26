@@ -175,7 +175,6 @@ const QuestRow: React.FC<{
 				onClose={onClose}
 				open={open}
 			>
-				{quest.optionalTitle && <div>Quest Name: {quest?.value}</div>}
 				<div className="pb-2">Category: {quest?.category}</div>
 				{quest?.description && <div className="pb-2">{quest?.description}</div>}
 				<div className="pb-2 ">Repeatable: {quest?.repeatable}</div>
