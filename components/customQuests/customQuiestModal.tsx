@@ -70,7 +70,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 	};
 
 	return (
-		<div className="   rounded-lg py-2 px-2 mt-5 sm:mt-0 w-full md:w-56 lg:w-96  pt-0 ">
+		<div className="   rounded-lg py-2 px-2 mt-5 sm:mt-0 w-full md:w-56 lg:w-96  pt-0 text-center">
 			Create Custom Quest
 			<Tooltip title="You can create your own custom daily quest that will show up on your checklist.">
 				<QuestionCircleOutlined className=" ml-2 transition ease-in-out delay-75 hover:scale-110 duration-100"></QuestionCircleOutlined>

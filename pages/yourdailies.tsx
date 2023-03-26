@@ -99,8 +99,6 @@ export default function Dailies() {
 		"Deadlands Quests",
 		"High Isle Quests",
 		"Galen Quests",
-		"Cyrodiil Settlement Quests",
-		"Miscellaneous",
 	];
 
 	if (!session) {
