@@ -3,7 +3,7 @@ import { ListProps } from "../list/list";
 import { useSession } from "next-auth/react";
 import { Alert, Button } from "antd";
 import Layout from "../layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Quest, User } from "../DailyChecklist/dailiesCheckList";
 import CharacterRow from "../character/characterRow";
 import CharacterModel from "../character/characterModel";
@@ -30,6 +30,10 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 			return temp;
 		});
 	};
+
+	useEffect(() => {
+		setNumOfChars(user.characters?.length || 0);
+	}, [user]);
 
 	if (session) {
 		return (

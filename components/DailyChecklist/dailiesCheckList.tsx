@@ -37,6 +37,7 @@ export interface Props {
 	lists?: ListProps[];
 	error?: string;
 	quests?: Quest[];
+	categories: string[]
 }
 
 export type Character = {
@@ -53,7 +54,7 @@ export type QuestsOnCharacter = {
 	questName: string;
 };
 
-const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
+const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests,categories }) => {
 	const { data: session, status } = useSession();
 	const [currentCharacter, selectCurrentCharacter] = useState(user.characters![0]);
 
@@ -66,31 +67,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests }) => {
 	}, []);
 
 	//Categories for the possible quests. Hardcoded for now...
-	let categories = [
-		"Weekly Tasks and Trials",
-		"Daily Tasks",
-		"Craglorn Quests",
-		"PvP Quests",
-		"Imperial City Quests",
-		"Guild Daily Quests",
-		"Wrothgar Quests",
-		"Thieves Guild Quests",
-		"Gold Coast Quests",
-		"Vvardenfell Quests",
-		"Clockwork City Quests",
-		"Summerset Quests",
-		"Murkmire Quests",
-		"Elsweyr Quests",
-		"Dragonhold Quests",
-		"Western Skyrim Quests",
-		"The Reach Quests",
-		"Blackwood Quests",
-		"Deadlands Quests",
-		"High Isle Quests",
-		"Galen Quests",
-		"Cyrodiil Settlement Quests",
-		"Miscellaneous",
-	];
+	
 
 	const [categoriesToDisplay, setCategoriesToDisplay] = useState<string[]>([]);
 	const [questsToDisplay, setQuestsToDisplay] = useState(quests);

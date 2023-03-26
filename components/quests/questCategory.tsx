@@ -13,11 +13,6 @@ const QuestCategory: React.FC<{
 	filter: string;
 }> = ({ quests, category, user, character, categoriesToDisplay, questsToDisplay, filter }) => {
 	const [active, setActive] = useState(false);
-	const [categoriesz, setCategoriesz] = useState(categoriesToDisplay);
-	useEffect(() => {
-		setActive(false);
-		setCategoriesz(categoriesToDisplay);
-	}, [categoriesToDisplay, categoriesz]);
 
 	let containsDaily = false;
 	let containsWeekly = false;
@@ -32,7 +27,9 @@ const QuestCategory: React.FC<{
 	});
 
 	useEffect(() => {
-		categoriesz.forEach((el) => {
+		setActive(false);
+
+		categoriesToDisplay.forEach((el) => {
 			if (el === category) {
 				setActive(true);
 			}
@@ -44,7 +41,7 @@ const QuestCategory: React.FC<{
 		if (filter === "weekly" && !containsWeekly) {
 			setActive(false);
 		}
-	}, [, category, categoriesToDisplay, categoriesz, filter]);
+	}, [, category, categoriesToDisplay, filter]);
 	return (
 		<div className={`bg-slate-800 flex flex-col h-full rounded-lg text-offwhite-50 ${active ? "" : "hidden"}`}>
 			<h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative truncate pl-2 select-none">

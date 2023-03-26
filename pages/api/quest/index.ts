@@ -1,8 +1,16 @@
 import prisma from "../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-	//If we eventually get enough concurrent users, ill switch over to static props, but on the free vercel tier its not worth it when you have a small userbase imo.
+	//For unauthed users to get all the normal quests. If authed the /user api will eventually fetch these AND their own customized quests.
+	const session = await getServerSession(req, res, authOptions);
+	if (session) {
+		res.status(201);
+		res.end();
+		return;
+	}
 	try {
 		const availableQuests = await prisma?.quest.findMany({});
 		res.send(availableQuests);

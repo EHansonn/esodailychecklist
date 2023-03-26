@@ -18,11 +18,10 @@ export type allChecked = [charChecked: charChecked];
 const QuestRow: React.FC<{
 	quest: Quest;
 	selectedCharacter?: Character;
-	currindex?: number;
 	characters?: Character[];
 	questsToDisplay?: Quest[];
 	filter: string;
-}> = ({ quest, selectedCharacter, characters, currindex, questsToDisplay, filter }) => {
+}> = ({ quest, selectedCharacter, characters, questsToDisplay, filter }) => {
 	//Antd Drawer stuff.
 	const [open, setOpen] = useState(false);
 	const showDrawer = () => {
@@ -39,16 +38,10 @@ const QuestRow: React.FC<{
 	//Active determines if the quest is hidden or not.
 	const [active, setActive] = useState(false);
 
-	//Determining if the current quest should be hidden or not.
-	const [activeQuests, setactiveQuests] = useState(questsToDisplay);
-
 	useEffect(() => {
 		setActive(false);
-		setactiveQuests(questsToDisplay);
-	}, [, questsToDisplay, activeQuests]);
 
-	useEffect(() => {
-		activeQuests!.forEach((el) => {
+		questsToDisplay!.forEach((el) => {
 			if (el.value === quest.value) {
 				setActive(true);
 			}
@@ -59,7 +52,7 @@ const QuestRow: React.FC<{
 		} else {
 			setActive(false);
 		}
-	}, [, quest, questsToDisplay, activeQuests, filter]);
+	}, [, quest, questsToDisplay, filter]);
 
 	//Checking to see which quests the user has selected on their characters and storing it in an object.
 	const allCharacters: allChecked = characters?.map((character) => {

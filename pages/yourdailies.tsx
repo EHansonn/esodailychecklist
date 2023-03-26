@@ -1,24 +1,24 @@
 import { signIn, useSession } from "next-auth/react";
 import YourDailiesHeader from "../components/DailyChecklist/yourDailiesHeader";
 import YourDailiesChecklist, { Quest } from "../components/DailyChecklist/dailiesCheckList";
-import { LoadingOutlined } from "@ant-design/icons";
 import useSWR, { mutate } from "swr";
-import LoadingSpinnerComponent from "../components/loading/loadingSpinner";
+import LoadingSpinner from "../components/loading/loadingSpinner";
 import LoadingError from "../components/loading/loadingError";
 import Layout from "../components/layout";
 import UnauthQuestCategory from "../components/quests/unauthQuestCategory";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+
 export const refreshData = () => {
 	//Triggers swr to refetch data
 	mutate("api/user");
 };
 
 export default function Dailies() {
-	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 	const { data: session, status } = useSession();
 
+	//Fetching user data
 	const fetcher = async () => {
 		const response = await fetch("/api/user");
 
@@ -35,17 +35,21 @@ export default function Dailies() {
 	});
 
 	const [questsUnauth, setQuestsUnauth] = useState<Quest[] | null>(null);
-	useEffect(() => {
-		const fetcher = async () => {
-			const response = await fetch("/api/quest");
-			if (response.ok) {
-				const data = await response.json();
-				setQuestsUnauth(data);
-			}
-		};
-		fetcher();
-	}, []);
 
+	useEffect(() => {
+		if (status === "unauthenticated") {
+			const questFetcher = async () => {
+				const response = await fetch("/api/quest");
+				if (response.ok) {
+					const data = await response.json();
+					setQuestsUnauth(data);
+				}
+			};
+			questFetcher();
+		}
+	}, [, status]);
+
+	//Hardcoded, for now...
 	let categories = [
 		"Weekly Tasks and Trials",
 		"Daily Tasks",
@@ -76,7 +80,7 @@ export default function Dailies() {
 		return (
 			<>
 				<YourDailiesHeader></YourDailiesHeader>
-				{status === "loading" && <LoadingSpinnerComponent text={"user"} />}
+				{status === "loading" && <LoadingSpinner text={"your dailies"} />}
 				{status === "unauthenticated" && (
 					<>
 						<Layout>
@@ -125,7 +129,7 @@ export default function Dailies() {
 
 	if (error) return <LoadingError text={"daily checklist"} />;
 
-	if (!data) return <LoadingSpinnerComponent text={"checklist"} />;
+	if (!data) return <LoadingSpinner text={"checklist"} />;
 
 	if (!data.user.characters[0]) {
 		return (
@@ -146,7 +150,12 @@ export default function Dailies() {
 	return (
 		<>
 			<YourDailiesHeader></YourDailiesHeader>
-			<YourDailiesChecklist user={data.user} lists={data.lists} quests={data.quests}></YourDailiesChecklist>
+			<YourDailiesChecklist
+				categories={categories}
+				user={data.user}
+				lists={data.lists}
+				quests={data.quests}
+			></YourDailiesChecklist>
 		</>
 	);
 }
