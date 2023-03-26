@@ -77,8 +77,31 @@ export default function Dailies() {
 		"Cyrodiil Settlement Quests",
 		"Miscellaneous",
 	];
-	let unAuthCategories = categories;
-	unAuthCategories.splice(2, 1);
+	let unAuthCategories = [
+		"Weekly Tasks and Trials",
+		"Daily Tasks",
+		"Craglorn Quests",
+		"PvP Quests",
+		"Imperial City Quests",
+		"Guild Daily Quests",
+		"Wrothgar Quests",
+		"Thieves Guild Quests",
+		"Gold Coast Quests",
+		"Vvardenfell Quests",
+		"Clockwork City Quests",
+		"Summerset Quests",
+		"Murkmire Quests",
+		"Elsweyr Quests",
+		"Dragonhold Quests",
+		"Western Skyrim Quests",
+		"The Reach Quests",
+		"Blackwood Quests",
+		"Deadlands Quests",
+		"High Isle Quests",
+		"Galen Quests",
+		"Cyrodiil Settlement Quests",
+		"Miscellaneous",
+	];
 
 	if (!session) {
 		return (
