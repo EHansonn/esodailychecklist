@@ -93,7 +93,7 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 								<div className="flex flex-col">
 									<div
 										className="border-solid border-b-2 border-t-0 border-l-0 border-r-0 w-full pr-3
-                 mr-0 sm:mr-5  md:w-56 lg:w-96 "
+                 mr-0 sm:mr-5  md:w-56 lg:w-96 text-center"
 									>
 										Your Custom Quests
 										<EditOutlined

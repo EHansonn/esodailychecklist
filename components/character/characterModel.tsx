@@ -10,6 +10,8 @@ interface Props {
 }
 
 const CharacterModel: React.FC<Props> = ({ user, helperFunction }) => {
+	//I know its not really a modal. Ill refactor later 
+
 	const [form] = Form.useForm();
 
 	const onReset = () => {
