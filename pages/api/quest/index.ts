@@ -70,6 +70,12 @@ export default async function handle(req: UserApiRequest, res: NextApiResponse) 
 				},
 			});
 
+			if (customQuests) {
+				if (customQuests.length > 19) {
+					throw new Error("Max of 20 custom quests");
+				}
+			}
+
 			customQuests.forEach((quest) => {
 				if (quest.optionalTitle === optionalTitle) {
 					throw new Error("Name must be unique");

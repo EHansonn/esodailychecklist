@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import {  useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,57 +18,27 @@ const LogoSection: React.FC<{ scrollToFunction: Function }> = ({ scrollToFunctio
 				done. Come back tomorrow and you'll find that all your dailies have been reset, so you can get started
 				right away on your tasks!
 			</p>
-			{status === "unauthenticated" && (
-				<div className="content-center text-center text-white pt-2 flex flex-row justify-center space-x-4 ">
-					<div className="text-white text-center pt-2">
-						<Link className="text-white text-center pt-2" href="/yourdailies">
-							<Button className="w-40" type="primary">
-								Your Daily Checklist
-							</Button>
-						</Link>
-					</div>
-					<div className="text-white text-center   pt-2">
-						<Button
-							onClick={() => {
-								scrollToFunction();
-							}}
-							className="w-40"
-							type="default"
-						>
-							Learn more
-						</Button>
-					</div>
-				</div>
-			)}
-			{status === "loading" && (
-				// <Spin
-				//   className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
-				//   indicator={antIcon}
-				// />
-				<div className="content-center text-center text-white pt-2 flex flex-row justify-center space-x-4 ">
-					<div className="text-white text-center pt-2">
-						<Button className="w-40" type="primary"></Button>
-					</div>
-					<div className="text-white text-center   pt-2">
-						<Button className="w-40" type="default"></Button>
-					</div>
-				</div>
-			)}
-
-			{status === "authenticated" && (
-				<div className="content-center text-center text-white pt-2 flex flex-row justify-center space-x-4 ">
+			<div className="content-center text-center text-white pt-2 flex flex-row justify-center space-x-4 ">
+				<div className="text-white text-center pt-2">
 					<Link className="text-white text-center pt-2" href="/yourdailies">
 						<Button className="w-40" type="primary">
 							Your Daily Checklist
 						</Button>
 					</Link>
-					<Link className="text-white text-center   pt-2" href="/profile">
-						<Button className="w-40" type="default">
-							Visit Your Profile
-						</Button>
-					</Link>
 				</div>
-			)}
+				<div className="text-white text-center   pt-2">
+					<Button
+						onClick={() => {
+							scrollToFunction();
+						}}
+						className="w-40"
+						type="default"
+					>
+						Learn more
+					</Button>
+				</div>
+			</div>
+
 			<div className="justify-center flex pt-2 l"></div>
 		</div>
 	);

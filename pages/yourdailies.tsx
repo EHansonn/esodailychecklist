@@ -20,15 +20,17 @@ export default function Dailies() {
 
 	//Fetching user data
 	const fetcher = async () => {
-		const response = await fetch("/api/user");
+		if (session) {
+			const response = await fetch("/api/user");
 
-		if (!response.ok) {
-			const error = new Error("An error occurred while fetching the data.");
-			throw error;
+			if (!response.ok) {
+				const error = new Error("An error occurred while fetching the data.");
+				throw error;
+			}
+
+			const data = await response.json();
+			return data.data;
 		}
-
-		const data = await response.json();
-		return data.data;
 	};
 	const { data, error } = useSWR("api/user", fetcher, {
 		refreshInterval: 30000,
@@ -43,7 +45,6 @@ export default function Dailies() {
 			if (response.ok) {
 				const data = await response.json();
 				setQuests(data);
-				console.log(data);
 			}
 		};
 		questFetcher();
