@@ -87,7 +87,6 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 							</div>
 						</div>
 					</div>
-					<div className="">
 						<div className="justify-center flex pt-0 text-offwhite-50">
 							<div className="flex flex-col sm:flex-row  border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 ">
 								<div className="flex flex-col">
@@ -116,17 +115,14 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 								<CustomQuestModal></CustomQuestModal>
 							</div>
 						</div>
-					</div>
 
 					{numOfChars > 0 && (
-						<div className="">
-							<div className="justify-center flex">
+							<div className="justify-center flex pb-5">
 								<Link className="text-center flex pt-5 w-max" href={"/yourdailies"}>
 									<Button key="test" type="primary">
 										View Your Daily Checklist
 									</Button>
 								</Link>
-							</div>
 						</div>
 					)}
 					{numOfChars === 0 && (
