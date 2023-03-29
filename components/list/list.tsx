@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Quest, User } from "../DailyChecklist/dailiesCheckList";
+import { Quest} from "../DailyChecklist/dailiesCheckList";
 import ListQuestAndRow from "./listQuestsAndModal";
 import { CloseOutlined, DownOutlined } from "@ant-design/icons";
 import { refreshData } from "../../pages/yourdailies";

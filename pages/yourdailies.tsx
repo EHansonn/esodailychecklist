@@ -35,7 +35,6 @@ export default function Dailies() {
 	});
 
 	const [quests, setQuests] = useState<Quest[] | null>(null);
-
 	useEffect(() => {
 		//if (status === "unauthenticated") {
 		const questFetcher = async () => {
@@ -43,7 +42,6 @@ export default function Dailies() {
 			if (response.ok) {
 				const data = await response.json();
 				setQuests(data);
-				console.log(data);
 			}
 		};
 		questFetcher();

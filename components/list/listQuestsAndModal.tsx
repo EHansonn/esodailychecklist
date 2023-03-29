@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Drawer } from "antd";
-import { Quest, User } from "../DailyChecklist/dailiesCheckList";
+import { Quest} from "../DailyChecklist/dailiesCheckList";
 
 import { CloseOutlined } from "@ant-design/icons";
 const ListQuestAndRow: React.FC<{ quest: Quest }> = ({ quest }) => {
@@ -41,7 +41,6 @@ const ListQuestAndRow: React.FC<{ quest: Quest }> = ({ quest }) => {
 				onClose={onClose}
 				open={open}
 			>
-				{quest.optionalTitle && <div className="pb-2">Quest Name: {quest?.value}</div>}
 				<div className="pb-2">Category: {quest?.category}</div>
 				{quest?.description && <div className="pb-2">{quest?.description}</div>}
 				<div className="pb-2">Repeatable: {quest?.repeatable}</div>

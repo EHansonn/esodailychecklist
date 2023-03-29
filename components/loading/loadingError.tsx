@@ -10,7 +10,7 @@ const LoadingError: React.FC<{ text?: string }> = ({ text }) => {
 		<Layout>
 			<div className="content-center text-center ">
 				<div className="text-offwhite-50 w-screen text-center  pt-5">An error occured</div>
-				<div className="text-offwhite-50 w-screen text-center pb-5 ">Please sign in to view your profile</div>
+				<div className="text-offwhite-50 w-screen text-center pb-5 ">Please sign in to view your {text}</div>
 				<Button
 					className="w-40"
 					type="primary"
