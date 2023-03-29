@@ -7,7 +7,7 @@ export interface QuestBody {
 	optionalTitle: string;
 	category: string;
 	description: string;
-	repeatable: string;
+	repeatable: "daily" | "weekly";
 	location: string;
 	questGiver: string;
 	uespLink: string;
@@ -82,6 +82,10 @@ export default async function handle(req: UserApiRequest, res: NextApiResponse) 
 				}
 			});
 
+
+			if (repeatable !== "daily" && repeatable !== "weekly" ) {
+				throw new Error("Invalid repeatable value");
+			}
 			const result = await prisma.quest.create({
 				data: {
 					optionalTitle: optionalTitle,
