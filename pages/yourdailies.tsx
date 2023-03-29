@@ -20,24 +20,21 @@ export default function Dailies() {
 
 	//Fetching user data
 	const fetcher = async () => {
-		if (session) {
-			const response = await fetch("/api/user");
+		const response = await fetch("/api/user");
 
-			if (!response.ok) {
-				const error = new Error("An error occurred while fetching the data.");
-				throw error;
-			}
-
-			const data = await response.json();
-			return data.data;
+		if (!response.ok) {
+			const error = new Error("An error occurred while fetching the data.");
+			throw error;
 		}
+
+		const data = await response.json();
+		return data.data;
 	};
 	const { data, error } = useSWR("api/user", fetcher, {
 		refreshInterval: 30000,
 	});
 
 	const [quests, setQuests] = useState<Quest[] | null>(null);
-
 	useEffect(() => {
 		//if (status === "unauthenticated") {
 		const questFetcher = async () => {
