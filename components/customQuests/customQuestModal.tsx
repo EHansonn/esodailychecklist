@@ -126,7 +126,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 					</Select>
 				</Form.Item>
 
-				<Form.Item>
+				<Form.Item className="text-center">
 					<Button className="mr-2" type="primary" htmlType="submit">
 						Create
 					</Button>
