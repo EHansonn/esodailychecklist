@@ -9,7 +9,7 @@ import CharacterRow from "../character/characterRow";
 import CharacterModel from "../character/characterModel";
 import Link from "next/link";
 import { EditOutlined } from "@ant-design/icons";
-import CustomQuestModal from "../customQuests/customQuiestModal";
+import CustomQuestModal from "../customQuests/customQuestModal";
 import CustomQuestRow from "../customQuests/customQuestRow";
 interface Props {
 	user: User;

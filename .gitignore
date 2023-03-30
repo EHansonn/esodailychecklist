@@ -9,7 +9,7 @@ yarn-error.log*
 lerna-debug.log*
 .yarn-integrity
 .npm
-
+.vscode
 .eslintcache
 
 *.tsbuildinfo

@@ -79,7 +79,14 @@ const CustomQuestModal: React.FC<Props> = () => {
 				<div className="text-center "></div>
 			</div>
 			{contextHolder}
-			<Form form={form} layout="vertical" style={{ width: "100%" }} name="control-hooks" onFinish={onFinish}>
+			<Form
+				form={form}
+				layout="vertical"
+				style={{ width: "100%" }}
+				name="control-hooks"
+				onFinish={onFinish}
+				className="text-left"
+			>
 				<Form.Item
 					name="optionalTitle"
 					label={<label style={{ color: "White" }}>Name</label>}
