@@ -191,7 +191,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 	};
 
 	//Filter for daily or weekly quests
-	const [filter, setFilter] = useState("All Quests");
+	const [filter, setFilter] = useState<"All Quests" | "daily" | "weekly">("All Quests");
 	const handleFilterChange = ({ target: { value } }: RadioChangeEvent) => {
 		setFilter(value);
 	};

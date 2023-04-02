@@ -13,7 +13,6 @@ const CustomQuestModal: React.FC<Props> = () => {
 		"Custom Quests",
 		"Weekly Tasks and Trials",
 		"Daily Tasks",
-
 		"Craglorn Quests",
 		"PvP Quests",
 		"Imperial City Quests",
@@ -122,6 +121,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 				</Form.Item>
 
 				<Form.Item>
+
 					<Button className="mr-2" type="primary" htmlType="submit">
 						Create
 					</Button>
