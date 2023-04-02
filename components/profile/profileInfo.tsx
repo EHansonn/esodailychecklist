@@ -24,7 +24,6 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 	const [questEditMode, setQuestEditMode] = useState(false);
 
 	const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
-	console.log(user);
 	const helperFunction = (val: number) => {
 		setNumOfChars((currVal) => {
 			let temp = currVal + val;
