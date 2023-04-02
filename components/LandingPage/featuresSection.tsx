@@ -2,7 +2,7 @@ import { BulbOutlined, TeamOutlined, UnorderedListOutlined } from "@ant-design/i
 
 const FeaturesSection = () => {
 	return (
-		<div className="relative  m-auto  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md  bg-slate-800 brightness-90 text-offwhite-50 w-1/2 text-center">
+		<div className="relative  m-auto  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md brightness-90 text-offwhite-50 w-1/2 text-center">
 			<h1 className="mt-0 mb-2 ">Features</h1>
 			<div className="flex flex-col sm:flex-row ">
 				<p className="mt-0 mb-1 text-xl">

@@ -10,9 +10,9 @@ const { Option } = Select;
 
 const CustomQuestModal: React.FC<Props> = () => {
 	let categories = [
+		"Custom Quests",
 		"Weekly Tasks and Trials",
 		"Daily Tasks",
-		"Custom Quests",
 		"Craglorn Quests",
 		"PvP Quests",
 		"Imperial City Quests",
@@ -79,14 +79,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 				<div className="text-center "></div>
 			</div>
 			{contextHolder}
-			<Form
-				form={form}
-				layout="vertical"
-				style={{ width: "100%" }}
-				name="control-hooks"
-				onFinish={onFinish}
-				className="text-left"
-			>
+			<Form form={form} layout="vertical" style={{ width: "100%" }} name="control-hooks" onFinish={onFinish}>
 				<Form.Item
 					name="optionalTitle"
 					label={<label style={{ color: "White" }}>Name</label>}
@@ -116,6 +109,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 					name="category"
 					label={<label style={{ color: "White" }}>Category</label>}
 					rules={[{ required: true }]}
+					initialValue={"Custom Quests"}
 				>
 					<Select placeholder="Select a option and change input text above" allowClear>
 						{categories.map((category) => (
@@ -126,7 +120,8 @@ const CustomQuestModal: React.FC<Props> = () => {
 					</Select>
 				</Form.Item>
 
-				<Form.Item className="text-center">
+				<Form.Item>
+
 					<Button className="mr-2" type="primary" htmlType="submit">
 						Create
 					</Button>

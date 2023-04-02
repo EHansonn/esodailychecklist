@@ -7,7 +7,7 @@ const LogoSection: React.FC<{ scrollToFunction: Function }> = ({ scrollToFunctio
 	const { data: session, status } = useSession();
 
 	return (
-		<div className="  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md mb-20 mt-20 bg-slate-800 backdrop-brightness-90">
+		<div className="  pt-3 px-3  backdrop-blur-md mb-20 mt-20  backdrop-brightness-90 border-b-2 border-solid border-l-0 border-r-0 border-t-0">
 			<div className="text-6xl text-white text-center">
 				<Image src="/logo3.png" layout="intrinsic" height={200} width={800} alt="logo"></Image>
 			</div>
@@ -39,7 +39,9 @@ const LogoSection: React.FC<{ scrollToFunction: Function }> = ({ scrollToFunctio
 				</div>
 			</div>
 
-			<div className="justify-center flex pt-2 l"></div>
+			<div className="text-6xl text-white text-center translate-y-1 mt-8">
+				<Image src="/example1.png" layout="intrinsic" height={400} width={1650 * 0.8} alt="logo"></Image>
+			</div>
 		</div>
 	);
 };

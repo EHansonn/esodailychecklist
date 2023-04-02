@@ -28,14 +28,17 @@ export default function Header() {
 		return classes.filter(Boolean).join(" ");
 	}
 	return (
-		<Disclosure as="nav" className="bg-gray-800 sticky top-0 z-50  ">
+		<Disclosure
+			as="nav"
+			className="bg-black border-b-2 border-r-0 border-t-0 border-l-0 border-solid  sticky top-0 z-50   "
+		>
 			{({ open }) => (
 				<>
 					<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
 						<div className="relative flex h-16 items-center justify-between">
 							<div className="absolute inset-y-0 left-0 flex items-center sm:hidden pl-2">
 								{/* Mobile menu button*/}
-								<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+								<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-slate-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 									<span className="sr-only">Open main menu</span>
 									{open ? (
 										<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -68,7 +71,7 @@ export default function Header() {
 													href={item.href}
 													className={classNames(
 														item.current
-															? "bg-gray-900 text-white"
+															? "bg-offwhite-200 text-white"
 															: "text-gray-300 hover:bg-gray-700 hover:text-white",
 														"rounded-md px-3 py-2 text-sm font-medium",
 													)}
@@ -88,7 +91,7 @@ export default function Header() {
 											href={navigation[0].href}
 											className={classNames(
 												navigation[0].current
-													? "bg-gray-900 text-white"
+													? "bg-offwhite-200 text-white"
 													: "text-gray-300 hover:bg-gray-700 hover:text-white",
 												"rounded-md px-3 py-2 text-sm font-medium",
 											)}
@@ -103,7 +106,7 @@ export default function Header() {
 								{/* Profile dropdown */}
 								<Menu as="div" className="relative ml-3">
 									<div>
-										<Menu.Button className="flex rounded-full bg-gray-800 border-0 ">
+										<Menu.Button className="flex rounded-full bg-black border-0 ">
 											<span className="sr-only">Open user menu</span>
 											{status === "loading" && (
 												<div className="inline-flex items-center justify-center rounded-md p-2">
@@ -150,21 +153,6 @@ export default function Header() {
 													</Link>
 												)}
 											</Menu.Item>
-											{/* {session && (
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Settings #TODO
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      )} */}
 
 											<Menu.Item>
 												{({ active }) => (
@@ -204,7 +192,7 @@ export default function Header() {
 									href={item.href}
 									className={classNames(
 										item.current
-											? "bg-gray-900 text-white"
+											? "bg-offwhite-200 text-white"
 											: "text-gray-300 hover:bg-gray-700 hover:text-white",
 										"block rounded-md px-3 py-2 text-base font-medium",
 									)}

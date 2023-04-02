@@ -24,7 +24,6 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 	const [questEditMode, setQuestEditMode] = useState(false);
 
 	const [numOfChars, setNumOfChars] = useState(user.characters?.length || 0);
-	console.log(user);
 	const helperFunction = (val: number) => {
 		setNumOfChars((currVal) => {
 			let temp = currVal + val;
@@ -42,7 +41,7 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 	if (session) {
 		return (
 			<Layout>
-				<div className={`pl-4 pr-4 flex flex-col   min-h-screen`}>
+				<div className={`pl-4 pr-4 flex flex-col   min-h-screen `}>
 					<div className="flex  justify-center   ">
 						<div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screeen text-center pr-3 border-b-2 border-t-0 border-l-0  pb-10 border-r-0 s text-offwhite-50 flex flex-col w-max sm:flex-col justify-center sm:pr-0">
 							<div className="flex  justify-center     ">
