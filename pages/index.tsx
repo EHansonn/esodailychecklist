@@ -14,7 +14,7 @@ export default function IndexPage() {
 	return (
 		<>
 			<Layout>
-				<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
+				<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen bg-black`}>
 					<div className="flex flex-col ">
 						<LogoSection scrollToFunction={scrollToAbout}></LogoSection>
 						<FeaturesSection></FeaturesSection>

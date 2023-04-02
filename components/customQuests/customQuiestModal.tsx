@@ -10,9 +10,10 @@ const { Option } = Select;
 
 const CustomQuestModal: React.FC<Props> = () => {
 	let categories = [
+		"Custom Quests",
 		"Weekly Tasks and Trials",
 		"Daily Tasks",
-		"Custom Quests",
+
 		"Craglorn Quests",
 		"PvP Quests",
 		"Imperial City Quests",
@@ -109,6 +110,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 					name="category"
 					label={<label style={{ color: "White" }}>Category</label>}
 					rules={[{ required: true }]}
+					initialValue={"Custom Quests"}
 				>
 					<Select placeholder="Select a option and change input text above" allowClear>
 						{categories.map((category) => (

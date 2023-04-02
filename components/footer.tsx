@@ -3,8 +3,8 @@ import { GithubOutlined } from "@ant-design/icons";
 
 export default function Footer() {
 	return (
-		<div className=" bg-slate-800 text-offwhite-50 text-center flex flex-col justify-center">
-			<div className=" bg-slate-800 text-offwhite-50 text-center  flex justify-center">
+		<div className=" border-offwhite-100 border-t-2 border-l-0 border-r-0 border-b-0 mt-6 border-solid text-offwhite-50 text-center flex flex-col justify-center">
+			<div className="  text-offwhite-50 text-center  flex justify-center">
 				<div className="flex-row flex pt-5 pb-5 relative">
 					<div className="flex flex-col">
 						<small>ESO Daily Checklist</small>

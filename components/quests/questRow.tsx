@@ -110,7 +110,7 @@ const QuestRow: React.FC<{
 	return (
 		<>
 			<div
-				className={`flex flex-row my-2 pl-2 justify-between hover:bg-slate-600 cursor-pointer ${
+				className={`flex flex-row my-2 pl-2 pb-[2px] justify-between text-lg md:text-lg lg:text-xl hover:bg-slate-600 cursor-pointer ${
 					active ? "visible" : "hidden"
 				}`}
 			>
