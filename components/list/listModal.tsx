@@ -57,7 +57,7 @@ const Listmodal: React.FC<Props> = ({ quests, categories }) => {
 		});
 	};
 	return (
-		<div className="bg-offwhite-200  max-h-full   rounded-lg py-2 px-2 text-offwhite-50 ">
+		<div className="bg-offwhite-200    rounded-lg py-2 px-2 text-offwhite-50 ">
 			<div className="flex flex-row justify-center relative">
 				<div className="text-center">Your Custom Lists</div>
 				<Tooltip title="If you don't want to see every single possible daily, you can create your own customized list to help you keep track of the things you want.">
