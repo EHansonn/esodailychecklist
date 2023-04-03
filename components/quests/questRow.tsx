@@ -165,7 +165,7 @@ const QuestRow: React.FC<{
 				</div>
 			</div>
 			<Drawer
-				style={{ backgroundColor: "#1e293b" }}
+				style={{ backgroundColor: "#121212" }}
 				closeIcon={<CloseOutlined style={{ color: "white" }}></CloseOutlined>}
 				className="text-offwhite-50 fill-white"
 				title={

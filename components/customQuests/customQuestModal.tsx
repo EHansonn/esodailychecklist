@@ -98,6 +98,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 					name="repeatable"
 					label={<label style={{ color: "White" }}>Repeatable</label>}
 					rules={[{ required: true }]}
+					className="text-left"
 				>
 					<Select placeholder="Select a option and change input text above" allowClear>
 						<Option value="daily">Repeatable Daily</Option>
@@ -110,6 +111,7 @@ const CustomQuestModal: React.FC<Props> = () => {
 					label={<label style={{ color: "White" }}>Category</label>}
 					rules={[{ required: true }]}
 					initialValue={"Custom Quests"}
+					className="text-left"
 				>
 					<Select placeholder="Select a option and change input text above" allowClear>
 						{categories.map((category) => (
@@ -121,7 +123,6 @@ const CustomQuestModal: React.FC<Props> = () => {
 				</Form.Item>
 
 				<Form.Item>
-
 					<Button className="mr-2" type="primary" htmlType="submit">
 						Create
 					</Button>
