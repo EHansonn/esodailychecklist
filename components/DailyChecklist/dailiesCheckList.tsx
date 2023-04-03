@@ -200,7 +200,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 		return (
 			<>
 				<Layout>
-					<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen bg-black`}>
+					<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-full sm:min-h-screen bg-black`}>
 						<div className="flex flex-col lg:flex-row md:flex-row  justify-center">
 							<div className="text-slate-300 pb-2 text-center ">
 								{`Daily quests reset at ${time} each day`}
