@@ -52,7 +52,7 @@ const QuestCategory: React.FC<{
 		}
 	}, [, category, categoriesToDisplay, filter]);
 	return (
-		<div className={`bg-offwhite-200 flex flex-col h-full rounded-lg text-offwhite-50 ${active ? "" : "hidden"}`}>
+		<div className={`bg-offwhite-200 flex flex-col  rounded-lg text-offwhite-50 ${active ? "" : "hidden"}`}>
 			<h4 className="py-0 my-0 border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative truncate pl-2 select-none">
 				{category}
 				<small className="absolute right-0 "></small>
