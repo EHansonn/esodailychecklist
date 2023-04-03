@@ -212,7 +212,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 
 						<div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
 							<div
-								className={`w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1   `}
+								className={`w-full flex flex-col md:grid md:h-full  lg:grid-cols-3 md:grid-cols-2 gap-3     `}
 							>
 								{/* Displaying Quests */}
 
