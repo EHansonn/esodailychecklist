@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
 import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { LoadingOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 export default function Header() {
 	const { data: session, status } = useSession();
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -38,7 +38,7 @@ export default function Header() {
 						<div className="relative flex h-16 items-center justify-between">
 							<div className="absolute inset-y-0 left-0 flex items-center sm:hidden pl-2">
 								{/* Mobile menu button*/}
-								<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-slate-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+								<Disclosure.Button className="inline-flex items-center justify-center bg-black text-offwhite-50  border-2 border-offwhite-50 rounded-xl hover:bg-gray-700 p-2 focus:bg-gray-700">
 									<span className="sr-only">Open main menu</span>
 									{open ? (
 										<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -124,8 +124,11 @@ export default function Header() {
 												</div>
 											)}
 											{status === "unauthenticated" && (
-												<div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-													<Bars3Icon className="block h-6 w-6 " aria-hidden="true" />
+												<div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ">
+													<QuestionCircleOutlined
+														className="	w-8 h-8 text-3xl "
+														aria-hidden="true"
+													/>
 												</div>
 											)}
 										</Menu.Button>
@@ -140,7 +143,7 @@ export default function Header() {
 										leaveTo="transform opacity-0 scale-95"
 									>
 										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-											<Menu.Item>
+											{/* <Menu.Item>
 												{({ active }) => (
 													<Link
 														href="/profile"
@@ -152,7 +155,7 @@ export default function Header() {
 														Your Profile
 													</Link>
 												)}
-											</Menu.Item>
+											</Menu.Item> */}
 
 											<Menu.Item>
 												{({ active }) => (
@@ -188,7 +191,21 @@ export default function Header() {
 							{navigation.slice(1).map((item) => (
 								<Link
 									key={item.name}
-									as="a"
+									href={item.href}
+									className={classNames(
+										item.current
+											? "bg-offwhite-200 text-white"
+											: "text-gray-300 hover:bg-gray-700 hover:text-white",
+										"block rounded-md px-3 py-2 text-base font-medium",
+									)}
+									aria-current={item.current ? "page" : undefined}
+								>
+									{item.name}
+								</Link>
+							))}
+							{navigation.slice(0, 1).map((item) => (
+								<Link
+									key={item.name}
 									href={item.href}
 									className={classNames(
 										item.current

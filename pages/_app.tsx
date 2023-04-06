@@ -13,6 +13,7 @@ import Head from "next/head";
 // `useSession()` anywhere in your application to access the `session` object.
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps<{ session: Session }>) {
 	useEffect(() => {
+		NProgress.configure({ showSpinner: false });
 		Router.events.on("routeChangeStart", NProgress.start);
 		Router.events.on("routeChangeComplete", NProgress.done);
 		Router.events.on("routeChangeError", NProgress.done);
