@@ -31,7 +31,7 @@ export default function SignIn() {
 									onClick={() => signIn("google", { callbackUrl: id })}
 								>
 									<img
-										className="-translate-x-2"
+										className="-translate-x-2 w-full h-full"
 										src={`${"https://authjs.dev/img/providers/google.svg"}`}
 									></img>
 									Sign in with Google
