@@ -201,7 +201,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 			<>
 				<Layout>
 					<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-full sm:min-h-screen bg-black`}>
-						<div className="flex flex-col lg:flex-row md:flex-row  justify-center">
+						<div className="flex flex-col lg:flex-row md:flex-row  justify-center md:pb-2 pb-6">
 							<div className="text-slate-300 pb-2 text-center ">
 								{`Daily quests reset at ${time} each day`}
 							</div>
@@ -233,7 +233,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 							</div>
 
 							<div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-14  ">
-								<div className="w-full flex justify-center   md:relative md:top-0 select-none md:relative absolute md:top-0 -top-6 ">
+								<div className="w-full flex justify-center   md:relative md:top-0 select-none md:relative absolute md:top-0 -top-8 ">
 									{/* Filter Selector */}
 									<Radio.Group
 										options={[
