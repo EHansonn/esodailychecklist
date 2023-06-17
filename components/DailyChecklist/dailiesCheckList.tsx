@@ -205,14 +205,14 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 							<div className="text-slate-300 pb-2 text-center ">
 								{`Daily quests reset at ${time} each day`}
 							</div>
-							<div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-6 md:pb-0 ">
+							<div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-6 md:pb-0 mb-8 md:mb-0 ">
 								{`Weekly quests reset at ${time} on monday`}
 							</div>
 						</div>
 
 						<div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
 							<div
-								className={`w-full flex flex-col md:grid md:h-full  lg:grid-cols-3 md:grid-cols-2 gap-3     `}
+								className={`w-full flex flex-col md:grid md:h-full  lg:grid-cols-3 md:grid-cols-2 gap-3  pt-32 md:pt-0 `}
 							>
 								{/* Displaying Quests */}
 
@@ -233,7 +233,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 							</div>
 
 							<div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-14  ">
-								<div className="w-full flex justify-center -top-32  md:relative md:top-0 select-none ">
+								<div className="w-full flex justify-center -top-32  md:relative md:top-0 select-none md:relative absolute md:top-0 -top-10">
 									{/* Filter Selector */}
 									<Radio.Group
 										options={[
@@ -248,7 +248,13 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 									/>
 								</div>
 								{/* Character Selector */}
-								<Space direction="vertical" key="test233" wrap style={{ width: "100%" }}>
+								<Space
+									direction="vertical"
+									key="test233"
+									wrap
+									style={{ width: "100%" }}
+									className="md:relative absolute md:top-0 top-10 "
+								>
 									<Select
 										className=""
 										defaultValue={user.characters![0].name}
@@ -260,7 +266,13 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 								</Space>
 
 								{/* List Selector */}
-								<Space direction="vertical" key="test2" wrap style={{ width: "100%" }} className="   ">
+								<Space
+									direction="vertical"
+									key="test2"
+									wrap
+									style={{ width: "100%" }}
+									className="md:relative absolute top-0 "
+								>
 									<Select
 										className=""
 										defaultValue={"Default List"}
