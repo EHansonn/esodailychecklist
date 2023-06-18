@@ -110,7 +110,7 @@ const QuestRow: React.FC<{
 	return (
 		<>
 			<div
-				className={`flex flex-row my-2 pl-2 pb-[2px] justify-between  hover:bg-slate-600 cursor-pointer ${
+				className={`flex flex-row my-4 md:my-2 pl-4 md:pl-2 pb-[2px] justify-between  hover:bg-slate-600 cursor-pointer ${
 					active ? "visible" : "hidden"
 				}`}
 			>
@@ -125,6 +125,7 @@ const QuestRow: React.FC<{
 						}}
 					>
 						<Checkbox
+							className="scale-[200%] md:scale-100 mr-2 md:mr-0"
 							checked={checked}
 							onChange={async (e: CheckboxChangeEvent) => {
 								try {
