@@ -173,13 +173,15 @@ const QuestRow: React.FC<{
 						style={{ color: "white" }}
 					></CloseOutlined>
 				}
-				className="text-offwhite-50 fill-white break-words"
+				rootClassName="text-offwhite-50 fill-white break-words "
 				title={
 					<label style={{ color: "White" }}>{quest.optionalTitle ? quest.optionalTitle : quest?.value}</label>
 				}
 				placement="right"
 				onClose={onClose}
 				open={open}
+				mask={window.innerWidth > 768 ? true : true}
+				maskStyle={{ width: "100vw", opacity: 0 }}
 				width={window.innerWidth > 768 ? window.innerWidth * 0.4 : window.innerWidth}
 			>
 				<div className="pb-2">Category: {quest?.category}</div>
