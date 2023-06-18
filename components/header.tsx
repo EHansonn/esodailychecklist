@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
 import { Spin } from "antd";
-import { LoadingOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { LoadingOutlined, QuestionCircleOutlined, UserOutlined } from "@ant-design/icons";
 export default function Header() {
 	const { data: session, status } = useSession();
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -108,11 +108,11 @@ export default function Header() {
 									<div>
 										<Menu.Button className="flex rounded-full bg-black border-0 ">
 											<span className="sr-only">Open user menu</span>
-											{status === "loading" && (
+											{/* {status === "loading" && (
 												<div className="inline-flex items-center justify-center rounded-md p-2">
 													<Spin className="h-8 w-8 rounded-full" indicator={antIcon} />
 												</div>
-											)}
+											)} */}
 											{status === "authenticated" && (
 												<div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 													<img
@@ -123,10 +123,10 @@ export default function Header() {
 													/>
 												</div>
 											)}
-											{status === "unauthenticated" && (
+											{status !== "authenticated" && (
 												<div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ">
-													<QuestionCircleOutlined
-														className="	w-8 h-8 text-3xl "
+													<UserOutlined
+														className="	w-8 h-8 text-3xl border-2 border-solid rounded-full "
 														aria-hidden="true"
 													/>
 												</div>

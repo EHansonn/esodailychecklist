@@ -40,13 +40,39 @@ export const authOptions: NextAuthOptions = {
 			return token;
 		},
 		async redirect({ url, baseUrl }) {
-
-      
 			// Allows relative callback URLs
 			if (url.startsWith("/")) return `${baseUrl}${url}`;
 			// Allows callback URLs on the same origin
 			else if (new URL(url).origin === baseUrl) return url;
 			return baseUrl;
+		},
+		async signIn({ user, account, profile, email, credentials }) {
+			// For some reason only the discord pfp image wont update automatically
+			if (account?.provider == "discord") {
+				try {
+					//@ts-ignore
+					const discordpfp = profile?.image_url;
+					if (discordpfp) {
+						const updatedUser = await prisma.user.update({
+							where: {
+								id: user.id,
+							},
+							data: {
+								image: discordpfp,
+							},
+						});
+					}
+				} catch {}
+			}
+			const isAllowedToSignIn = true;
+			if (isAllowedToSignIn) {
+				return true;
+			} else {
+				// Return false to display a default error message
+				return false;
+				// Or you can return a URL to redirect to:
+				// return '/unauthorized'
+			}
 		},
 	},
 };

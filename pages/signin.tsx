@@ -38,7 +38,7 @@ export default function SignIn() {
 								</Button>
 							</div>
 							{}
-							{/* <div className="flex justify-center ">
+							<div className="flex justify-center ">
 								<Button
 									className="w-50 mb-4 flex justify-center "
 									style={{
@@ -49,12 +49,12 @@ export default function SignIn() {
 									onClick={() => signIn("discord", { callbackUrl: id })}
 								>
 									<img
-										className="-translate-x-2"
+										className="-translate-x-2 w-full h-full"
 										src={`${"https://authjs.dev/img/providers/discord-dark.svg"}`}
 									></img>
 									Sign in with Discord
 								</Button>
-							</div> */}
+							</div>
 						</div>
 					</div>
 					<div className="text-center mt-2  border-b-0 border-t-0 border-offwhite-100 border-solid border-l-4 border-r-0  w-1/2 min-h-screen m-auto p-20 hidden md:flex flex-col ">
