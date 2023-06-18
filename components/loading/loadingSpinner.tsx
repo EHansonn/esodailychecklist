@@ -7,7 +7,7 @@ const LoadingSpinner: React.FC<{ text?: string }> = ({ text }) => {
 
 	return (
 		<Layout>
-			<div className="content-center text-center">
+			<div className="content-center text-center min-h-screen">
 				<div className="text-offwhite-50 w-screen text-center pb-5 pt-5">{`Loading ${text}...`}</div>
 				<Spin
 					className="content-center text-center  pt-2 flex flex-row justify-center space-x-4"
