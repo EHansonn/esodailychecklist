@@ -110,7 +110,7 @@ const QuestRow: React.FC<{
 	return (
 		<>
 			<div
-				className={`flex flex-row my-4 md:my-2 pl-4 md:pl-2 pb-[2px] justify-between  hover:bg-slate-600  cursor-pointer ${
+				className={`flex flex-row my-4 md:my-2 pl-4 md:pl-2 pb-[2px] justify-between active:bg-slate-600   md:hover:bg-slate-600  cursor-pointer ${
 					active ? "visible" : "hidden"
 				}`}
 			>
@@ -167,14 +167,20 @@ const QuestRow: React.FC<{
 			</div>
 			<Drawer
 				style={{ backgroundColor: "#121212" }}
-				closeIcon={<CloseOutlined style={{ color: "white" }}></CloseOutlined>}
-				className="text-offwhite-50 fill-white"
+				closeIcon={
+					<CloseOutlined
+						className="scale-[200%] md:scale-100 mt-1"
+						style={{ color: "white" }}
+					></CloseOutlined>
+				}
+				className="text-offwhite-50 fill-white break-words"
 				title={
 					<label style={{ color: "White" }}>{quest.optionalTitle ? quest.optionalTitle : quest?.value}</label>
 				}
 				placement="right"
 				onClose={onClose}
 				open={open}
+				width={window.innerWidth > 768 ? window.innerWidth * 0.4 : window.innerWidth}
 			>
 				<div className="pb-2">Category: {quest?.category}</div>
 				{quest?.description && <div className="pb-2">{quest?.description}</div>}
