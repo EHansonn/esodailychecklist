@@ -116,7 +116,7 @@ export default function Header() {
 											{status === "authenticated" && (
 												<div className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
 													<img
-														className="h-8 w-8 rounded-full "
+														className="h-8 w-8 rounded-full border-2 border-solid  "
 														src={`${session?.user.image}`}
 														alt=""
 														referrerPolicy="no-referrer"
