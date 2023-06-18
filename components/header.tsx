@@ -50,11 +50,14 @@ export default function Header() {
 							<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
 								<div className="flex">
 									<div className="flex flex-shrink-0 items-center">
-										<img
-											className="block h-8 w-auto lg:hidden"
-											src="/logo.png"
-											alt="ESO Daily Checklist"
-										/>
+										<Link href="/">
+											<img
+												className="block h-8 w-auto lg:hidden"
+												src="/logo.png"
+												alt="ESO Daily Checklist"
+											/>
+										</Link>
+
 										<Link href="/">
 											<img
 												className="hidden h-8 w-auto lg:block"
