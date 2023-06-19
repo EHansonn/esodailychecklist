@@ -31,7 +31,7 @@ export default function Dailies() {
 		return data.data;
 	};
 	const { data, error } = useSWR("api/user", fetcher, {
-		refreshInterval: 30000,
+		refreshInterval: 1000,
 	});
 
 	const [quests, setQuests] = useState<Quest[] | null>(null);
