@@ -93,15 +93,15 @@ const CustomQuestModal: React.FC<Props> = () => {
 					name="repeatable"
 					label={<label style={{ color: "White" }}>Repeatable</label>}
 					rules={[{ required: true }]}
-					className="text-left "
+					className="text-left w-[90vw] md:w-full"
 				>
 					<Select
 						style={{ color: "black" }}
 						placeholder="Select a option and change input text above"
 						allowClear
 					>
-						<Option value="daily">Repeatable Daily</Option>
-						<Option value="weekly">Repeatable Weekly</Option>
+						<Option value="daily">Repeatable Daily </Option>
+						<Option value="weekly">Repeatable Weekly </Option>
 					</Select>
 				</Form.Item>
 
