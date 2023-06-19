@@ -146,27 +146,35 @@ export default function Header() {
 										leaveTo="transform opacity-0 scale-95"
 									>
 										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-											{/* <Menu.Item>
-												{({ active }) => (
+											{session?.user && (
+												<Menu.Item>
 													<Link
+														style={{ textDecoration: "none" }}
 														href="/profile"
-														className={classNames(
-															active ? "bg-gray-100" : "",
-															"block px-4 py-2 text-sm text-gray-700",
-														)}
+														className="block px-4 py-2 truncate text-black hover:bg-gray-100"
 													>
-														Your Profile
+														{session.user.name}
 													</Link>
-												)}
-											</Menu.Item> */}
-
+												</Menu.Item>
+											)}
+											{session?.user && (
+												<Menu.Item>
+													<Link
+														style={{ textDecoration: "none" }}
+														href="/profile"
+														className="block px-4 py-2 truncate text-black hover:bg-gray-100"
+													>
+														{session.user.email}
+													</Link>
+												</Menu.Item>
+											)}
 											<Menu.Item>
 												{({ active }) => (
 													<Link
 														href={session?.user ? `/api/auth/signout` : `/api/auth/signin`}
 														className={classNames(
 															active ? "bg-gray-100" : "",
-															"block px-4 py-2 text-sm text-gray-700",
+															"block px-4 py-2 text-sm text-black ",
 														)}
 														onClick={(e) => {
 															if (session?.user) {

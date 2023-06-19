@@ -3,7 +3,6 @@ import { User } from "../DailyChecklist/dailiesCheckList";
 import { Button, Form, Input, message, Select, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { refreshData } from "../../pages/yourdailies";
-
 interface Props {}
 
 const { Option } = Select;
@@ -70,12 +69,8 @@ const CustomQuestModal: React.FC<Props> = () => {
 	};
 
 	return (
-		<div className="   rounded-lg py-2 px-2 mt-5 sm:mt-0 w-full md:w-56 lg:w-96  pt-0 text-center">
-			Create Custom Quest
-			<Tooltip title="You can create your own custom daily quest that will show up on your checklist.">
-				<QuestionCircleOutlined className=" ml-2 transition ease-in-out delay-75 hover:scale-110 duration-100"></QuestionCircleOutlined>
-			</Tooltip>
-			<div className="flex flex-row justify-center relative border-t-0 border-l-0  border-b-2 border-r-0  border-solid">
+		<div className={`   rounded-lg  py-2  mt-5 sm:mt-0 w-full md:w-56 lg:w-96  pt-0 text-center `}>
+			<div className="flex flex-row justify-center relative ">
 				<div className="text-center "></div>
 			</div>
 			{contextHolder}
@@ -98,9 +93,13 @@ const CustomQuestModal: React.FC<Props> = () => {
 					name="repeatable"
 					label={<label style={{ color: "White" }}>Repeatable</label>}
 					rules={[{ required: true }]}
-					className="text-left"
+					className="text-left "
 				>
-					<Select placeholder="Select a option and change input text above" allowClear>
+					<Select
+						style={{ color: "black" }}
+						placeholder="Select a option and change input text above"
+						allowClear
+					>
 						<Option value="daily">Repeatable Daily</Option>
 						<Option value="weekly">Repeatable Weekly</Option>
 					</Select>

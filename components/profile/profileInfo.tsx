@@ -41,87 +41,49 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 	if (session) {
 		return (
 			<Layout>
-				<div className={`pl-4 pr-4 flex flex-col   min-h-screen `}>
-					<div className="flex  justify-center   ">
-						<div className=" ml-10  sm:ml-40 mr-10 sm:mr-40 w-screeen text-center pr-3 border-b-2 border-t-0 border-l-0  pb-10 border-r-0 s text-offwhite-50 flex flex-col w-max sm:flex-col justify-center sm:pr-0">
-							<div className="flex  justify-center     ">
-								<div className=" mt-10    text-offwhite-50 flex flex-col w-max  justify-center  mb-10  ">
-									<div className="border-t-0 border-l-0  border-b-2 border-r-0  border-solid -mr-3 sm:mr-0">
-										Your Profile
-									</div>
+				<div className=" w-max m-auto text-offwhite-50 mb-10 border-b-2 border-solid border-l-0 border-r-0 border-0 pb-4">
+					<h1 className="border-b-2 border-solid border-l-0 border-r-0 border-0">Settings</h1>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+						{/* Custom Quests */}
+						<div>
+							<h2 className="font-extrabold">Custom Quests</h2>
+							<h3>Add New Quest</h3>
+							<CustomQuestModal></CustomQuestModal>
 
-									<div>Name: {user.name}</div>
-									<div>Email: {user.email}</div>
-								</div>
-							</div>
-							<div className="flex flex-col sm:flex-row">
-								<div className="flex flex-col ">
-									<div
-										className="border-solid border-b-2 border-t-0 border-l-0 border-r-0 w-full pr-3
-                 mr-0 sm:mr-5  md:w-56 lg:w-96 "
-									>
-										Your Characters
-										<EditOutlined
-											onClick={() => {
-												setEditMode((editMode) => {
-													return !editMode;
-												});
-											}}
-											className=" ml-2 rounded-sm hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
-										/>
-									</div>
-									{user.characters?.map((character) => (
-										<CharacterRow
-											helperFunction={helperFunction}
-											editMode={editMode}
-											key={character.value}
-											user={user}
-											character={character}
-										></CharacterRow>
-									))}
-								</div>
-								<div>
-									<CharacterModel helperFunction={helperFunction} user={user}></CharacterModel>
-								</div>
-							</div>
+							<h3>Current Custom Quests</h3>
+
+							{user.customQuests.map((quest) => (
+								<CustomQuestRow key={quest.value} quest={quest} editMode={true}></CustomQuestRow>
+							))}
+						</div>
+						{/* Custom Characters */}
+						<div className="">
+							<h2 className="font-extrabold">Characters</h2>
+							<h3>Add New Character</h3>
+							<CharacterModel helperFunction={helperFunction} user={user}></CharacterModel>
+
+							<h3>Current Characters</h3>
+							{user.characters?.map((character) => (
+								<CharacterRow
+									helperFunction={helperFunction}
+									editMode={true}
+									key={character.value}
+									user={user}
+									character={character}
+								></CharacterRow>
+							))}
 						</div>
 					</div>
-						<div className="justify-center flex pt-0 text-offwhite-50">
-							<div className="flex flex-col sm:flex-row  border-b-2 border-t-0 border-l-0  pb-10 border-r-0 border-solid text-offwhite-50 ">
-								<div className="flex flex-col">
-									<div
-										className="border-solid border-b-2 border-t-0 border-l-0 border-r-0 w-full pr-3
-                 mr-0 sm:mr-5  md:w-56 lg:w-96 text-center"
-									>
-										Your Custom Quests
-										<EditOutlined
-											onClick={() => {
-												setQuestEditMode((editMode) => {
-													return !editMode;
-												});
-											}}
-											className=" ml-2 rounded-sm hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
-										/>
-									</div>
-									{user.customQuests.map((quest) => (
-										<CustomQuestRow
-											key={quest.value}
-											quest={quest}
-											editMode={questEditMode}
-										></CustomQuestRow>
-									))}
-								</div>
-								<CustomQuestModal></CustomQuestModal>
-							</div>
-						</div>
+				</div>
 
+				<div className={`pl-4 pr-4 flex flex-col   min-h-screen `}>
 					{numOfChars > 0 && (
-							<div className="justify-center flex pb-5">
-								<Link className="text-center flex pt-5 w-max" href={"/yourdailies"}>
-									<Button key="test" type="primary">
-										View Your Daily Checklist
-									</Button>
-								</Link>
+						<div className="justify-center flex pb-5">
+							<Link className="text-center flex pt-5 w-max" href={"/yourdailies"}>
+								<Button key="test" type="primary">
+									View Your Daily Checklist
+								</Button>
+							</Link>
 						</div>
 					)}
 					{numOfChars === 0 && (
