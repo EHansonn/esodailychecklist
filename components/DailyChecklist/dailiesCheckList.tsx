@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import List, { ListProps } from "../list/list";
 import { useSession } from "next-auth/react";
 import Listmodal from "../list/listModal";
-import { Button, Radio, RadioChangeEvent, Select, Space } from "antd";
+import { Button, Drawer, Radio, RadioChangeEvent, Select, Space } from "antd";
 import Layout from "../layout";
 import QuestCategory from "../quests/questCategory";
 import moment from "moment";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import YourDailiesHeader from "./yourDailiesHeader";
 import { refreshData } from "../../pages/yourdailies";
+import { CloseOutlined } from "@ant-design/icons";
 
 export type User = {
 	// id: string;
@@ -55,9 +56,62 @@ export type QuestsOnCharacter = {
 	questName: string;
 };
 
+type drawerText = {
+	category: string;
+	description: string;
+	repeatable: string;
+	location: string;
+	questgiver: string;
+	reward: string;
+	link: string;
+	title: string;
+};
+
 const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories }) => {
 	const { data: session, status } = useSession();
 	const [currentCharacter, selectCurrentCharacter] = useState(user.characters![0]);
+
+	//Drawer stuff
+	const [open, setOpen] = useState(false);
+	const defaultDrawerText = {
+		category: "",
+		description: "",
+		repeatable: "",
+		location: "",
+		questgiver: "",
+		reward: "",
+		link: "",
+		title: "",
+	} as drawerText;
+
+	const [drawerTextInfo, setDrawerTextInfo] = useState(defaultDrawerText);
+	const showDrawer = (
+		category: string,
+		description: string,
+		repeatable: string,
+		location: string,
+		questgiver: string,
+		reward: string,
+		link: string,
+		title: string,
+	) => {
+		const textData = {
+			category: category,
+			description: description,
+			repeatable: repeatable,
+			location: location,
+			questgiver: questgiver,
+			reward: reward,
+			link: link,
+			title: title,
+		} as drawerText;
+		setDrawerTextInfo(textData);
+		setOpen(true);
+	};
+
+	const onClose = () => {
+		setOpen(false);
+	};
 
 	//Display the UTC reset time (6am UTC) in the users own time zone
 	const [time, setTime] = useState("00:00:00");
@@ -228,6 +282,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 										categoriesToDisplay={categoriesToDisplay}
 										questsToDisplay={questsToDisplay!}
 										filter={filter}
+										showDrawer={showDrawer}
 									></QuestCategory>
 								))}
 							</div>
@@ -291,6 +346,40 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 						</div>
 					</div>
 				</Layout>
+				<Drawer
+					style={{ backgroundColor: "#121212" }}
+					closeIcon={
+						<CloseOutlined
+							className="scale-[200%] md:scale-100 mt-1"
+							style={{ color: "white" }}
+						></CloseOutlined>
+					}
+					rootClassName="text-offwhite-50 fill-white break-words "
+					title={<label style={{ color: "White" }}>{drawerTextInfo.title}</label>}
+					placement="right"
+					onClose={onClose}
+					open={open}
+					mask={window.innerWidth > 768 ? true : true}
+					width={window.innerWidth > 768 ? window.innerWidth * 0.4 : window.innerWidth}
+				>
+					<div className="overflow-hidden overflow-y-hidden h-full flex flex-col">
+						<div className="pb-2">Category: {drawerTextInfo.category}</div>
+						<div className="pb-2">Description {drawerTextInfo.description}</div>
+						<div className="pb-2 ">Repeatable: {drawerTextInfo.repeatable}</div>
+						<div className="pb-2">Location: {drawerTextInfo.location}</div>
+						<div className="pb-2">Quest Giver: {drawerTextInfo.questgiver}</div>
+						<div className="pb-2">Reward: {drawerTextInfo.reward}</div>
+						<Link className="" href={drawerTextInfo.link}>
+							{drawerTextInfo.link}
+						</Link>
+						<div
+							className="pb-2  flex h-full mt-4 "
+							onClick={() => {
+								onClose();
+							}}
+						></div>
+					</div>
+				</Drawer>
 			</>
 		);
 	}

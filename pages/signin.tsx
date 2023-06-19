@@ -7,16 +7,26 @@ import { useRouter } from "next/router";
 import { Button } from "antd";
 import Icon from "@ant-design/icons";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 export default function SignIn() {
 	let {
 		query: { callbackUrl },
 	} = useRouter();
 	const id = Array.isArray(callbackUrl) ? callbackUrl[0] : callbackUrl;
+	let [newUser, setNewUser] = useState(false);
+
+	useEffect(() => {
+		setNewUser(localStorage.getItem("character") !== null ? true : false);
+		console.log(newUser);
+	}, []);
+
 	return (
 		<Layout>
 			<div className="pb-4 pt-2 pl-4 pr-4  relative min-h-screen bg-black ">
 				<div className="flex flex-col md:flex-row">
 					<div className="flex justify-center flex-col text-center mt-2  w-1/2 m-auto p-20 rounded-lg">
+						<h2 className="text-offwhite-50 pt-2">Welcome{newUser ? " back!" : "!"}</h2>
+
 						<h3 className="text-offwhite-50">Sign In</h3>
 
 						<div className="text-center flex flex-col ">
@@ -44,6 +54,7 @@ export default function SignIn() {
 									style={{
 										background: "#7289DA",
 										color: "White",
+										
 									}}
 									type="primary"
 									onClick={() => signIn("discord", { callbackUrl: id })}

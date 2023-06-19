@@ -30,11 +30,14 @@ export const authOptions: NextAuthOptions = {
 	],
 	pages: {
 		signIn: "/signin",
+		error: "/signin",
+		newUser: "/profile",
 	},
 
 	theme: {
 		colorScheme: "dark",
 	},
+
 	callbacks: {
 		async jwt({ token, user, account, profile, isNewUser }) {
 			return token;

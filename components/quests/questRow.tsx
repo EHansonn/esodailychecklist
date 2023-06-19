@@ -21,17 +21,8 @@ const QuestRow: React.FC<{
 	characters?: Character[];
 	questsToDisplay?: Quest[];
 	filter: string;
-}> = ({ quest, selectedCharacter, characters, questsToDisplay, filter }) => {
-	//Antd Drawer stuff.
-	const [open, setOpen] = useState(false);
-	const showDrawer = () => {
-		setOpen(true);
-	};
-
-	const onClose = () => {
-		setOpen(false);
-	};
-
+	showDrawer: Function;
+}> = ({ quest, selectedCharacter, characters, questsToDisplay, filter, showDrawer }) => {
 	//Background color of the checkbox. Default white, will be changed to red if the api gives a !ok response.
 	const [bgColor, setBgColor] = useState("#ffffff");
 
@@ -125,7 +116,7 @@ const QuestRow: React.FC<{
 						}}
 					>
 						<Checkbox
-							className="scale-[200%] m-auto md:scale-100 mr-2 md:mr-0 "
+							className="scale-[200%] m-auto md:scale-125 mr-2 md:mr-0 "
 							checked={checked}
 							onChange={async (e: CheckboxChangeEvent) => {
 								try {
@@ -156,7 +147,21 @@ const QuestRow: React.FC<{
 					</ConfigProvider>
 				</div>
 
-				<div className="flex-1 flex-row flex justify-between" onClick={showDrawer}>
+				<div
+					className="flex-1 flex-row flex justify-between"
+					onClick={() => {
+						showDrawer(
+							quest?.category || "",
+							quest?.description || "",
+							quest?.repeatable || "",
+							quest?.location || "",
+							quest?.questGiver || "",
+							quest?.reward || "",
+							quest?.uespLink || "",
+							quest.optionalTitle ? quest.optionalTitle : quest?.value,
+						);
+					}}
+				>
 					<h3 className={`pl-2 m-0 select-none ${checked ? "line-through text-[#3478ff]" : ""} `}>
 						{quest.optionalTitle ? quest.optionalTitle : quest?.value}
 					</h3>
@@ -165,37 +170,6 @@ const QuestRow: React.FC<{
 					</div>
 				</div>
 			</div>
-			<Drawer
-				style={{ backgroundColor: "#121212" }}
-				closeIcon={
-					<CloseOutlined
-						className="scale-[200%] md:scale-100 mt-1"
-						style={{ color: "white" }}
-					></CloseOutlined>
-				}
-				rootClassName="text-offwhite-50 fill-white break-words "
-				title={
-					<label style={{ color: "White" }}>{quest.optionalTitle ? quest.optionalTitle : quest?.value}</label>
-				}
-				placement="right"
-				onClose={onClose}
-				open={open}
-				mask={window.innerWidth > 768 ? true : true}
-				maskStyle={{ width: "100vw", opacity: 0 }}
-				width={window.innerWidth > 768 ? window.innerWidth * 0.4 : window.innerWidth}
-			>
-				<div className="pb-2">Category: {quest?.category}</div>
-				{quest?.description && <div className="pb-2">{quest?.description}</div>}
-				<div className="pb-2 ">Repeatable: {quest?.repeatable}</div>
-				{quest?.location && <div className="pb-2">Location: {quest?.location}</div>}
-				{quest?.questGiver && <div className="pb-2">Quest Giver: {quest?.questGiver}</div>}
-				{quest?.reward && <div className="pb-2">Reward: {quest?.reward}</div>}
-				{quest?.uespLink && (
-					<Link className="" href={`${quest?.uespLink}`}>
-						{quest?.uespLink}
-					</Link>
-				)}
-			</Drawer>
 		</>
 	);
 };

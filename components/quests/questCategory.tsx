@@ -11,7 +11,8 @@ const QuestCategory: React.FC<{
 	categoriesToDisplay: string[];
 	questsToDisplay: Quest[];
 	filter: string;
-}> = ({ quests, category, user, character, categoriesToDisplay, questsToDisplay, filter }) => {
+	showDrawer: Function
+}> = ({ quests, category, user, character, categoriesToDisplay, questsToDisplay, showDrawer, filter }) => {
 	const [active, setActive] = useState(false);
 
 	let containsDaily = false;
@@ -67,6 +68,7 @@ const QuestCategory: React.FC<{
 						characters={user?.characters}
 						questsToDisplay={questsToDisplay}
 						filter={filter}
+						showDrawer={showDrawer}
 					></QuestRow>
 				))}
 			</small>

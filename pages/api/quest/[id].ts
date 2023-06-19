@@ -16,22 +16,21 @@ export default async function handle(req: UserApiRequest, res: NextApiResponse) 
 	if (session) {
 		try {
 			const questValue = req.query.id;
-			const { optionalTitle } = req.body;
+			//const { optionalTitle } = req.body;
 
-			if (!optionalTitle) {
-				throw new Error("Needs title");
-			}
+			// if (!optionalTitle) {
+			// 	throw new Error("Needs title");
+			// }
 
 			if (!session.user.email) {
 				throw new Error("email wrong");
 			}
-
+			console.log(questValue);
 			if (req.method === "DELETE") {
 				await prisma.quest.deleteMany({
 					where: {
 						userEmail: session.user.email,
 						value: questValue,
-						optionalTitle: optionalTitle,
 					},
 				});
 

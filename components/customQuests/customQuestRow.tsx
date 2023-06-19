@@ -13,21 +13,24 @@ const CustomQuestRow: React.FC<{
 				<div className=" ">{quest?.optionalTitle}</div>
 			</div>
 			{editMode && (
-				<DeleteOutlined
-					className=" hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100 rounded-lg"
-					onClick={async () => {
-						await fetch(`/api/quest/${quest.value}`, {
-							method: "DELETE",
-							headers: { "Content-Type": "application/json" },
-							body: JSON.stringify({
-								optionalTitle: quest?.optionalTitle,
-							}),
-						});
-						refreshData();
-					}}
-				>
-					Delete
-				</DeleteOutlined>
+				<div className="flex flex-row">
+					<div>{quest.repeatable}</div>
+					<DeleteOutlined
+						className=" hover:bg-gray-700 transition pt-[.2rem] ease-in-out delay-75 hover:scale-110 duration-100 rounded-lg"
+						onClick={async () => {
+							await fetch(`/api/quest/${quest.value}`, {
+								method: "DELETE",
+								headers: { "Content-Type": "application/json" },
+								body: JSON.stringify({
+									optionalTitle: quest?.optionalTitle,
+								}),
+							});
+							refreshData();
+						}}
+					>
+						Delete
+					</DeleteOutlined>
+				</div>
 			)}
 		</div>
 	);
