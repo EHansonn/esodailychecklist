@@ -1,10 +1,10 @@
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import ProfileInfo from "../components/profile/profileInfo";
+import ProfileInfo from "../../components/profile/profileInfo";
 import useSWR, { mutate } from "swr";
-import SignInComponent from "../components/authButtons/signInComponent";
-import LoadingSpinner from "../components/loading/loadingSpinner";
-import LoadingError from "../components/loading/loadingError";
+import SignInComponent from "../../components/authButtons/signInComponent";
+import LoadingSpinner from "../../components/loading/loadingSpinner";
+import LoadingError from "../../components/loading/loadingError";
 export default function Dailies() {
 	const { data: session, status } = useSession();
 
