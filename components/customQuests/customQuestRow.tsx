@@ -14,7 +14,7 @@ const CustomQuestRow: React.FC<{
 			</div>
 			{editMode && (
 				<DeleteOutlined
-					className="pt-1 hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100"
+					className=" hover:bg-gray-700 transition ease-in-out delay-75 hover:scale-110 duration-100 rounded-lg"
 					onClick={async () => {
 						await fetch(`/api/quest/${quest.value}`, {
 							method: "DELETE",
