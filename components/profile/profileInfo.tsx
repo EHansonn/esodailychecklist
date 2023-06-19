@@ -41,56 +41,58 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 	if (session) {
 		return (
 			<Layout>
-				<div className=" w-max m-auto text-offwhite-50 mb-10 border-b-2 border-solid border-l-0 border-r-0 border-0 pb-4">
-					<h1 className="border-b-2 border-solid border-l-0 border-r-0 border-0">Settings</h1>
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-						{/* Custom Quests */}
-						<div>
-							<h2 className="font-extrabold">Custom Quests</h2>
-							<h3>Add New Quest</h3>
-							<CustomQuestModal></CustomQuestModal>
+				<div className="min-h-screen">
+					<div className=" w-max m-auto text-offwhite-50 mb-10 border-b-2 border-solid border-l-0 border-r-0 border-0 pb-4">
+						<h1 className="border-b-2 border-solid border-l-0 border-r-0 border-0">Settings</h1>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+							{/* Custom Quests */}
+							<div>
+								<h2 className="font-extrabold">Custom Quests</h2>
+								<h3>Add New Quest</h3>
+								<CustomQuestModal></CustomQuestModal>
 
-							<h3>Current Custom Quests</h3>
+								<h3>Current Custom Quests</h3>
 
-							{user.customQuests.map((quest) => (
-								<CustomQuestRow key={quest.value} quest={quest} editMode={true}></CustomQuestRow>
-							))}
-						</div>
-						{/* Custom Characters */}
-						<div className="">
-							<h2 className="font-extrabold">Characters</h2>
-							<h3>Add New Character</h3>
-							<CharacterModel helperFunction={helperFunction} user={user}></CharacterModel>
+								{user.customQuests.map((quest) => (
+									<CustomQuestRow key={quest.value} quest={quest} editMode={true}></CustomQuestRow>
+								))}
+							</div>
+							{/* Custom Characters */}
+							<div className="">
+								<h2 className="font-extrabold">Characters</h2>
+								<h3>Add New Character</h3>
+								<CharacterModel helperFunction={helperFunction} user={user}></CharacterModel>
 
-							<h3>Current Characters</h3>
-							{user.characters?.map((character) => (
-								<CharacterRow
-									helperFunction={helperFunction}
-									editMode={true}
-									key={character.value}
-									user={user}
-									character={character}
-								></CharacterRow>
-							))}
+								<h3>Current Characters</h3>
+								{user.characters?.map((character) => (
+									<CharacterRow
+										helperFunction={helperFunction}
+										editMode={true}
+										key={character.value}
+										user={user}
+										character={character}
+									></CharacterRow>
+								))}
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div className={`pl-4 pr-4 flex flex-col   min-h-screen `}>
-					{numOfChars > 0 && (
-						<div className="justify-center flex pb-5">
-							<Link className="text-center flex pt-5 w-max" href={"/yourdailies"}>
-								<Button key="test" type="primary">
-									View Your Daily Checklist
-								</Button>
-							</Link>
-						</div>
-					)}
-					{numOfChars === 0 && (
-						<div className="flex justify-center pt-5 ">
-							<Alert message="Please add at least one character" type="warning" />
-						</div>
-					)}
+					<div className={`pl-4 pr-4 flex flex-col    `}>
+						{numOfChars > 0 && (
+							<div className="justify-center flex pb-5">
+								<Link className="text-center flex pt-5 w-max" href={"/yourdailies"}>
+									<Button key="test" type="primary">
+										View Your Daily Checklist
+									</Button>
+								</Link>
+							</div>
+						)}
+						{numOfChars === 0 && (
+							<div className="flex justify-center pt-5 ">
+								<Alert message="Please add at least one character" type="warning" />
+							</div>
+						)}
+					</div>
 				</div>
 			</Layout>
 		);
