@@ -11,31 +11,33 @@ interface UserApiRequest extends NextApiRequest {
 
 export default async function handle(req: UserApiRequest, res: NextApiResponse) {
 	const session = await getServerSession(req, res, authOptions);
-	if (session) {
-		try {
-			const u = await prisma?.user.findFirst({
-				where: { email: session?.user.email },
+	if (!session) {
+		res.status(401);
+		res.end();
+		return;
+	}
+
+	try {
+		const u = await prisma?.user.findFirst({
+			where: { email: session?.user.email },
+		});
+
+		const characterValue = req.query.id;
+
+		if (req.method === "DELETE") {
+			await prisma.character.deleteMany({
+				where: {
+					userId: u!.id,
+					value: characterValue,
+				},
 			});
 
-			const characterValue = req.query.id;
-
-			if (req.method === "DELETE") {
-				await prisma.character.deleteMany({
-					where: {
-						userId: u!.id,
-						value: characterValue,
-					},
-				});
-
-				res.status(200);
-			} else {
-				throw new Error(`The HTTP ${req.method} method is not supported at this route.`);
-			}
-		} catch (e) {
-			res.status(500);
+			res.status(200);
+		} else {
+			throw new Error(`The HTTP ${req.method} method is not supported at this route.`);
 		}
-	} else {
-		res.status(401);
+	} catch (e) {
+		res.status(500);
 	}
 	res.end();
 }
