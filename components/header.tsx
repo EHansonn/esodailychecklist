@@ -30,7 +30,7 @@ export default function Header() {
 	return (
 		<Disclosure
 			as="nav"
-			className="bg-black border-b-2 border-r-0 border-t-0 border-l-0 border-solid  sticky top-0 z-50   "
+			className="bg-neargrey-50 border-b-2 border-r-0  border-t-0 border-l-0 border-solid  -top-0 fixed w-screen  z-50    "
 		>
 			{({ open }) => (
 				<>
@@ -38,7 +38,7 @@ export default function Header() {
 						<div className="relative flex h-16 items-center justify-between">
 							<div className="absolute inset-y-0 left-0 flex items-center sm:hidden pl-2">
 								{/* Mobile menu button*/}
-								<Disclosure.Button className="inline-flex items-center justify-center bg-black text-offwhite-50  border-2 border-offwhite-50 rounded-xl hover:bg-gray-700 p-2 focus:bg-gray-700">
+								<Disclosure.Button className="inline-flex items-center justify-center bg-neargrey-50 text-offwhite-50  border-2 border-offwhite-50 rounded-xl hover:bg-gray-700 p-2 focus:bg-gray-700">
 									<span className="sr-only">Open main menu</span>
 									{open ? (
 										<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -76,7 +76,7 @@ export default function Header() {
 														item.current
 															? "bg-offwhite-200 text-white"
 															: "text-gray-300 hover:bg-gray-700 hover:text-white",
-														"rounded-md px-3 py-2 text-sm font-medium",
+														"rounded-md px-3 py-2 text-md font-medium no-underline",
 													)}
 													aria-current={item.current ? "page" : undefined}
 												>
@@ -96,7 +96,7 @@ export default function Header() {
 												navigation[0].current
 													? "bg-offwhite-200 text-white"
 													: "text-gray-300 hover:bg-gray-700 hover:text-white",
-												"rounded-md px-3 py-2 text-sm font-medium",
+												"rounded-md px-3 py-2 text-md font-medium no-underline",
 											)}
 											aria-current={navigation[0].current ? "page" : undefined}
 										>
@@ -109,7 +109,7 @@ export default function Header() {
 								{/* Profile dropdown */}
 								<Menu as="div" className="relative ml-3">
 									<div>
-										<Menu.Button className="flex rounded-full bg-black border-0 ">
+										<Menu.Button className="flex rounded-full bg-neargrey-50 border-0 ">
 											<span className="sr-only">Open user menu</span>
 											{/* {status === "loading" && (
 												<div className="inline-flex items-center justify-center rounded-md p-2">
@@ -174,7 +174,7 @@ export default function Header() {
 														href={session?.user ? `/api/auth/signout` : `/api/auth/signin`}
 														className={classNames(
 															active ? "bg-gray-100" : "",
-															"block px-4 py-2 text-sm text-black ",
+															"block px-4 py-2 text-sm text-black no-underline ",
 														)}
 														onClick={(e) => {
 															if (session?.user) {

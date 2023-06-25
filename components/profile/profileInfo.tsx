@@ -41,7 +41,7 @@ const ProfileInfo: NextPage<Props> = ({ user }) => {
 	if (session) {
 		return (
 			<Layout>
-				<div className="min-h-screen">
+				<div className="min-h-screen bg-neargrey-50">
 					<div className=" w-max m-auto text-offwhite-50 mb-10 border-b-2 border-solid border-l-0 border-r-0 border-0 pb-4">
 						<h1 className="border-b-2 border-solid border-l-0 border-r-0 border-0">Settings</h1>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">

@@ -5,7 +5,7 @@ import Layout from "../layout";
 const SignInComponent: React.FC<{ text?: string }> = ({ text }) => {
 	return (
 		<Layout>
-			<div className="content-center text-center min-h-screen ">
+			<div className="content-center text-center min-h-screen bg-neargrey-50 ">
 				<div className="text-white w-full text-center pb-5 pt-5">{`Please sign in to view your ${text}`}</div>
 				<Button
 					className="w-40 "

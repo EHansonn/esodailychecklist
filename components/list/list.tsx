@@ -30,7 +30,8 @@ export type QuestProps = {
 
 const List: React.FC<{
 	list: ListProps;
-}> = ({ list }) => {
+	showDrawer: Function;
+}> = ({ list, showDrawer }) => {
 	const [active, setActive] = useState(false);
 	const [deleteTransition, setDeleteTransition] = useState(false);
 	const showDetails = () => {
@@ -78,7 +79,13 @@ const List: React.FC<{
 					<h4 className="mt-0 mb-0">Selected Quests:</h4>
 					<div className="flex flex-col ">
 						{list?.tasks!.map((quest: Quest) => {
-							return <ListQuestAndRow key={quest.value} quest={quest}></ListQuestAndRow>;
+							return (
+								<ListQuestAndRow
+									showDrawer={showDrawer}
+									key={quest.value}
+									quest={quest}
+								></ListQuestAndRow>
+							);
 						})}
 					</div>
 				</div>

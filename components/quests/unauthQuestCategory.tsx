@@ -9,12 +9,12 @@ const UnauthQuestCategory: React.FC<{
 }> = ({ quests, category }) => {
 	return (
 		<div
-			className={`bg-offwhite-200  border-2 border-solid border-offwhite-50 flex flex-col h-full rounded-lg text-offwhite-50 $`}
+			className={`border-offwhite-50   border-solid  border-t-0 border-l-0 border-b-0 border-r-0 flex flex-col text-xl  rounded-lg text-offwhite-50  $`}
 		>
-			<h4 className="py-0 my-0  border-b-2 border-solid border-r-0 border-l-0 border-t-0 relative truncate pl-2 select-none">
+			<h3 className="py-0 my-0  border-solid border-r-0 border-l-0 border-t-0 border-b-2 relative truncate pl-2 select-none">
 				{category}
 				<small className="absolute right-0 "></small>
-			</h4>
+			</h3>
 			<small>
 				{quests?.map((quest: any, index) => (
 					<UnauthQuestRow key={index} quest={quest}></UnauthQuestRow>

@@ -65,10 +65,14 @@ type drawerText = {
 	reward: string;
 	link: string;
 	title: string;
+	alignment?: string;
 };
 
 const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories }) => {
 	const { data: session, status } = useSession();
+	if (!session) {
+		return <div>access denied</div>;
+	}
 	const [currentCharacter, selectCurrentCharacter] = useState(user.characters![0]);
 
 	//Drawer stuff
@@ -94,7 +98,16 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 		reward: string,
 		link: string,
 		title: string,
+		alignment: string = "right",
 	) => {
+		if (open === true) {
+			return;
+		}
+
+		if (alignment !== "left" && alignment !== "right") {
+			alignment = "right";
+		}
+
 		const textData = {
 			category: category,
 			description: description,
@@ -104,6 +117,7 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 			reward: reward,
 			link: link,
 			title: title,
+			alignment: alignment || "right",
 		} as drawerText;
 		setDrawerTextInfo(textData);
 		setOpen(true);
@@ -250,140 +264,138 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 		setFilter(value);
 	};
 
-	if (session) {
-		return (
-			<>
-				<Layout>
-					<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-full sm:min-h-screen bg-black`}>
-						<div className="flex flex-col lg:flex-row md:flex-row  justify-center md:pb-2 pb-6">
-							<div className="text-slate-300 pb-2 text-center ">
-								{`Daily quests reset at ${time} each day`}
-							</div>
-							<div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-6 md:pb-0 ">
-								{`Weekly quests reset at ${time} on monday`}
-							</div>
+	return (
+		<>
+			<Layout>
+				<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-full sm:min-h-screen bg-[#0f0f0f]`}>
+					<div className="flex flex-col lg:flex-row md:flex-row  justify-center md:pb-2 pb-6">
+						<div className="text-slate-300 pb-2 text-center ">
+							{`Daily quests reset at ${time} each day`}
 						</div>
-
-						<div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
-							<div
-								className={`w-full flex flex-col md:grid md:h-full  lg:grid-cols-3 md:grid-cols-2 gap-3  pt-32 md:pt-0 `}
-							>
-								{/* Displaying Quests */}
-
-								{categories.map((category) => (
-									<QuestCategory
-										key={category}
-										quests={quests?.filter(function (el) {
-											return el.category === category;
-										})}
-										category={category}
-										user={user}
-										character={currentCharacter}
-										categoriesToDisplay={categoriesToDisplay}
-										questsToDisplay={questsToDisplay!}
-										filter={filter}
-										showDrawer={showDrawer}
-									></QuestCategory>
-								))}
-							</div>
-
-							<div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-14  ">
-								<div className="w-full flex justify-center   md:relative md:top-0 select-none md:relative absolute md:top-0 -top-8 ">
-									{/* Filter Selector */}
-									<Radio.Group
-										options={[
-											{ value: "All Quests", label: "All Quests" },
-											{ value: "daily", label: "Daily Quests" },
-											{ value: "weekly", label: "Weekly Quests" },
-										]}
-										onChange={handleFilterChange}
-										value={filter}
-										optionType="button"
-										buttonStyle="solid"
-									/>
-								</div>
-								{/* Character Selector */}
-								<Space
-									direction="vertical"
-									key="test233"
-									wrap
-									style={{ width: "100%" }}
-									className="md:relative absolute md:top-0 top-10 "
-								>
-									<Select
-										className=""
-										defaultValue={user.characters![0].name}
-										value={characterSelectedValue}
-										style={{ width: "100%" }}
-										onSelect={handleChangeCharacter}
-										options={characterOptions}
-									/>
-								</Space>
-
-								{/* List Selector */}
-								<Space
-									direction="vertical"
-									key="test2"
-									wrap
-									style={{ width: "100%" }}
-									className="md:relative absolute top-0 "
-								>
-									<Select
-										className=""
-										defaultValue={"Default List"}
-										style={{ width: "100%" }}
-										value={listSelectedValue}
-										onSelect={handleListChange}
-										options={listOptions}
-									/>
-								</Space>
-
-								<Listmodal quests={quests} categories={categories}></Listmodal>
-								{lists?.map((list: any) => (
-									<List key={list.id} list={list}></List>
-								))}
-							</div>
+						<div className="text-slate-300 pl-0  lg:pl-5 md:pl-5 text-center pb-6 md:pb-0 ">
+							{`Weekly quests reset at ${time} on monday`}
 						</div>
 					</div>
-				</Layout>
-				<Drawer
-					style={{ backgroundColor: "#121212" }}
-					closeIcon={
-						<CloseOutlined
-							className="scale-[200%] md:scale-100 mt-1"
-							style={{ color: "white" }}
-						></CloseOutlined>
-					}
-					rootClassName="text-offwhite-50 fill-white break-words "
-					title={<label style={{ color: "White" }}>{drawerTextInfo.title}</label>}
-					placement="right"
-					onClose={onClose}
-					open={open}
-					mask={window.innerWidth > 768 ? true : true}
-					width={window.innerWidth > 768 ? window.innerWidth * 0.4 : window.innerWidth}
-				>
-					<div className="overflow-hidden overflow-y-hidden h-full flex flex-col">
-						<div className="pb-2">Category: {drawerTextInfo.category}</div>
-						<div className="pb-2">Description {drawerTextInfo.description}</div>
-						<div className="pb-2 ">Repeatable: {drawerTextInfo.repeatable}</div>
-						<div className="pb-2">Location: {drawerTextInfo.location}</div>
-						<div className="pb-2">Quest Giver: {drawerTextInfo.questgiver}</div>
-						<div className="pb-2">Reward: {drawerTextInfo.reward}</div>
-						<Link className="" href={drawerTextInfo.link}>
-							{drawerTextInfo.link}
-						</Link>
+
+					<div className="flex  sm:space-x-0 lg:space-x-5 md:space-x-3 flex-col  md:flex-row lg:flex-row justify-between relative">
 						<div
-							className="pb-2  flex h-full mt-4 "
-							onClick={() => {
-								onClose();
-							}}
-						></div>
+							className={`w-full flex flex-col md:grid md:h-full  lg:grid-cols-3 md:grid-cols-2 gap-3  pt-32 md:pt-0 `}
+						>
+							{/* Displaying Quests */}
+
+							{categories.map((category) => (
+								<QuestCategory
+									key={category}
+									quests={quests?.filter(function (el) {
+										return el.category === category;
+									})}
+									category={category}
+									user={user}
+									character={currentCharacter}
+									categoriesToDisplay={categoriesToDisplay}
+									questsToDisplay={questsToDisplay!}
+									filter={filter}
+									showDrawer={showDrawer}
+								></QuestCategory>
+							))}
+						</div>
+
+						<div className="flex flex-col space-y-3 lg:w-1/3 md:w-1/3 sm:w-full lg:mt-0 md:mt-0 mt-14  ">
+							<div className="w-full flex justify-center    select-none md:relative absolute md:top-0 -top-8 ">
+								{/* Filter Selector */}
+								<Radio.Group
+									options={[
+										{ value: "All Quests", label: "All Quests" },
+										{ value: "daily", label: "Daily Quests" },
+										{ value: "weekly", label: "Weekly Quests" },
+									]}
+									onChange={handleFilterChange}
+									value={filter}
+									optionType="button"
+									buttonStyle="solid"
+								/>
+							</div>
+							{/* Character Selector */}
+							<Space
+								direction="vertical"
+								key="test233"
+								wrap
+								style={{ width: "100%" }}
+								className="md:relative absolute md:top-0 top-10 "
+							>
+								<Select
+									className=""
+									defaultValue={user.characters![0].name}
+									value={characterSelectedValue}
+									style={{ width: "100%" }}
+									onSelect={handleChangeCharacter}
+									options={characterOptions}
+								/>
+							</Space>
+
+							{/* List Selector */}
+							<Space
+								direction="vertical"
+								key="test2"
+								wrap
+								style={{ width: "100%" }}
+								className="md:relative absolute top-0 "
+							>
+								<Select
+									className=""
+									defaultValue={"Default List"}
+									style={{ width: "100%" }}
+									value={listSelectedValue}
+									onSelect={handleListChange}
+									options={listOptions}
+								/>
+							</Space>
+
+							<Listmodal quests={quests} categories={categories}></Listmodal>
+							{lists?.map((list: any) => (
+								<List showDrawer={showDrawer} key={list.id} list={list}></List>
+							))}
+						</div>
 					</div>
-				</Drawer>
-			</>
-		);
-	}
-	return <div>access denied</div>;
+				</div>
+			</Layout>
+			<Drawer
+				style={{ backgroundColor: "#121212" }}
+				closeIcon={
+					<CloseOutlined
+						className="scale-[200%] md:scale-100 mt-1"
+						style={{ color: "white" }}
+					></CloseOutlined>
+				}
+				rootClassName="text-offwhite-50 fill-white break-words "
+				title={<label style={{ color: "White" }}>{drawerTextInfo.title}</label>}
+				//@ts-ignore
+				placement={drawerTextInfo.alignment}
+				onClose={onClose}
+				open={open}
+				mask={window.innerWidth > 768 ? true : true}
+				width={window.innerWidth > 768 ? window.innerWidth * 0.4 : window.innerWidth}
+			>
+				<div className="overflow-hidden overflow-y-hidden h-full flex flex-col">
+					<div className="pb-2">Category: {drawerTextInfo.category}</div>
+					<div className="pb-2">Description {drawerTextInfo.description}</div>
+					<div className="pb-2 ">Repeatable: {drawerTextInfo.repeatable}</div>
+					<div className="pb-2">Location: {drawerTextInfo.location}</div>
+					<div className="pb-2">Quest Giver: {drawerTextInfo.questgiver}</div>
+					<div className="pb-2">Reward: {drawerTextInfo.reward}</div>
+					<Link className="" href={drawerTextInfo.link}>
+						{drawerTextInfo.link}
+					</Link>
+					<div
+						className="pb-2  flex h-full mt-4 "
+						onClick={() => {
+							onClose();
+						}}
+					></div>
+				</div>
+			</Drawer>
+		</>
+	);
 };
 
 export default YourDailiesChecklist;

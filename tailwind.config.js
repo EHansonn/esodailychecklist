@@ -9,6 +9,9 @@ module.exports = {
 					100: "#333",
 					200: "#121212",
 				},
+				neargrey: {
+					50: "#0f0f0f",
+				},
 			},
 		},
 		fontFamily: {

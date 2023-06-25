@@ -22,7 +22,7 @@ export default function SignIn() {
 
 	return (
 		<Layout>
-			<div className="pb-4 pt-2 pl-4 pr-4  relative min-h-screen bg-black ">
+			<div className="pb-4 pt-2 pl-4 pr-4  relative min-h-screen bg-neargrey-50 ">
 				<div className="flex flex-col md:flex-row">
 					<div className="flex justify-center flex-col text-center mt-2  w-1/2 m-auto p-20 rounded-lg">
 						<h2 className="text-offwhite-50 pt-2">Welcome{newUser ? " back!" : "!"}</h2>
@@ -54,7 +54,6 @@ export default function SignIn() {
 									style={{
 										background: "#7289DA",
 										color: "White",
-										
 									}}
 									type="primary"
 									onClick={() => signIn("discord", { callbackUrl: id })}

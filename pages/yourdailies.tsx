@@ -107,7 +107,7 @@ export default function Dailies() {
 				{status === "unauthenticated" && (
 					<>
 						<Layout>
-							<div className="content-center text-center">
+							<div className="content-center text-center bg-neargrey-50">
 								<div className="text-white text-center pb-5 pt-5">{`Please sign in to view your own personalized checklist`}</div>
 								<Button
 									className="w-40"
@@ -119,7 +119,7 @@ export default function Dailies() {
 									Sign In
 								</Button>
 							</div>
-							<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen `}>
+							<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen  bg-neargrey-50`}>
 								<div className="flex flex-col lg:flex-row md:flex-row  justify-center"></div>
 								<div className="content-center text-center ">
 									<h2 className="text-white text-center pb-5 pt-5">Possible Dailies</h2>
@@ -158,7 +158,7 @@ export default function Dailies() {
 		return (
 			<Layout>
 				<YourDailiesHeader></YourDailiesHeader>
-				<div className="content-center text-center min-h-screen">
+				<div className="content-center text-center min-h-screen bg-neargrey-50">
 					<div className="text-offwhite-50 w-screen text-center pb-5 pt-5 ">
 						Please create a character on your profile!
 					</div>

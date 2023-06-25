@@ -7,7 +7,7 @@ const LogoSection: React.FC<{ scrollToFunction: Function }> = ({ scrollToFunctio
 	const { data: session, status } = useSession();
 
 	return (
-		<div className="  pt-3 px-3  backdrop-blur-md mb-20 mt-20  backdrop-brightness-90 border-b-2 border-solid border-l-0 border-r-0 border-t-0">
+		<div className="  pt-3 px-3  backdrop-blur-md mb-20 mt-20   border-b-2 border-solid border-l-0 border-r-0 border-t-0">
 			<div className="text-6xl text-white text-center">
 				<Image src="/logo3.png" layout="intrinsic" height={200} width={800} alt="logo"></Image>
 			</div>
