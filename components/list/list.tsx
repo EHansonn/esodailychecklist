@@ -42,15 +42,12 @@ const List: React.FC<{
 
 	return (
 		<div
-			className={`bg-offwhite-200  border-solid border-2 border-offwhite-50   justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
+			className={`   border-offwhite-50   justify-between   flex-row object-contain rounded-lg py-2 pl-2 pr-2
     transition-opacity duration-100 ease-out  ${deleteTransition ? "opacity-0" : "opacity-100"}`}
 		>
 			<div className={`flex flex-col object-contain text-offwhite-50 `}>
-				<div className="flex justify-between w-full cursor-pointer ">
-					<div
-						className="  flex flex-row justify-between w-full hover:bg-slate-600 rounded-md "
-						onClick={showDetails}
-					>
+				<div className="flex justify-between w-full cursor-pointer border-b-2   border-t-0 border-r-0 border-l-0 border-solid hover:bg-slate-600 rounded-t-md   ">
+					<div className="  flex flex-row justify-between w-full    " onClick={showDetails}>
 						<h3 className="mt-0 pl-1 pt-0 mb-0 inline-block align-baseline select-none">{list.title}</h3>
 						<div>
 							<DownOutlined
