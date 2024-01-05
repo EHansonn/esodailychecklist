@@ -72,6 +72,7 @@ export default function Dailies() {
 		"Deadlands Quests",
 		"High Isle Quests",
 		"Galen Quests",
+		"Necrom Quests",
 		"Cyrodiil Settlement Quests",
 		"Miscellaneous",
 	];
@@ -97,6 +98,7 @@ export default function Dailies() {
 		"Deadlands Quests",
 		"High Isle Quests",
 		"Galen Quests",
+		"Necrom Quests",
 	];
 
 	if (!session) {
