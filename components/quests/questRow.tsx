@@ -4,6 +4,7 @@ import { Checkbox, ConfigProvider, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Character, Quest, User } from "../DailyChecklist/dailiesCheckList";
 import { CloseOutlined } from "@ant-design/icons";
+import styles from "./questRow.module.css";
 export type questProps = {
 	quest: Quest;
 };
@@ -162,9 +163,13 @@ const QuestRow: React.FC<{
 						);
 					}}
 				>
-					<h3 className={`pl-2 m-0 select-none ${checked ? "line-through text-[#3478ff]" : ""} `}>
+					<div
+						className={`pl-2 m-0 select-none ${checked ? "line-through text-[#3478ff]" : ""} ${
+							styles.test
+						} `}
+					>
 						{quest.optionalTitle ? quest.optionalTitle : quest?.value}
-					</h3>
+					</div>
 					<div className={`pl-2 m-0 pr-5 text-base   `}>
 						{/* <div className={`${styles.font}`}>{quest.repeatable}</div> */}
 					</div>
