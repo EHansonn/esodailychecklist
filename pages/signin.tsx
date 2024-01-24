@@ -10,14 +10,17 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 export default function SignIn() {
 	let {
-		query: { callbackUrl },
+		query: { callbackUrl, error },
 	} = useRouter();
 	const id = Array.isArray(callbackUrl) ? callbackUrl[0] : callbackUrl;
 	let [newUser, setNewUser] = useState(false);
-
+	const displayError = error
+		? error === "OAuthAccountNotLinked"
+			? "An account is already associated with this email address. Try the other provider"
+			: error
+		: "";
 	useEffect(() => {
 		setNewUser(localStorage.getItem("character") !== null ? true : false);
-		console.log(newUser);
 	}, []);
 
 	return (
@@ -83,6 +86,7 @@ export default function SignIn() {
 									</div>
 								</div>
 							</div>
+							{displayError && <div className="text-red-500">{displayError}</div>}
 						</div>
 					</div>
 					<div className="text-center mt-2  border-b-0 border-t-0 border-offwhite-100 border-solid border-l-4 border-r-0  w-1/2 min-h-screen m-auto p-20 hidden md:flex flex-col ">
