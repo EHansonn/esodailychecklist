@@ -29,3 +29,74 @@ iframe {
 	border-radius: 0.5rem;
 	filter: invert(1);
 }
+
+#discord-button {
+	margin-bottom: 2rem;
+	.icon {
+		width: 34px;
+		height: 34px;
+		margin-right: 15px;
+
+		svg {
+			fill: white;
+		}
+	}
+
+	.bg-login-button {
+		min-width: 230px;
+		color: white;
+		font-weight: bold;
+		border-radius: 8px;
+		display: inline-flex;
+		align-items: center;
+		padding: 10px 15px;
+		background-color: #7289da;
+		text-decoration: none;
+
+		&:hover {
+			background-color: #6a7fc9;
+		}
+	}
+}
+
+#google-button {
+	margin-bottom: 1rem;
+	.icon {
+		width: 34px;
+		height: 34px;
+		margin-right: 15px;
+
+		svg {
+			fill: white;
+		}
+	}
+	img {
+		width: 34px;
+		height: 34px;
+		margin-right: 15px;
+
+		svg {
+			fill: white;
+		}
+	}
+
+	span {
+		color: black;
+	}
+
+	.bg-login-button {
+		min-width: 230px;
+		color: white;
+		font-weight: bold;
+		border-radius: 8px;
+		display: inline-flex;
+		align-items: center;
+		padding: 10px 15px;
+		background-color: white;
+		text-decoration: none;
+
+		&:hover {
+			background-color: #ffffffed;
+		}
+	}
+}
