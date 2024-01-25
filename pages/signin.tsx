@@ -132,10 +132,9 @@ const SignIn: NextPage<ProtectedPageProps> = ({ session }) => {
 		</Layout>
 	);
 };
-
 // if user already login in then redirect to their dailies
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	const session = await getSession(context);
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+	const session = await getServerSession(req, res, authOptions);
 
 	if (session) {
 		return {
