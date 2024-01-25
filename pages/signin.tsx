@@ -50,7 +50,7 @@ export default function SignIn() {
 									Sign in with Google
 								</Button>
 							</div> */}
-							<div className="flex justify-center ">
+							<div className="flex justify-center cursor-pointer">
 								<div id="google-button" onClick={() => signIn("google", { callbackUrl: id })}>
 									<div className="bg-login-button">
 										<div className="icon">
@@ -63,7 +63,7 @@ export default function SignIn() {
 									</div>
 								</div>
 							</div>
-							<div className="flex justify-center ">
+							<div className="flex justify-center  cursor-pointer">
 								<div id="discord-button" onClick={() => signIn("discord", { callbackUrl: id })}>
 									<div className="bg-login-button">
 										<div className="icon">

@@ -3,8 +3,12 @@ import AboutSection from "../components/LandingPage/aboutSection";
 import FeaturesSection from "../components/LandingPage/featuresSection";
 import LogoSection from "../components/LandingPage/logoSection";
 import Layout from "../components/layout";
+import { FindNumberOfQuests } from "./api/getNumberOfQuests";
+interface IndexPageProps {
+	numberOfQuests: number;
+}
 
-export default function IndexPage() {
+const IndexPage: React.FC<IndexPageProps> = ({ numberOfQuests }) => {
 	//const { data: session, status } = useSession();
 	const aboutRef = useRef<HTMLDivElement>(null);
 	const scrollToAbout = () => {
@@ -16,7 +20,10 @@ export default function IndexPage() {
 			<Layout>
 				<div className={`pb-4 pt-2 pl-4 pr-4  relative min-h-screen bg-neargrey-50`}>
 					<div className="flex flex-col ">
-						<LogoSection scrollToFunction={scrollToAbout}></LogoSection>
+						<LogoSection
+							numberOfQuestsCompleted={numberOfQuests}
+							scrollToFunction={scrollToAbout}
+						></LogoSection>
 						<FeaturesSection></FeaturesSection>
 						<AboutSection innerRef={aboutRef}></AboutSection>
 					</div>
@@ -26,4 +33,15 @@ export default function IndexPage() {
 			</Layout>
 		</>
 	);
+};
+export async function getStaticProps() {
+	const numberOfQuests = await FindNumberOfQuests();
+	return {
+		props: {
+			numberOfQuests,
+		},
+		revalidate: 43200, // Revalidate every 12 hours
+	};
 }
+
+export default IndexPage;

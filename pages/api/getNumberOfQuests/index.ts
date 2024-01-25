@@ -18,3 +18,18 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 	}
 	res.end();
 }
+
+export async function FindNumberOfQuests() {
+	try {
+		const findNumberOfQuests = await prisma?.yourModel.findUnique({
+			where: {
+				id: 1,
+			},
+		});
+
+		const numberOfQuests = findNumberOfQuests?.yourNumberField || 0;
+		return numberOfQuests;
+	} catch (e) {
+		return 0;
+	}
+}
