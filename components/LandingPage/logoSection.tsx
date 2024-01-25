@@ -15,7 +15,7 @@ const LogoSection: React.FC<{ scrollToFunction: Function; numberOfQuestsComplete
 			<div className="text-6xl text-white text-center">
 				<Image priority src="/logo3.png" layout="intrinsic" height={200} width={800} alt="logo"></Image>
 			</div>
-			<h2 className=" md:text-2xl text-center text-white pt-4 max-w-6xl m-auto ">
+			<h2 className=" text-lg md:text-2xl text-center text-white pt-4 max-w-6xl m-auto ">
 				Over <span className="text-[#3478ff]">{numberOfQuestsCompleted}</span> quests completed!
 			</h2>
 			<p className=" md:text-2xl text-center text-white pt-4 max-w-6xl m-auto">
