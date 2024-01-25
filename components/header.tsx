@@ -198,7 +198,7 @@ export default function Header() {
 					</div>
 
 					<Disclosure.Panel className="sm:hidden ">
-						<Disclosure.Button className="w-full h-screen absolute bg-black opacity-50 z-[-1] border-none"></Disclosure.Button>
+						<Disclosure.Button className="w-full h-screen absolute bg-black opacity-50 z-[-1] border-none "></Disclosure.Button>
 						<div className="space-y-1 px-2 pt-2  pb-3 z-50">
 							{navigation.slice(1).map((item) => (
 								<Link
