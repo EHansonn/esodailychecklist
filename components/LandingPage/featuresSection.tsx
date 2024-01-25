@@ -4,7 +4,7 @@ const FeaturesSection = () => {
 	return (
 		<div className="relative  m-auto  pt-3 pb-4 px-3 rounded-lg backdrop-blur-md  text-offwhite-50 w-9/10 lg:w-2/3 text-center">
 			<h1 className="mt-0 mb-2 ">Features</h1>
-			<div className="flex flex-col sm:flex-row text-left  ">
+			<div className="flex flex-col sm:flex-row text-left justify-between ">
 				<div className="flex flow-row ">
 					<TeamOutlined className="mr-2 my-auto" style={{ fontSize: "20px" }} />
 
