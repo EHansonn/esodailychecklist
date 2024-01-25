@@ -7,11 +7,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	try {
 		if (ACTION_KEY === APP_KEY) {
 			// Process the POST request
+			let count = await prisma.questsOnCharacter.count({
+				where: {
+					quest: {
+						repeatable: "weekly",
+					},
+				},
+			});
 			const post = await prisma.questsOnCharacter.deleteMany({
 				where: {
 					quest: {
 						repeatable: "weekly",
 					},
+				},
+			});
+			const updateCount = await prisma.yourModel.update({
+				where: {
+					id: 1,
+				},
+				data: {
+					yourNumberField: count,
 				},
 			});
 			res.status(200).json({ success: "true" });

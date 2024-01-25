@@ -117,3 +117,11 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model YourModel {
+  id    Int    @id @default(autoincrement())
+  // Other fields in your model
+  
+  // Number field with default value 0
+  yourNumberField Int @default(0)
+}

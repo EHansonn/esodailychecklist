@@ -7,10 +7,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	try {
 		if (ACTION_KEY === APP_KEY) {
 			// Process the POST request
+			let count = 0;
+
+			count += await prisma.questsOnCharacter.count({
+				where: {
+					quest: {
+						repeatable: "daily",
+					},
+				},
+			});
 			const post = await prisma.questsOnCharacter.deleteMany({
 				where: {
 					quest: {
 						repeatable: "daily",
+					},
+				},
+			});
+
+			count += await prisma.questsOnCharacter.count({
+				where: {
+					quest: {
+						repeatable: "immediately",
 					},
 				},
 			});
@@ -20,6 +37,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 					quest: {
 						repeatable: "immediately",
 					},
+				},
+			});
+
+			const updateCount = await prisma.yourModel.update({
+				where: {
+					id: 1,
+				},
+				data: {
+					yourNumberField: count,
 				},
 			});
 			res.status(200).json({ success: "true" });
