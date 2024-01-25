@@ -13,7 +13,7 @@ const LogoSection: React.FC<{ scrollToFunction: Function; numberOfQuestsComplete
 	return (
 		<div className="  pt-3 px-3  backdrop-blur-md mb-20 mt-0 md:mt-20   border-b-2 border-solid border-l-0 border-r-0 border-t-0">
 			<div className="text-6xl text-white text-center">
-				<Image src="/logo3.png" layout="intrinsic" height={200} width={800} alt="logo"></Image>
+				<Image priority src="/logo3.png" layout="intrinsic" height={200} width={800} alt="logo"></Image>
 			</div>
 			<h2 className=" md:text-2xl text-center text-white pt-4 max-w-6xl m-auto ">
 				Over <span className="text-[#3478ff]">{numberOfQuestsCompleted}</span> quests completed!
@@ -47,7 +47,14 @@ const LogoSection: React.FC<{ scrollToFunction: Function; numberOfQuestsComplete
 			</div>
 
 			<div className="text-6xl text-white text-center translate-y-1 mt-8">
-				<Image src="/example1.png" layout="intrinsic" height={400} width={1650 * 0.8} alt="logo"></Image>
+				<Image
+					priority
+					src="/example1.png"
+					layout="intrinsic"
+					height={400}
+					width={1650 * 0.8}
+					alt="logo"
+				></Image>
 			</div>
 		</div>
 	);
