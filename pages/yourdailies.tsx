@@ -160,8 +160,8 @@ export default function Dailies() {
 		return (
 			<Layout>
 				<YourDailiesHeader></YourDailiesHeader>
-				<div className="content-center text-center min-h-screen bg-neargrey-50">
-					<div className="text-offwhite-50 w-screen text-center pb-5 pt-5 ">
+				<div className="content-center text-center min-h-screen bg-neargrey-50 overflow">
+					<div className="text-offwhite-50 w-100% text-center pb-5 pt-5 ">
 						Please create a character on your profile!
 					</div>
 					<Link href={"/profile"}>
