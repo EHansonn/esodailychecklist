@@ -7,7 +7,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	try {
 		if (ACTION_KEY === APP_KEY) {
 			// Process the POST request
-			let count = 0;
+			const findNumberOfQuests = await prisma?.yourModel.findUnique({
+				where: {
+					id: 1,
+				},
+			});
+			let count = findNumberOfQuests?.yourNumberField || 500;
 
 			count += await prisma.questsOnCharacter.count({
 				where: {

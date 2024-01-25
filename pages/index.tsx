@@ -40,7 +40,7 @@ export async function getStaticProps() {
 		props: {
 			numberOfQuests,
 		},
-		revalidate: 43200, // Revalidate every 12 hours
+		revalidate: 1800, // Revalidate every 30 mins
 	};
 }
 
