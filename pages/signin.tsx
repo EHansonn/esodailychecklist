@@ -1,5 +1,5 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
-import { getProviders, signIn } from "next-auth/react";
+import { getProviders, getSession, signIn } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
 import Layout from "../components/layout";
@@ -7,8 +7,15 @@ import { useRouter } from "next/router";
 import { Button } from "antd";
 import Icon from "@ant-design/icons";
 import Image from "next/image";
+import { GetServerSideProps, NextPage } from "next";
 import { useEffect, useState } from "react";
-export default function SignIn() {
+import { Session } from "next-auth";
+
+interface ProtectedPageProps {
+	session: Session | null;
+}
+
+const SignIn: NextPage<ProtectedPageProps> = ({ session }) => {
 	let {
 		query: { callbackUrl, error },
 	} = useRouter();
@@ -124,4 +131,24 @@ export default function SignIn() {
 			</div>
 		</Layout>
 	);
-}
+};
+
+// if user already login in then redirect to their dailies
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const session = await getSession(context);
+
+	if (session) {
+		return {
+			redirect: {
+				destination: "/yourdailies", // Redirect to the login page
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: { session },
+	};
+};
+
+export default SignIn;
