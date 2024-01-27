@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
 	pages: {
 		signIn: "/signin",
 		error: "/signin",
-		newUser: "/profile",
+		newUser: "/yourdailies",
 	},
 
 	theme: {

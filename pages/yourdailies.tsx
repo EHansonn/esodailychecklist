@@ -9,6 +9,7 @@ import UnauthQuestCategory from "../components/quests/unauthQuestCategory";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import CharacterModel from "../components/character/characterModel";
 
 export const refreshData = () => {
 	//Triggers swr to refetch data
@@ -17,7 +18,6 @@ export const refreshData = () => {
 
 export default function Dailies() {
 	const { data: session, status } = useSession();
-
 	//Fetching user data
 	const fetcher = async () => {
 		const response = await fetch("/api/user");
@@ -161,12 +161,13 @@ export default function Dailies() {
 			<Layout>
 				<YourDailiesHeader></YourDailiesHeader>
 				<div className="content-center text-center min-h-screen bg-neargrey-50 overflow">
-					<div className="text-offwhite-50 w-100% text-center pb-5 pt-5 ">
-						Please create a character on your profile!
+					<h3 className="text-white">Create a new character</h3>
+					<div className="text-offwhite-50 w-100% text-center pb-5 pt-5 flex px-4 md:px-0 justify-center">
+						<CharacterModel helperFunction={() => {}} user={data.user}></CharacterModel>
 					</div>
-					<Link href={"/profile"}>
+					{/* <Link href={"/profile"}>
 						<Button type="primary">Create a Character</Button>
-					</Link>
+					</Link> */}
 				</div>
 			</Layout>
 		);
