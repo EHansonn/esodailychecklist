@@ -102,7 +102,7 @@ const QuestRow: React.FC<{
 	return (
 		<>
 			<div
-				className={`flex flex-row my-4 md:my-2 pl-4 md:pl-2 pb-[2px] justify-between active:bg-slate-600   md:hover:bg-slate-600  cursor-pointer ${
+				className={`flex flex-row my-4 md:my-2 pl-4 md:pl-2 min-h-[32px] justify-between active:bg-slate-600   md:hover:bg-slate-600 rounded-sm  cursor-pointer ${
 					active ? "visible" : "hidden"
 				}`}
 			>
@@ -184,7 +184,7 @@ const QuestRow: React.FC<{
 						{/* <div className={`${styles.font}`}>{quest.repeatable}</div> */}
 					</div>
 					<QuestionCircleOutlined
-						className="hover:opacity-95 opacity-30 h-full text-xl z-10"
+						className="hover:opacity-95 opacity-30 h-full text-xl z-10 pr-[0.25rem]"
 						width={17}
 						height={57}
 						onClick={() => {
