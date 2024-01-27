@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Checkbox, ConfigProvider, Drawer } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { Character, Quest, User } from "../DailyChecklist/dailiesCheckList";
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import styles from "./questRow.module.css";
 export type questProps = {
 	quest: Quest;
@@ -148,31 +148,58 @@ const QuestRow: React.FC<{
 					</ConfigProvider>
 				</div>
 
-				<div
-					className="flex-1 flex-row flex justify-between"
-					onClick={() => {
-						showDrawer(
-							quest?.category || "",
-							quest?.description || "",
-							quest?.repeatable || "",
-							quest?.location || "",
-							quest?.questGiver || "",
-							quest?.reward || "",
-							quest?.uespLink || "",
-							quest.optionalTitle ? quest.optionalTitle : quest?.value,
-						);
-					}}
-				>
+				<div className="flex-1 flex-row flex justify-between">
 					<div
-						className={`pl-2 m-0 select-none ${checked ? "line-through text-[#3478ff]" : ""} ${
+						className={` pl-2 m-0 w-full select-none ${checked ? "line-through text-[#3478ff]" : ""} ${
 							styles.test
 						} `}
+						onClick={async () => {
+							try {
+								const newVal = !checked;
+								setChecked((current) => !current);
+								const res = await fetch(`/api/QuestsOnCharacter/`, {
+									method: "PUT",
+									headers: { "Content-Type": "application/json" },
+									body: JSON.stringify({
+										quest: quest,
+										trueorfalse: newVal,
+										character: selectedCharacter,
+									}),
+								});
+								if (res.ok) {
+									updateHandler(newVal);
+									setBgColor("#ffffff");
+								} else {
+									throw new Error("Something went wrong");
+								}
+							} catch (error) {
+								setBgColor("#f5222d");
+								setChecked(false);
+							}
+						}}
 					>
 						{quest.optionalTitle ? quest.optionalTitle : quest?.value}
 					</div>
 					<div className={`pl-2 m-0 pr-5 text-base   `}>
 						{/* <div className={`${styles.font}`}>{quest.repeatable}</div> */}
 					</div>
+					<QuestionCircleOutlined
+						className="hover:opacity-95 opacity-30 h-full text-xl z-10"
+						width={17}
+						height={57}
+						onClick={() => {
+							showDrawer(
+								quest?.category || "",
+								quest?.description || "",
+								quest?.repeatable || "",
+								quest?.location || "",
+								quest?.questGiver || "",
+								quest?.reward || "",
+								quest?.uespLink || "",
+								quest.optionalTitle ? quest.optionalTitle : quest?.value,
+							);
+						}}
+					/>
 				</div>
 			</div>
 		</>
