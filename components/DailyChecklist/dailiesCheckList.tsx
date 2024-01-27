@@ -377,15 +377,17 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 				width={window.innerWidth > 768 ? window.innerWidth * 0.4 : window.innerWidth}
 			>
 				<div className="overflow-hidden overflow-y-hidden h-full flex flex-col">
-					<div className="pb-2">Category: {drawerTextInfo.category}</div>
-					<div className="pb-2">Description {drawerTextInfo.description}</div>
-					<div className="pb-2 ">Repeatable: {drawerTextInfo.repeatable}</div>
-					<div className="pb-2">Location: {drawerTextInfo.location}</div>
-					<div className="pb-2">Quest Giver: {drawerTextInfo.questgiver}</div>
-					<div className="pb-2">Reward: {drawerTextInfo.reward}</div>
-					<Link className="" href={drawerTextInfo.link}>
-						{drawerTextInfo.link}
-					</Link>
+					{drawerTextInfo.category && <div className="pb-2">Category: {drawerTextInfo.category}</div>}
+					{drawerTextInfo.description && <div className="pb-2">Description {drawerTextInfo.description}</div>}
+					{drawerTextInfo.repeatable && <div className="pb-2 ">Repeatable: {drawerTextInfo.repeatable}</div>}
+					{drawerTextInfo.location && <div className="pb-2">Location: {drawerTextInfo.location}</div>}
+					{drawerTextInfo.questgiver && <div className="pb-2">Quest Giver: {drawerTextInfo.questgiver}</div>}
+					{drawerTextInfo.reward && <div className="pb-2">Reward: {drawerTextInfo.reward}</div>}
+					{drawerTextInfo.link && (
+						<Link className="" href={drawerTextInfo.link}>
+							{drawerTextInfo.link}
+						</Link>
+					)}
 					<div
 						className="pb-2  flex h-full mt-4 "
 						onClick={() => {
