@@ -384,9 +384,9 @@ const YourDailiesChecklist: NextPage<Props> = ({ user, lists, quests, categories
 					{drawerTextInfo.questgiver && <div className="pb-2">Quest Giver: {drawerTextInfo.questgiver}</div>}
 					{drawerTextInfo.reward && <div className="pb-2">Reward: {drawerTextInfo.reward}</div>}
 					{drawerTextInfo.link && (
-						<Link className="" href={drawerTextInfo.link}>
+						<a target="_blank" className="" href={drawerTextInfo.link}>
 							{drawerTextInfo.link}
-						</Link>
+						</a>
 					)}
 					<div
 						className="pb-2  flex h-full mt-4 "
