@@ -11,7 +11,7 @@ const AboutSection: React.FC<{
 					<p className="text-xl text-center text-white  max-w-6xl m-auto text-left">
 						ESO Daily Checklist is a small ToDo app created by a former ESO player who understands how hard
 						keeping track of your dailies can be. While in-game addons can provide similar functionality,
-						the online, cross-platoform nature of a web app allows you to more easily manage your dailies
+						the online, cross-platform nature of a web app allows you to more easily manage your dailies
 						across multiple devices.
 					</p>
 				</div>
