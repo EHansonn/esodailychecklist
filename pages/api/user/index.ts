@@ -114,7 +114,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 	} catch (error) {
 		res.status(500);
 		if (error instanceof Error) {
-			res.send(error.message);
+			res.send("something wrong wrong");
 		}
 	}
 

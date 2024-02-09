@@ -2,38 +2,13 @@ import React from "react";
 import { User } from "../DailyChecklist/dailiesCheckList";
 import { Button, Form, Input, message, Select, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-import { refreshData } from "../../pages/yourdailies";
+import { CATEGORIES, refreshData } from "../../pages/yourdailies";
 interface Props {}
 
 const { Option } = Select;
 
 const CustomQuestModal: React.FC<Props> = () => {
-	let categories = [
-		"Custom Quests",
-		"Weekly Tasks and Trials",
-		"Daily Tasks",
-		"Craglorn Quests",
-		"PvP Quests",
-		"Imperial City Quests",
-		"Guild Daily Quests",
-		"Wrothgar Quests",
-		"Thieves Guild Quests",
-		"Gold Coast Quests",
-		"Vvardenfell Quests",
-		"Clockwork City Quests",
-		"Summerset Quests",
-		"Murkmire Quests",
-		"Elsweyr Quests",
-		"Dragonhold Quests",
-		"Western Skyrim Quests",
-		"The Reach Quests",
-		"Blackwood Quests",
-		"Deadlands Quests",
-		"High Isle Quests",
-		"Galen Quests",
-		"Cyrodiil Settlement Quests",
-		"Miscellaneous",
-	];
+	let categories = CATEGORIES;
 
 	const [form] = Form.useForm();
 

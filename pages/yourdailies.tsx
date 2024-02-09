@@ -15,7 +15,33 @@ export const refreshData = () => {
 	//Triggers swr to refetch data
 	mutate("api/user");
 };
-
+export const CATEGORIES = [
+	"Weekly Tasks and Trials",
+	"Daily Tasks",
+	"Custom Quests",
+	"Craglorn Quests",
+	"PvP Quests",
+	"Imperial City Quests",
+	"Guild Daily Quests",
+	"Wrothgar Quests",
+	"Thieves Guild Quests",
+	"Gold Coast Quests",
+	"Vvardenfell Quests",
+	"Clockwork City Quests",
+	"Summerset Quests",
+	"Murkmire Quests",
+	"Elsweyr Quests",
+	"Dragonhold Quests",
+	"Western Skyrim Quests",
+	"The Reach Quests",
+	"Blackwood Quests",
+	"Deadlands Quests",
+	"High Isle Quests",
+	"Galen Quests",
+	"Necrom Quests",
+	"Cyrodiil Settlement Quests",
+	"Miscellaneous",
+];
 export default function Dailies() {
 	const { data: session, status } = useSession();
 	//Fetching user data
@@ -49,57 +75,7 @@ export default function Dailies() {
 	}, []);
 
 	//Hardcoded, for now...
-	let categories = [
-		"Weekly Tasks and Trials",
-		"Daily Tasks",
-		"Custom Quests",
-		"Craglorn Quests",
-		"PvP Quests",
-		"Imperial City Quests",
-		"Guild Daily Quests",
-		"Wrothgar Quests",
-		"Thieves Guild Quests",
-		"Gold Coast Quests",
-		"Vvardenfell Quests",
-		"Clockwork City Quests",
-		"Summerset Quests",
-		"Murkmire Quests",
-		"Elsweyr Quests",
-		"Dragonhold Quests",
-		"Western Skyrim Quests",
-		"The Reach Quests",
-		"Blackwood Quests",
-		"Deadlands Quests",
-		"High Isle Quests",
-		"Galen Quests",
-		"Necrom Quests",
-		"Cyrodiil Settlement Quests",
-		"Miscellaneous",
-	];
-	let unAuthCategories = [
-		"Weekly Tasks and Trials",
-		"Daily Tasks",
-		"Craglorn Quests",
-		"PvP Quests",
-		"Imperial City Quests",
-		"Guild Daily Quests",
-		"Wrothgar Quests",
-		"Thieves Guild Quests",
-		"Gold Coast Quests",
-		"Vvardenfell Quests",
-		"Clockwork City Quests",
-		"Summerset Quests",
-		"Murkmire Quests",
-		"Elsweyr Quests",
-		"Dragonhold Quests",
-		"Western Skyrim Quests",
-		"The Reach Quests",
-		"Blackwood Quests",
-		"Deadlands Quests",
-		"High Isle Quests",
-		"Galen Quests",
-		"Necrom Quests",
-	];
+	let categories = CATEGORIES;
 
 	if (!session) {
 		return (
@@ -132,15 +108,19 @@ export default function Dailies() {
 											className={`w-full grid grid-cols-1  h-full lg:grid-cols-3 md:grid-cols-2 gap-3   auto-cols-1 md:ml-20 md:mr-20   `}
 										>
 											{/* Displaying Quests */}
-											{unAuthCategories.map((category) => (
-												<UnauthQuestCategory
-													key={category}
-													quests={quests?.filter(function (el: any) {
-														return el.category === category;
-													})}
-													category={category}
-												></UnauthQuestCategory>
-											))}
+											{categories
+												.filter((category) => {
+													return category !== "Custom Quests";
+												})
+												.map((category) => (
+													<UnauthQuestCategory
+														key={category}
+														quests={quests?.filter(function (el: any) {
+															return el.category === category;
+														})}
+														category={category}
+													></UnauthQuestCategory>
+												))}
 										</div>
 									</div>
 								)}
